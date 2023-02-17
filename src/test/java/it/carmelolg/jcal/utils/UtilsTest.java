@@ -2,32 +2,46 @@ package it.carmelolg.jcal.utils;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class UtilsTest {
+import it.carmelolg.jcal.JUnitDataTest;
+import it.carmelolg.jcal.model.DefaultCell;
 
-	private static final Logger log = Logger.getLogger(UtilsTest.class.getName());
+public class UtilsTest {
 
 	@BeforeAll
 	static void setup() {
-		log.info("@BeforeAll - executes once before all test methods in this class");
+		JUnitDataTest.init();
 	}
 
 	@BeforeEach
-	void init() {
-		log.info("@BeforeEach - executes before each test method in this class");
+	void beforeEach() {
 	}
 
 	@Test
 	public void isInsideTest() {
-		List<Integer> numbers = Arrays.asList(1, 2, 3);
-		assertTrue(numbers.stream().mapToInt(Integer::intValue).sum() > 5, () -> "Sum should be greater than 5");
+		assertTrue(Utils.isInside(JUnitDataTest.map, 15, 1) == false, () -> "(15,1) is outside the map");
+		assertTrue(Utils.isInside(JUnitDataTest.map, -1, 1) == false, () -> "(-1,1) is outside the map");
+		assertTrue(Utils.isInside(JUnitDataTest.map, 5, 5) == true, () -> "(5,5) is inside the map");
+		assertTrue(Utils.isInside(JUnitDataTest.map, 1, 15) == false, () -> "(1,15) is outside the map");
+		assertTrue(Utils.isInside(JUnitDataTest.map, 1, -1) == false, () -> "(1,-1) is outside the map");
 	}
 
+	@Test
+	public void cloneMaps() {
+		try {
+			DefaultCell[][] cloned = Utils.cloneMaps(JUnitDataTest.map);
+
+			assertTrue(cloned.length == JUnitDataTest.map.length, () -> "Cloned map has a different col length");
+			assertTrue(cloned[0].length == JUnitDataTest.map[0].length, () -> "Cloned map has a different row length");
+			assertTrue(cloned[0][0].equals(JUnitDataTest.map[0][0]),
+					() -> "First cell of cloned map is different then the original map");
+
+		} catch (CloneNotSupportedException e) {
+			assertTrue(e.getMessage() != null, () -> "CloneNotSupportedException triggered.");
+		}
+
+	}
 }

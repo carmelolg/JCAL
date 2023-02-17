@@ -5,7 +5,7 @@ import java.util.List;
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.utils.Utils;
 
-public abstract class CAExecutor {
+public abstract class CellularAutomataExecutor {
 
 	public CellularAutomata run(CellularAutomata ca) throws Exception {
 

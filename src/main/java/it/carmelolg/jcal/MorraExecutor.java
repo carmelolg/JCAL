@@ -2,10 +2,10 @@ package it.carmelolg.jcal;
 
 import java.util.List;
 
-import it.carmelolg.jcal.core.CAExecutor;
+import it.carmelolg.jcal.core.CellularAutomataExecutor;
 import it.carmelolg.jcal.model.DefaultCell;
 
-public class MorraExecutor extends CAExecutor {
+public class MorraExecutor extends CellularAutomataExecutor {
 
 	@Override
 	public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) throws CloneNotSupportedException {
