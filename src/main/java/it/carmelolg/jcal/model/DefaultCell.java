@@ -37,4 +37,11 @@ public class DefaultCell implements Cloneable {
 	public DefaultCell clone() throws CloneNotSupportedException {
 		return new DefaultCell(currentStatus, row, col);
 	}
+
+	@Override
+	public boolean equals(Object object) {
+		DefaultCell dc = (DefaultCell) object;
+		return dc.col == this.col && dc.row == this.row && dc.currentStatus == this.currentStatus;
+
+	}
 }
