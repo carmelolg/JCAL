@@ -2,10 +2,7 @@ package it.carmelolg.jcal.core;
 
 import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
 import it.carmelolg.jcal.model.DefaultCell;
-import it.carmelolg.jcal.model.DefaultNeighborhood;
-import it.carmelolg.jcal.model.MooreNeighborhood;
 import it.carmelolg.jcal.model.Neighborhood;
-import it.carmelolg.jcal.model.VonNeumannNeighborhood;
 import it.carmelolg.jcal.utils.Utils;
 
 public class CellularAutomata {
@@ -20,6 +17,9 @@ public class CellularAutomata {
 
 	public void init(EnvironmentConfiguration _config) throws Exception {
 		config = _config;
+
+		// First check if CA can run
+		check();
 
 		// Init map
 		map = new DefaultCell[config.getWidth()][config.getHeight()];
@@ -67,13 +67,14 @@ public class CellularAutomata {
 			throw new Exception("Set the neighborhood type or implement your Neighborhood by yourself.");
 		}
 
+		if (config.getNeighborhoodType() != null && config.getNeighborhood() != null) {
+			throw new Exception("You can choose only one between NeighborhoodType and Neighborhood");
+		}
+
 		if (config.getStatusList() == null) {
 			throw new Exception("Set the cell's status list.");
 		}
 
-		if (config.getNeighborhoodType() != null && config.getNeighborhood() != null) {
-			throw new Exception("You can choose only one between NeighborhoodType and Neighborhood");
-		}
 
 	}
 

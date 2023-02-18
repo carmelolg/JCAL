@@ -2,8 +2,8 @@ package it.carmelolg.jcal.configuration;
 
 import java.util.List;
 
+import it.carmelolg.jcal.core.DefaultNeighborhood;
 import it.carmelolg.jcal.model.DefaultCell;
-import it.carmelolg.jcal.model.DefaultNeighborhood;
 import it.carmelolg.jcal.model.Neighborhood;
 
 public class EnvironmentConfiguration {

@@ -3,8 +3,8 @@ package it.carmelolg.jcal;
 import java.util.Arrays;
 import java.util.List;
 
+import it.carmelolg.jcal.core.DefaultNeighborhood;
 import it.carmelolg.jcal.model.DefaultCell;
-import it.carmelolg.jcal.model.DefaultNeighborhood;
 import it.carmelolg.jcal.utils.Utils;
 
 public class MorraNeighborhood extends DefaultNeighborhood {

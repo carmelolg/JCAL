@@ -9,9 +9,6 @@ public abstract class CellularAutomataExecutor {
 
 	public CellularAutomata run(CellularAutomata ca) throws Exception {
 
-		// First check if CA can run
-		ca.check();
-
 		// Start transaction function
 		if (ca.getConfig().isInfinite()) {
 			while (true) {

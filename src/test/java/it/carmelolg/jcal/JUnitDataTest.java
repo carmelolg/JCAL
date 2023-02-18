@@ -1,7 +1,5 @@
 package it.carmelolg.jcal;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,9 +7,12 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
+import it.carmelolg.jcal.configuration.EnvironmentConfiguration.EnvironmentConfigurationBuilder;
+import it.carmelolg.jcal.core.CellularAutomata;
 import it.carmelolg.jcal.model.DefaultCell;
+import it.carmelolg.jcal.model.Neighborhood;
 
 public class JUnitDataTest {
 
@@ -19,16 +20,17 @@ public class JUnitDataTest {
 	public static int WIDTH = 10, HEIGHT = 10;
 	public static DefaultCell[][] map = new DefaultCell[WIDTH][HEIGHT];
 	public static List<String> status = Arrays.asList("0", "1");
+	public static EnvironmentConfiguration config = null;
+	public static EnvironmentConfigurationBuilder configBuilder = new EnvironmentConfigurationBuilder();
+	public static CellularAutomata ca = null;
 
 	@BeforeAll
 	static void setup() {
-		log.warning("@BeforeAll - executes once before all test methods in this class");
 		init();
 	}
 
 	@BeforeEach
 	void beforeEach() {
-		log.warning("@BeforeEach - executes before each test method in this class");
 	}
 
 	public static void init() {
@@ -51,12 +53,16 @@ public class JUnitDataTest {
 			map[settedCell.col][settedCell.row] = settedCell;
 		}
 
-	}
+		config = configBuilder.setWidth(10).setHeight(10).setInfinite(false).setTotalIterations(6)
+				.setNeighborhoodType(Neighborhood.MOORE).setStatusList(status).setInitalState(initalState).build();
 
-	@Test
-	public void trigger() {
-		List<Integer> numbers = Arrays.asList(1, 2, 3);
-		assertTrue(numbers.stream().mapToInt(Integer::intValue).sum() > 5, () -> "Sum should be greater than 5");
+		ca = new CellularAutomata();
+		try {
+			ca.init(config);
+		} catch (Exception e) {
+			log.severe(e.getMessage());
+		}
+
 	}
 
 }

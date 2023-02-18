@@ -1,8 +1,9 @@
-package it.carmelolg.jcal.model;
+package it.carmelolg.jcal.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.utils.Utils;
 
 public class MooreNeighborhood extends DefaultNeighborhood {
