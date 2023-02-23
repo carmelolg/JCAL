@@ -10,6 +10,8 @@
 	<properties>
 		<junit.jupiter.version>5.9.1</junit.jupiter.version>
 		<junit.platform.version>1.9.1</junit.platform.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,6 +51,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<release>16</release>
+					<encoding>Cp1252</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
