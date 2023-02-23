@@ -33,6 +33,7 @@ jobs:
       run: mvn -B test
 
   coverage:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     
