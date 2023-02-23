@@ -12,7 +12,7 @@ import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
 import it.carmelolg.jcal.configuration.EnvironmentConfiguration.EnvironmentConfigurationBuilder;
 import it.carmelolg.jcal.core.CellularAutomata;
 import it.carmelolg.jcal.model.DefaultCell;
-import it.carmelolg.jcal.model.Neighborhood;
+import it.carmelolg.jcal.model.NeighborhoodType;
 
 public class JUnitDataTest {
 
@@ -54,7 +54,7 @@ public class JUnitDataTest {
 		}
 
 		config = configBuilder.setWidth(10).setHeight(10).setInfinite(false).setTotalIterations(6)
-				.setNeighborhoodType(Neighborhood.MOORE).setStatusList(status).setInitalState(initalState).build();
+				.setNeighborhoodType(NeighborhoodType.MOORE).setStatusList(status).setInitalState(initalState).build();
 
 		ca = new CellularAutomata();
 		try {

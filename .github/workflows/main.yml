@@ -1,7 +1,11 @@
 name: tests
-on: push
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  run_tests:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -18,8 +22,5 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
-      - name: Generate JaCoCo Badge
-        uses: cicirello/jacoco-badge-generator@v2
-        with:
-          generate-branches-badge: true
-          jacoco-csv-file: target/site/jacoco/jacoco.csv
+ # coverage:
+    

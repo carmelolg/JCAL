@@ -6,6 +6,13 @@ import java.util.List;
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.utils.Utils;
 
+/**
+ * 
+ * This is the Moore Neighborhood implementation.
+ * 
+ * @author Carmelo La Gamba
+ * © 2023 is licensed under CC BY-NC-SA 4.0 
+ */
 public class MooreNeighborhood extends DefaultNeighborhood {
 
 	@Override

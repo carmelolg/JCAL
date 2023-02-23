@@ -2,9 +2,28 @@ package it.carmelolg.jcal.core;
 
 import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
 import it.carmelolg.jcal.model.DefaultCell;
-import it.carmelolg.jcal.model.Neighborhood;
+import it.carmelolg.jcal.model.NeighborhoodType;
 import it.carmelolg.jcal.utils.Utils;
 
+/**
+ * This class represent the Cellular Automata object. A Cellular Automata is a
+ * quadruple like <Zd,S,X,σ>
+ * 
+ * <b>Zd</b> is a set of cells, a d-dimension matrix of cells
+ * 
+ * <b>S</b> is a set of status where the single cell can be in (contained in
+ * {@link DefaultCell})
+ * 
+ * <b>X</b> is a set of cell's neighbors, calculated by
+ * {@link DefaultNeighborhood} class
+ * 
+ * <b>σ</b> is the transaction function implemented on
+ * {@link CellularAutomataExecutor}
+ * 
+ * @author Carmelo La Gamba
+ * 
+ *         © 2023 is licensed under CC BY-NC-SA 4.0
+ */
 public class CellularAutomata {
 
 	protected DefaultCell[][] map;
@@ -15,36 +34,44 @@ public class CellularAutomata {
 	public CellularAutomata() {
 	}
 
+	/**
+	 * Initialize the cellular automata with the properly configurations. <b>This
+	 * step is mandatory for using the library</b>
+	 * 
+	 * @param _config the {@link EnvironmentConfiguration} object
+	 * @throws Exception if there's some exception during the cells cloning
+	 */
 	public void init(EnvironmentConfiguration _config) throws Exception {
 		config = _config;
 
-		// First check if CA can run
+		/* Step 1, check if CA could be runned and it's consistent */
 		check();
 
-		// Init map
+		/* Step 2, initalize all matrix */
 		map = new DefaultCell[config.getWidth()][config.getHeight()];
 
-		// Init cells
 		for (int i = 0; i < config.getWidth(); i++) {
 			for (int j = 0; j < config.getHeight(); j++) {
 				map[i][j] = new DefaultCell(config.getStatusList().stream().findFirst().get(), i, j);
 			}
 		}
 
-		// Init initial state
 		for (DefaultCell settedCell : config.getInitalState()) {
 			map[settedCell.col][settedCell.row] = settedCell;
 		}
 
-		// Define the neighborhood
+		/* Step 3, define the neighborhood */
 		if (config.getNeighborhood() != null) {
 			neighborhood = config.getNeighborhood();
 		} else {
-			neighborhood = config.getNeighborhoodType().equals(Neighborhood.MOORE) ? new MooreNeighborhood()
+			neighborhood = config.getNeighborhoodType().equals(NeighborhoodType.MOORE) ? new MooreNeighborhood()
 					: new VonNeumannNeighborhood();
 		}
 
-		// Clone map into UtilsMap
+		/*
+		 * Step 4, the last, initalize the cloned matrix in order to perform the
+		 * transaction function
+		 */
 		try {
 			utilsMap = Utils.cloneMaps(map);
 		} catch (CloneNotSupportedException e) {
@@ -53,7 +80,12 @@ public class CellularAutomata {
 
 	}
 
-	public void check() throws Exception {
+	/**
+	 * Throws an exception if the default rules are violated.
+	 * 
+	 * @throws Exception
+	 */
+	private void check() throws Exception {
 
 		if (config.isInfinite() && config.getTotalIterations() > 0) {
 			throw new Exception("It's not possibile loop infinitely with total interactions setted");
@@ -74,7 +106,6 @@ public class CellularAutomata {
 		if (config.getStatusList() == null) {
 			throw new Exception("Set the cell's status list.");
 		}
-
 
 	}
 

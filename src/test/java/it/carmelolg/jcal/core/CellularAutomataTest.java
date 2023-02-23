@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import it.carmelolg.jcal.JUnitDataTest;
 import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
 import it.carmelolg.jcal.configuration.EnvironmentConfiguration.EnvironmentConfigurationBuilder;
-import it.carmelolg.jcal.model.Neighborhood;
+import it.carmelolg.jcal.model.NeighborhoodType;
 
 public class CellularAutomataTest {
 
@@ -53,7 +53,7 @@ public class CellularAutomataTest {
 		_config = new EnvironmentConfigurationBuilder().setNeighborhood(null).setNeighborhoodType(null).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new EnvironmentConfigurationBuilder().setNeighborhood(new MooreNeighborhood()).setNeighborhoodType(Neighborhood.MOORE).build();
+		_config = new EnvironmentConfigurationBuilder().setNeighborhood(new MooreNeighborhood()).setNeighborhoodType(NeighborhoodType.MOORE).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 		
 		_config = new EnvironmentConfigurationBuilder().setStatusList(null).build();

@@ -7,11 +7,11 @@ import it.carmelolg.jcal.model.DefaultCell;
 public class GoLExecutor extends CellularAutomataExecutor {
 
 	@Override
-	public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) throws CloneNotSupportedException {
+	public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
 
 		Long alives = neighbors.stream().filter(item -> item.currentStatus.equals("1")).count();
 
-		DefaultCell toReturn = cell.clone();
+		DefaultCell toReturn = new DefaultCell(null, cell.getRow(), cell.getCol());
 		
 		if (cell.currentStatus.equals("0") && alives == 3) {
 			toReturn.currentStatus = "1";
