@@ -7,7 +7,7 @@ import it.carmelolg.jcal.utils.Utils;
 
 /**
  * This class represent the Cellular Automata object. A Cellular Automata is a
- * quadruple like <Zd,S,X,σ>
+ * quadruple like <Zd,S,X,o>
  * 
  * <b>Zd</b> is a set of cells, a d-dimension matrix of cells
  * 
@@ -17,12 +17,12 @@ import it.carmelolg.jcal.utils.Utils;
  * <b>X</b> is a set of cell's neighbors, calculated by
  * {@link DefaultNeighborhood} class
  * 
- * <b>σ</b> is the transaction function implemented on
+ * <b>o</b> is the transaction function implemented on
  * {@link CellularAutomataExecutor}
  * 
  * @author Carmelo La Gamba
  * 
- *         © 2023 is licensed under CC BY-NC-SA 4.0
+ *         � 2023 is licensed under CC BY-NC-SA 4.0
  */
 public class CellularAutomata {
 
@@ -32,6 +32,15 @@ public class CellularAutomata {
 	protected EnvironmentConfiguration config;
 
 	public CellularAutomata() {
+	}
+	
+	/**
+	 * Build the object passing directly the configuration
+	 * @param config an {@link EnvironmentConfiguration} instance
+	 * @throws Exception if something is wrong during the configuration
+	 */
+	public CellularAutomata(EnvironmentConfiguration config) throws Exception {
+		this.init(config);
 	}
 
 	/**
@@ -56,8 +65,10 @@ public class CellularAutomata {
 			}
 		}
 
-		for (DefaultCell settedCell : config.getInitalState()) {
-			map[settedCell.col][settedCell.row] = settedCell;
+		if(config.getInitalState() != null && config.getInitalState().size() > 0) {
+			for (DefaultCell settedCell : config.getInitalState()) {
+				map[settedCell.col][settedCell.row] = settedCell;
+			}			
 		}
 
 		/* Step 3, define the neighborhood */

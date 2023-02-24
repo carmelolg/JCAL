@@ -7,21 +7,21 @@ package it.carmelolg.jcal.model;
  */
 public class DefaultCell implements Cloneable {
 
-	public String currentStatus;
+	public DefaultStatus currentStatus;
 	public int col, row;
 
-	public DefaultCell(String currentStatus, int i, int j) {
+	public DefaultCell(DefaultStatus currentStatus, int i, int j) {
 		super();
 		this.currentStatus = currentStatus;
 		this.col = i;
 		this.row = j;
 	}
 
-	public String getCurrentStatus() {
+	public DefaultStatus getCurrentStatus() {
 		return currentStatus;
 	}
 
-	public void setCurrentStatus(String currentStatus) {
+	public void setCurrentStatus(DefaultStatus currentStatus) {
 		this.currentStatus = currentStatus;
 	}
 

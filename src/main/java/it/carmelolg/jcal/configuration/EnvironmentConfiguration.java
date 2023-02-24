@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.carmelolg.jcal.core.DefaultNeighborhood;
 import it.carmelolg.jcal.model.DefaultCell;
+import it.carmelolg.jcal.model.DefaultStatus;
 import it.carmelolg.jcal.model.NeighborhoodType;
 
 /**
@@ -17,7 +18,7 @@ public class EnvironmentConfiguration {
 	private boolean isInfinite;
 	private int totalIterations;
 	private boolean activeCells; // Not used yet
-	private List<String> statusList;
+	private List<DefaultStatus> statusList;
 	private List<DefaultCell> initalState;
 	private NeighborhoodType neighborhoodType;
 	private DefaultNeighborhood neighborhood;
@@ -42,7 +43,7 @@ public class EnvironmentConfiguration {
 		return activeCells;
 	}
 
-	public List<String> getStatusList() {
+	public List<DefaultStatus> getStatusList() {
 		return statusList;
 	}
 
@@ -56,10 +57,6 @@ public class EnvironmentConfiguration {
 
 	public DefaultNeighborhood getNeighborhood() {
 		return neighborhood;
-	}
-
-	public void setNeighborhood(DefaultNeighborhood neighborhood) {
-		this.neighborhood = neighborhood;
 	}
 
 	private EnvironmentConfiguration(EnvironmentConfigurationBuilder builder) {
@@ -87,7 +84,7 @@ public class EnvironmentConfiguration {
 		private int totalIterations;
 
 		private boolean activeCells;
-		private List<String> statusList;
+		private List<DefaultStatus> statusList;
 		private List<DefaultCell> initalState;
 		private NeighborhoodType neighborhoodType;
 		private DefaultNeighborhood neighborhood;
@@ -152,7 +149,7 @@ public class EnvironmentConfiguration {
 		 * @param statusList a {@link List} of {@link String}
 		 * @return the builder {@link EnvironmentConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setStatusList(List<String> statusList) {
+		public EnvironmentConfigurationBuilder setStatusList(List<DefaultStatus> statusList) {
 			this.statusList = statusList;
 			return this;
 		}

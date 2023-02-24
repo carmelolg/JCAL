@@ -10,16 +10,24 @@ public class DefaultStatus {
 	String key;
 	Object value;
 
-	public DefaultStatus(String name, Object value){
+	public DefaultStatus(String name, Object value) {
 		this.key = name;
 		this.value = value;
 	}
-	
-	
+
 	public Object getValue() {
 		return value;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object object) {
+		DefaultStatus status = (DefaultStatus) object;
+		return this.key.equals(status.key) && this.value.equals(status.value);
+	}
+
+	@Override
+	public String toString() {
+		return value.toString() + " ";
+	}
 
 }

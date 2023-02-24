@@ -28,12 +28,12 @@ public class CellularAutomataExecutorTest {
 
 		result = execTest.run(JUnitDataTest.ca);
 		assertTrue(result != null, "The actual result is null, expected a map with some cell alive.");
-		assertTrue(result.map[0][1].getCurrentStatus().equals("1"), "The result is not as expected.");
-		assertTrue(result.map[0][2].getCurrentStatus().equals("1"), "The result is not as expected.");
-		assertTrue(result.map[1][0].getCurrentStatus().equals("1"), "The result is not as expected.");
-		assertTrue(result.map[1][3].getCurrentStatus().equals("1"), "The result is not as expected.");
-		assertTrue(result.map[2][1].getCurrentStatus().equals("1"), "The result is not as expected.");
-		assertTrue(result.map[2][2].getCurrentStatus().equals("1"), "The result is not as expected.");
+		assertTrue(result.map[0][1].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
+		assertTrue(result.map[0][2].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
+		assertTrue(result.map[1][0].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
+		assertTrue(result.map[1][3].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
+		assertTrue(result.map[2][1].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
+		assertTrue(result.map[2][2].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
 		
 	}
 

@@ -22,8 +22,8 @@ public class DefaultCellTest {
 	@Test
 	public void constructor() {
 
-		DefaultCell cell = new DefaultCell("0", 0, 0);
-		assertTrue(cell.getCurrentStatus().equals("0"), "Constructor doesn't create the current status");
+		DefaultCell cell = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		assertTrue(cell.getCurrentStatus().equals(JUnitDataTest.dead), "Constructor doesn't create the current status");
 		assertTrue(cell.getCol() == 0, "Constructor doesn't create the col value");
 		assertTrue(cell.getRow() == 0, "Constructor doesn't create the row value");
 
@@ -31,16 +31,16 @@ public class DefaultCellTest {
 
 	@Test
 	public void getCurrentStatus() {
-		assertTrue(JUnitDataTest.map[0][0].getCurrentStatus().equals("0"),
+		assertTrue(JUnitDataTest.map[0][0].getCurrentStatus().equals(JUnitDataTest.dead),
 				"Get method doesn't work - currentStatus's not setted properly");
 	}
 
 	@Test
 	public void setCurrentStatus() {
 
-		DefaultCell cell = new DefaultCell("0", 0, 0);
-		cell.setCurrentStatus("1");
-		assertTrue(cell.getCurrentStatus().equals("1"),
+		DefaultCell cell = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		cell.setCurrentStatus(JUnitDataTest.alive);
+		assertTrue(cell.getCurrentStatus().equals(JUnitDataTest.alive),
 				"Set method doesn't work - currentStatus's not setted properly ");
 
 	}
