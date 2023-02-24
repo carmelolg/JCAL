@@ -1,6 +1,6 @@
 package it.carmelolg.jcal.core;
 
-import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
+import it.carmelolg.jcal.configuration.CellularAutomataConfiguration;
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.model.NeighborhoodType;
 import it.carmelolg.jcal.utils.Utils;
@@ -29,17 +29,17 @@ public class CellularAutomata {
 	protected DefaultCell[][] map;
 	protected DefaultCell[][] utilsMap;
 	protected DefaultNeighborhood neighborhood;
-	protected EnvironmentConfiguration config;
+	protected CellularAutomataConfiguration config;
 
 	public CellularAutomata() {
 	}
 	
 	/**
 	 * Build the object passing directly the configuration
-	 * @param config an {@link EnvironmentConfiguration} instance
+	 * @param config an {@link CellularAutomataConfiguration} instance
 	 * @throws Exception if something is wrong during the configuration
 	 */
-	public CellularAutomata(EnvironmentConfiguration config) throws Exception {
+	public CellularAutomata(CellularAutomataConfiguration config) throws Exception {
 		this.init(config);
 	}
 
@@ -47,10 +47,10 @@ public class CellularAutomata {
 	 * Initialize the cellular automata with the properly configurations. <b>This
 	 * step is mandatory for using the library</b>
 	 * 
-	 * @param _config the {@link EnvironmentConfiguration} object
+	 * @param _config the {@link CellularAutomataConfiguration} object
 	 * @throws Exception if there's some exception during the cells cloning
 	 */
-	public void init(EnvironmentConfiguration _config) throws Exception {
+	public void init(CellularAutomataConfiguration _config) throws Exception {
 		config = _config;
 
 		/* Step 1, check if CA could be runned and it's consistent */
@@ -144,11 +144,11 @@ public class CellularAutomata {
 		this.neighborhood = neighborhood;
 	}
 
-	public void setConfig(EnvironmentConfiguration config) {
+	public void setConfig(CellularAutomataConfiguration config) {
 		this.config = config;
 	}
 
-	public EnvironmentConfiguration getConfig() {
+	public CellularAutomataConfiguration getConfig() {
 		return config;
 	}
 

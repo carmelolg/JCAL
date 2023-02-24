@@ -11,7 +11,7 @@ import it.carmelolg.jcal.model.NeighborhoodType;
  * @author Carmelo La Gamba
  * © 2023 is licensed under CC BY-NC-SA 4.0 
  */
-public class EnvironmentConfiguration {
+public class CellularAutomataConfiguration {
 
 	private int width = 100;
 	private int height = 100;
@@ -59,7 +59,7 @@ public class EnvironmentConfiguration {
 		return neighborhood;
 	}
 
-	private EnvironmentConfiguration(EnvironmentConfigurationBuilder builder) {
+	private CellularAutomataConfiguration(CellularAutomataConfigurationBuilder builder) {
 		this.width = builder.width;
 		this.height = builder.height;
 		this.activeCells = builder.activeCells;
@@ -71,7 +71,7 @@ public class EnvironmentConfiguration {
 		this.neighborhood = builder.neighborhood;
 	}
 
-	public static class EnvironmentConfigurationBuilder {
+	public static class CellularAutomataConfigurationBuilder {
 
 		/** Square map is the default */
 		private int width = 100;
@@ -89,16 +89,16 @@ public class EnvironmentConfiguration {
 		private NeighborhoodType neighborhoodType;
 		private DefaultNeighborhood neighborhood;
 
-		public EnvironmentConfigurationBuilder() {
+		public CellularAutomataConfigurationBuilder() {
 		}
 
 		/**
 		 * Set the matrix width (the number of columns)
 		 * <b>Default is 100</b>
 		 * @param width {the columns number expressed in integer}
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setWidth(int width) {
+		public CellularAutomataConfigurationBuilder setWidth(int width) {
 			this.width = width;
 			return this;
 		}
@@ -107,18 +107,18 @@ public class EnvironmentConfiguration {
 		 * Set the matrix height (the number of rows)
 		 * <b>Default is 100</b>
 		 * @param height {the rows number expressed in integer.}
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setHeight(int height) {
+		public CellularAutomataConfigurationBuilder setHeight(int height) {
 			this.height = height;
 			return this;
 		}
 
 		/**
 		 * @param isInfinite <b><i>true</i></b> if you want to run infinitely, <b><i>false</i></b> otherwise
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setInfinite(boolean isInfinite) {
+		public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite) {
 			this.isInfinite = isInfinite;
 			return this;
 		}
@@ -126,9 +126,9 @@ public class EnvironmentConfiguration {
 		/**
 		 * Set the number of iterations of the transaction function
 		 * @param totalIterations the number of iteractions
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setTotalIterations(int totalIterations) {
+		public CellularAutomataConfigurationBuilder setTotalIterations(int totalIterations) {
 			this.totalIterations = totalIterations;
 			return this;
 		}
@@ -136,10 +136,10 @@ public class EnvironmentConfiguration {
 		/**
 		 * <b>Function temporary suspended.</b>
 		 * @param activeCells <b><i>true</i></b> if you want otpimize the transaction function using on the iterations only the active cells (cells with status not empty/dead), <b><i>false</i></b> otherwise
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
 		@Deprecated
-		public EnvironmentConfigurationBuilder setActiveCells(boolean activeCells) {
+		public CellularAutomataConfigurationBuilder setActiveCells(boolean activeCells) {
 			this.activeCells = activeCells;
 			return this;
 		}
@@ -147,9 +147,9 @@ public class EnvironmentConfiguration {
 		/**
 		 * Set the list of status usable on the Cellular Automata.
 		 * @param statusList a {@link List} of {@link String}
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setStatusList(List<DefaultStatus> statusList) {
+		public CellularAutomataConfigurationBuilder setStatusList(List<DefaultStatus> statusList) {
 			this.statusList = statusList;
 			return this;
 		}
@@ -157,9 +157,9 @@ public class EnvironmentConfiguration {
 		/**
 		 * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead.
 		 * @param initalState a {@link List} of {@link DefaultCell}
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setInitalState(List<DefaultCell> initalState) {
+		public CellularAutomataConfigurationBuilder setInitalState(List<DefaultCell> initalState) {
 			this.initalState = initalState;
 			return this;
 		}
@@ -167,9 +167,9 @@ public class EnvironmentConfiguration {
 		/**
 		 * If you don't have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType
 		 * @param neighborhoodType the type of neighboorhood
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType) {
+		public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType) {
 			this.neighborhoodType = neighborhoodType;
 			return this;
 		}
@@ -178,19 +178,19 @@ public class EnvironmentConfiguration {
 		 * If you have a custom neighborhood you can set your class here.
 		 * The class has to inerhit the {@link DefaultNeighborhood} class.
 		 * @param neighborhood
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood) {
+		public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood) {
 			this.neighborhood = neighborhood;
 			return this;
 		}
 
 		/**
 		 * Build the configuration object
-		 * @return the builder {@link EnvironmentConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
-		public EnvironmentConfiguration build() {
-			return new EnvironmentConfiguration(this);
+		public CellularAutomataConfiguration build() {
+			return new CellularAutomataConfiguration(this);
 		}
 
 	}

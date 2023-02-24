@@ -9,14 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.carmelolg.jcal.JUnitDataTest;
-import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
-import it.carmelolg.jcal.configuration.EnvironmentConfiguration.EnvironmentConfigurationBuilder;
+import it.carmelolg.jcal.configuration.CellularAutomataConfiguration;
+import it.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.model.NeighborhoodType;
 
 public class CellularAutomataTest {
 
-	EnvironmentConfiguration _config = null;
+	CellularAutomataConfiguration _config = null;
 	CellularAutomata ca = new CellularAutomata();
 
 	@BeforeAll
@@ -46,8 +46,8 @@ public class CellularAutomataTest {
 	@Test
 	void initialStateEmpty() throws Exception {
 
-		EnvironmentConfigurationBuilder configBuilder = new EnvironmentConfigurationBuilder();
-		EnvironmentConfiguration config = configBuilder.setHeight(JUnitDataTest.HEIGHT).setWidth(JUnitDataTest.WIDTH).setTotalIterations(10)
+		CellularAutomataConfigurationBuilder configBuilder = new CellularAutomataConfigurationBuilder();
+		CellularAutomataConfiguration config = configBuilder.setHeight(JUnitDataTest.HEIGHT).setWidth(JUnitDataTest.WIDTH).setTotalIterations(10)
 				.setStatusList(JUnitDataTest.status).setNeighborhoodType(NeighborhoodType.MOORE).build();
 		ca.init(config);
 		
@@ -67,20 +67,20 @@ public class CellularAutomataTest {
 	@Test
 	void check() throws Exception {
 
-		_config = new EnvironmentConfigurationBuilder().setInfinite(true).setTotalIterations(10).build();
+		_config = new CellularAutomataConfigurationBuilder().setInfinite(true).setTotalIterations(10).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new EnvironmentConfigurationBuilder().setInfinite(false).setTotalIterations(0).build();
+		_config = new CellularAutomataConfigurationBuilder().setInfinite(false).setTotalIterations(0).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new EnvironmentConfigurationBuilder().setNeighborhood(null).setNeighborhoodType(null).build();
+		_config = new CellularAutomataConfigurationBuilder().setNeighborhood(null).setNeighborhoodType(null).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new EnvironmentConfigurationBuilder().setNeighborhood(new MooreNeighborhood())
+		_config = new CellularAutomataConfigurationBuilder().setNeighborhood(new MooreNeighborhood())
 				.setNeighborhoodType(NeighborhoodType.MOORE).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new EnvironmentConfigurationBuilder().setStatusList(null).build();
+		_config = new CellularAutomataConfigurationBuilder().setStatusList(null).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
 	}

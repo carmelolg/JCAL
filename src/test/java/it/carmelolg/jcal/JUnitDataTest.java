@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-import it.carmelolg.jcal.configuration.EnvironmentConfiguration;
-import it.carmelolg.jcal.configuration.EnvironmentConfiguration.EnvironmentConfigurationBuilder;
+import it.carmelolg.jcal.configuration.CellularAutomataConfiguration;
+import it.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import it.carmelolg.jcal.core.CellularAutomata;
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.model.DefaultStatus;
@@ -25,8 +25,8 @@ public class JUnitDataTest {
 	public static DefaultStatus alive = new DefaultStatus("alive", "1");
 	public static List<DefaultStatus> status = Arrays.asList(dead, alive);
 
-	public static EnvironmentConfiguration config = null;
-	public static EnvironmentConfigurationBuilder configBuilder = new EnvironmentConfigurationBuilder();
+	public static CellularAutomataConfiguration config = null;
+	public static CellularAutomataConfigurationBuilder configBuilder = new CellularAutomataConfigurationBuilder();
 	public static CellularAutomata ca = null;
 
 	@BeforeAll
