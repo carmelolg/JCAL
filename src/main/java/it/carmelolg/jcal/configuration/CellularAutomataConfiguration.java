@@ -95,7 +95,7 @@ public class CellularAutomataConfiguration {
 		/**
 		 * Set the matrix width (the number of columns)
 		 * <b>Default is 100</b>
-		 * @param width {the columns number expressed in integer}
+		 * @param width, the columns number expressed in integer
 		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
 		public CellularAutomataConfigurationBuilder setWidth(int width) {
@@ -106,7 +106,7 @@ public class CellularAutomataConfiguration {
 		/**
 		 * Set the matrix height (the number of rows)
 		 * <b>Default is 100</b>
-		 * @param height {the rows number expressed in integer.}
+		 * @param height, the rows number expressed in integer.
 		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
 		public CellularAutomataConfigurationBuilder setHeight(int height) {
@@ -124,7 +124,7 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * Set the number of iterations of the transaction function
+		 * Set the number of iterations of the transition function
 		 * @param totalIterations the number of iteractions
 		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
@@ -135,7 +135,7 @@ public class CellularAutomataConfiguration {
 		
 		/**
 		 * <b>Function temporary suspended.</b>
-		 * @param activeCells <b><i>true</i></b> if you want otpimize the transaction function using on the iterations only the active cells (cells with status not empty/dead), <b><i>false</i></b> otherwise
+		 * @param activeCells <b><i>true</i></b> if you want otpimize the transition function using on the iterations only the active cells (cells with status not empty/dead), <b><i>false</i></b> otherwise
 		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
 		 */
 		@Deprecated

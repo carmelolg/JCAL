@@ -21,7 +21,7 @@ A **basic** Cellular Automata is the quadruple `<Z <sup>d</sup>,S,X,o>`
 
 `X` is a set of cell's neighbors (the most common neighborhood implementation are [MOORE](https://en.wikipedia.org/wiki/Moore_neighborhood) and [VON NEUMANN](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)
 
- `o` is the transaction function. This function implement the evolution of the natural or artificial phenomena represented by a Cellular Automata.
+ `o` is the transition function. This function implement the evolution of the natural or artificial phenomena represented by a Cellular Automata.
  
 Thanks to this mathematic model, it's possibile represent a lot of natural phenomena like landslides, lava flows and so on...
 
@@ -63,7 +63,7 @@ CellularAutomataConfiguration config = configBuilder.setHeight(WIDTH)
 CellularAutomata ca = new CellularAutomata(config);
 ```
 
-### Implement the transaction function
+### Implement the transition function
 
 You need to inherit the **CellularAutmataExecutor** class and implement the `singleRun` method.
 
@@ -73,8 +73,8 @@ public class GOLExecutor extends CellularAutomataExecutor {
 	@Override
 	public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
 		
-        DefaultStatus dead = new DefaultStatus("dead", "0");
-        DefaultStatus alive = new DefaultStatus("alive", "1");
+       DefaultStatus dead = new DefaultStatus("dead", "0");
+       DefaultStatus alive = new DefaultStatus("alive", "1");
 		Long alives = neighbors.stream().filter(item -> item.currentStatus.equals(alive)).count();
 
 		DefaultCell toReturn = new DefaultCell(null, cell.getRow(), cell.getCol());
@@ -103,7 +103,7 @@ public class Main {
 	public static DefaultStatus dead = new DefaultStatus("dead", "0");
 	public static DefaultStatus alive = new DefaultStatus("alive", "1");
 	public static List<DefaultStatus> status = Arrays.asList(dead, alive);
-    public static List<DefaultCell> initalState = new ArrayList<DefaultCell>();
+	public static List<DefaultCell> initalState = new ArrayList<DefaultCell>();
 	
 	public static void main(String[] args) throws Exception {
 
@@ -167,7 +167,7 @@ public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite);
 `setTotalIterations`
 ```java
 /**
- * Set the number of iterations of the transaction function
+ * Set the number of iterations of the transition function
  * @param totalIterations the number of iteractions
  * @return the builder {@link CellularAutomataConfigurationBuilder} 
  */
