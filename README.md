@@ -1,5 +1,4 @@
 # JCAL - Java Cellular Automata Library
-***
 | | Badge|
 |---|---|
 | **License** | ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg) |
@@ -14,11 +13,14 @@ Here some references:
 * [Chapter 3 of my master thesis (**in italian**)](https://github.com/carmelolg/master-thesis/blob/master/Tesi/pdf/main.pdf)
 
 #### TLDR;
-A **basic** Cellular Automata is the quadruple `<Z<sup>d</sup>,S,X,o>`
+A **basic** Cellular Automata is the quadruple `<Z <sup>d</sup>,S,X,o>`
 
-`Z<sup>d</sup>` is a set of cells, a d-dimension matrix of cells
+`Z <sup>d</sup>` is a set of cells, a d-dimension matrix of cells
+
 `S` is a set of status where the single cell can be in
+
 `X` is a set of cell's neighbors (the most common neighborhood implementation are [MOORE](https://en.wikipedia.org/wiki/Moore_neighborhood) and [VON NEUMANN](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)
+
  `o` is the transaction function. This function implement the evolution of the natural or artificial phenomena represented by a Cellular Automata.
  
 Thanks to this mathematic model, it's possibile represent a lot of natural phenomena like landslides, lava flows and so on...
