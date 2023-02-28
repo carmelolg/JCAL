@@ -21,9 +21,9 @@ A **basic** Cellular Automata is the quadruple `<Z <sup>d</sup>,S,X,o>`
 
 `X` is a set of cell's neighbors (the most common neighborhood implementation are [MOORE](https://en.wikipedia.org/wiki/Moore_neighborhood) and [VON NEUMANN](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)
 
- `o` is the transition function. This function implement the evolution of the natural or artificial phenomena represented by a Cellular Automata.
+ `o` is the transition function. This function implements the evolution of the natural or artificial phenomena represented by a Cellular Automata.
  
-Thanks to this mathematic model, it's possibile represent a lot of natural phenomena like landslides, lava flows and so on...
+Thanks to this mathematic model, it's possible represent a lot of natural phenomena like landslides, lava flows and so on...
 
 ## What about JCAL idea
 
@@ -131,7 +131,7 @@ public class Main {
 }
 ```
 
-### All settings of CellularAutomataConfiguration
+## All settings of CellularAutomataConfiguration
 
 `setWidth`
 ```java
