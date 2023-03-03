@@ -1,6 +1,9 @@
 package it.carmelolg.jcal.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import it.carmelolg.jcal.model.DefaultCell;
 import it.carmelolg.jcal.utils.Utils;
@@ -8,7 +11,7 @@ import it.carmelolg.jcal.utils.Utils;
 /**
  * @author Carmelo La Gamba © 2023 is licensed under CC BY-NC-SA 4.0
  */
-public abstract class CellularAutomataExecutor {
+public abstract class CellularAutomataParallelExecutor {
 
 	/**
 	 * Run the transaction function
@@ -34,16 +37,22 @@ public abstract class CellularAutomataExecutor {
 
 	}
 
-	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException {
+	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException, NoSuchMethodException,
+			SecurityException, InterruptedException, ExecutionException {
 
 		ca.setUtilsMap(Utils.cloneMaps(ca.getMap()));
 
+		Collection<CellularAutomataRunner> tasks = new ArrayList<CellularAutomataRunner>();
 		for (int i = 0; i < ca.getMap().length; i++) {
-			for (int j = 0; j < ca.getMap()[i].length; j++) {
-				ca.getUtilsMap()[i][j] = singleRun(ca.getMap()[i][j],
-						ca.getNeighborhood().getNeighbors(ca.getMap(), i, j));
-			}
+			tasks.add(new CellularAutomataRunner(ca, i, ca.getMap().length / ca.getMap().length, this));
 		}
+		tasks.stream().parallel().forEach(task -> {
+			try {
+				task.call();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		});
 
 		ca.setMap(Utils.cloneMaps(ca.getUtilsMap()));
 

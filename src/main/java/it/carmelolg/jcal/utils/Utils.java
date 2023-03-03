@@ -21,7 +21,7 @@ public class Utils {
 			return false;
 		}
 
-		if ((col >= matrix[0].length) || (row >= matrix.length)) {
+		if ((row >= matrix[0].length) || (col >= matrix.length)) {
 			return false;
 		}
 
