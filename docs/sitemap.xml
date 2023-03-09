@@ -2,10 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://carmelolg.github.io/JCAL/docs/getting-started/</loc>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>https://carmelolg.github.io/JCAL/docs/basic-settings/</loc>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://carmelolg.github.io/JCAL/docs/builder-settings/</loc>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/docs/custom-status/</loc>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/docs/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/docs/categories/</loc>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/docs/tags/</loc>
   </url>
 </urlset>

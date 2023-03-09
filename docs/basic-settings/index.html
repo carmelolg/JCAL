@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html><head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/docs/basic-settings/index.xml" title="JCAL - Java Cellular Automata Library" />
+    <link rel="canonical" href="https://carmelolg.github.io/JCAL/docs/basic-settings/">
+
+    <title>
+        
+        Basic settings | JCAL - Java Cellular Automata Library
+        
+    </title>
+
+    
+    <link href="https://carmelolg.github.io/JCAL/docscss/fontawesome.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://carmelolg.github.io/JCAL/docs/css/ace.min.css">
+
+    
+
+    
+    
+        
+    
+
+</head>
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top" id="navbarMain">
+    <div class="container">
+        <div>
+            <a class="navbar-brand" href="/JCAL/docs">
+                
+                JCAL - Java Cellular Automata Library
+            </a>
+        </div>
+        
+            <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarMainCollapse" aria-controls="navbarMainCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMainCollapse">
+              <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/carmelolg/JCAL" target="_blank">
+                                  <i class='fab fa-github'></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/carmelolg/JCAL/releases" target="_blank">
+                                  <i class='fas fa-download'></i>
+                                </a>
+                            </li>
+              </ul>
+            </div>
+    </div>
+    <div class="feed-icons">
+            
+        </div>
+    </nav>
+<div class="container-fluid">
+            <div class="row">
+
+                <div class="docs-sidenav order-0 col-12 col-md-3 col-lg-2 col-xl-2 position-sticky border-right"><nav class="navbar navbar-expand-md navbar-light pl-0">
+    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#sidenav-left-collapse" aria-controls="sidenav-left-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+     <div class="collapse navbar-collapse align-items-start flex-column" id="sidenav-left-collapse">
+
+        
+
+         <ul class="navbar-nav flex-column pt-3">
+    <li data-nav-id="/JCAL/docs/getting-started/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/getting-started/"><h6>Getting started</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/basic-settings/" class="nav-item my-1 active
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/basic-settings/"><h6>Basic settings</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/builder-settings/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/builder-settings/"><h6>Configurations properties</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/custom-status/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/custom-status/"><h6>Custom status</h6></a>
+        
+    </li>
+        </ul>
+    </div>
+</nav>
+
+
+</div>
+                <div class="docs-toc large order-lg-2 order-md-0 order-xs-1 col-12 col-lg-2 col-xl-2 position-sticky border-left"><div class="docs-toc">
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#implement-the-transition-function">Implement the transition function</a></li>
+    <li><a href="#run-the-cellular-automata">Run the cellular automata</a></li>
+  </ul>
+</nav>
+</div>
+</div>
+                <div class="main col-12 order-1 col-md-9 col-lg-10 col-xl-8 py-3">
+                
+
+<div class="d-flex flex-column">
+    <h1 class="js-title">Basic settings</h1>
+    <div class="d-flex align-items-center">
+        
+    </div>
+</div>
+
+<hr>
+
+
+<h2 id="implement-the-transition-function">Implement the transition function</h2>
+<p>You need to inherit the <strong>CellularAutmataExecutor</strong> class and implement the <code>singleRun</code> method.</p>
+
+
+
+
+
+
+    
+    
+
+
+
+
+<div class="position-relative">
+    <div class="position-absolute" style="right:0;">
+        <button class="btn btn-light" data-clipboard-target="#clipboard_5ba3c7d5c5">
+        Copy
+        </button>
+    </div>
+    <div id="clipboard_5ba3c7d5c5">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GOLExecutor</span> <span style="color:#66d9ef">extends</span> CellularAutomataExecutor <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> DefaultCell <span style="color:#a6e22e">singleRun</span><span style="color:#f92672">(</span>DefaultCell cell<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> neighbors<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>       DefaultStatus dead <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultStatus<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dead&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>       DefaultStatus alive <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultStatus<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;alive&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Long alives <span style="color:#f92672">=</span> neighbors<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>item <span style="color:#f92672">-&gt;</span> item<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>alive<span style="color:#f92672">)).</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		DefaultCell toReturn <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultCell<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> cell<span style="color:#f92672">.</span><span style="color:#a6e22e">getRow</span><span style="color:#f92672">(),</span> cell<span style="color:#f92672">.</span><span style="color:#a6e22e">getCol</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cell<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>dead<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> alives <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			toReturn<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span> <span style="color:#f92672">=</span> alive<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cell<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>alive<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">(</span>alives <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> alives <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			toReturn<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span> <span style="color:#f92672">=</span> alive<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			toReturn<span style="color:#f92672">.</span><span style="color:#a6e22e">currentStatus</span> <span style="color:#f92672">=</span> dead<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> toReturn<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+    </div>
+</div>
+
+
+
+
+<h2 id="run-the-cellular-automata">Run the cellular automata</h2>
+<p>Here an example using a classic Java Main</p>
+
+
+
+
+
+
+    
+    
+
+
+
+
+<div class="position-relative">
+    <div class="position-absolute" style="right:0;">
+        <button class="btn btn-light" data-clipboard-target="#clipboard_6ee723926b">
+        Copy
+        </button>
+    </div>
+    <div id="clipboard_6ee723926b">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> WIDTH <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">,</span> HEIGHT <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DefaultStatus dead <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultStatus<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dead&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DefaultStatus alive <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultStatus<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;alive&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>DefaultStatus<span style="color:#f92672">&gt;</span> status <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>dead<span style="color:#f92672">,</span> alive<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		initalState<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DefaultCell<span style="color:#f92672">(</span>alive<span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		initalState<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DefaultCell<span style="color:#f92672">(</span>alive<span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		initalState<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DefaultCell<span style="color:#f92672">(</span>alive<span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		initalState<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DefaultCell<span style="color:#f92672">(</span>alive<span style="color:#f92672">,</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	    
+</span></span><span style="display:flex;"><span>        CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        CellularAutomataConfiguration config <span style="color:#f92672">=</span> configBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span>WIDTH<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span>HEIGHT<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span>status<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType<span style="color:#f92672">.</span><span style="color:#a6e22e">MOORE</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span>initalState<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#75715e">/** ... */</span>
+</span></span><span style="display:flex;"><span>                                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	    
+</span></span><span style="display:flex;"><span>		CellularAutomata ca <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomata<span style="color:#f92672">(</span>config<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		GOLExecutor executor <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GOLExecutor<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		ca <span style="color:#f92672">=</span> executor<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>ca<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ca<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+    </div>
+</div>
+
+
+
+
+
+
+    
+
+
+                    
+                    <div class="row"></div> 
+
+                </div>
+
+            </div> 
+
+        </div> 
+<script src="https://carmelolg.github.io/JCAL/docslib/jquery.min.js"></script> 
+<script src="https://carmelolg.github.io/JCAL/docslib/popper.min.js"></script> 
+
+<script src="https://carmelolg.github.io/JCAL/docsjs/bootstrap.min.js"></script> 
+
+
+<script type="text/javascript" src="/JCAL/docs/plugins/lunr.min.js"></script>
+<script type="text/javascript" src="/JCAL/docs/plugins/auto-complete.js"></script>
+<link href="/JCAL/docs/plugins/auto-complete.css" rel="stylesheet">
+<script type="text/javascript">
+  
+      var baseurl = "https:\/\/carmelolg.github.io\/JCAL\/docs";
+  
+</script>
+<script type="text/javascript" src="/JCAL/docs/plugins/search.js"></script>
+
+<script type="text/javascript" src="/JCAL/docs/plugins/favorites.js"></script>
+
+
+<script type="text/javascript" src="/JCAL/docs/plugins/clipboard.js"></script>
+<script>
+  new ClipboardJS('.btn');
+</script>
+</body>
+</html>

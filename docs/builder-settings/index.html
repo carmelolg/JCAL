@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html><head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/docs/builder-settings/index.xml" title="JCAL - Java Cellular Automata Library" />
+    <link rel="canonical" href="https://carmelolg.github.io/JCAL/docs/builder-settings/">
+
+    <title>
+        
+        Configurations properties | JCAL - Java Cellular Automata Library
+        
+    </title>
+
+    
+    <link href="https://carmelolg.github.io/JCAL/docscss/fontawesome.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://carmelolg.github.io/JCAL/docs/css/ace.min.css">
+
+    
+
+    
+    
+        
+    
+
+</head>
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top" id="navbarMain">
+    <div class="container">
+        <div>
+            <a class="navbar-brand" href="/JCAL/docs">
+                
+                JCAL - Java Cellular Automata Library
+            </a>
+        </div>
+        
+            <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarMainCollapse" aria-controls="navbarMainCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMainCollapse">
+              <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/carmelolg/JCAL" target="_blank">
+                                  <i class='fab fa-github'></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/carmelolg/JCAL/releases" target="_blank">
+                                  <i class='fas fa-download'></i>
+                                </a>
+                            </li>
+              </ul>
+            </div>
+    </div>
+    <div class="feed-icons">
+            
+        </div>
+    </nav>
+<div class="container-fluid">
+            <div class="row">
+
+                <div class="docs-sidenav order-0 col-12 col-md-3 col-lg-2 col-xl-2 position-sticky border-right"><nav class="navbar navbar-expand-md navbar-light pl-0">
+    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#sidenav-left-collapse" aria-controls="sidenav-left-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+     <div class="collapse navbar-collapse align-items-start flex-column" id="sidenav-left-collapse">
+
+        
+
+         <ul class="navbar-nav flex-column pt-3">
+    <li data-nav-id="/JCAL/docs/getting-started/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/getting-started/"><h6>Getting started</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/basic-settings/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/basic-settings/"><h6>Basic settings</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/builder-settings/" class="nav-item my-1 active
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/builder-settings/"><h6>Configurations properties</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/docs/custom-status/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/docs/custom-status/"><h6>Custom status</h6></a>
+        
+    </li>
+        </ul>
+    </div>
+</nav>
+
+
+</div>
+                <div class="docs-toc large order-lg-2 order-md-0 order-xs-1 col-12 col-lg-2 col-xl-2 position-sticky border-left"><div class="docs-toc">
+	<nav id="TableOfContents"></nav>
+</div>
+</div>
+                <div class="main col-12 order-1 col-md-9 col-lg-10 col-xl-8 py-3">
+                
+
+<div class="d-flex flex-column">
+    <h1 class="js-title">Configurations properties</h1>
+    <div class="d-flex align-items-center">
+        
+    </div>
+</div>
+
+<hr>
+
+
+<p><code>setWidth</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the matrix width (the number of columns)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Default is 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param width, the columns number expressed in integer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> width<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setHeight</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the matrix height (the number of rows)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Default is 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param height, the rows number expressed in integer.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> height<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setInfinite</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param isInfinite true if you want to run infinitely, false otherwise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span><span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> isInfinite<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setTotalIterations</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the number of iterations of the transition function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param totalIterations the number of iteractions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> totalIterations<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setStatusList</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the list of status usable on the Cellular Automata.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param statusList a {@link List} of {@link String}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultStatus<span style="color:#f92672">&gt;</span> statusList<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setInitalState</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param initalState a {@link List} of {@link DefaultCell}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setNeighborhoodType</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * If you don&#39;t have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param neighborhoodType the type of neighboorhood
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType neighborhoodType<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><code>setNeighborhood</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * If you have a custom neighborhood you can set your class here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * The class has to inerhit the {@link DefaultNeighborhood} class.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param neighborhood
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span><span style="color:#f92672">(</span>DefaultNeighborhood neighborhood<span style="color:#f92672">);</span>
+</span></span></code></pre></div>
+
+    
+
+
+                    
+                    <div class="row"></div> 
+
+                </div>
+
+            </div> 
+
+        </div> 
+<script src="https://carmelolg.github.io/JCAL/docslib/jquery.min.js"></script> 
+<script src="https://carmelolg.github.io/JCAL/docslib/popper.min.js"></script> 
+
+<script src="https://carmelolg.github.io/JCAL/docsjs/bootstrap.min.js"></script> 
+
+
+<script type="text/javascript" src="/JCAL/docs/plugins/lunr.min.js"></script>
+<script type="text/javascript" src="/JCAL/docs/plugins/auto-complete.js"></script>
+<link href="/JCAL/docs/plugins/auto-complete.css" rel="stylesheet">
+<script type="text/javascript">
+  
+      var baseurl = "https:\/\/carmelolg.github.io\/JCAL\/docs";
+  
+</script>
+<script type="text/javascript" src="/JCAL/docs/plugins/search.js"></script>
+
+<script type="text/javascript" src="/JCAL/docs/plugins/favorites.js"></script>
+
+
+<script type="text/javascript" src="/JCAL/docs/plugins/clipboard.js"></script>
+<script>
+  new ClipboardJS('.btn');
+</script>
+</body>
+</html>
