@@ -1,7 +1,7 @@
 +++
 title = "Basic settings"
 description = ""
-weight = 2
+weight = 3
 +++
 ## Implement the transition function
 

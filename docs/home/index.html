@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.111.2">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link rel="alternate" type="application/json" href="https://carmelolg.github.io/JCAL/index.json" title="JCAL - Java Cellular Automata Library" />
-    <link rel="canonical" href="https://carmelolg.github.io/JCAL/">
+    <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/home/index.xml" title="JCAL - Java Cellular Automata Library" />
+    <link rel="canonical" href="https://carmelolg.github.io/JCAL/home/">
 
     <title>
         
-         | JCAL - Java Cellular Automata Library
+        About JCAL | JCAL - Java Cellular Automata Library
         
     </title>
 
@@ -56,6 +55,9 @@
               </ul>
             </div>
     </div>
+    <div class="feed-icons">
+            
+        </div>
     </nav>
 <div class="container-fluid">
             <div class="row">
@@ -70,7 +72,7 @@
         
 
          <ul class="navbar-nav flex-column pt-3">
-    <li data-nav-id="/JCAL/home/" class="nav-item my-1
+    <li data-nav-id="/JCAL/home/" class="nav-item my-1 active
         ">
         
         
@@ -114,7 +116,12 @@
                 <div class="docs-toc large order-lg-2 order-md-0 order-xs-1 col-12 col-lg-2 col-xl-2 position-sticky border-left"><div class="docs-toc">
 	<nav id="TableOfContents">
   <ul>
-    <li><a href="#features">Features</a></li>
+    <li><a href="#what-is-a-cellular-automata">What is a Cellular Automata</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#what-about-jcal-idea">What about JCAL idea</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ul>
 </nav>
@@ -122,11 +129,18 @@
 </div>
                 <div class="main col-12 order-1 col-md-9 col-lg-10 col-xl-8 py-3">
                 
-	
 
-	<h1></h1>
+<div class="d-flex flex-column">
+    <h1 class="js-title">About JCAL</h1>
+    <div class="d-flex align-items-center">
+        
+    </div>
+</div>
 
-	<table>
+<hr>
+
+
+<table>
 <thead>
 <tr>
 <th></th>
@@ -148,62 +162,31 @@
 </tr>
 </tbody>
 </table>
-<h2 id="features">Features</h2>
-<div class="row py-3 mb-5">
-	<div class="col-md-4">
-		<div class="card flex-row border-0">
-			<div class="mt-3">
-				<span class="fas fa-superscript fa-2x text-primary"></span>
-			</div>
-			<div class="card-body pl-2">
-				<h5 class="card-title">
-					Cellular Automata first.
-				</h5>
-				<p class="card-text text-muted">
-					JCAL is implemented for building cellular automata easily.
-                    Complex Cellular Automata (CCA) are not supported yet.
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="card flex-row border-0">
-			<div class="mt-3">
-				<span class="fas fa-code fa-2x text-primary"></span>
-			</div>
-			<div class="card-body pl-2">
-				<h5 class="card-title">
-					Less is more.
-				</h5>
-				<p class="card-text text-muted">
-					Less code, less time waste. You can build your CA in a few code lines.
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="card flex-row border-0">
-			<div class="mt-3">
-				<span class="fab fa-java fa-2x text-primary"></span>
-			</div>
-			<div class="card-body pl-2">
-				<h5 class="card-title">
-					Designed for JAVA.
-				</h5>
-				<p class="card-text text-muted">
-					The library is written Java 17 for Java users.
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
+<h2 id="what-is-a-cellular-automata">What is a Cellular Automata</h2>
+<p>Here some references:</p>
+<ul>
+<li><a href="https://mathworld.wolfram.com/CellularAutomaton.html">Wolfram - Cellular Automaton</a></li>
+<li><a href="https://natureofcode.com/book/chapter-7-cellular-automata/">The nature of Code by Daniel Shiffman</a></li>
+<li><a href="https://github.com/carmelolg/master-thesis/blob/master/Tesi/pdf/main.pdf">Chapter 3 of my master thesis (<strong>in italian</strong>)</a></li>
+</ul>
+<h4 id="tldr">TLDR;</h4>
+<p>A <strong>basic</strong> Cellular Automata is the quadruple <code>&lt;Z</code><span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span><code>,S,X,o&gt;</code></p>
+<p><code>Z</code><span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span> is a set of cells, a d-dimension matrix of cells</p>
+<p><code>S</code> is a set of status where the single cell can be in</p>
+<p><code>X</code> is a set of cell&rsquo;s neighbors (the most common neighborhood implementation are <a href="https://en.wikipedia.org/wiki/Moore_neighborhood">MOORE</a> and <a href="https://en.wikipedia.org/wiki/Von_Neumann_neighborhood">VON NEUMANN</a></p>
+<p><span style="color: #e83e8c; font-size:87.5%;">α</span> is the transition function. This function implements the evolution of the natural or artificial phenomena represented by a Cellular Automata.</p>
+<p>Thanks to this mathematic model, it&rsquo;s possible represent a lot of natural phenomena like landslides, lava flows and so on&hellip;</p>
 <hr>
+<h2 id="what-about-jcal-idea">What about JCAL idea</h2>
+<p>In the past, during my master thesis&rsquo;s work, I contribuited to implement a library for Cellular Automata, mainly used by Physicists, Geologists and Scientists from different departments. This library was written in C++ and obviously was more complete than JCAL.</p>
+<p><strong>JCAL wants to implements the same idea but in a smaller and simpler way for Java user and developers.</strong></p>
 <h2 id="acknowledgements">Acknowledgements</h2>
 <ul>
-<li><a href="https://www.unical.it/">University of Calabria</a> for teaching me really excited things.</li>
+<li>University of Calabria for teaching me really excited things.</li>
 </ul>
 
-	
+
+    
 
 
                     
