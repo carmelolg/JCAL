@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Custom status on JCAL - Java Cellular Automata Library</title>
-    <link>https://carmelolg.github.io/JCAL/docs/custom-status/</link>
+    <link>../custom-status/</link>
     <description>Recent content in Custom status on JCAL - Java Cellular Automata Library</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>it-IT</language><atom:link href="https://carmelolg.github.io/JCAL/docs/custom-status/index.xml" rel="self" type="application/rss+xml" />
+    <language>it-IT</language><atom:link href="../custom-status/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

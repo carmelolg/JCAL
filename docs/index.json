@@ -1,48 +1,48 @@
 [
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/getting-started/",
+	"uri": "../getting-started/",
 	"title": "Getting started",
 	"tags": null,
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/basic-settings/",
+	"uri": "../basic-settings/",
 	"title": "Basic settings",
 	"tags": null,
 	"description": "",
 	"content": "Implement the transition function You need to inherit the CellularAutmataExecutor class and implement the singleRun method.\nCopy public class GOLExecutor extends CellularAutomataExecutor { @Override public DefaultCell singleRun(DefaultCell cell, List\u0026lt;DefaultCell\u0026gt; neighbors) { DefaultStatus dead = new DefaultStatus(\u0026#34;dead\u0026#34;, \u0026#34;0\u0026#34;); DefaultStatus alive = new DefaultStatus(\u0026#34;alive\u0026#34;, \u0026#34;1\u0026#34;); Long alives = neighbors.stream().filter(item -\u0026gt; item.currentStatus.equals(alive)).count(); DefaultCell toReturn = new DefaultCell(null, cell.getRow(), cell.getCol()); if (cell.currentStatus.equals(dead) \u0026amp;\u0026amp; alives == 3) { toReturn.currentStatus = alive; } else if (cell.currentStatus.equals(alive) \u0026amp;\u0026amp; (alives == 2 || alives == 3)) { toReturn.currentStatus = alive; } else { toReturn.currentStatus = dead; } return toReturn; } } Run the cellular automata Here an example using a classic Java Main\nCopy public class Main { public static int WIDTH = 10, HEIGHT = 10; public static DefaultStatus dead = new DefaultStatus(\u0026#34;dead\u0026#34;, \u0026#34;0\u0026#34;); public static DefaultStatus alive = new DefaultStatus(\u0026#34;alive\u0026#34;, \u0026#34;1\u0026#34;); public static List\u0026lt;DefaultStatus\u0026gt; status = Arrays.asList(dead, alive); public static List\u0026lt;DefaultCell\u0026gt; initalState = new ArrayList\u0026lt;DefaultCell\u0026gt;(); public static void main(String[] args) throws Exception { initalState.add(new DefaultCell(alive, 1, 1)); initalState.add(new DefaultCell(alive, 1, 2)); initalState.add(new DefaultCell(alive, 1, 3)); initalState.add(new DefaultCell(alive, 2, 1)); CellularAutomataConfigurationBuilder configBuilder = new CellularAutomataConfigurationBuilder(); CellularAutomataConfiguration config = configBuilder.setHeight(WIDTH) .setWidth(HEIGHT) .setTotalIterations(10) .setStatusList(status) .setNeighborhoodType(NeighborhoodType.MOORE) .setInitalState(initalState) /** ... */ .build(); CellularAutomata ca = new CellularAutomata(config); GOLExecutor executor = new GOLExecutor(); ca = executor.run(ca); System.out.println(ca); } } "
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/builder-settings/",
+	"uri": "../builder-settings/",
 	"title": "Configurations properties",
 	"tags": null,
 	"description": "",
 	"content": "setWidth\n/** * Set the matrix width (the number of columns) * Default is 100 * @param width, the columns number expressed in integer * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setWidth(int width); setHeight\n/** * Set the matrix height (the number of rows) * Default is 100 * @param height, the rows number expressed in integer. * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setHeight(int height); setInfinite\n/** * @param isInfinite true if you want to run infinitely, false otherwise * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite); setTotalIterations\n/** * Set the number of iterations of the transition function * @param totalIterations the number of iteractions * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setTotalIterations(int totalIterations); setStatusList\n/** * Set the list of status usable on the Cellular Automata. * @param statusList a {@link List} of {@link String} * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setStatusList(List\u0026lt;DefaultStatus\u0026gt; statusList); setInitalState\n/** * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead. * @param initalState a {@link List} of {@link DefaultCell} * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setInitalState(List\u0026lt;DefaultCell\u0026gt; initalState); setNeighborhoodType\n/** * If you don\u0026#39;t have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType * @param neighborhoodType the type of neighboorhood * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType); setNeighborhood\n/** * If you have a custom neighborhood you can set your class here. * The class has to inerhit the {@link DefaultNeighborhood} class. * @param neighborhood * @return the builder {@link CellularAutomataConfigurationBuilder} */ public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood); "
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/custom-status/",
+	"uri": "../custom-status/",
 	"title": "Custom status",
 	"tags": null,
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/",
+	"uri": "../",
 	"title": "",
 	"tags": null,
 	"description": "",
 	"content": " License Unit Test Test Coverage What is a Cellular Automata Here some references:\nWolfram - Cellular Automaton The nature of Code by Daniel Shiffman Chapter 3 of my master thesis (in italian) TLDR; A basic Cellular Automata is the quadruple \u0026lt;Zd,S,X,o\u0026gt;\nZd is a set of cells, a d-dimension matrix of cells\nS is a set of status where the single cell can be in\nX is a set of cell\u0026rsquo;s neighbors (the most common neighborhood implementation are MOORE and VON NEUMANN\nα is the transition function. This function implements the evolution of the natural or artificial phenomena represented by a Cellular Automata.\nThanks to this mathematic model, it\u0026rsquo;s possible represent a lot of natural phenomena like landslides, lava flows and so on\u0026hellip;\nWhat about JCAL idea In the past, during my master thesis\u0026rsquo;s work, I contribuited to implement a library for Cellular Automata, mainly used by Physicists, Geologists and Scientists from different departments. This library was written in C++ and obviously was more complete than JCAL.\nJCAL wants to implements the same idea but in a smaller and simpler way for Java user and developers.\nAcknowledgements University of Calabria for teaching me really excited things. "
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/categories/",
+	"uri": "../categories/",
 	"title": "Categories",
 	"tags": null,
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "https://carmelolg.github.io/JCAL/docs/tags/",
+	"uri": "../tags/",
 	"title": "Tags",
 	"tags": null,
 	"description": "",
