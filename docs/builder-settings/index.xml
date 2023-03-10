@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Configurations properties on JCAL - Java Cellular Automata Library</title>
-    <link>../builder-settings/</link>
+    <link>https://carmelolg.github.io/JCAL/builder-settings/</link>
     <description>Recent content in Configurations properties on JCAL - Java Cellular Automata Library</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>it-IT</language><atom:link href="../builder-settings/index.xml" rel="self" type="application/rss+xml" />
+    <language>it-IT</language><atom:link href="https://carmelolg.github.io/JCAL/builder-settings/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
