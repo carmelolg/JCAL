@@ -1,4 +1,4 @@
-baseURL = 'https://carmelolg.github.io/JCAL'
+baseURL = 'https://carmelolg.github.io/JCAL/'
 languageCode = 'it-IT'
 title = 'JCAL - Java Cellular Automata Library'
 theme = "ace-documentation"
