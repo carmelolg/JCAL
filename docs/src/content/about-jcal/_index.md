@@ -4,12 +4,6 @@ description = ""
 weight = 1
 +++
 
-| | |
-|---|---|
-| **License** | ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg) |
-| **Unit Test** | ![Test](https://github.com/carmelolg/JCAL/workflows/tests/badge.svg) |
-| **Test Coverage** | ![Coverage](https://raw.githubusercontent.com/carmelolg/JCAL/master/.github/badges/jacoco.svg) |
-
 ## What is a Cellular Automata
 
 Here some references:
@@ -36,6 +30,3 @@ Thanks to this mathematic model, it's possible represent a lot of natural phenom
 In the past, during my master thesis's work, I contribuited to implement a library for Cellular Automata, mainly used by Physicists, Geologists and Scientists from different departments. This library was written in C++ and obviously was more complete than JCAL. 
 
 **JCAL wants to implements the same idea but in a smaller and simpler way for Java user and developers.**
-
-## Acknowledgements
-- University of Calabria for teaching me really excited things.
