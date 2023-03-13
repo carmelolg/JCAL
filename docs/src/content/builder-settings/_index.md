@@ -4,85 +4,159 @@ description = ""
 weight = 4
 +++
 
+If you want to build your own cellular automata configuration (`CellularAutomataConfiguration`), you must use the `CellularAutomataConfigurationBuilder`. 
 
-`setWidth`
+The following example shows you how to build a configuration.
+
+**Please remember that creating an instance of `CellularAutomataConfiguration` is mandatory in order to create an instance of `CellularAutomata`.**
+{{< code lang="JAVA" file="builder-settings/builder.java">}}{{< /code >}}
+
+On this page, I will show you all the possible configuration options that you can use.
+
+
+### Width
+
+Set the matrix width (the number of columns).
+
+**Default is 100**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _width_ | number |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * Set the matrix width (the number of columns)
- * Default is 100
- * @param width, the columns number expressed in integer
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setWidth(int width);
 ```
+---
 
-`setHeight`
+### Height   
+
+Set the matrix height (the number of rows)
+
+**Default is 100**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _height_ | number |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * Set the matrix height (the number of rows)
- * Default is 100
- * @param height, the rows number expressed in integer.
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setHeight(int height);
 ```
+---
 
-`setInfinite`
+### Infinite Loop
+
+If you want to loop infinitely, simply set the following configuration to _true_.
+
+**Default is false**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _isInfinite_ | boolean |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * @param isInfinite true if you want to run infinitely, false otherwise
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite);
 ```
+---
 
-`setTotalIterations`
+### Total interactions
+
+Set the number of iterations of the transition function
+
+**This parameter is mandatory if isInfinite is not setted.**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _totalIterations_ | number |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * Set the number of iterations of the transition function
- * @param totalIterations the number of iteractions
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setTotalIterations(int totalIterations);
 ```
+---
 
-`setStatusList`
+### List of status
+
+Set the list of status usable on the Cellular Automata.
+
+**This parameter is mandatory.**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _statusList_ | List of DefaultStatus |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * Set the list of status usable on the Cellular Automata.
- * @param statusList a {@link List} of {@link String}
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setStatusList(List<DefaultStatus> statusList);
 ```
+---
 
-`setInitalState`
+### Initial condition
+
+Set the initial configuration from where to start the cellular automata. In other words, set the cells that have a different status than empty/dead in the starting phase.
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _initalState_ | List of DefaultCell |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead.
- * @param initalState a {@link List} of {@link DefaultCell}
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setInitalState(List<DefaultCell> initalState);
 ```
+---
 
-`setNeighborhoodType`
+### Default Neighborhood
+
+If you don't have a custom neighborhood you can choose one already implemented in the `NeighborhoodType` enum.
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _neighborhoodType_ | NeighborhoodType |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * If you don't have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType
- * @param neighborhoodType the type of neighboorhood
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType);
 ```
+---
 
-`setNeighborhood`
+### Custom Neighborhood
+
+If you have a custom neighborhood, you can set your class here.
+
+**The class has to inerhit the `DefaultNeighborhood` class.**
+
+{{< table style="table-striped" >}}
+| Params | Type |
+| -- |:--:|
+| _neighborhood_ | DefaultNeighborhood |
+{{< /table >}}
+
+Here is the signature of the method:
+
 ```java
-/**
- * If you have a custom neighborhood you can set your class here.
- * The class has to inerhit the {@link DefaultNeighborhood} class.
- * @param neighborhood
- * @return the builder {@link CellularAutomataConfigurationBuilder} 
- */
 public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood);
 ```

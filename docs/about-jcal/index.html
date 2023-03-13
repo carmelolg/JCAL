@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/tags/index.xml" title="JCAL - Java Cellular Automata Library" />
-    <link rel="canonical" href="https://carmelolg.github.io/JCAL/tags/">
+    <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/about-jcal/index.xml" title="JCAL - Java Cellular Automata Library" />
+    <link rel="canonical" href="https://carmelolg.github.io/JCAL/about-jcal/">
 
     <title>
         
-        Tags | JCAL - Java Cellular Automata Library
+        About JCAL | JCAL - Java Cellular Automata Library
         
     </title>
 
@@ -72,7 +72,7 @@
         
 
          <ul class="navbar-nav flex-column pt-3">
-    <li data-nav-id="/JCAL/about-jcal/" class="nav-item my-1
+    <li data-nav-id="/JCAL/about-jcal/" class="nav-item my-1 active
         ">
         
         
@@ -114,14 +114,24 @@
 
 </div>
                 <div class="docs-toc large order-lg-2 order-md-0 order-xs-1 col-12 col-lg-2 col-xl-2 position-sticky border-left"><div class="docs-toc">
-	
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-cellular-automata">What is a Cellular Automata</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#what-about-jcal-idea">What about JCAL idea</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ul>
+</nav>
 </div>
 </div>
                 <div class="main col-12 order-1 col-md-9 col-lg-10 col-xl-8 py-3">
                 
 
 <div class="d-flex flex-column">
-    <h1 class="js-title">Tags</h1>
+    <h1 class="js-title">About JCAL</h1>
     <div class="d-flex align-items-center">
         
     </div>
@@ -130,6 +140,50 @@
 <hr>
 
 
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>License</strong></td>
+<td><img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></td>
+</tr>
+<tr>
+<td><strong>Unit Test</strong></td>
+<td><img src="https://github.com/carmelolg/JCAL/workflows/tests/badge.svg" alt="Test"></td>
+</tr>
+<tr>
+<td><strong>Test Coverage</strong></td>
+<td><img src="https://raw.githubusercontent.com/carmelolg/JCAL/master/.github/badges/jacoco.svg" alt="Coverage"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-is-a-cellular-automata">What is a Cellular Automata</h2>
+<p>Here some references:</p>
+<ul>
+<li><a href="https://mathworld.wolfram.com/CellularAutomaton.html">Wolfram - Cellular Automaton</a></li>
+<li><a href="https://natureofcode.com/book/chapter-7-cellular-automata/">The nature of Code by Daniel Shiffman</a></li>
+<li><a href="https://github.com/carmelolg/master-thesis/blob/master/Tesi/pdf/main.pdf">Chapter 3 of my master thesis (<strong>in italian</strong>)</a></li>
+</ul>
+<h4 id="tldr">TLDR;</h4>
+<p>A <strong>basic</strong> Cellular Automata is the quadruple <code>&lt;Z</code><span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span><code>,S,X,</code> <span style="color: #e83e8c; font-size:87.5%;">α</span><code>&gt;</code></p>
+<p><code>Z</code><span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span> is a set of cells, a d-dimension matrix of cells</p>
+<p><code>S</code> is a set of status where the single cell can be in</p>
+<p><code>X</code> is a set of cell&rsquo;s neighbors (the most common neighborhood implementation are <a href="https://en.wikipedia.org/wiki/Moore_neighborhood">MOORE</a> and <a href="https://en.wikipedia.org/wiki/Von_Neumann_neighborhood">VON NEUMANN</a></p>
+<p><span style="color: #e83e8c; font-size:87.5%;">α</span> is the transition function. This function implements the evolution of the natural or artificial phenomena represented by a Cellular Automata.</p>
+<p>Thanks to this mathematic model, it&rsquo;s possible represent a lot of natural phenomena like landslides, lava flows and so on&hellip;</p>
+<hr>
+<h2 id="what-about-jcal-idea">What about JCAL idea</h2>
+<p>In the past, during my master thesis&rsquo;s work, I contribuited to implement a library for Cellular Automata, mainly used by Physicists, Geologists and Scientists from different departments. This library was written in C++ and obviously was more complete than JCAL.</p>
+<p><strong>JCAL wants to implements the same idea but in a smaller and simpler way for Java user and developers.</strong></p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li>University of Calabria for teaching me really excited things.</li>
+</ul>
 
 
     

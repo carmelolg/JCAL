@@ -72,11 +72,11 @@
         
 
          <ul class="navbar-nav flex-column pt-3">
-    <li data-nav-id="/JCAL/home/" class="nav-item my-1
+    <li data-nav-id="/JCAL/about-jcal/" class="nav-item my-1
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/home/"><h6>About JCAL</h6></a>
+          <a class="nav-link p-0" href="/JCAL/about-jcal/"><h6>About JCAL</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/getting-started/" class="nav-item my-1
@@ -114,7 +114,22 @@
 
 </div>
                 <div class="docs-toc large order-lg-2 order-md-0 order-xs-1 col-12 col-lg-2 col-xl-2 position-sticky border-left"><div class="docs-toc">
-	<nav id="TableOfContents"></nav>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#width">Width</a></li>
+        <li><a href="#height">Height</a></li>
+        <li><a href="#infinite-loop">Infinite Loop</a></li>
+        <li><a href="#total-interactions">Total interactions</a></li>
+        <li><a href="#list-of-status">List of status</a></li>
+        <li><a href="#initial-condition">Initial condition</a></li>
+        <li><a href="#default-neighborhood">Default Neighborhood</a></li>
+        <li><a href="#custom-neighborhood">Custom Neighborhood</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 </div>
 </div>
                 <div class="main col-12 order-1 col-md-9 col-lg-10 col-xl-8 py-3">
@@ -130,64 +145,242 @@
 <hr>
 
 
-<p><code>setWidth</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the matrix width (the number of columns)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Default is 100
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param width, the columns number expressed in integer
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> width<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setHeight</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the matrix height (the number of rows)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Default is 100
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param height, the rows number expressed in integer.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> height<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setInfinite</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param isInfinite true if you want to run infinitely, false otherwise
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span><span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> isInfinite<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setTotalIterations</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the number of iterations of the transition function
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param totalIterations the number of iteractions
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> totalIterations<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setStatusList</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the list of status usable on the Cellular Automata.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param statusList a {@link List} of {@link String}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultStatus<span style="color:#f92672">&gt;</span> statusList<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setInitalState</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param initalState a {@link List} of {@link DefaultCell}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setNeighborhoodType</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * If you don&#39;t have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param neighborhoodType the type of neighboorhood
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType neighborhoodType<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p><code>setNeighborhood</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * If you have a custom neighborhood you can set your class here.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * The class has to inerhit the {@link DefaultNeighborhood} class.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param neighborhood
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return the builder {@link CellularAutomataConfigurationBuilder} 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span><span style="color:#f92672">(</span>DefaultNeighborhood neighborhood<span style="color:#f92672">);</span>
+<p>If you want to build your own cellular automata configuration (<code>CellularAutomataConfiguration</code>), you must use the <code>CellularAutomataConfigurationBuilder</code>.</p>
+<p>The following example shows you how to build a configuration.</p>
+<p><strong>Please remember that creating an instance of <code>CellularAutomataConfiguration</code> is mandatory in order to create an instance of <code>CellularAutomata</code>.</strong>
+
+
+
+
+
+
+    
+    
+
+
+
+
+<div class="position-relative">
+    <div class="position-absolute" style="right:0;">
+        <button class="btn btn-light" data-clipboard-target="#clipboard_e54b2c87f4">
+        Copy
+        </button>
+    </div>
+    <div id="clipboard_e54b2c87f4">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>CellularAutomataConfiguration config <span style="color:#f92672">=</span> configBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#ae81ff">50</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#ae81ff">50</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span><span style="color:#75715e">/* a List */</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType<span style="color:#f92672">.</span><span style="color:#a6e22e">MOORE</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span><span style="color:#75715e">/* a List */</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#75715e">/** ... */</span>
+</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div>
+    </div>
+</div>
+
+
+
+</p>
+<p>On this page, I will show you all the possible configuration options that you can use.</p>
+<h3 id="width">Width</h3>
+<p>Set the matrix width (the number of columns).</p>
+<p><strong>Default is 100</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>width</em></td>
+<td style="text-align:center">number</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> width<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="height">Height</h3>
+<p>Set the matrix height (the number of rows)</p>
+<p><strong>Default is 100</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>height</em></td>
+<td style="text-align:center">number</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> height<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="infinite-loop">Infinite Loop</h3>
+<p>If you want to loop infinitely, simply set the following configuration to <em>true</em>.</p>
+<p><strong>Default is false</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>isInfinite</em></td>
+<td style="text-align:center">boolean</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span><span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> isInfinite<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="total-interactions">Total interactions</h3>
+<p>Set the number of iterations of the transition function</p>
+<p><strong>This parameter is mandatory if isInfinite is not setted.</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>totalIterations</em></td>
+<td style="text-align:center">number</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> totalIterations<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="list-of-status">List of status</h3>
+<p>Set the list of status usable on the Cellular Automata.</p>
+<p><strong>This parameter is mandatory.</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>statusList</em></td>
+<td style="text-align:center">List of DefaultStatus</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultStatus<span style="color:#f92672">&gt;</span> statusList<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="initial-condition">Initial condition</h3>
+<p>Set the initial configuration from where to start the cellular automata. In other words, set the cells that have a different status than empty/dead in the starting phase.</p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>initalState</em></td>
+<td style="text-align:center">List of DefaultCell</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="default-neighborhood">Default Neighborhood</h3>
+<p>If you don&rsquo;t have a custom neighborhood you can choose one already implemented in the <code>NeighborhoodType</code> enum.</p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>neighborhoodType</em></td>
+<td style="text-align:center">NeighborhoodType</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType neighborhoodType<span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
+<h3 id="custom-neighborhood">Custom Neighborhood</h3>
+<p>If you have a custom neighborhood, you can set your class here.</p>
+<p><strong>The class has to inerhit the <code>DefaultNeighborhood</code> class.</strong></p>
+
+<div class="table table-striped" role="alert">
+    <table>
+<thead>
+<tr>
+<th>Params</th>
+<th style="text-align:center">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>neighborhood</em></td>
+<td style="text-align:center">DefaultNeighborhood</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>Here is the signature of the method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span><span style="color:#f92672">(</span>DefaultNeighborhood neighborhood<span style="color:#f92672">);</span>
 </span></span></code></pre></div>
 
     
