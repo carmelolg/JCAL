@@ -18,7 +18,7 @@ Here some references:
 * [Chapter 3 of my master thesis (**in italian**)](https://github.com/carmelolg/master-thesis/blob/master/Tesi/pdf/main.pdf)
 
 #### TLDR;
-A **basic** Cellular Automata is the quadruple `<Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span>`,S,X,o>`
+A **basic** Cellular Automata is the quadruple `<Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span>`,S,X,` <span style="color: #e83e8c; font-size:87.5%;">&alpha;</span>`>`
 
 `Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span> is a set of cells, a d-dimension matrix of cells
 
