@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.carmelolagamba.jcal.JUnitDataTest;
-import it.carmelolagamba.jcal.core.DefaultNeighborhood;
-import it.carmelolagamba.jcal.core.VonNeumannNeighborhood;
 import it.carmelolagamba.jcal.model.DefaultCell;
 
 public class VonNeumannNeighorhoodTest {

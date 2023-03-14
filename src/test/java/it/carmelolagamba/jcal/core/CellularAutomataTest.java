@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import it.carmelolagamba.jcal.JUnitDataTest;
 import it.carmelolagamba.jcal.configuration.CellularAutomataConfiguration;
 import it.carmelolagamba.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
-import it.carmelolagamba.jcal.core.CellularAutomata;
-import it.carmelolagamba.jcal.core.MooreNeighborhood;
 import it.carmelolagamba.jcal.model.DefaultCell;
 import it.carmelolagamba.jcal.model.NeighborhoodType;
 
