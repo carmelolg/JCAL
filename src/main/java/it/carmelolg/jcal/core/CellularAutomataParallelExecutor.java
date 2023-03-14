@@ -14,7 +14,7 @@ import it.carmelolg.jcal.utils.Utils;
 public abstract class CellularAutomataParallelExecutor {
 
 	/**
-	 * Run the transaction function
+	 * Run using parallelism the transaction function
 	 * 
 	 * @param ca the {@link CellularAutomata} configured
 	 * @return the new {@link CellularAutomata} after n-interactions
@@ -44,7 +44,7 @@ public abstract class CellularAutomataParallelExecutor {
 
 		Collection<CellularAutomataRunner> tasks = new ArrayList<CellularAutomataRunner>();
 		for (int i = 0; i < ca.getMap().length; i++) {
-			tasks.add(new CellularAutomataRunner(ca, i, ca.getMap().length / ca.getMap().length, this));
+			tasks.add(new CellularAutomataRunner(ca, i, 1, this));
 		}
 		tasks.stream().parallel().forEach(task -> {
 			try {

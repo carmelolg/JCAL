@@ -21,8 +21,7 @@ import it.carmelolg.jcal.utils.Utils;
  * {@link CellularAutomataExecutor}
  * 
  * @author Carmelo La Gamba
- * 
- *         © 2023 is licensed under CC BY-NC-SA 4.0
+ * Â© 2023 is licensed under CC BY-NC-SA 4.0 
  */
 public class CellularAutomata {
 
