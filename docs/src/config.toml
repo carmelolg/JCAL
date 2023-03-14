@@ -1,0 +1,31 @@
+baseURL = 'https://carmelolg.github.io/JCAL/'
+languageCode = 'it-IT'
+title = 'JCAL - Java Cellular Automata Library'
+theme = "ace-documentation"
+
+[params]
+ordersectionsby = "weight" # "title"
+disableSearch = true
+disableReadmoreNav = true 
+highlightClientSide = false # set true to use highlight.pack.js instead of the default hugo chroma highlighter
+menushortcutsnewtab = true 
+
+
+[outputs]
+home = [ "HTML", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-github'></i>"
+url = "https://github.com/carmelolg/JCAL"
+weight = 2
+
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-download'></i>"
+url = "https://github.com/carmelolg/JCAL/releases"
+weight = 3
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

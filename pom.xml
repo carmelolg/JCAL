@@ -2,9 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.carmelolg</groupId>
+	<groupId>it.carmelolagamba</groupId>
 	<artifactId>jcal</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0.alpha</version>
 	<packaging>jar</packaging>
 	<name>Java Cellular Automata Library</name>
 	<properties>
@@ -13,6 +13,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub carmelolg Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/carmelolg/jcal</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

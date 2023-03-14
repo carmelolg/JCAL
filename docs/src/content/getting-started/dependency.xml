@@ -1,0 +1,5 @@
+<dependency>
+  <groupId>it.carmelolagamba</groupId>
+  <artifactId>jcal</artifactId>
+  <version>1.0.0.alpha</version>
+</dependency>
