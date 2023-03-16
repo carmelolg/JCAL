@@ -50,7 +50,7 @@ public class JUnitDataTest {
 		// Init cells
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
-				map[i][j] = new DefaultCell(status.stream().findFirst().get(), i, j);
+				map[i][j] = new DefaultCell(dead, i, j);
 			}
 		}
 
@@ -60,7 +60,7 @@ public class JUnitDataTest {
 		}
 
 		config = configBuilder.setWidth(10).setHeight(10).setInfinite(false).setTotalIterations(6)
-				.setNeighborhoodType(NeighborhoodType.MOORE).setStatusList(status).setInitalState(initalState).build();
+				.setNeighborhoodType(NeighborhoodType.MOORE).setDefaultStatus(dead).setInitalState(initalState).build();
 
 		ca = new CellularAutomata();
 		try {

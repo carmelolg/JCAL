@@ -15,6 +15,10 @@ public class DefaultStatus {
 		this.value = value;
 	}
 
+	public Object getKey() {
+		return key;
+	}
+
 	public Object getValue() {
 		return value;
 	}
@@ -28,6 +32,11 @@ public class DefaultStatus {
 	@Override
 	public String toString() {
 		return value.toString() + " ";
+	}
+
+	@Override
+	public DefaultStatus clone() throws CloneNotSupportedException {
+		return new DefaultStatus(key, value);
 	}
 
 }

@@ -90,22 +90,22 @@ public CellularAutomataConfigurationBuilder setTotalIterations(int totalIteratio
 ```
 ---
 
-### List of status
+### Default status
 
-Set the list of status usable on the Cellular Automata.
+Set the default status for each cell of the CA's map.
 
 **This parameter is mandatory.**
 
 {{< table style="table-striped" >}}
 | Params | Type |
 | -- |:--:|
-| _statusList_ | List of DefaultStatus |
+| _defaultStatus_ | DefaultStatus |
 {{< /table >}}
 
 Here is the signature of the method:
 
 ```java
-public CellularAutomataConfigurationBuilder setStatusList(List<DefaultStatus> statusList);
+public CellularAutomataConfigurationBuilder setDefaultStatus(DefaultStatus defaultStatus);
 ```
 ---
 

@@ -60,10 +60,10 @@ public class CellularAutomata {
 
 		for (int i = 0; i < config.getWidth(); i++) {
 			for (int j = 0; j < config.getHeight(); j++) {
-				map[i][j] = new DefaultCell(config.getStatusList().stream().findFirst().get(), i, j);
+				map[i][j] = new DefaultCell(config.getDefaultStatus(), i, j);
 			}
 		}
-
+		
 		if(config.getInitalState() != null && config.getInitalState().size() > 0) {
 			for (DefaultCell settedCell : config.getInitalState()) {
 				map[settedCell.col][settedCell.row] = settedCell;
@@ -96,7 +96,7 @@ public class CellularAutomata {
 	 * @throws Exception
 	 */
 	private void check() throws Exception {
-
+		
 		if (config.isInfinite() && config.getTotalIterations() > 0) {
 			throw new Exception("It's not possibile loop infinitely with total interactions setted");
 		}
@@ -112,9 +112,9 @@ public class CellularAutomata {
 		if (config.getNeighborhoodType() != null && config.getNeighborhood() != null) {
 			throw new Exception("You can choose only one between NeighborhoodType and Neighborhood");
 		}
-
-		if (config.getStatusList() == null) {
-			throw new Exception("Set the cell's status list.");
+		
+		if (config.getDefaultStatus() == null) {
+			throw new Exception("You must define the default status.");
 		}
 
 	}

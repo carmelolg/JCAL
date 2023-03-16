@@ -19,7 +19,7 @@ public class Main {
         CellularAutomataConfiguration config = configBuilder.setHeight(WIDTH)
                                                             .setWidth(HEIGHT)
                                                             .setTotalIterations(10)
-                                                            .setStatusList(status)
+                                                            .setDefaultStatus(Main.dead)
                                                             .setNeighborhoodType(NeighborhoodType.MOORE)
                                                             .setInitalState(initalState)
                                                             /** ... */

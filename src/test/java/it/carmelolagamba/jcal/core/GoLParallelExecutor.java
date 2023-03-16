@@ -3,6 +3,7 @@ package it.carmelolagamba.jcal.core;
 import java.util.List;
 
 import it.carmelolagamba.jcal.JUnitDataTest;
+import it.carmelolagamba.jcal.core.parallel.CellularAutomataParallelExecutor;
 import it.carmelolagamba.jcal.model.DefaultCell;
 
 public class GoLParallelExecutor extends CellularAutomataParallelExecutor {

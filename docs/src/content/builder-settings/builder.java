@@ -4,6 +4,6 @@ CellularAutomataConfiguration config = configBuilder.setHeight(50)
                                                     .setTotalIterations(10)
                                                     .setStatusList(/* a List */)
                                                     .setNeighborhoodType(NeighborhoodType.MOORE)
-                                                    .setInitalState(/* a List */)
+                                                    .setDefaultStatus(new DefaultStatus("key", "value"))
                                                     /** ... */
                                                     .build();

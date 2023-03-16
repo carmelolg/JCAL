@@ -8,8 +8,7 @@ import it.carmelolagamba.jcal.model.DefaultStatus;
 import it.carmelolagamba.jcal.model.NeighborhoodType;
 
 /**
- * @author Carmelo La Gamba
- * © 2023 is licensed under CC BY-NC-SA 4.0 
+ * @author Carmelo La Gamba © 2023 is licensed under CC BY-NC-SA 4.0
  */
 public class CellularAutomataConfiguration {
 
@@ -18,7 +17,7 @@ public class CellularAutomataConfiguration {
 	private boolean isInfinite;
 	private int totalIterations;
 	private boolean activeCells; // Not used yet
-	private List<DefaultStatus> statusList;
+	private DefaultStatus defaultStatus;
 	private List<DefaultCell> initalState;
 	private NeighborhoodType neighborhoodType;
 	private DefaultNeighborhood neighborhood;
@@ -43,8 +42,8 @@ public class CellularAutomataConfiguration {
 		return activeCells;
 	}
 
-	public List<DefaultStatus> getStatusList() {
-		return statusList;
+	public DefaultStatus getDefaultStatus() {
+		return defaultStatus;
 	}
 
 	public List<DefaultCell> getInitalState() {
@@ -63,7 +62,7 @@ public class CellularAutomataConfiguration {
 		this.width = builder.width;
 		this.height = builder.height;
 		this.activeCells = builder.activeCells;
-		this.statusList = builder.statusList;
+		this.defaultStatus = builder.defaultStatus;
 		this.initalState = builder.initalState;
 		this.isInfinite = builder.isInfinite;
 		this.totalIterations = builder.totalIterations;
@@ -84,7 +83,7 @@ public class CellularAutomataConfiguration {
 		private int totalIterations;
 
 		private boolean activeCells;
-		private List<DefaultStatus> statusList;
+		private DefaultStatus defaultStatus;
 		private List<DefaultCell> initalState;
 		private NeighborhoodType neighborhoodType;
 		private DefaultNeighborhood neighborhood;
@@ -93,10 +92,10 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * Set the matrix width (the number of columns)
-		 * <b>Default is 100</b>
+		 * Set the matrix width (the number of columns) <b>Default is 100</b>
+		 * 
 		 * @param width, the columns number expressed in integer
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setWidth(int width) {
 			this.width = width;
@@ -104,10 +103,10 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * Set the matrix height (the number of rows)
-		 * <b>Default is 100</b>
+		 * Set the matrix height (the number of rows) <b>Default is 100</b>
+		 * 
 		 * @param height, the rows number expressed in integer.
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setHeight(int height) {
 			this.height = height;
@@ -115,8 +114,9 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * @param isInfinite <b><i>true</i></b> if you want to run infinitely, <b><i>false</i></b> otherwise
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @param isInfinite <b><i>true</i></b> if you want to run infinitely,
+		 *                   <b><i>false</i></b> otherwise
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite) {
 			this.isInfinite = isInfinite;
@@ -125,39 +125,47 @@ public class CellularAutomataConfiguration {
 
 		/**
 		 * Set the number of iterations of the transition function
+		 * 
 		 * @param totalIterations the number of iteractions
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setTotalIterations(int totalIterations) {
 			this.totalIterations = totalIterations;
 			return this;
 		}
-		
+
 		/**
 		 * <b>Function temporary suspended.</b>
-		 * @param activeCells <b><i>true</i></b> if you want otpimize the transition function using on the iterations only the active cells (cells with status not empty/dead), <b><i>false</i></b> otherwise
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * 
+		 * @param activeCells <b><i>true</i></b> if you want otpimize the transition
+		 *                    function using on the iterations only the active cells
+		 *                    (cells with status not empty/dead), <b><i>false</i></b>
+		 *                    otherwise
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		@Deprecated
 		public CellularAutomataConfigurationBuilder setActiveCells(boolean activeCells) {
 			this.activeCells = activeCells;
 			return this;
 		}
-
+		
 		/**
-		 * Set the list of status usable on the Cellular Automata.
-		 * @param statusList a {@link List} of {@link String}
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * Set the default status. This status is setted on each cells when CA is configured for the first time
+		 * @param defaultStatus a {@link DefaultStatus} instance
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
-		public CellularAutomataConfigurationBuilder setStatusList(List<DefaultStatus> statusList) {
-			this.statusList = statusList;
+		public CellularAutomataConfigurationBuilder setDefaultStatus(DefaultStatus defaultStatus) {
+			this.defaultStatus = defaultStatus;
 			return this;
 		}
 
 		/**
-		 * Set the inital configuration from where starting the cellular automata. Pratically, the cells that in the starting phase have different status of empty/dead.
+		 * Set the inital configuration from where starting the cellular automata.
+		 * Pratically, the cells that in the starting phase have different status of
+		 * empty/dead.
+		 * 
 		 * @param initalState a {@link List} of {@link DefaultCell}
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setInitalState(List<DefaultCell> initalState) {
 			this.initalState = initalState;
@@ -165,9 +173,11 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * If you don't have a custom neighborhood you can choose one already implemented in the enum NeighborhoodType
+		 * If you don't have a custom neighborhood you can choose one already
+		 * implemented in the enum NeighborhoodType
+		 * 
 		 * @param neighborhoodType the type of neighboorhood
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType) {
 			this.neighborhoodType = neighborhoodType;
@@ -175,10 +185,11 @@ public class CellularAutomataConfiguration {
 		}
 
 		/**
-		 * If you have a custom neighborhood you can set your class here.
-		 * The class has to inerhit the {@link DefaultNeighborhood} class.
+		 * If you have a custom neighborhood you can set your class here. The class has
+		 * to inerhit the {@link DefaultNeighborhood} class.
+		 * 
 		 * @param neighborhood
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood) {
 			this.neighborhood = neighborhood;
@@ -187,7 +198,8 @@ public class CellularAutomataConfiguration {
 
 		/**
 		 * Build the configuration object
-		 * @return the builder {@link CellularAutomataConfigurationBuilder} 
+		 * 
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfiguration build() {
 			return new CellularAutomataConfiguration(this);

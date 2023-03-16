@@ -47,20 +47,22 @@ public class CellularAutomataTest {
 	void initialStateEmpty() throws Exception {
 
 		CellularAutomataConfigurationBuilder configBuilder = new CellularAutomataConfigurationBuilder();
-		CellularAutomataConfiguration config = configBuilder.setHeight(JUnitDataTest.HEIGHT).setWidth(JUnitDataTest.WIDTH).setTotalIterations(10)
-				.setStatusList(JUnitDataTest.status).setNeighborhoodType(NeighborhoodType.MOORE).build();
+		CellularAutomataConfiguration config = configBuilder.setHeight(JUnitDataTest.HEIGHT)
+				.setWidth(JUnitDataTest.WIDTH).setTotalIterations(10).setDefaultStatus(JUnitDataTest.dead)
+				.setNeighborhoodType(NeighborhoodType.MOORE).build();
 		ca.init(config);
-		
+
 		int count = 0;
-		for(int i = 0; i<ca.map.length; i++) {
-			for(int j = 0; j<ca.map[0].length; j++) {
-				if(ca.map[i][j].equals(new DefaultCell(JUnitDataTest.alive, i, j))) {
+		for (int i = 0; i < ca.map.length; i++) {
+			for (int j = 0; j < ca.map[0].length; j++) {
+				if (ca.map[i][j].equals(new DefaultCell(JUnitDataTest.alive, i, j))) {
 					count++;
 				}
 			}
 		}
-		
-		assertTrue(count == 0, "There's something inside the map at the beginning, but it should be empty with the default status");
+
+		assertTrue(count == 0,
+				"There's something inside the map at the beginning, but it should be empty with the default status");
 
 	}
 
@@ -80,7 +82,7 @@ public class CellularAutomataTest {
 				.setNeighborhoodType(NeighborhoodType.MOORE).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
-		_config = new CellularAutomataConfigurationBuilder().setStatusList(null).build();
+		_config = new CellularAutomataConfigurationBuilder().setDefaultStatus(null).build();
 		assertThrows(Exception.class, () -> ca.init(_config), "An exception was expected but it didn't throw anything");
 
 	}

@@ -36,8 +36,16 @@ public abstract class CellularAutomataExecutor {
 
 	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException {
 
+		for (int i = 0; i < ca.getMap().length; i++) {
+			for (int j = 0; j < ca.getMap()[i].length; j++) {
+				ca.getMap()[i][j] = refinements(ca.getMap()[i][j]);
+			}
+		}
+
+		
 		ca.setUtilsMap(Utils.cloneMaps(ca.getMap()));
 
+		
 		for (int i = 0; i < ca.getMap().length; i++) {
 			for (int j = 0; j < ca.getMap()[i].length; j++) {
 				ca.getUtilsMap()[i][j] = singleRun(ca.getMap()[i][j],
@@ -63,4 +71,15 @@ public abstract class CellularAutomataExecutor {
 	 * @return the {@link DefaultCell} updated
 	 */
 	public abstract DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors);
+	
+	/**
+	 * If you want to implement a CCA (Complex Cellular Automata), you need refine your cells status before the next iteration.
+	 * If you override this function, you'll able to update the status of the current cells before the next iteration.
+	 * <b>If you use a simple CA, you can skip this implementation.</b>
+	 * @param cell the current cell to update
+	 * @return a {@link DefaultCell} instance.
+	 */
+	public DefaultCell refinements(DefaultCell cell) {
+		return cell;
+	}
 }

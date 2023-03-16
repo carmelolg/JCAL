@@ -1,9 +1,10 @@
-package it.carmelolagamba.jcal.core;
+package it.carmelolagamba.jcal.core.parallel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import it.carmelolagamba.jcal.core.CellularAutomata;
 import it.carmelolagamba.jcal.model.DefaultCell;
 
 public class CellularAutomataRunner implements Callable<List<DefaultCell>> {
