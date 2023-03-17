@@ -31,13 +31,13 @@ jobs:
     # Step 3 - Clean and don't fail
     - name: Clean public directory
       run: rm -rf !(src)
-      working-directory: ../../../docs/
+      working-directory: docs
 
     # Step 4 - Builds the site using the latest version of Hugo
     # Also specifies the theme we want to use
     - name: Build
       run: hugo --destination ../
-      working-directory: ../../../docs/src
+      working-directory: docs/src
 
     # Step 5 - Push our generated site to our gh-pages branch
     #- name: Deploy
