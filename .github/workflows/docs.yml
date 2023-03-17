@@ -30,7 +30,7 @@ jobs:
 
     # Step 3 - Clean and don't fail
     - name: Clean public directory
-      run: rm -rf !(src)
+      run: (shopt -s extglob; rm -rf !(src))
       working-directory: docs
 
     # Step 4 - Builds the site using the latest version of Hugo
