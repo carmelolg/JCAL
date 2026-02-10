@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.carmelolagamba.jcal.JUnitDataTest;
+import it.carmelolagamba.jcal.model.DefaultCell;
 
 public class CellularAutomataParallelExecutorTest {
 
@@ -35,6 +36,21 @@ public class CellularAutomataParallelExecutorTest {
 		assertTrue(result.map[2][1].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
 		assertTrue(result.map[2][2].getCurrentStatus().equals(JUnitDataTest.alive), "The result is not as expected.");
 		
+	}
+
+	@Test
+	void testRefinements() throws Exception {
+		GoLParallelExecutor executor = new GoLParallelExecutor() {
+			@Override
+			public DefaultCell refinements(DefaultCell cell) {
+				// Override refinements to test it's being called
+				DefaultCell refined = new DefaultCell(cell.currentStatus, cell.row, cell.col);
+				return refined;
+			}
+		};
+		
+		result = executor.run(JUnitDataTest.ca);
+		assertTrue(result != null, "The result should not be null");
 	}
 
 }

@@ -37,4 +37,18 @@ public class CellularAutomataExecutorTest {
 		
 	}
 
+	@Test
+	void testRefinements() throws Exception {
+		GoLExecutor executor = new GoLExecutor() {
+			@Override
+			public it.carmelolagamba.jcal.model.DefaultCell refinements(it.carmelolagamba.jcal.model.DefaultCell cell) {
+				// Override refinements to test it's being called
+				return new it.carmelolagamba.jcal.model.DefaultCell(cell.currentStatus, cell.row, cell.col);
+			}
+		};
+		
+		result = executor.run(JUnitDataTest.ca);
+		assertTrue(result != null, "The result should not be null");
+	}
+
 }
