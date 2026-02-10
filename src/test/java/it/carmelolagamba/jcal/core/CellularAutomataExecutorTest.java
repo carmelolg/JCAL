@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.carmelolagamba.jcal.JUnitDataTest;
+import it.carmelolagamba.jcal.model.DefaultCell;
 
 public class CellularAutomataExecutorTest {
 
@@ -41,9 +42,9 @@ public class CellularAutomataExecutorTest {
 	void testRefinements() throws Exception {
 		GoLExecutor executor = new GoLExecutor() {
 			@Override
-			public it.carmelolagamba.jcal.model.DefaultCell refinements(it.carmelolagamba.jcal.model.DefaultCell cell) {
+			public DefaultCell refinements(DefaultCell cell) {
 				// Override refinements to test it's being called
-				return new it.carmelolagamba.jcal.model.DefaultCell(cell.currentStatus, cell.row, cell.col);
+				return new DefaultCell(cell.currentStatus, cell.row, cell.col);
 			}
 		};
 		
