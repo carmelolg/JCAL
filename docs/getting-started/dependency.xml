@@ -1,5 +1,5 @@
 <dependency>
-  <groupId>it.carmelolagamba</groupId>
+  <groupId>io.github.carmelolg</groupId>
   <artifactId>jcal</artifactId>
   <version>1.0.0.alpha</version>
 </dependency>
