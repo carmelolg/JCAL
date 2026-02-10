@@ -42,4 +42,14 @@ public class DefaultStatusTest {
 				"toString() of DefaultStatus doesn't work");
 	}
 
+	@Test
+	public void cloneTest() throws CloneNotSupportedException {
+		DefaultStatus alive = new DefaultStatus("alive", "1");
+		DefaultStatus cloned = alive.clone();
+		assertTrue(cloned.equals(alive), "Cloned DefaultStatus should be equal to original");
+		assertTrue(cloned != alive, "Cloned DefaultStatus should be a different instance");
+		assertTrue(cloned.getKey().equals(alive.getKey()), "Cloned key should match");
+		assertTrue(cloned.getValue().equals(alive.getValue()), "Cloned value should match");
+	}
+
 }

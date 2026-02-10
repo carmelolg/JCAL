@@ -69,5 +69,13 @@ public class DefaultCellTest {
 			assertTrue(e.getMessage() != null, () -> "CloneNotSupportedException triggered.");
 		}
 	}
+
+	@Test
+	public void toStringTest() {
+		DefaultCell cell = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		String result = cell.toString();
+		assertTrue(result != null && result.length() > 0, "toString should return a non-empty string");
+		assertTrue(result.contains("0 "), "toString should contain the status value");
+	}
 		
 }
