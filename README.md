@@ -2,7 +2,6 @@
 | | Badge|
 |---|---|
 | **License** | ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg) |
-| **Unit Test** | ![Test](https://github.com/carmelolg/JCAL/workflows/tests/badge.svg) |
 | **Test Coverage** | ![Coverage](.github/badges/jacoco.svg) |
 
 
