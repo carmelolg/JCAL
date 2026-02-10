@@ -4,7 +4,8 @@
     <title>Configurations properties on JCAL - Java Cellular Automata Library</title>
     <link>https://carmelolg.github.io/JCAL/builder-settings/</link>
     <description>Recent content in Configurations properties on JCAL - Java Cellular Automata Library</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>it-IT</language><atom:link href="https://carmelolg.github.io/JCAL/builder-settings/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>it-IT</language>
+    <atom:link href="https://carmelolg.github.io/JCAL/builder-settings/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

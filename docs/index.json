@@ -11,7 +11,7 @@
 	"title": "Getting started",
 	"tags": null,
 	"description": "",
-	"content": "Static installation Download the jar file Here all release files (JAR included).\nSteps Import the jar as static import on your Java project Include the jar on your build path. Use it and/or try the basic settings. Maven projects Github Maven Repository The following guide helps you to install maven packages directly from Github.\nHere the snippet to put on your pom.xml\nCopy \u0026lt;dependency\u0026gt; \u0026lt;groupId\u0026gt;it.carmelolagamba\u0026lt;/groupId\u0026gt; \u0026lt;artifactId\u0026gt;jcal\u0026lt;/artifactId\u0026gt; \u0026lt;version\u0026gt;1.0.0.alpha\u0026lt;/version\u0026gt; \u0026lt;/dependency\u0026gt; Official Maven repository Not available yet\n"
+	"content": "Static installation Download the jar file Here all release files (JAR included).\nSteps Import the jar as static import on your Java project Include the jar on your build path. Use it and/or try the basic settings. Maven projects Github Maven Repository The following guide helps you to install maven packages directly from Github.\nHere the snippet to put on your pom.xml\nCopy \u0026lt;dependency\u0026gt; \u0026lt;groupId\u0026gt;io.github.carmelolg\u0026lt;/groupId\u0026gt; \u0026lt;artifactId\u0026gt;jcal\u0026lt;/artifactId\u0026gt; \u0026lt;version\u0026gt;1.0.0.alpha\u0026lt;/version\u0026gt; \u0026lt;/dependency\u0026gt; Official Maven repository Not available yet\n"
 },
 {
 	"uri": "https://carmelolg.github.io/JCAL/basic-settings/",
