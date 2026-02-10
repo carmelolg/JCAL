@@ -39,7 +39,7 @@
 	"title": "",
 	"tags": null,
 	"description": "",
-	"content": " Author carmelolg License Unit Test Test Coverage Latest 1.0.0.alpha not production ready. Stable in progress Features Cellular Automata first. JCAL is implemented for building cellular automata easily. Less is more. Less code, less time waste. You can build your CA in a few code lines. Designed for JAVA. The library is written Java 17 for Java users. Complex Cellular Automata. Complex Cellular Automata (CCA) are supported if you customize the status object. Acknowledgements University of Calabria for teaching me really excited things. "
+	"content": " Author carmelolg License Test Coverage Latest 1.0.0.alpha not production ready. Stable in progress Features Cellular Automata first. JCAL is implemented for building cellular automata easily. Less is more. Less code, less time waste. You can build your CA in a few code lines. Designed for JAVA. The library is written Java 17 for Java users. Complex Cellular Automata. Complex Cellular Automata (CCA) are supported if you customize the status object. Acknowledgements University of Calabria for teaching me really excited things. "
 },
 {
 	"uri": "https://carmelolg.github.io/JCAL/cca/",
