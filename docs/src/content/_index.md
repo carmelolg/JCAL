@@ -2,7 +2,6 @@
 | :---------------- | :------------------------------------------------------------------------------------------------ |
 | **Author**        | [carmelolg](https://carmelolg.github.io)  |
 | **License**       | ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg) |
-| **Unit Test**     | ![Test](https://github.com/carmelolg/JCAL/workflows/tests/badge.svg)                              |
 | **Test Coverage** | ![Coverage](https://raw.githubusercontent.com/carmelolg/JCAL/master/.github/badges/jacoco.svg)    |
 | **Latest**| __1.0.0.alpha__ _not production ready._ |
 | **Stable**| _in progress_ |
