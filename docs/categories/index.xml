@@ -4,7 +4,8 @@
     <title>Categories on JCAL - Java Cellular Automata Library</title>
     <link>https://carmelolg.github.io/JCAL/categories/</link>
     <description>Recent content in Categories on JCAL - Java Cellular Automata Library</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>it-IT</language><atom:link href="https://carmelolg.github.io/JCAL/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>it-IT</language>
+    <atom:link href="https://carmelolg.github.io/JCAL/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -174,15 +174,15 @@
         </button>
     </div>
     <div id="clipboard_cc6150d00a">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>CellularAutomataConfiguration config <span style="color:#f92672">=</span> configBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#ae81ff">50</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#ae81ff">50</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#ae81ff">10</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setStatusList</span><span style="color:#f92672">(</span><span style="color:#75715e">/* a List */</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType<span style="color:#f92672">.</span><span style="color:#a6e22e">MOORE</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">setDefaultStatus</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DefaultStatus<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;value&#34;</span><span style="color:#f92672">))</span>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder();
+</span></span><span style="display:flex;"><span>CellularAutomataConfiguration config <span style="color:#f92672">=</span> configBuilder.<span style="color:#a6e22e">setHeight</span>(50)
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setWidth</span>(50)
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setTotalIterations</span>(10)
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setStatusList</span>(<span style="color:#75715e">/* a List */</span>)
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setNeighborhoodType</span>(NeighborhoodType.<span style="color:#a6e22e">MOORE</span>)
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setDefaultStatus</span>(<span style="color:#66d9ef">new</span> DefaultStatus(<span style="color:#e6db74">&#34;key&#34;</span>, <span style="color:#e6db74">&#34;value&#34;</span>))
 </span></span><span style="display:flex;"><span>                                                    <span style="color:#75715e">/** ... */</span>
-</span></span><span style="display:flex;"><span>                                                    <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">build</span>();
 </span></span></code></pre></div>
     </div>
 </div>
@@ -197,24 +197,24 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>width</em></td>
-<td style="text-align:center">number</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>width</em></td>
+          <td style="text-align: center">number</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> width<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span>(<span style="color:#66d9ef">int</span> width);
 </span></span></code></pre></div><hr>
 <h3 id="height">Height</h3>
 <p>Set the matrix height (the number of rows)</p>
@@ -222,24 +222,24 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>height</em></td>
-<td style="text-align:center">number</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>height</em></td>
+          <td style="text-align: center">number</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> height<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span> height);
 </span></span></code></pre></div><hr>
 <h3 id="infinite-loop">Infinite Loop</h3>
 <p>If you want to loop infinitely, simply set the following configuration to <em>true</em>.</p>
@@ -247,24 +247,24 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>isInfinite</em></td>
-<td style="text-align:center">boolean</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>isInfinite</em></td>
+          <td style="text-align: center">boolean</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span><span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> isInfinite<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span>(<span style="color:#66d9ef">boolean</span> isInfinite);
 </span></span></code></pre></div><hr>
 <h3 id="total-interactions">Total interactions</h3>
 <p>Set the number of iterations of the transition function</p>
@@ -272,24 +272,24 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>totalIterations</em></td>
-<td style="text-align:center">number</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>totalIterations</em></td>
+          <td style="text-align: center">number</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> totalIterations<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span>(<span style="color:#66d9ef">int</span> totalIterations);
 </span></span></code></pre></div><hr>
 <h3 id="default-status">Default status</h3>
 <p>Set the default status for each cell of the CA&rsquo;s map.</p>
@@ -297,72 +297,72 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>defaultStatus</em></td>
-<td style="text-align:center">DefaultStatus</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>defaultStatus</em></td>
+          <td style="text-align: center">DefaultStatus</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setDefaultStatus</span><span style="color:#f92672">(</span>DefaultStatus defaultStatus<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setDefaultStatus</span>(DefaultStatus defaultStatus);
 </span></span></code></pre></div><hr>
 <h3 id="initial-condition">Initial condition</h3>
 <p>Set the initial configuration from where to start the cellular automata. In other words, set the cells that have a different status than empty/dead in the starting phase.</p>
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>initalState</em></td>
-<td style="text-align:center">List of DefaultCell</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>initalState</em></td>
+          <td style="text-align: center">List of DefaultCell</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span>(List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState);
 </span></span></code></pre></div><hr>
 <h3 id="default-neighborhood">Default Neighborhood</h3>
 <p>If you don&rsquo;t have a custom neighborhood you can choose one already implemented in the <code>NeighborhoodType</code> enum.</p>
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>neighborhoodType</em></td>
-<td style="text-align:center">NeighborhoodType</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>neighborhoodType</em></td>
+          <td style="text-align: center">NeighborhoodType</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span><span style="color:#f92672">(</span>NeighborhoodType neighborhoodType<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span>(NeighborhoodType neighborhoodType);
 </span></span></code></pre></div><hr>
 <h3 id="custom-neighborhood">Custom Neighborhood</h3>
 <p>If you have a custom neighborhood, you can set your class here.</p>
@@ -370,24 +370,24 @@
 
 <div class="table table-striped" role="alert">
     <table>
-<thead>
-<tr>
-<th>Params</th>
-<th style="text-align:center">Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>neighborhood</em></td>
-<td style="text-align:center">DefaultNeighborhood</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Params</th>
+          <th style="text-align: center">Type</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><em>neighborhood</em></td>
+          <td style="text-align: center">DefaultNeighborhood</td>
+      </tr>
+  </tbody>
 </table>
 
 </div>
 
 <p>Here is the signature of the method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span><span style="color:#f92672">(</span>DefaultNeighborhood neighborhood<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span>(DefaultNeighborhood neighborhood);
 </span></span></code></pre></div>
 
     
@@ -410,11 +410,6 @@
 <script type="text/javascript" src="/JCAL/plugins/lunr.min.js"></script>
 <script type="text/javascript" src="/JCAL/plugins/auto-complete.js"></script>
 <link href="/JCAL/plugins/auto-complete.css" rel="stylesheet">
-<script type="text/javascript">
-  
-      var baseurl = "https:\/\/carmelolg.github.io\/JCAL\/";
-  
-</script>
 <script type="text/javascript" src="/JCAL/plugins/search.js"></script>
 
 <script type="text/javascript" src="/JCAL/plugins/favorites.js"></script>
