@@ -10,7 +10,19 @@ import io.github.carmelolg.jcal.model.DefaultCell;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
- * @author Carmelo La Gamba © 2023 is licensed under CC BY-NC-SA 4.0
+ * Parallel variant of {@link io.github.carmelolg.jcal.core.CellularAutomataExecutor} that
+ * processes cells concurrently using Java parallel streams.
+ *
+ * <p>The API is identical to its sequential counterpart: override
+ * {@link #singleRun(io.github.carmelolg.jcal.model.DefaultCell, java.util.List)} with the
+ * cell transition logic.  The framework distributes work across rows automatically.
+ *
+ * <p>Use this executor for large grids where sequential execution is too slow.  For small
+ * grids or rapid prototyping, the non-parallel
+ * {@link io.github.carmelolg.jcal.core.CellularAutomataExecutor} is simpler.
+ *
+ * @author Carmelo La Gamba
+ * @see io.github.carmelolg.jcal.core.CellularAutomataExecutor
  */
 public abstract class CellularAutomataParallelExecutor {
 
