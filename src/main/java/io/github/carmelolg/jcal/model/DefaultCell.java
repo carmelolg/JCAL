@@ -1,9 +1,25 @@
 package io.github.carmelolg.jcal.model;
 
 /**
+ * Represents a single cell in the Cellular Automata grid.
+ *
+ * <p>Each cell has:
+ * <ul>
+ *   <li>a {@link DefaultStatus} holding the cell's current state (e.g. dead/alive,
+ *       a temperature level, etc.)</li>
+ *   <li>grid coordinates ({@code col}, {@code row}) that identify its position in the matrix</li>
+ * </ul>
+ *
+ * <p>{@code DefaultCell} implements {@link Cloneable} so the library can take safe snapshots
+ * of the grid before applying the transition function.
+ *
+ * <p><b>Extending cell state:</b> if you need richer per-cell data, create a custom
+ * {@link DefaultStatus} subclass and store it in {@link #currentStatus}.  You do not
+ * need to subclass {@code DefaultCell} itself.
+ *
  * @author Carmelo La Gamba
- * 
- * © 2023 is licensed under CC BY-NC-SA 4.0 
+ * @see DefaultStatus
+ * @see io.github.carmelolg.jcal.core.CellularAutomata
  */
 public class DefaultCell implements Cloneable {
 

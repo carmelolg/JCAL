@@ -6,7 +6,40 @@ import io.github.carmelolg.jcal.model.DefaultCell;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
- * @author Carmelo La Gamba © 2023 is licensed under CC BY-NC-SA 4.0
+ * Abstract base class for implementing the transition function of a Cellular Automata.
+ *
+ * <p>To define the behaviour of your automaton, create a concrete subclass and implement
+ * {@link #singleRun(DefaultCell, java.util.List)}.  That method is called once per cell per
+ * generation: it receives the current cell and its neighbours and must return the cell's
+ * next state.
+ *
+ * <p><b>Minimal example â€“ Game of Life rule:</b>
+ * <pre>{@code
+ * public class GameOfLifeRule extends CellularAutomataExecutor {
+ *     private static final DefaultStatus DEAD  = new DefaultStatus("dead",  "0");
+ *     private static final DefaultStatus ALIVE = new DefaultStatus("alive", "1");
+ *
+ *     public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+ *         long aliveCount = neighbors.stream()
+ *             .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
+ *         DefaultCell next = new DefaultCell(DEAD, cell.getCol(), cell.getRow());
+ *         boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
+ *         if (!isAlive && aliveCount == 3) next.setCurrentStatus(ALIVE);
+ *         else if (isAlive && (aliveCount == 2 || aliveCount == 3)) next.setCurrentStatus(ALIVE);
+ *         return next;
+ *     }
+ * }
+ * }</pre>
+ *
+ * <p>For <em>Complex Cellular Automata</em> that need to pre-process cell state before
+ * computing neighbours, override {@link #refinements(DefaultCell)} as well.
+ *
+ * <p>For multi-threaded execution see
+ * {@link io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelExecutor}.
+ *
+ * @author Carmelo La Gamba
+ * @see CellularAutomata
+ * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelExecutor
  */
 public abstract class CellularAutomataExecutor {
 

@@ -6,22 +6,48 @@ import io.github.carmelolg.jcal.model.NeighborhoodType;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
- * This class represent the Cellular Automata object. A Cellular Automata is a
- * quadruple like <Zd,S,X,o>
- * 
- * <b>Zd</b> is a set of cells, a d-dimension matrix of cells
- * 
- * <b>S</b> is a set of status where the single cell can be in (contained in
- * {@link DefaultCell})
- * 
- * <b>X</b> is a set of cell's neighbors, calculated by
- * {@link DefaultNeighborhood} class
- * 
- * <b>o</b> is the transaction function implemented on
- * {@link CellularAutomataExecutor}
- * 
+ * The central class representing a Cellular Automata (CA) instance.
+ *
+ * <p>A Cellular Automata is formally described as the quadruple {@code <Zd, S, X, σ>}:
+ * <ul>
+ *   <li><b>Zd</b> – a d-dimensional matrix of cells (the grid managed by this class)</li>
+ *   <li><b>S</b> – the set of possible cell states, represented by {@link io.github.carmelolg.jcal.model.DefaultStatus}</li>
+ *   <li><b>X</b> – the cell neighborhood, provided by {@link DefaultNeighborhood} implementations</li>
+ *   <li><b>σ</b> – the transition function, implemented in a subclass of {@link CellularAutomataExecutor}</li>
+ * </ul>
+ *
+ * <p><b>Typical usage:</b>
+ * <pre>{@code
+ * // 1. Define states
+ * DefaultStatus dead  = new DefaultStatus("dead",  "0");
+ * DefaultStatus alive = new DefaultStatus("alive", "1");
+ *
+ * // 2. Build configuration
+ * CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
+ *     .setWidth(10).setHeight(10)
+ *     .setTotalIterations(5)
+ *     .setDefaultStatus(dead)
+ *     .setNeighborhoodType(NeighborhoodType.MOORE)
+ *     .build();
+ *
+ * // 3. Initialize and run
+ * CellularAutomata ca = new CellularAutomata(config);
+ * ca = new MyExecutor().run(ca);
+ * System.out.println(ca);
+ * }</pre>
+ *
+ * <p><b>Extension points:</b>
+ * <ul>
+ *   <li>Subclass {@link CellularAutomataExecutor} to define the transition function.</li>
+ *   <li>Subclass {@link DefaultNeighborhood} for a custom neighborhood shape.</li>
+ *   <li>Subclass {@link io.github.carmelolg.jcal.model.DefaultStatus} to carry complex per-cell data.</li>
+ * </ul>
+ *
  * @author Carmelo La Gamba
- * © 2023 is licensed under CC BY-NC-SA 4.0 
+ * @see CellularAutomataExecutor
+ * @see io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration
+ * @see DefaultNeighborhood
+ * © 2023 is licensed under CC BY-NC-SA 4.0
  */
 public class CellularAutomata {
 

@@ -7,6 +7,41 @@
 	<version>1.0.0.alpha</version>
 	<packaging>jar</packaging>
 	<name>Java Cellular Automata Library</name>
+	<description>
+		JCAL is a lightweight Java library for building and simulating Cellular Automata (CA)
+		with minimal boilerplate. It provides a simple grid model, pluggable neighborhood
+		strategies (Moore, Von Neumann, or custom), an abstract executor for transition rules,
+		and optional parallel execution via Java streams.
+	</description>
+	<url>https://carmelolg.github.io/JCAL/</url>
+
+	<licenses>
+		<license>
+			<name>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</name>
+			<url>https://creativecommons.org/licenses/by-nc-sa/4.0/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>carmelolg</id>
+			<name>Carmelo La Gamba</name>
+			<url>https://carmelolg.github.io</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/carmelolg/JCAL.git</connection>
+		<developerConnection>scm:git:ssh://github.com/carmelolg/JCAL.git</developerConnection>
+		<url>https://github.com/carmelolg/JCAL</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/carmelolg/JCAL/issues</url>
+	</issueManagement>
 	<properties>
 		<junit.jupiter.version>5.14.2</junit.jupiter.version>
 		<junit.platform.version>1.14.2</junit.platform.version>

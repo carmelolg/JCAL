@@ -7,11 +7,17 @@ import io.github.carmelolg.jcal.model.DefaultCell;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
- * 
- * This is the Moore Neighborhood implementation.
- * 
+ * Moore neighborhood: returns the 8 cells surrounding the given cell
+ * (orthogonal + diagonal).
+ *
+ * <p>This is the most common neighborhood choice for classic automata such as
+ * Conway's Game of Life.
+ *
+ * <p>Cells on the edge of the grid simply have fewer neighbours (no wrapping).
+ *
  * @author Carmelo La Gamba
- * © 2023 is licensed under CC BY-NC-SA 4.0 
+ * @see VonNeumannNeighborhood
+ * @see DefaultNeighborhood
  */
 public class MooreNeighborhood extends DefaultNeighborhood {
 

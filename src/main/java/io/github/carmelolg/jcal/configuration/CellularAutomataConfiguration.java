@@ -8,7 +8,32 @@ import io.github.carmelolg.jcal.model.DefaultStatus;
 import io.github.carmelolg.jcal.model.NeighborhoodType;
 
 /**
- * @author Carmelo La Gamba © 2023 is licensed under CC BY-NC-SA 4.0
+ * Immutable configuration object for a Cellular Automata instance.
+ *
+ * <p>Build instances exclusively through the inner {@link CellularAutomataConfigurationBuilder}:
+ * <pre>{@code
+ * CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
+ *     .setWidth(20)
+ *     .setHeight(20)
+ *     .setTotalIterations(10)
+ *     .setDefaultStatus(dead)
+ *     .setNeighborhoodType(NeighborhoodType.MOORE)
+ *     .build();
+ * }</pre>
+ *
+ * <p>Key settings:
+ * <ul>
+ *   <li>{@link #getWidth()} / {@link #getHeight()} - grid dimensions (default 100x100)</li>
+ *   <li>{@link #isInfinite()} / {@link #getTotalIterations()} - run mode (mutually exclusive)</li>
+ *   <li>{@link #getDefaultStatus()} - initial state applied to every cell</li>
+ *   <li>{@link #getInitalState()} - optional list of cells with non-default initial states</li>
+ *   <li>{@link #getNeighborhoodType()} or {@link #getNeighborhood()} - neighborhood strategy
+ *       (exactly one must be set)</li>
+ * </ul>
+ *
+ * @author Carmelo La Gamba
+ * @see CellularAutomataConfigurationBuilder
+ * @see io.github.carmelolg.jcal.core.CellularAutomata
  */
 public class CellularAutomataConfiguration {
 

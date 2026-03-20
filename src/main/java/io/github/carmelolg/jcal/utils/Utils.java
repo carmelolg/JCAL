@@ -3,8 +3,13 @@ package io.github.carmelolg.jcal.utils;
 import io.github.carmelolg.jcal.model.DefaultCell;
 
 /**
+ * Internal utility methods used by the JCAL framework.
+ *
+ * <p>These helpers are used throughout the library but are not part of the
+ * public extension API.  Callers may use them when implementing custom
+ * {@link io.github.carmelolg.jcal.core.DefaultNeighborhood} classes.
+ *
  * @author Carmelo La Gamba
- * © 2023 is licensed under CC BY-NC-SA 4.0 
  */
 public class Utils {
 	
