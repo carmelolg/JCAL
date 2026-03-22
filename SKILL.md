@@ -2,7 +2,7 @@
 
 > This document lists the domain knowledge, coding conventions, and tool skills
 > that an AI code assistant needs to contribute effectively to JCAL.
-> It is the companion to [Agent.md](Agent.md), which describes the available agents
+> It is the companion to [AGENT.md](AGENT.md), which describes the available agents
 > and their responsibilities.
 
 ---
@@ -131,7 +131,7 @@ mvn compile exec:java \
 | Official docs | <https://carmelolg.github.io/JCAL/> |
 | Architecture overview | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Contribution guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Agent guide | [Agent.md](Agent.md) |
+| Agent guide | [AGENT.md](AGENT.md) |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) |
 | Wolfram – Cellular Automaton | <https://mathworld.wolfram.com/CellularAutomaton.html> |
 | Moore neighbourhood | <https://en.wikipedia.org/wiki/Moore_neighborhood> |

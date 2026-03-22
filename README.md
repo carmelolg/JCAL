@@ -5,88 +5,6 @@
 | **Test Coverage** | ![Coverage](.github/badges/jacoco.svg) |
 
 
-## Quick Start for AI Code Assistants
-
-> This section gives AI agents and LLM code assistants everything needed to
-> understand, extend, and run JCAL with no hidden setup.
->
-> For a full agentic-development reference see:
-> - [Agent.md](Agent.md) — agent roles, responsibilities, and workflow
-> - [Skill.md](Skill.md) — domain knowledge, tech stack, and coding conventions
-
-### Add the dependency (Maven)
-
-```xml
-<dependency>
-    <groupId>io.github.carmelolg</groupId>
-    <artifactId>jcal</artifactId>
-    <version>1.0.0.alpha</version>
-</dependency>
-```
-
-The package is distributed via **GitHub Packages**.  See [Getting Started](https://carmelolg.github.io/JCAL/) for repository configuration.
-
-### Minimal example – Game of Life in ~30 lines
-
-```java
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration;
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
-import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
-import io.github.carmelolg.jcal.model.DefaultCell;
-import io.github.carmelolg.jcal.model.DefaultStatus;
-import io.github.carmelolg.jcal.model.NeighborhoodType;
-import java.util.Arrays;
-import java.util.List;
-
-public class Main {
-
-    static final DefaultStatus DEAD  = new DefaultStatus("dead",  "0");
-    static final DefaultStatus ALIVE = new DefaultStatus("alive", "1");
-
-    public static void main(String[] args) throws Exception {
-        // 1. Define which cells start alive (blinker pattern)
-        List<DefaultCell> initialState = Arrays.asList(
-            new DefaultCell(ALIVE, 5, 4),
-            new DefaultCell(ALIVE, 5, 5),
-            new DefaultCell(ALIVE, 5, 6)
-        );
-
-        // 2. Configure the automaton
-        CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-            .setWidth(10).setHeight(10)
-            .setInfinite(false).setTotalIterations(2)
-            .setDefaultStatus(DEAD)
-            .setInitalState(initialState)
-            .setNeighborhoodType(NeighborhoodType.MOORE)
-            .build();
-
-        // 3. Implement the transition rule and run
-        CellularAutomata ca = new CellularAutomata(config);
-        ca = new GameOfLifeRule().run(ca);
-        System.out.println(ca);   // prints the grid
-    }
-
-    static class GameOfLifeRule extends CellularAutomataExecutor {
-        @Override
-        public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
-            long aliveCount = neighbors.stream()
-                .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
-            DefaultCell next = new DefaultCell(DEAD, cell.getCol(), cell.getRow());
-            boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
-            if (!isAlive && aliveCount == 3) next.setCurrentStatus(ALIVE);
-            else if (isAlive && (aliveCount == 2 || aliveCount == 3)) next.setCurrentStatus(ALIVE);
-            return next;
-        }
-    }
-}
-```
-
-Fully annotated versions live in
-[`src/main/java/io/github/carmelolg/jcal/examples/`](src/main/java/io/github/carmelolg/jcal/examples/).
-
----
-
 ## Concepts
 
 > A concise reference optimised for quick parsing by LLMs and AI agents.
@@ -162,5 +80,5 @@ During my master's thesis, I contributed to the implementation of a library for 
 
 For a deeper technical overview see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-For agentic development, see [Agent.md](Agent.md) and [Skill.md](Skill.md).
+For agentic development, see [AGENT.md](AGENT.md) and [SKILL.md](SKILL.md).
 
