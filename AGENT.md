@@ -3,7 +3,7 @@
 > This document describes the AI agents that can work on the JCAL repository,
 > their responsibilities, the tasks they are expected to perform, and the
 > conventions they must follow.
-> It is the companion to [Skill.md](Skill.md), which lists the domain knowledge
+> It is the companion to [SKILL.md](SKILL.md), which lists the domain knowledge
 > and coding conventions each agent must have.
 
 ---
@@ -14,7 +14,7 @@ JCAL adopts an **agent-assisted development** strategy in which AI code assistan
 (agents) are first-class contributors.  Agents are expected to:
 
 - Understand the codebase from structured documentation (`README.md`,
-  `ARCHITECTURE.md`, `Skill.md`, `CONTRIBUTING.md`).
+  `ARCHITECTURE.md`, `SKILL.md`, `CONTRIBUTING.md`).
 - Propose, implement, and test changes with minimal human supervision.
 - Follow the same coding conventions as human contributors.
 - Update documentation (`ARCHITECTURE.md`, `CHANGELOG.md`) as part of every change.
@@ -37,7 +37,7 @@ or library features requested in GitHub Issues.
 
 **Entry points to read first:**
 1. `ARCHITECTURE.md` — component map and extension-point guide.
-2. `Skill.md` — coding conventions and common development tasks.
+2. `SKILL.md` — coding conventions and common development tasks.
 3. `src/main/java/io/github/carmelolg/jcal/examples/` — reference examples.
 
 ---
@@ -66,8 +66,8 @@ both human readers and AI code assistants.
 | `README.md` | New features, new agents, or structural changes |
 | `ARCHITECTURE.md` | New classes, changed package structure, new extension points |
 | `CHANGELOG.md` | Every merged change — add entry under `## [Unreleased]` |
-| `Skill.md` | New conventions, new tech-stack entries, API surface changes |
-| `Agent.md` | New agent roles or task types |
+| `SKILL.md` | New conventions, new tech-stack entries, API surface changes |
+| `AGENT.md` | New agent roles or task types |
 | `CONTRIBUTING.md` | Changed workflow or coding guidelines |
 
 ---
@@ -92,7 +92,7 @@ All tests live in `src/test/java/io/github/carmelolg/jcal/`.
 1. Read the issue or task description carefully.
 2. Explore the codebase:
      - ARCHITECTURE.md  (component map)
-     - Skill.md         (conventions and tasks)
+     - SKILL.md         (conventions and tasks)
      - Relevant source files in src/main/
 3. Run the baseline test suite to confirm no pre-existing failures:
      mvn test
@@ -125,10 +125,10 @@ To get up to speed as quickly as possible, read the documents in this order:
 
 1. **`README.md`** — Quick Start + Concepts overview.
 2. **`ARCHITECTURE.md`** — Package structure, component roles, extension points.
-3. **`Skill.md`** — Domain knowledge, tech stack, coding conventions.
+3. **`SKILL.md`** — Domain knowledge, tech stack, coding conventions.
 4. **`CONTRIBUTING.md`** — Workflow and PR conventions.
 5. **`CHANGELOG.md`** — What has changed recently.
-6. **`Agent.md`** *(this file)* — Agent roles and task catalogue.
+6. **`AGENT.md`** *(this file)* — Agent roles and task catalogue.
 
 ---
 
@@ -137,7 +137,7 @@ To get up to speed as quickly as possible, read the documents in this order:
 | Resource | Path / URL |
 |----------|-----------|
 | Architecture overview | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| Skill reference | [Skill.md](Skill.md) |
+| Skill reference | [SKILL.md](SKILL.md) |
 | Contribution guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) |
 | Official docs | <https://carmelolg.github.io/JCAL/> |
