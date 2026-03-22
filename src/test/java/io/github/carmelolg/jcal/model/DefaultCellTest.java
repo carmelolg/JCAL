@@ -1,5 +1,6 @@
 package io.github.carmelolg.jcal.model;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -76,6 +77,27 @@ public class DefaultCellTest {
 		String result = cell.toString();
 		assertTrue(result != null && result.length() > 0, "toString should return a non-empty string");
 		assertTrue(result.contains("0 "), "toString should contain the status value");
+	}
+
+	@Test
+	public void equalsColDiffersTest() {
+		DefaultCell cell1 = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		DefaultCell cell2 = new DefaultCell(JUnitDataTest.dead, 1, 0);
+		assertFalse(cell1.equals(cell2), "Cells with different col values must not be equal");
+	}
+
+	@Test
+	public void equalsRowDiffersTest() {
+		DefaultCell cell1 = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		DefaultCell cell2 = new DefaultCell(JUnitDataTest.dead, 0, 1);
+		assertFalse(cell1.equals(cell2), "Cells with different row values must not be equal");
+	}
+
+	@Test
+	public void equalsStatusDiffersTest() {
+		DefaultCell cell1 = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		DefaultCell cell2 = new DefaultCell(JUnitDataTest.alive, 0, 0);
+		assertFalse(cell1.equals(cell2), "Cells with different statuses must not be equal");
 	}
 		
 }
