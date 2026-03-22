@@ -1,8 +1,15 @@
+---
+name: jcal-development
+description: >
+  Skill reference for AI agents contributing to JCAL (Java Cellular Automata Library).
+  Use this skill when working on JCAL features, tests, documentation, or refactoring tasks.
+---
+
 # JCAL – Skill Reference for AI Agents
 
 > This document lists the domain knowledge, coding conventions, and tool skills
 > that an AI code assistant needs to contribute effectively to JCAL.
-> It is the companion to [AGENT.md](AGENT.md), which describes the available agents
+> It is the companion to [AGENTS.md](../../../AGENTS.md), which describes the available agents
 > and their responsibilities.
 
 ---
@@ -129,10 +136,10 @@ mvn compile exec:java \
 | Resource | URL / Path |
 |----------|-----------|
 | Official docs | <https://carmelolg.github.io/JCAL/> |
-| Architecture overview | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| Contribution guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Agent guide | [AGENT.md](AGENT.md) |
-| Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| Architecture overview | [ARCHITECTURE.md](../../../ARCHITECTURE.md) |
+| Contribution guide | [CONTRIBUTING.md](../../../CONTRIBUTING.md) |
+| Agent guide | [AGENTS.md](../../../AGENTS.md) |
+| Changelog | [CHANGELOG.md](../../../CHANGELOG.md) |
 | Wolfram – Cellular Automaton | <https://mathworld.wolfram.com/CellularAutomaton.html> |
 | Moore neighbourhood | <https://en.wikipedia.org/wiki/Moore_neighborhood> |
 | Von Neumann neighbourhood | <https://en.wikipedia.org/wiki/Von_Neumann_neighborhood> |

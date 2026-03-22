@@ -80,5 +80,5 @@ During my master's thesis, I contributed to the implementation of a library for 
 
 For a deeper technical overview see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-For agentic development, see [AGENT.md](AGENT.md) and [SKILL.md](SKILL.md).
+For agentic development, see [AGENTS.md](AGENTS.md) and [.github/skills/jcal-development/SKILL.md](.github/skills/jcal-development/SKILL.md).
 
