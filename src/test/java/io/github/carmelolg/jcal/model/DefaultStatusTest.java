@@ -1,5 +1,6 @@
 package io.github.carmelolg.jcal.model;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -50,6 +51,14 @@ public class DefaultStatusTest {
 		assertTrue(cloned != alive, "Cloned DefaultStatus should be a different instance");
 		assertTrue(cloned.getKey().equals(alive.getKey()), "Cloned key should match");
 		assertTrue(cloned.getValue().equals(alive.getValue()), "Cloned value should match");
+	}
+
+	@Test
+	public void equalsKeyMatchesValueDifferentTest() {
+		DefaultStatus s1 = new DefaultStatus("alive", "1");
+		DefaultStatus s2 = new DefaultStatus("alive", "0");
+		assertFalse(s1.equals(s2),
+				"Statuses with the same key but different values must not be equal");
 	}
 
 }

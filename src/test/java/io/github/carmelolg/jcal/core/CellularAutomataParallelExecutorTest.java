@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import io.github.carmelolg.jcal.JUnitDataTest;
+import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration;
+import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.model.DefaultCell;
+import io.github.carmelolg.jcal.model.NeighborhoodType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,6 +53,21 @@ public class CellularAutomataParallelExecutorTest {
 
 		result = executor.run(JUnitDataTest.ca);
         assertNotNull(result, "The result should not be null");
+	}
+
+	@Test
+	void runInfinite() throws Exception {
+		CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
+				.setWidth(5)
+				.setHeight(5)
+				.setInfinite(true)
+				.setDefaultStatus(JUnitDataTest.dead)
+				.setNeighborhoodType(NeighborhoodType.MOORE)
+				.build();
+
+		CellularAutomata ca = new CellularAutomata(config);
+		result = execTest.run(ca);
+		assertNotNull(result, "Infinite run should return a non-null CellularAutomata");
 	}
 
 }
