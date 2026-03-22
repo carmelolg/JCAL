@@ -9,6 +9,10 @@
 
 > This section gives AI agents and LLM code assistants everything needed to
 > understand, extend, and run JCAL with no hidden setup.
+>
+> For a full agentic-development reference see:
+> - [Agent.md](Agent.md) — agent roles, responsibilities, and workflow
+> - [Skill.md](Skill.md) — domain knowledge, tech stack, and coding conventions
 
 ### Add the dependency (Maven)
 
@@ -157,4 +161,6 @@ During my master's thesis, I contributed to the implementation of a library for 
 [Here](https://carmelolg.github.io/JCAL/) the official documentation.
 
 For a deeper technical overview see [ARCHITECTURE.md](ARCHITECTURE.md).
+
+For agentic development, see [Agent.md](Agent.md) and [Skill.md](Skill.md).
 
