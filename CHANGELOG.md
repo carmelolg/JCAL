@@ -10,12 +10,13 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 ## [Unreleased]
 
 ### Added
-- `AGENT.md` — agent guide describing agent roles (Feature, Refactoring, Documentation,
+- `AGENTS.md` — agent guide describing agent roles (Feature, Refactoring, Documentation,
   Test), their responsibilities, task catalogues, workflow, and guardrails for agentic
-  development.
-- `SKILL.md` — skill reference for AI agents covering required domain knowledge
-  (CA theory, JCAL public API), technology stack, coding conventions, common
-  development tasks, and extension-point checklists.
+  development.  Follows the open `AGENTS.md` standard adopted by all major AI coding agents.
+- `.github/skills/jcal-development/SKILL.md` — on-demand skill for AI agents covering
+  required domain knowledge (CA theory, JCAL public API), technology stack, coding
+  conventions, common development tasks, and extension-point checklists.  Loaded only
+  when the task matches, keeping context windows lean.
 - `ARCHITECTURE.md` — component map, extension-point guide, and data-flow description
   optimised for AI code assistants and new contributors.
 - `CONTRIBUTING.md` — developer guide covering setup, coding conventions, and AI-agent
@@ -35,8 +36,9 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - README — "Quick Start for AI Code Assistants" and "Concepts" sections.
 
 ### Changed
-- `README.md` — added links to `AGENT.md` and `SKILL.md` in the "Quick Start for AI
-  Code Assistants" section and at the bottom of the "Documentation" section.
+- `README.md` — updated links to `AGENTS.md` and `.github/skills/jcal-development/SKILL.md`
+  in the "Quick Start for AI Code Assistants" section and at the bottom of the
+  "Documentation" section.
 - README restructured with a Quick Start section and a Concepts reference table.
 - Existing class-level Javadoc updated for clarity and consistency.
 
