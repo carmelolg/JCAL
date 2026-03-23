@@ -10,6 +10,30 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 ## [Unreleased]
 
 ### Added
+- Hugo documentation site fully rewritten and expanded:
+  - **Overview** page (`about-jcal`) — CA formal definition table, JCAL design goals,
+    neighborhood strategy comparison, and "See also" cross-links.
+  - **Getting Started** page — installation (GitHub Maven Registry, JAR download),
+    Maven Central status note, and a complete Game of Life Quick Start with annotated
+    code snippets.
+  - **Implementing a Rule** page (replaces "Basic settings") — explains the executor
+    pattern, `singleRun` contract, and parallel execution option.
+  - **Configuration Reference** page (replaces "Configurations properties") — all
+    builder options with corrected grammar, updated parameter names, and a usage note
+    on mutually exclusive options.
+  - **Custom State Objects** page (replaces "Custom status") — introduction paragraph,
+    three-step overview, tips on equality and the `value` field.
+  - **Complex Cellular Automata** page (`cca`) — previously disabled; now enabled with
+    an explanation of the `refinements` hook, data-flow diagram, and a heat-diffusion
+    code example.
+  - **FAQ** page — installation, licensing, API quirks (`setInitalState` spelling,
+    `setInfinite` vs `setTotalIterations`), common troubleshooting, and a
+    "Contributing to the documentation" section.
+  - Home page (`_index.md`) — added introductory paragraph, improved feature card
+    descriptions, and added a "Parallel execution" feature card.
+  - `config.toml` — corrected `languageCode` from `it-IT` to `en-US`.
+
+
 - `AGENTS.md` — agent guide describing agent roles (Feature, Refactoring, Documentation,
   Test), their responsibilities, task catalogues, workflow, and guardrails for agentic
   development.  Follows the open `AGENTS.md` standard adopted by all major AI coding agents.

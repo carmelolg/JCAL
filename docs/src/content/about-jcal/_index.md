@@ -1,32 +1,64 @@
 +++
-title = "About JCAL"
-description = ""
+title = "Overview"
+description = "What is a Cellular Automaton, and what is JCAL?"
 weight = 1
 +++
 
-## What is a Cellular Automata
+## What is a Cellular Automaton?
 
-Here some references:
-* [Wolfram - Cellular Automaton](https://mathworld.wolfram.com/CellularAutomaton.html)
-* [The nature of Code by Daniel Shiffman](https://natureofcode.com/book/chapter-7-cellular-automata/)
-* [Chapter 3 of my master thesis (**in italian**)](https://github.com/carmelolg/master-thesis/blob/master/Tesi/pdf/main.pdf)
+A **Cellular Automaton (CA)** is a discrete computational model consisting of a grid of
+cells, each holding a finite state. At each time step, every cell updates its state
+according to a fixed **transition function** that depends on the cell's current state and
+the states of its immediate neighbors.
 
-#### TLDR;
-A **basic** Cellular Automata is the quadruple `<Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span>`,S,X,` <span style="color: #e83e8c; font-size:87.5%;">&alpha;</span>`>`
+Despite their simple rules, cellular automata can produce remarkably complex behavior —
+making them a powerful tool for modeling natural phenomena such as population dynamics,
+fluid flow, landslides, and lava flows.
 
-`Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span> is a set of cells, a d-dimension matrix of cells
+### Formal definition
 
-`S` is a set of status where the single cell can be in
+A Cellular Automaton is formally described as the quadruple **`<Z`<span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span>`, S, X, σ>`**:
 
-`X` is a set of cell's neighbors (the most common neighborhood implementation are [MOORE](https://en.wikipedia.org/wiki/Moore_neighborhood) and [VON NEUMANN](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)
+| Symbol | Meaning | In JCAL |
+|--------|---------|---------|
+| **Z<sup>d</sup>** | A *d*-dimensional grid of cells | `DefaultCell[][]` inside `CellularAutomata` |
+| **S** | The finite set of possible cell states | `DefaultStatus` instances |
+| **X** | The neighborhood — which cells are considered "neighbors" | `DefaultNeighborhood` subclass |
+| **σ** | The transition function — one step of evolution | `CellularAutomataExecutor` subclass |
 
- <span style="color: #e83e8c; font-size:87.5%;">&alpha;</span> is the transition function. This function implements the evolution of the natural or artificial phenomena represented by a Cellular Automata.
- 
-Thanks to this mathematic model, it's possible represent a lot of natural phenomena like landslides, lava flows and so on...
+### Neighborhood strategies
 
---- 
-## What about JCAL idea
+The two most common neighborhood shapes are:
 
-In the past, during my master thesis's work, I contribuited to implement a library for Cellular Automata, mainly used by Physicists, Geologists and Scientists from different departments. This library was written in C++ and obviously was more complete than JCAL. 
+- **[Moore neighborhood](https://en.wikipedia.org/wiki/Moore_neighborhood)** — the 8 surrounding cells (orthogonal + diagonal). Use `NeighborhoodType.MOORE`.
+- **[Von Neumann neighborhood](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)** — the 4 orthogonal cells only. Use `NeighborhoodType.VON_NEUMANN`.
 
-**JCAL wants to implements the same idea but in a smaller and simpler way for Java user and developers.**
+You can also define a fully custom neighborhood by subclassing `DefaultNeighborhood`.
+
+### Further reading
+
+- [Wolfram MathWorld — Cellular Automaton](https://mathworld.wolfram.com/CellularAutomaton.html)
+- [The Nature of Code — Chapter 7: Cellular Automata](https://natureofcode.com/book/chapter-7-cellular-automata/) by Daniel Shiffman
+
+---
+
+## What is JCAL?
+
+JCAL was born from the author's work during a master's thesis, where a C++ library for
+Cellular Automata was developed and used by physicists, geologists, and researchers across
+multiple departments. That library was comprehensive but complex.
+
+**JCAL brings the same ideas to Java in a smaller, simpler, and more accessible form.**
+
+### Design goals
+
+- **Minimal boilerplate** — define a working CA in a few lines of Java.
+- **Idiomatic Java** — fluent builder API, abstract base classes, standard collections.
+- **Extensible** — swap in custom states, neighborhood shapes, or parallel execution with minimal code changes.
+- **Complex CA support** — custom state objects and a refinement hook enable rich, multi-value simulations beyond simple binary-state automata.
+
+### See also
+
+- [Getting Started](../getting-started/) — install JCAL and run your first automaton.
+- [Implementing a Rule](../basic-settings/) — how to write a transition function.
+- [Configuration Reference](../builder-settings/) — all builder options explained.
