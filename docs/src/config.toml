@@ -1,5 +1,5 @@
 baseURL = 'https://carmelolg.github.io/JCAL/'
-languageCode = 'it-IT'
+languageCode = 'en-US'
 title = 'JCAL - Java Cellular Automata Library'
 theme = "ace-documentation"
 

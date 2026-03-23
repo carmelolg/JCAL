@@ -1,162 +1,163 @@
 +++
-title = "Configurations properties"
-description = ""
+title = "Configuration Reference"
+description = "All options available on CellularAutomataConfigurationBuilder."
 weight = 4
 +++
 
-If you want to build your own cellular automata configuration (`CellularAutomataConfiguration`), you must use the `CellularAutomataConfigurationBuilder`. 
+To run a cellular automaton with JCAL, you must first build a `CellularAutomataConfiguration`
+using the fluent `CellularAutomataConfigurationBuilder`. Configuration objects are **immutable**
+once built; all settings must be applied before calling `.build()`.
 
-The following example shows you how to build a configuration.
-
-**Please remember that creating an instance of `CellularAutomataConfiguration` is mandatory in order to create an instance of `CellularAutomata`.**
 {{< code lang="JAVA" file="builder-settings/builder.java">}}{{< /code >}}
 
-On this page, I will show you all the possible configuration options that you can use.
-
+---
 
 ### Width
 
-Set the matrix width (the number of columns).
+Sets the number of **columns** in the grid.
 
-**Default is 100**
+**Default: 100**
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _width_ | number |
+| `width` | `int` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setWidth(int width);
 ```
+
 ---
 
-### Height   
+### Height
 
-Set the matrix height (the number of rows)
+Sets the number of **rows** in the grid.
 
-**Default is 100**
+**Default: 100**
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _height_ | number |
+| `height` | `int` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setHeight(int height);
 ```
+
 ---
 
-### Infinite Loop
+### Infinite loop
 
-If you want to loop infinitely, simply set the following configuration to _true_.
+When set to `true`, the automaton runs indefinitely until interrupted.
+When `false` (the default), the automaton stops after `totalIterations` steps.
 
-**Default is false**
+**Default: `false`**
+
+> **Note:** `setInfinite(true)` and `setTotalIterations` are mutually exclusive.
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _isInfinite_ | boolean |
+| `isInfinite` | `boolean` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setInfinite(boolean isInfinite);
 ```
+
 ---
 
-### Total interactions
+### Total iterations
 
-Set the number of iterations of the transition function
+Sets the number of generations (steps) to simulate.
 
-**This parameter is mandatory if isInfinite is not setted.**
+**Required when `isInfinite` is `false`.**
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _totalIterations_ | number |
+| `totalIterations` | `int` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setTotalIterations(int totalIterations);
 ```
+
 ---
 
 ### Default status
 
-Set the default status for each cell of the CA's map.
+Sets the initial state applied to **every** cell in the grid before the initial condition
+is overlaid. This is typically the "empty" or "dead" state.
 
-**This parameter is mandatory.**
+**Required.**
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _defaultStatus_ | DefaultStatus |
+| `defaultStatus` | `DefaultStatus` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setDefaultStatus(DefaultStatus defaultStatus);
 ```
+
 ---
 
 ### Initial condition
 
-Set the initial configuration from where to start the cellular automata. In other words, set the cells that have a different status than empty/dead in the starting phase.
+Provides the list of cells that start in a state **other than** the default. All other
+cells are initialized with the default status.
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _initalState_ | List of DefaultCell |
+| `initalState` | `List<DefaultCell>` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setInitalState(List<DefaultCell> initalState);
 ```
+
 ---
 
-### Default Neighborhood
+### Built-in neighborhood
 
-If you don't have a custom neighborhood you can choose one already implemented in the `NeighborhoodType` enum.
+Selects one of the pre-defined neighborhood shapes from the `NeighborhoodType` enum.
 
 {{< table style="table-striped" >}}
-| Params | Type |
-| -- |:--:|
-| _neighborhoodType_ | NeighborhoodType |
+| Parameter | Type | Values |
+| -- |:--:|:--:|
+| `neighborhoodType` | `NeighborhoodType` | `MOORE`, `VON_NEUMANN` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType neighborhoodType);
 ```
+
 ---
 
-### Custom Neighborhood
+### Custom neighborhood
 
-If you have a custom neighborhood, you can set your class here.
+Provides a custom neighborhood implementation. The class must extend `DefaultNeighborhood`.
 
-**The class has to inerhit the `DefaultNeighborhood` class.**
+> **Note:** Use either `setNeighborhoodType` or `setNeighborhood` — not both.
 
 {{< table style="table-striped" >}}
-| Params | Type |
+| Parameter | Type |
 | -- |:--:|
-| _neighborhood_ | DefaultNeighborhood |
+| `neighborhood` | `DefaultNeighborhood` |
 {{< /table >}}
-
-Here is the signature of the method:
 
 ```java
 public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood);
 ```
+
+---
+
+## See also
+
+- [Implementing a Rule](../basic-settings/) — how to write a transition function.
+- [Custom State Objects](../custom-status/) — how to use rich state objects with the configuration.
