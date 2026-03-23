@@ -189,7 +189,7 @@ once built; all settings must be applied before calling <code>.build()</code>.</
         </button>
     </div>
     <div id="clipboard_cc6150d00a">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder();
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>CellularAutomataConfigurationBuilder configBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataConfigurationBuilder();
 </span></span><span style="display:flex;"><span>CellularAutomataConfiguration config <span style="color:#f92672">=</span> configBuilder.<span style="color:#a6e22e">setHeight</span>(50)
 </span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setWidth</span>(50)
 </span></span><span style="display:flex;"><span>                                                    .<span style="color:#a6e22e">setTotalIterations</span>(10)
@@ -228,7 +228,7 @@ once built; all settings must be applied before calling <code>.build()</code>.</
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span>(<span style="color:#66d9ef">int</span> width);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span>(<span style="color:#66d9ef">int</span> width);
 </span></span></code></pre></div><hr>
 <h3 id="height">Height</h3>
 <p>Sets the number of <strong>rows</strong> in the grid.</p>
@@ -252,14 +252,15 @@ once built; all settings must be applied before calling <code>.build()</code>.</
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span> height);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span> height);
 </span></span></code></pre></div><hr>
 <h3 id="infinite-loop">Infinite loop</h3>
 <p>When set to <code>true</code>, the automaton runs indefinitely until interrupted.
 When <code>false</code> (the default), the automaton stops after <code>totalIterations</code> steps.</p>
 <p><strong>Default: <code>false</code></strong></p>
 <blockquote>
-<p><strong>Note:</strong> <code>setInfinite(true)</code> and <code>setTotalIterations</code> are mutually exclusive.</p></blockquote>
+<p><strong>Note:</strong> <code>setInfinite(true)</code> and <code>setTotalIterations</code> are mutually exclusive.</p>
+</blockquote>
 
 <div class="table table-striped" role="alert">
     <table>
@@ -279,7 +280,7 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span>(<span style="color:#66d9ef">boolean</span> isInfinite);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span>(<span style="color:#66d9ef">boolean</span> isInfinite);
 </span></span></code></pre></div><hr>
 <h3 id="total-iterations">Total iterations</h3>
 <p>Sets the number of generations (steps) to simulate.</p>
@@ -303,7 +304,7 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span>(<span style="color:#66d9ef">int</span> totalIterations);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span>(<span style="color:#66d9ef">int</span> totalIterations);
 </span></span></code></pre></div><hr>
 <h3 id="default-status">Default status</h3>
 <p>Sets the initial state applied to <strong>every</strong> cell in the grid before the initial condition
@@ -328,7 +329,7 @@ is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; sta
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setDefaultStatus</span>(DefaultStatus defaultStatus);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setDefaultStatus</span>(DefaultStatus defaultStatus);
 </span></span></code></pre></div><hr>
 <h3 id="initial-condition">Initial condition</h3>
 <p>Provides the list of cells that start in a state <strong>other than</strong> the default. All other
@@ -352,7 +353,7 @@ cells are initialized with the default status.</p>
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span>(List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span>(List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState);
 </span></span></code></pre></div><hr>
 <h3 id="built-in-neighborhood">Built-in neighborhood</h3>
 <p>Selects one of the pre-defined neighborhood shapes from the <code>NeighborhoodType</code> enum.</p>
@@ -377,12 +378,13 @@ cells are initialized with the default status.</p>
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span>(NeighborhoodType neighborhoodType);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span>(NeighborhoodType neighborhoodType);
 </span></span></code></pre></div><hr>
 <h3 id="custom-neighborhood">Custom neighborhood</h3>
 <p>Provides a custom neighborhood implementation. The class must extend <code>DefaultNeighborhood</code>.</p>
 <blockquote>
-<p><strong>Note:</strong> Use either <code>setNeighborhoodType</code> or <code>setNeighborhood</code> — not both.</p></blockquote>
+<p><strong>Note:</strong> Use either <code>setNeighborhoodType</code> or <code>setNeighborhood</code> — not both.</p>
+</blockquote>
 
 <div class="table table-striped" role="alert">
     <table>
@@ -402,7 +404,7 @@ cells are initialized with the default status.</p>
 
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span>(DefaultNeighborhood neighborhood);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span>(DefaultNeighborhood neighborhood);
 </span></span></code></pre></div><hr>
 <h2 id="see-also">See also</h2>
 <ul>
