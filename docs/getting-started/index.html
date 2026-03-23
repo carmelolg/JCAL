@@ -16,6 +16,11 @@
     </title>
 
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    
     <link href="https://carmelolg.github.io/JCAL/css/fontawesome.min.css" rel="stylesheet">
 
     
@@ -187,7 +192,7 @@ to configure authentication, then add this dependency to your <code>pom.xml</cod
         </button>
     </div>
     <div id="clipboard_8f7518099d">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;groupId&gt;</span>io.github.carmelolg<span style="color:#f92672">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;artifactId&gt;</span>jcal<span style="color:#f92672">&lt;/artifactId&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;version&gt;</span>1.0.0.alpha<span style="color:#f92672">&lt;/version&gt;</span>
@@ -201,8 +206,7 @@ to configure authentication, then add this dependency to your <code>pom.xml</cod
 
 <blockquote>
 <p><strong>Note:</strong> You need a GitHub personal access token with <code>read:packages</code> scope. See the
-linked guide for instructions on setting up your <code>~/.m2/settings.xml</code>.</p>
-</blockquote>
+linked guide for instructions on setting up your <code>~/.m2/settings.xml</code>.</p></blockquote>
 <h3 id="option-2--download-the-jar">Option 2 — Download the JAR</h3>
 <p>Download the latest release JAR from the
 <a href="https://github.com/carmelolg/JCAL/releases">Releases page</a> and add it to your project&rsquo;s
@@ -241,7 +245,7 @@ once per cell per generation; return the cell&rsquo;s next state.</p>
         </button>
     </div>
     <div id="clipboard_8e9f9d8c50">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameOfLifeExecutor</span> <span style="color:#66d9ef">extends</span> CellularAutomataExecutor {
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameOfLifeExecutor</span> <span style="color:#66d9ef">extends</span> CellularAutomataExecutor {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DefaultCell <span style="color:#a6e22e">singleRun</span>(DefaultCell cell, List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> neighbors) {
@@ -293,7 +297,7 @@ once per cell per generation; return the cell&rsquo;s next state.</p>
         </button>
     </div>
     <div id="clipboard_af74df95da">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {
 </span></span><span style="display:flex;"><span>

@@ -9,6 +9,27 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+### Changed
+- Hugo documentation site visual theme refreshed for a more professional and user-friendly
+  appearance:
+  - **Colour palette** updated to a deep-blue primary (`#1a56db`) with a dark-slate secondary
+    (`#1e293b`), replacing the default Bootstrap blue.  All Bootstrap semantic colours
+    (success, info, warning, danger) updated to match.
+  - **Typography** switched to Inter (UI text) and JetBrains Mono (code), loaded via Google
+    Fonts with `preconnect` hints for fast loading.
+  - **Navigation bar** given a subtle diagonal gradient and tighter padding.
+  - **Sidebar** styled with a light `#f8fafc` background, smooth hover highlighting, and a
+    blue pill for the active page.
+  - **Code blocks** use a dark (`#1e293b`) background with rounded corners and a soft drop
+    shadow.
+  - **Tables** have an alternating-row highlight and a styled header row.
+  - **Blockquotes** rendered as info-callouts with a left accent border and tinted background.
+  - **Home-page feature cards** get a gentle lift-and-shadow hover effect.
+  - `docs/src/assets/css/ace.scss` — site-level SCSS override (Hugo file-system overlay),
+    replaces all Bootstrap variable defaults and extends the ace-documentation base styles.
+  - `docs/src/layouts/partials/head.html` — site-level partial override to inject Google
+    Fonts `<link>` tags ahead of the compiled stylesheet.
+
 ### Added
 - Hugo documentation site fully rewritten and expanded:
   - **Overview** page (`about-jcal`) — CA formal definition table, JCAL design goals,

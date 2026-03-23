@@ -16,6 +16,11 @@
     </title>
 
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    
     <link href="https://carmelolg.github.io/JCAL/css/fontawesome.min.css" rel="stylesheet">
 
     
@@ -180,7 +185,7 @@ as decrementing a lifetime counter or normalizing a fractional flow value.</li>
   4. copy results back        — update the main map with all new states
 </code></pre><h2 id="implementing-refinements">Implementing refinements</h2>
 <p>Override <code>refinements(DefaultCell cell)</code> in your executor class. Return the modified cell.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComplexRule</span> <span style="color:#66d9ef">extends</span> CellularAutomataExecutor {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComplexRule</span> <span style="color:#66d9ef">extends</span> CellularAutomataExecutor {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DefaultCell <span style="color:#a6e22e">refinements</span>(DefaultCell cell) {
@@ -204,7 +209,7 @@ as decrementing a lifetime counter or normalizing a fractional flow value.</li>
 <a href="../custom-status/">custom state object</a> that carries the extra per-cell data the
 refinement step needs to update.</p>
 <h3 id="example-pattern-heat-diffusion">Example pattern: heat diffusion</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HeatStatus</span> <span style="color:#66d9ef">extends</span> DefaultStatus {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HeatStatus</span> <span style="color:#66d9ef">extends</span> DefaultStatus {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> temperature;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">HeatStatus</span>(<span style="color:#66d9ef">double</span> temperature) {

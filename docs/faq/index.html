@@ -16,6 +16,11 @@
     </title>
 
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    
     <link href="https://carmelolg.github.io/JCAL/css/fontawesome.min.css" rel="stylesheet">
 
     
@@ -191,7 +196,7 @@ JCAL into a commercial product.</p>
 <p>No. You can use an anonymous class or a lambda-style anonymous subclass directly in
 your <code>main</code> method. Named classes are recommended for non-trivial rules because they
 are easier to test and reuse.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CellularAutomataExecutor rule <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataExecutor() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CellularAutomataExecutor rule <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CellularAutomataExecutor() {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DefaultCell <span style="color:#a6e22e">singleRun</span>(DefaultCell cell, List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> neighbors) {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// inline rule logic</span>
@@ -250,7 +255,7 @@ a meaningful <code>toString()</code> representation) so that the grid renders as
 <ol>
 <li>Install Hugo (extended edition, <code>latest</code>).</li>
 <li>From the repository root, run:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd docs/src
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd docs/src
 </span></span><span style="display:flex;"><span>hugo server
 </span></span></code></pre></div></li>
 <li>Open <code>http://localhost:1313/JCAL/</code> in your browser.</li>
