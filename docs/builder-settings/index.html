@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <meta name="description" content="All options available on CellularAutomataConfigurationBuilder.">
+    
     <link rel="alternate" type="application/rss+xml" href="https://carmelolg.github.io/JCAL/builder-settings/index.xml" title="JCAL - Java Cellular Automata Library" />
     <link rel="canonical" href="https://carmelolg.github.io/JCAL/builder-settings/">
 
     <title>
         
-        Configurations properties | JCAL - Java Cellular Automata Library
+        Configuration Reference | JCAL - Java Cellular Automata Library
         
     </title>
 
@@ -76,42 +78,49 @@
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/about-jcal/"><h6>About JCAL</h6></a>
+          <a class="nav-link p-0" href="/JCAL/about-jcal/"><h6>Overview</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/getting-started/" class="nav-item my-1
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/getting-started/"><h6>Getting started</h6></a>
+          <a class="nav-link p-0" href="/JCAL/getting-started/"><h6>Getting Started</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/basic-settings/" class="nav-item my-1
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/basic-settings/"><h6>Basic settings</h6></a>
+          <a class="nav-link p-0" href="/JCAL/basic-settings/"><h6>Implementing a Rule</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/builder-settings/" class="nav-item my-1 active
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/builder-settings/"><h6>Configurations properties</h6></a>
+          <a class="nav-link p-0" href="/JCAL/builder-settings/"><h6>Configuration Reference</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/custom-status/" class="nav-item my-1
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/custom-status/"><h6>Custom status</h6></a>
+          <a class="nav-link p-0" href="/JCAL/custom-status/"><h6>Custom State Objects</h6></a>
         
     </li>
     <li data-nav-id="/JCAL/cca/" class="nav-item my-1
         ">
         
         
-          <a class="nav-link p-0" href="/JCAL/cca/"><h6></h6></a>
+          <a class="nav-link p-0" href="/JCAL/cca/"><h6>Complex Cellular Automata</h6></a>
+        
+    </li>
+    <li data-nav-id="/JCAL/faq/" class="nav-item my-1
+        ">
+        
+        
+          <a class="nav-link p-0" href="/JCAL/faq/"><h6>FAQ</h6></a>
         
     </li>
         </ul>
@@ -127,14 +136,15 @@
       <ul>
         <li><a href="#width">Width</a></li>
         <li><a href="#height">Height</a></li>
-        <li><a href="#infinite-loop">Infinite Loop</a></li>
-        <li><a href="#total-interactions">Total interactions</a></li>
+        <li><a href="#infinite-loop">Infinite loop</a></li>
+        <li><a href="#total-iterations">Total iterations</a></li>
         <li><a href="#default-status">Default status</a></li>
         <li><a href="#initial-condition">Initial condition</a></li>
-        <li><a href="#default-neighborhood">Default Neighborhood</a></li>
-        <li><a href="#custom-neighborhood">Custom Neighborhood</a></li>
+        <li><a href="#built-in-neighborhood">Built-in neighborhood</a></li>
+        <li><a href="#custom-neighborhood">Custom neighborhood</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
 </div>
@@ -143,7 +153,7 @@
                 
 
 <div class="d-flex flex-column">
-    <h1 class="js-title">Configurations properties</h1>
+    <h1 class="js-title">Configuration Reference</h1>
     <div class="d-flex align-items-center">
         
     </div>
@@ -152,9 +162,9 @@
 <hr>
 
 
-<p>If you want to build your own cellular automata configuration (<code>CellularAutomataConfiguration</code>), you must use the <code>CellularAutomataConfigurationBuilder</code>.</p>
-<p>The following example shows you how to build a configuration.</p>
-<p><strong>Please remember that creating an instance of <code>CellularAutomataConfiguration</code> is mandatory in order to create an instance of <code>CellularAutomata</code>.</strong>
+<p>To run a cellular automaton with JCAL, you must first build a <code>CellularAutomataConfiguration</code>
+using the fluent <code>CellularAutomataConfigurationBuilder</code>. Configuration objects are <strong>immutable</strong>
+once built; all settings must be applied before calling <code>.build()</code>.</p>
 
 
 
@@ -189,206 +199,214 @@
 
 
 
-</p>
-<p>On this page, I will show you all the possible configuration options that you can use.</p>
+
+<hr>
 <h3 id="width">Width</h3>
-<p>Set the matrix width (the number of columns).</p>
-<p><strong>Default is 100</strong></p>
+<p>Sets the number of <strong>columns</strong> in the grid.</p>
+<p><strong>Default: 100</strong></p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>width</em></td>
-          <td style="text-align: center">number</td>
+          <td><code>width</code></td>
+          <td style="text-align: center"><code>int</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setWidth</span>(<span style="color:#66d9ef">int</span> width);
 </span></span></code></pre></div><hr>
 <h3 id="height">Height</h3>
-<p>Set the matrix height (the number of rows)</p>
-<p><strong>Default is 100</strong></p>
+<p>Sets the number of <strong>rows</strong> in the grid.</p>
+<p><strong>Default: 100</strong></p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>height</em></td>
-          <td style="text-align: center">number</td>
+          <td><code>height</code></td>
+          <td style="text-align: center"><code>int</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setHeight</span>(<span style="color:#66d9ef">int</span> height);
 </span></span></code></pre></div><hr>
-<h3 id="infinite-loop">Infinite Loop</h3>
-<p>If you want to loop infinitely, simply set the following configuration to <em>true</em>.</p>
-<p><strong>Default is false</strong></p>
+<h3 id="infinite-loop">Infinite loop</h3>
+<p>When set to <code>true</code>, the automaton runs indefinitely until interrupted.
+When <code>false</code> (the default), the automaton stops after <code>totalIterations</code> steps.</p>
+<p><strong>Default: <code>false</code></strong></p>
+<blockquote>
+<p><strong>Note:</strong> <code>setInfinite(true)</code> and <code>setTotalIterations</code> are mutually exclusive.</p>
+</blockquote>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>isInfinite</em></td>
-          <td style="text-align: center">boolean</td>
+          <td><code>isInfinite</code></td>
+          <td style="text-align: center"><code>boolean</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInfinite</span>(<span style="color:#66d9ef">boolean</span> isInfinite);
 </span></span></code></pre></div><hr>
-<h3 id="total-interactions">Total interactions</h3>
-<p>Set the number of iterations of the transition function</p>
-<p><strong>This parameter is mandatory if isInfinite is not setted.</strong></p>
+<h3 id="total-iterations">Total iterations</h3>
+<p>Sets the number of generations (steps) to simulate.</p>
+<p><strong>Required when <code>isInfinite</code> is <code>false</code>.</strong></p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>totalIterations</em></td>
-          <td style="text-align: center">number</td>
+          <td><code>totalIterations</code></td>
+          <td style="text-align: center"><code>int</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setTotalIterations</span>(<span style="color:#66d9ef">int</span> totalIterations);
 </span></span></code></pre></div><hr>
 <h3 id="default-status">Default status</h3>
-<p>Set the default status for each cell of the CA&rsquo;s map.</p>
-<p><strong>This parameter is mandatory.</strong></p>
+<p>Sets the initial state applied to <strong>every</strong> cell in the grid before the initial condition
+is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; state.</p>
+<p><strong>Required.</strong></p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>defaultStatus</em></td>
-          <td style="text-align: center">DefaultStatus</td>
+          <td><code>defaultStatus</code></td>
+          <td style="text-align: center"><code>DefaultStatus</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setDefaultStatus</span>(DefaultStatus defaultStatus);
 </span></span></code></pre></div><hr>
 <h3 id="initial-condition">Initial condition</h3>
-<p>Set the initial configuration from where to start the cellular automata. In other words, set the cells that have a different status than empty/dead in the starting phase.</p>
+<p>Provides the list of cells that start in a state <strong>other than</strong> the default. All other
+cells are initialized with the default status.</p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>initalState</em></td>
-          <td style="text-align: center">List of DefaultCell</td>
+          <td><code>initalState</code></td>
+          <td style="text-align: center"><code>List&lt;DefaultCell&gt;</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setInitalState</span>(List<span style="color:#f92672">&lt;</span>DefaultCell<span style="color:#f92672">&gt;</span> initalState);
 </span></span></code></pre></div><hr>
-<h3 id="default-neighborhood">Default Neighborhood</h3>
-<p>If you don&rsquo;t have a custom neighborhood you can choose one already implemented in the <code>NeighborhoodType</code> enum.</p>
+<h3 id="built-in-neighborhood">Built-in neighborhood</h3>
+<p>Selects one of the pre-defined neighborhood shapes from the <code>NeighborhoodType</code> enum.</p>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
+          <th style="text-align: center">Values</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>neighborhoodType</em></td>
-          <td style="text-align: center">NeighborhoodType</td>
+          <td><code>neighborhoodType</code></td>
+          <td style="text-align: center"><code>NeighborhoodType</code></td>
+          <td style="text-align: center"><code>MOORE</code>, <code>VON_NEUMANN</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhoodType</span>(NeighborhoodType neighborhoodType);
 </span></span></code></pre></div><hr>
-<h3 id="custom-neighborhood">Custom Neighborhood</h3>
-<p>If you have a custom neighborhood, you can set your class here.</p>
-<p><strong>The class has to inerhit the <code>DefaultNeighborhood</code> class.</strong></p>
+<h3 id="custom-neighborhood">Custom neighborhood</h3>
+<p>Provides a custom neighborhood implementation. The class must extend <code>DefaultNeighborhood</code>.</p>
+<blockquote>
+<p><strong>Note:</strong> Use either <code>setNeighborhoodType</code> or <code>setNeighborhood</code> — not both.</p>
+</blockquote>
 
 <div class="table table-striped" role="alert">
     <table>
   <thead>
       <tr>
-          <th>Params</th>
+          <th>Parameter</th>
           <th style="text-align: center">Type</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><em>neighborhood</em></td>
-          <td style="text-align: center">DefaultNeighborhood</td>
+          <td><code>neighborhood</code></td>
+          <td style="text-align: center"><code>DefaultNeighborhood</code></td>
       </tr>
   </tbody>
 </table>
 
 </div>
 
-<p>Here is the signature of the method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> CellularAutomataConfigurationBuilder <span style="color:#a6e22e">setNeighborhood</span>(DefaultNeighborhood neighborhood);
-</span></span></code></pre></div>
+</span></span></code></pre></div><hr>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../basic-settings/">Implementing a Rule</a> — how to write a transition function.</li>
+<li><a href="../custom-status/">Custom State Objects</a> — how to use rich state objects with the configuration.</li>
+</ul>
+
 
     
 
