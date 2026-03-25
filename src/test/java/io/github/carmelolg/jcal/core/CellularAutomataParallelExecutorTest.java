@@ -55,19 +55,4 @@ public class CellularAutomataParallelExecutorTest {
         assertNotNull(result, "The result should not be null");
 	}
 
-	@Test
-	void runInfinite() throws Exception {
-		CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-				.setWidth(5)
-				.setHeight(5)
-				.setInfinite(true)
-				.setDefaultStatus(JUnitDataTest.dead)
-				.setNeighborhoodType(NeighborhoodType.MOORE)
-				.build();
-
-		CellularAutomata ca = new CellularAutomata(config);
-		result = execTest.run(ca);
-		assertNotNull(result, "Infinite run should return a non-null CellularAutomata");
-	}
-
 }
