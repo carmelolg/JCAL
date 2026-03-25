@@ -92,7 +92,7 @@ public class CellularAutomata {
 		
 		if(config.getInitalState() != null && config.getInitalState().size() > 0) {
 			for (DefaultCell settedCell : config.getInitalState()) {
-				map[settedCell.col][settedCell.row] = settedCell;
+				map[settedCell.getCol()][settedCell.getRow()] = settedCell;
 			}			
 		}
 
@@ -182,7 +182,7 @@ public class CellularAutomata {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[0].length; j++) {
-				builder.append(map[i][j].currentStatus + " ");
+				builder.append(map[i][j].getCurrentStatus() + " ");
 			}
 			builder.append("\n");
 		}

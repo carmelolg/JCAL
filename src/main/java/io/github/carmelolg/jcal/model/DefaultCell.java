@@ -23,8 +23,8 @@ package io.github.carmelolg.jcal.model;
  */
 public class DefaultCell implements Cloneable {
 
-	public DefaultStatus currentStatus;
-	public int col, row;
+	private DefaultStatus currentStatus;
+	private final int col, row;
 
 	public DefaultCell(DefaultStatus currentStatus, int i, int j) {
 		super();
@@ -56,13 +56,19 @@ public class DefaultCell implements Cloneable {
 
 	@Override
 	public DefaultCell clone() throws CloneNotSupportedException {
-		return new DefaultCell(currentStatus, row, col);
+		return new DefaultCell(currentStatus, col, row);
 	}
 
 	@Override
 	public boolean equals(Object object) {
-		DefaultCell dc = (DefaultCell) object;
-		return dc.col == this.col && dc.row == this.row && dc.currentStatus == this.currentStatus;
+		if (this == object) return true;
+		if (!(object instanceof DefaultCell dc)) return false;
+		return dc.col == this.col && dc.row == this.row
+				&& java.util.Objects.equals(dc.currentStatus, this.currentStatus);
+	}
 
+	@Override
+	public int hashCode() {
+		return java.util.Objects.hash(col, row, currentStatus);
 	}
 }

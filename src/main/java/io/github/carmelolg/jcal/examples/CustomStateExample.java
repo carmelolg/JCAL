@@ -42,27 +42,27 @@ public class CustomStateExample {
     // The second argument (the value) can be any Object: String, Integer, Map, POJO, …
     static final DefaultStatus COLD = new DefaultStatus("cold", 0);
     static final DefaultStatus WARM = new DefaultStatus("warm", 1);
-    static final DefaultStatus HOT  = new DefaultStatus("hot",  2);
+    static final DefaultStatus HOT = new DefaultStatus("hot", 2);
 
     public static void main(String[] args) throws Exception {
 
         // --- Step 2: Define the initial hot cells ---
         // Two adjacent hot cells near the centre of the grid
         List<DefaultCell> initialState = Arrays.asList(
-            new DefaultCell(HOT, 5, 5),   // centre cell
-            new DefaultCell(HOT, 5, 6)    // cell directly to the right
+                new DefaultCell(HOT, 0, 0),   // centre cell
+                new DefaultCell(HOT, 9, 9)    // cell directly to the right
         );
 
         // --- Step 3: Build the configuration ---
         CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-            .setWidth(10)                                   // 10 columns
-            .setHeight(10)                                  // 10 rows
-            .setInfinite(false)                             // run for a fixed number of steps
-            .setTotalIterations(3)                          // 3 generations
-            .setDefaultStatus(COLD)                         // all cells start cold
-            .setInitalState(initialState)                   // place the hot cells
-            .setNeighborhoodType(NeighborhoodType.VON_NEUMANN) // 4-cell orthogonal neighbourhood
-            .build();
+                .setWidth(10)                                   // 10 columns
+                .setHeight(10)                                  // 10 rows
+                .setInfinite(false)                             // run for a fixed number of steps
+                .setTotalIterations(3)                          // 3 generations
+                .setDefaultStatus(COLD)                         // all cells start cold
+                .setInitalState(initialState)                   // place the hot cells
+                .setNeighborhoodType(NeighborhoodType.VON_NEUMANN) // 4-cell orthogonal neighbourhood
+                .build();
 
         // --- Step 4: Initialize the automaton and run ---
         CellularAutomata ca = new CellularAutomata(config);
@@ -89,29 +89,42 @@ public class CustomStateExample {
         @Override
         public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
             // Count how many neighbours are hot or warm
-            long hotNeighborCount  = neighbors.stream()
-                .filter(n -> n.getCurrentStatus().equals(HOT))
-                .count();
+            long hotNeighborCount = neighbors.stream()
+                    .filter(n -> n.getCurrentStatus().equals(HOT))
+                    .count();
             long warmNeighborCount = neighbors.stream()
-                .filter(n -> n.getCurrentStatus().equals(WARM))
-                .count();
+                    .filter(n -> n.getCurrentStatus().equals(WARM))
+                    .count();
 
-            // Start with the cell's current state as the default next state
+            return getDefaultCell(cell, hotNeighborCount, warmNeighborCount);
+        }
+
+        private DefaultCell getDefaultCell(DefaultCell cell, long hotNeighborCount, long warmNeighborCount) {
             DefaultCell next = new DefaultCell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
+            DefaultStatus current = cell.getCurrentStatus();
 
-            if (cell.getCurrentStatus().equals(HOT)) {
-                // Hot cells are permanent heat sources – they always stay hot
+            if (current.equals(HOT)) {
                 next.setCurrentStatus(HOT);
-            } else if (hotNeighborCount > 0) {
-                // Any cell touching a hot cell heats up to warm
-                next.setCurrentStatus(WARM);
-            } else if (warmNeighborCount >= 2) {
-                // Cells surrounded by enough warmth also become warm
-                next.setCurrentStatus(WARM);
+            } else if (current.equals(WARM)) {
+                if (hotNeighborCount > 0) {
+                    next.setCurrentStatus(HOT);
+                } else if (warmNeighborCount < 1) {
+                    next.setCurrentStatus(COLD);
+                } else {
+                    next.setCurrentStatus(WARM);
+                }
+            } else if (current.equals(COLD)) {
+                if (hotNeighborCount > 0 || warmNeighborCount >= 2) {
+                    next.setCurrentStatus(WARM);
+                } else {
+                    next.setCurrentStatus(COLD);
+                }
+            } else {
+                throw new IllegalStateException("Unexpected cell state: " + current);
             }
-            // Otherwise the cell retains its current state (stays cold or warm)
 
             return next;
         }
+
     }
 }

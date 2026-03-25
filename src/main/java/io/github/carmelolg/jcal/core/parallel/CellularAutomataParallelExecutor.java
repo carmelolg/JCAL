@@ -36,17 +36,15 @@ public abstract class CellularAutomataParallelExecutor {
 	public CellularAutomata run(CellularAutomata ca) throws Exception {
 
 		if (ca.getConfig().isInfinite()) {
-			while (true) {
-				return innerRun(ca);
+			while (!Thread.currentThread().isInterrupted()) {
+				innerRun(ca);
 			}
 		} else {
-			int i = 0;
-			while (i < ca.getConfig().getTotalIterations() - 1) {
+			for (int i = 0; i < ca.getConfig().getTotalIterations(); i++) {
 				innerRun(ca);
-				i++;
 			}
-			return innerRun(ca);
 		}
+		return ca;
 
 	}
 

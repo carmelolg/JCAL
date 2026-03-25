@@ -56,7 +56,7 @@ public class JUnitDataTest {
 
 		// Init initial state
 		for (DefaultCell settedCell : initalState) {
-			map[settedCell.col][settedCell.row] = settedCell;
+			map[settedCell.getCol()][settedCell.getRow()] = settedCell;
 		}
 
 		config = configBuilder.setWidth(10).setHeight(10).setInfinite(false).setTotalIterations(6)

@@ -220,9 +220,26 @@ class ExamplesTest {
             "COLD cell with only 1 WARM neighbour and no HOT should stay COLD");
     }
 
-    /** WARM cell with no HOT neighbours and fewer than 2 WARM neighbours → stays WARM. */
+    /** WARM cell with no HOT neighbours and at least one WARM neighbour → stays WARM. */
     @Test
-    void heatDiffusionRuleWarmCellWithNoHotNeighborStaysWarm() {
+    void heatDiffusionRuleWarmCellWithWarmNeighborStaysWarm() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell warmCell = new DefaultCell(CustomStateExample.WARM, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.WARM, 4, 5),
+            new DefaultCell(CustomStateExample.COLD, 6, 5)
+        );
+
+        DefaultCell result = rule.singleRun(warmCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.WARM, result.getCurrentStatus(),
+            "WARM cell with at least one WARM neighbour should stay WARM");
+    }
+
+    /** WARM cell with no HOT neighbours and no WARM neighbours → becomes COLD. */
+    @Test
+    void heatDiffusionRuleWarmCellWithoutWarmNeighborsBecomesCold() {
         CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
 
         DefaultCell warmCell = new DefaultCell(CustomStateExample.WARM, 5, 5);
@@ -233,7 +250,128 @@ class ExamplesTest {
 
         DefaultCell result = rule.singleRun(warmCell, neighbors);
         assertNotNull(result);
+        assertEquals(CustomStateExample.COLD, result.getCurrentStatus(),
+            "WARM cell with no HOT or WARM neighbours should become COLD");
+    }
+
+    /** HOT cell with HOT neighbours → stays HOT. */
+    @Test
+    void heatDiffusionRuleHotCellWithHotNeighborsStaysHot() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell hotCell = new DefaultCell(CustomStateExample.HOT, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.HOT, 4, 5),
+            new DefaultCell(CustomStateExample.COLD, 6, 5)
+        );
+
+        DefaultCell result = rule.singleRun(hotCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.HOT, result.getCurrentStatus(),
+            "HOT cell should remain HOT even when surrounded by other HOT cells");
+    }
+
+    /** HOT cell with WARM neighbours → stays HOT. */
+    @Test
+    void heatDiffusionRuleHotCellWithWarmNeighborsStaysHot() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell hotCell = new DefaultCell(CustomStateExample.HOT, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.WARM, 4, 5),
+            new DefaultCell(CustomStateExample.WARM, 6, 5)
+        );
+
+        DefaultCell result = rule.singleRun(hotCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.HOT, result.getCurrentStatus(),
+            "HOT cell should remain HOT regardless of WARM neighbours");
+    }
+
+    /** WARM cell with HOT neighbour → becomes HOT. */
+    @Test
+    void heatDiffusionRuleWarmCellWithHotNeighborBecomesHot() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell warmCell = new DefaultCell(CustomStateExample.WARM, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.HOT, 4, 5),
+            new DefaultCell(CustomStateExample.COLD, 6, 5)
+        );
+
+        DefaultCell result = rule.singleRun(warmCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.HOT, result.getCurrentStatus(),
+            "WARM cell adjacent to a HOT cell should become HOT");
+    }
+
+    /** COLD cell with one HOT and multiple COLD neighbours → becomes WARM. */
+    @Test
+    void heatDiffusionRuleColdCellWithOneHotNeighborBecomesWarm() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell coldCell = new DefaultCell(CustomStateExample.COLD, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.HOT, 4, 5),
+            new DefaultCell(CustomStateExample.COLD, 6, 5),
+            new DefaultCell(CustomStateExample.COLD, 5, 4)
+        );
+
+        DefaultCell result = rule.singleRun(coldCell, neighbors);
+        assertNotNull(result);
         assertEquals(CustomStateExample.WARM, result.getCurrentStatus(),
-            "WARM cell with no HOT neighbours should retain its WARM state");
+            "COLD cell with one HOT neighbour should become WARM");
+    }
+
+    /** COLD cell with exactly one WARM neighbour and no HOT → stays COLD. */
+    @Test
+    void heatDiffusionRuleColdCellWithOneWarmAndNoHotStaysCold() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell coldCell = new DefaultCell(CustomStateExample.COLD, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.WARM, 4, 5),
+            new DefaultCell(CustomStateExample.COLD, 6, 5),
+            new DefaultCell(CustomStateExample.COLD, 5, 4)
+        );
+
+        DefaultCell result = rule.singleRun(coldCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.COLD, result.getCurrentStatus(),
+            "COLD cell with only one WARM neighbour should stay COLD");
+    }
+
+    /** COLD cell with three WARM neighbours → becomes WARM. */
+    @Test
+    void heatDiffusionRuleColdCellWithThreeWarmNeighborsBecomesWarm() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell coldCell = new DefaultCell(CustomStateExample.COLD, 5, 5);
+        List<DefaultCell> neighbors = Arrays.asList(
+            new DefaultCell(CustomStateExample.WARM, 4, 5),
+            new DefaultCell(CustomStateExample.WARM, 6, 5),
+            new DefaultCell(CustomStateExample.WARM, 5, 4)
+        );
+
+        DefaultCell result = rule.singleRun(coldCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.WARM, result.getCurrentStatus(),
+            "COLD cell surrounded by 3 WARM cells should become WARM");
+    }
+
+    /** COLD cell with no neighbours → stays COLD. */
+    @Test
+    void heatDiffusionRuleColdCellWithNoNeighborsStaysCold() {
+        CustomStateExample.HeatDiffusionRule rule = new CustomStateExample.HeatDiffusionRule();
+
+        DefaultCell coldCell = new DefaultCell(CustomStateExample.COLD, 5, 5);
+        List<DefaultCell> neighbors = Collections.singletonList(
+            new DefaultCell(CustomStateExample.COLD, 4, 5)
+        );
+
+        DefaultCell result = rule.singleRun(coldCell, neighbors);
+        assertNotNull(result);
+        assertEquals(CustomStateExample.COLD, result.getCurrentStatus(),
+            "COLD cell with no heating neighbours should stay COLD");
     }
 }

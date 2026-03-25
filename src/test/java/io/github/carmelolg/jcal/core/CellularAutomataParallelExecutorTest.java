@@ -47,7 +47,7 @@ public class CellularAutomataParallelExecutorTest {
 			@Override
 			public DefaultCell refinements(DefaultCell cell) {
 				// Override refinements to test it's being called
-                return new DefaultCell(cell.currentStatus, cell.row, cell.col);
+                return new DefaultCell(cell.getCurrentStatus(), cell.getRow(), cell.getCol());
 			}
 		};
 

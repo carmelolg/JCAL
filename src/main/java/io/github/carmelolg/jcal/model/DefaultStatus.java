@@ -46,8 +46,14 @@ public class DefaultStatus {
 
 	@Override
 	public boolean equals(Object object) {
-		DefaultStatus status = (DefaultStatus) object;
+		if (this == object) return true;
+		if (!(object instanceof DefaultStatus status)) return false;
 		return this.key.equals(status.key) && this.value.equals(status.value);
+	}
+
+	@Override
+	public int hashCode() {
+		return java.util.Objects.hash(key, value);
 	}
 
 	@Override
