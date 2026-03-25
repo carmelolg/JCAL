@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.carmelolg</groupId>
 	<artifactId>jcal</artifactId>
-	<version>1.0.0.alpha</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>Java Cellular Automata Library</name>
 	<description>
@@ -42,6 +42,7 @@
 		<system>GitHub Issues</system>
 		<url>https://github.com/carmelolg/JCAL/issues</url>
 	</issueManagement>
+
 	<properties>
 		<junit.jupiter.version>5.14.2</junit.jupiter.version>
 		<junit.platform.version>1.14.2</junit.platform.version>
@@ -49,6 +50,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<commons-lang3.version>3.20.0</commons-lang3.version>
 	</properties>
+
 	<distributionManagement>
 		<repository>
 			<id>github</id>
@@ -56,30 +58,31 @@
 			<url>https://maven.pkg.github.com/carmelolg/jcal</url>
 		</repository>
 	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>${junit.jupiter.version}</version>
-			<!-- <scope>test</scope> -->
+			 <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit.jupiter.version}</version>
-			<!-- <scope>test</scope> -->
+			 <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-params</artifactId>
 			<version>${junit.jupiter.version}</version>
-			<!-- <scope>test</scope> -->
+			 <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite</artifactId>
 			<version>${junit.platform.version}</version>
-			<!-- <scope>test</scope> -->
+			 <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -87,6 +90,7 @@
 			<version>${commons-lang3.version}</version>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
