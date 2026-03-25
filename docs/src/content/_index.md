@@ -1,10 +1,10 @@
 |                   |                                                                                                   |
-| :---------------- | :------------------------------------------------------------------------------------------------ |
-| **Author**        | [carmelolg](https://carmelolg.github.io)  |
+| :---------------- |:--------------------------------------------------------------------------------------------------|
+| **Author**        | [carmelolg](https://carmelolg.github.io)                                                          |
 | **License**       | ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg) |
 | **Test Coverage** | ![Coverage](https://raw.githubusercontent.com/carmelolg/JCAL/master/.github/badges/jacoco.svg)    |
-| **Latest**        | **1.0.0.alpha** — not yet production-ready |
-| **Stable**        | _in progress_ |
+| **Latest**        | **1.0.0**                                                                                         |
+| **Stable**        | **1.0.0**                                                                                         |
 
 **JCAL** (Java Cellular Automata Library) is a lightweight Java library for building and
 simulating [Cellular Automata](https://mathworld.wolfram.com/CellularAutomaton.html) with
