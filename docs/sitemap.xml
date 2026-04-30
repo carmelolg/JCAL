@@ -2,127 +2,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://carmelolg.github.io/JCAL/design/architecture/</loc>
+    <loc>http://localhost:1313/JCAL/design/architecture/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/overview/</loc>
+    <loc>http://localhost:1313/JCAL/articles/overview/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/getting-started/</loc>
+    <loc>http://localhost:1313/JCAL/articles/getting-started/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/implementing-a-rule/</loc>
+    <loc>http://localhost:1313/JCAL/articles/implementing-a-rule/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/configuration/</loc>
+    <loc>http://localhost:1313/JCAL/articles/configuration/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/neighborhoods/</loc>
+    <loc>http://localhost:1313/JCAL/articles/neighborhoods/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/custom-state/</loc>
+    <loc>http://localhost:1313/JCAL/articles/custom-state/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/complex-ca/</loc>
+    <loc>http://localhost:1313/JCAL/articles/complex-ca/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/parallel-execution/</loc>
+    <loc>http://localhost:1313/JCAL/articles/parallel-execution/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/3d-4d-support/</loc>
+    <loc>http://localhost:1313/JCAL/articles/3d-4d-support/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/faq/</loc>
+    <loc>http://localhost:1313/JCAL/articles/faq/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/3d/</loc>
+    <loc>http://localhost:1313/JCAL/tags/3d/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/4d/</loc>
+    <loc>http://localhost:1313/JCAL/tags/4d/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/advanced/</loc>
+    <loc>http://localhost:1313/JCAL/tags/advanced/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/architecture/</loc>
+    <loc>http://localhost:1313/JCAL/tags/architecture/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/articles/</loc>
+    <loc>http://localhost:1313/JCAL/articles/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/builder/</loc>
+    <loc>http://localhost:1313/JCAL/tags/builder/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/cca/</loc>
+    <loc>http://localhost:1313/JCAL/tags/cca/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/concepts/</loc>
+    <loc>http://localhost:1313/JCAL/tags/concepts/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/configuration/</loc>
+    <loc>http://localhost:1313/JCAL/tags/configuration/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/custom/</loc>
+    <loc>http://localhost:1313/JCAL/tags/custom/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/design/</loc>
+    <loc>http://localhost:1313/JCAL/design/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/executor/</loc>
+    <loc>http://localhost:1313/JCAL/tags/executor/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/faq/</loc>
+    <loc>http://localhost:1313/JCAL/tags/faq/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/grid/</loc>
+    <loc>http://localhost:1313/JCAL/tags/grid/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/install/</loc>
+    <loc>http://localhost:1313/JCAL/tags/install/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/internals/</loc>
+    <loc>http://localhost:1313/JCAL/tags/internals/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/</loc>
+    <loc>http://localhost:1313/JCAL/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/moore/</loc>
+    <loc>http://localhost:1313/JCAL/tags/moore/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/multidimensional/</loc>
+    <loc>http://localhost:1313/JCAL/tags/multidimensional/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/neighborhood/</loc>
+    <loc>http://localhost:1313/JCAL/tags/neighborhood/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/parallel/</loc>
+    <loc>http://localhost:1313/JCAL/tags/parallel/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/performance/</loc>
+    <loc>http://localhost:1313/JCAL/tags/performance/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/quickstart/</loc>
+    <loc>http://localhost:1313/JCAL/tags/quickstart/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/refinements/</loc>
+    <loc>http://localhost:1313/JCAL/tags/refinements/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/rule/</loc>
+    <loc>http://localhost:1313/JCAL/tags/rule/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/state/</loc>
+    <loc>http://localhost:1313/JCAL/tags/state/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/status/</loc>
+    <loc>http://localhost:1313/JCAL/tags/status/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/</loc>
+    <loc>http://localhost:1313/JCAL/tags/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/troubleshooting/</loc>
+    <loc>http://localhost:1313/JCAL/tags/troubleshooting/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/tags/von-neumann/</loc>
+    <loc>http://localhost:1313/JCAL/tags/von-neumann/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>
