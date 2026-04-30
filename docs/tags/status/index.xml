@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Status on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/tags/status/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Apr 2026 23:50:42 +0200</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/status/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Custom State Objects</title>
+      <link>https://carmelolg.github.io/JCAL/articles/custom-state/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/articles/custom-state/</guid>
+      <description>Model richer per-cell data by extending DefaultStatus with a custom class.</description>
+    </item>
+    
+  </channel>
+</rss>

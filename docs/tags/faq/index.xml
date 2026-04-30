@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Faq on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/tags/faq/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Apr 2026 23:50:42 +0200</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/faq/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>FAQ</title>
+      <link>https://carmelolg.github.io/JCAL/articles/faq/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/articles/faq/</guid>
+      <description>Frequently asked questions and common troubleshooting tips.</description>
+    </item>
+    
+  </channel>
+</rss>

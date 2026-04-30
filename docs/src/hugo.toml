@@ -1,0 +1,45 @@
+baseURL      = "https://carmelolg.github.io/JCAL/"
+title        = "JCAL Docs"
+theme        = "shiori"
+locale       = "en"
+paginate     = 20
+publishDir   = ".."
+
+[params]
+  description   = "Official documentation for JCAL — Java Cellular Automata Library"
+  author        = "carmelolg"
+  version       = "1.0.0"
+  github        = "https://github.com/carmelolg/JCAL"
+  editBaseURL   = "https://github.com/carmelolg/JCAL/edit/master/docs/src/content"
+  logoText      = "JCAL"
+  quickStartURL = "/articles/getting-started/"
+  heroTitle     = "JCAL <span>Documentation</span>"
+  dateFormat    = "January 2, 2006"
+
+[markup]
+  [markup.highlight]
+    noClasses   = false
+    lineNos     = false
+    codeFences  = true
+    guessSyntax = true
+    tabWidth    = 2
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+  home    = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  page    = ["HTML"]
+
+[taxonomies]
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    name   = "Articles"
+    url    = "/articles/"
+    weight = 1
+  [[menu.main]]
+    name   = "Design"
+    url    = "/design/"
+    weight = 2
