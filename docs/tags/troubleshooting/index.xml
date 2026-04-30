@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Troubleshooting on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/tags/troubleshooting/</link>
+    <link>https://carmelolg.github.io/JCAL/tags/troubleshooting/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 30 Apr 2026 23:51:09 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Thu, 30 Apr 2026 21:53:39 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>FAQ</title>
-      <link>http://localhost:1313/JCAL/articles/faq/</link>
+      <link>https://carmelolg.github.io/JCAL/articles/faq/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/articles/faq/</guid>
+      <guid>https://carmelolg.github.io/JCAL/articles/faq/</guid>
       <description>Frequently asked questions and common troubleshooting tips.</description>
     </item>
     
