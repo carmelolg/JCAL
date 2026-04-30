@@ -1,5 +1,8 @@
 package io.github.carmelolg.jcal.utils;
 
+import io.github.carmelolg.jcal.core.grid.CellGrid;
+import io.github.carmelolg.jcal.core.grid.CellGrid2D;
+import io.github.carmelolg.jcal.core.grid.CellGridFlat;
 import io.github.carmelolg.jcal.model.DefaultCell;
 
 /**
@@ -50,6 +53,45 @@ public class Utils {
 		}
 
 		return tmp;
+	}
+
+	/**
+	 * Checks if the given coordinates are inside a grid with the given sizes.
+	 *
+	 * @param sizes the sizes of each dimension
+	 * @param coords the coordinates to check
+	 * @return {@code true} if all {@code coords[i]} are in {@code [0, sizes[i])}
+	 */
+	public static boolean isInside(int[] sizes, int[] coords) {
+		if (coords.length != sizes.length) return false;
+		for (int i = 0; i < coords.length; i++) {
+			if (coords[i] < 0 || coords[i] >= sizes[i]) return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Clones a {@link CellGrid} by deep-copying all cells.
+	 *
+	 * @param grid the grid to clone
+	 * @return a deep copy of the grid
+	 * @throws CloneNotSupportedException if any cell cannot be cloned
+	 * @throws UnsupportedOperationException if the grid type is unknown
+	 */
+	public static CellGrid cloneGrid(CellGrid grid) throws CloneNotSupportedException {
+		if (grid instanceof CellGrid2D cg2d) {
+			return new CellGrid2D(cloneMaps(cg2d.asMatrix()));
+		}
+		if (grid instanceof CellGridFlat cgf) {
+			CellGridFlat copy = new CellGridFlat(cgf.dimensions());
+			for (int[] coords : cgf.allCoordinates()) {
+				DefaultCell orig = cgf.get(coords);
+				copy.set(coords, orig.clone());
+			}
+			return copy;
+		}
+		throw new UnsupportedOperationException(
+				"Cannot clone grid of type: " + grid.getClass().getName());
 	}
 
 }

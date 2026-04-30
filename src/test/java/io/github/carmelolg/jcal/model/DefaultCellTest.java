@@ -99,5 +99,36 @@ public class DefaultCellTest {
 		DefaultCell cell2 = new DefaultCell(JUnitDataTest.alive, 0, 0);
 		assertFalse(cell1.equals(cell2), "Cells with different statuses must not be equal");
 	}
+
+	@Test
+	public void getCoordinates() {
+		DefaultCell cell = new DefaultCell(JUnitDataTest.dead, 3, 7);
+		int[] coords = cell.getCoordinates();
+		assertTrue(coords[0] == 3, "getCoordinates()[0] should be col=3");
+		assertTrue(coords[1] == 7, "getCoordinates()[1] should be row=7");
+	}
+
+	@Test
+	public void ndConstructor() {
+		DefaultCell cell = new DefaultCell(JUnitDataTest.alive, 1, 2, 3);
+		int[] coords = cell.getCoordinates();
+		assertTrue(coords[0] == 1 && coords[1] == 2 && coords[2] == 3, "3D constructor should store all coordinates");
+		assertTrue(cell.getCurrentStatus().equals(JUnitDataTest.alive), "3D constructor should set status");
+	}
+
+	@Test
+	public void hashCodeConsistencyTest() {
+		DefaultCell cell1 = new DefaultCell(JUnitDataTest.dead, 2, 5);
+		DefaultCell cell2 = new DefaultCell(JUnitDataTest.dead, 2, 5);
+		assertTrue(cell1.hashCode() == cell2.hashCode(), "Equal cells must have equal hash codes");
+	}
+
+	@Test
+	public void equalsWithSelfAndNull() {
+		DefaultCell cell = new DefaultCell(JUnitDataTest.dead, 0, 0);
+		assertTrue(cell.equals(cell), "A cell must be equal to itself");
+		assertFalse(cell.equals(null), "A cell must not equal null");
+		assertFalse(cell.equals("not a cell"), "A cell must not equal a non-cell object");
+	}
 		
 }

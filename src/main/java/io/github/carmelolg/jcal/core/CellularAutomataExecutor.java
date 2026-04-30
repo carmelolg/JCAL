@@ -2,8 +2,8 @@ package io.github.carmelolg.jcal.core;
 
 import java.util.List;
 
+import io.github.carmelolg.jcal.core.grid.CellGrid;
 import io.github.carmelolg.jcal.model.DefaultCell;
-import io.github.carmelolg.jcal.utils.Utils;
 
 /**
  * Abstract base class for implementing the transition function of a Cellular Automata.
@@ -67,27 +67,25 @@ public abstract class CellularAutomataExecutor {
 
 	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException {
 
-		for (int i = 0; i < ca.getMap().length; i++) {
-			for (int j = 0; j < ca.getMap()[i].length; j++) {
-				ca.getMap()[i][j] = refinements(ca.getMap()[i][j]);
-			}
+		CellGrid current = ca.getGrid();
+		CellGrid next = ca.getUtilsGrid();
+
+		// Step 1: refinements in-place on current
+		for (int[] coords : current.allCoordinates()) {
+			current.set(coords, refinements(current.get(coords)));
 		}
 
-		
-		ca.setUtilsMap(Utils.cloneMaps(ca.getMap()));
-
-		
-		for (int i = 0; i < ca.getMap().length; i++) {
-			for (int j = 0; j < ca.getMap()[i].length; j++) {
-				ca.getUtilsMap()[i][j] = singleRun(ca.getMap()[i][j],
-						ca.getNeighborhood().getNeighbors(ca.getMap(), i, j));
-			}
+		// Step 2: transition — read current, write next
+		for (int[] coords : current.allCoordinates()) {
+			next.set(coords, singleRun(current.get(coords),
+					ca.getNeighborhood().getNeighbors(current, coords)));
 		}
 
-		ca.setMap(Utils.cloneMaps(ca.getUtilsMap()));
+		// Step 3: double-buffer swap
+		ca.setGrid(next);
+		ca.setUtilsGrid(current);
 
 		return ca;
-
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
+import io.github.carmelolg.jcal.core.grid.CellGrid;
 import io.github.carmelolg.jcal.model.DefaultCell;
 
 public class CellularAutomataRunner implements Callable<List<DefaultCell>> {
@@ -30,10 +31,13 @@ public class CellularAutomataRunner implements Callable<List<DefaultCell>> {
 	@Override
 	public List<DefaultCell> call() throws Exception {
 		List<DefaultCell> results = new ArrayList<DefaultCell>();
+		CellGrid grid = ca.getGrid();
+		CellGrid utilsGrid = ca.getUtilsGrid();
 
-		for (int i = row; i < (row + 1) * offset; i++) {
-			for (int j = 0; j < ca.getMap()[0].length; j++) {
-				ca.getUtilsMap()[i][j] = executor.singleRun(ca.getMap()[i][j], ca.getNeighborhood().getNeighbors(ca.getMap(), i, j));
+		for (int[] coords : grid.allCoordinates()) {
+			if (coords[0] >= row && coords[0] < (row + 1) * offset) {
+				utilsGrid.set(coords, executor.singleRun(grid.get(coords),
+						ca.getNeighborhood().getNeighbors(grid, coords)));
 			}
 		}
 

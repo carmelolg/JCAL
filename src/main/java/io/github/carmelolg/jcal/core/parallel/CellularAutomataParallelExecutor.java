@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
+import io.github.carmelolg.jcal.core.grid.CellGrid;
 import io.github.carmelolg.jcal.model.DefaultCell;
-import io.github.carmelolg.jcal.utils.Utils;
 
 /**
  * Parallel variant of {@link io.github.carmelolg.jcal.core.CellularAutomataExecutor} that
@@ -51,9 +51,11 @@ public abstract class CellularAutomataParallelExecutor {
 	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException, NoSuchMethodException,
 			SecurityException, InterruptedException, ExecutionException {
 
-		
+		int rowCount = ca.getGrid().dimensions().getSize(0);
+
+		// Step 1: refinements in-place on grid
 		Collection<CellularAutomataRefinementRunner> refinementTasks = new ArrayList<CellularAutomataRefinementRunner>();
-		for (int i = 0; i < ca.getMap().length; i++) {
+		for (int i = 0; i < rowCount; i++) {
 			refinementTasks.add(new CellularAutomataRefinementRunner(ca, i, 1, this));
 		}
 		refinementTasks.stream().parallel().forEach(task -> {
@@ -63,11 +65,10 @@ public abstract class CellularAutomataParallelExecutor {
 				throw new RuntimeException(e);
 			}
 		});
-		
-		ca.setUtilsMap(Utils.cloneMaps(ca.getMap()));
 
+		// Step 2: transition — read grid, write utilsGrid
 		Collection<CellularAutomataRunner> tasks = new ArrayList<CellularAutomataRunner>();
-		for (int i = 0; i < ca.getMap().length; i++) {
+		for (int i = 0; i < rowCount; i++) {
 			tasks.add(new CellularAutomataRunner(ca, i, 1, this));
 		}
 		tasks.stream().parallel().forEach(task -> {
@@ -78,7 +79,10 @@ public abstract class CellularAutomataParallelExecutor {
 			}
 		});
 
-		ca.setMap(Utils.cloneMaps(ca.getUtilsMap()));
+		// Step 3: double-buffer swap
+		CellGrid temp = ca.getGrid();
+		ca.setGrid(ca.getUtilsGrid());
+		ca.setUtilsGrid(temp);
 
 		return ca;
 

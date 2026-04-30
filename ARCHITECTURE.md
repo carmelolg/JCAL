@@ -15,7 +15,7 @@ A Cellular Automaton is formally described as the quadruple **`<Zd, S, X, σ>`**
 
 | Symbol | Meaning | JCAL type |
 |--------|---------|-----------|
-| **Zd** | d-dimensional grid of cells | `DefaultCell[][]` (inside `CellularAutomata`) |
+| **Zd** | d-dimensional grid of cells | `CellGrid` (`CellGrid2D` for 2D, `CellGridFlat` for 3D/4D) |
 | **S**  | Set of possible cell states | `DefaultStatus` |
 | **X**  | Neighborhood (which cells are "neighbours") | `DefaultNeighborhood` subclass |
 | **σ**  | Transition function (one step of evolution) | `CellularAutomataExecutor` subclass |
@@ -31,26 +31,37 @@ io.github.carmelolg.jcal
 │       └── CellularAutomataConfigurationBuilder
 │
 ├── core/
-│   ├── CellularAutomata                   ← the grid; holds map[][], neighborhood, config
+│   ├── CellularAutomata                   ← the grid (CellGrid); holds neighborhood, config
 │   ├── CellularAutomataExecutor           ← abstract; extend to define the transition rule
-│   ├── DefaultNeighborhood                ← abstract; extend to define a custom neighborhood
-│   ├── MooreNeighborhood                  ← built-in: 8 surrounding cells
-│   ├── VonNeumannNeighborhood             ← built-in: 4 orthogonal cells
+│   ├── DefaultNeighborhood                ← abstract; extend to define a custom 2D neighborhood
+│   ├── DefaultNeighborhoodND              ← abstract; extend for 3D/4D custom neighborhoods
+│   ├── MooreNeighborhood                  ← built-in 2D: 8 surrounding cells
+│   ├── VonNeumannNeighborhood             ← built-in 2D: 4 orthogonal cells
+│   ├── Moore3DNeighborhood                ← built-in 3D: 26 surrounding cells
+│   ├── VonNeumann3DNeighborhood           ← built-in 3D: 6 orthogonal cells
+│   ├── Moore4DNeighborhood                ← built-in 4D: 80 surrounding cells
+│   ├── VonNeumann4DNeighborhood           ← built-in 4D: 8 orthogonal cells
+│   ├── grid/
+│   │   ├── CellGrid                       ← interface: get/set/dimensions/allCoordinates
+│   │   ├── CellGrid2D                     ← 2D impl backed by DefaultCell[][]
+│   │   └── CellGridFlat                   ← nD flat-array impl with stride-based indexing
 │   └── parallel/
 │       ├── CellularAutomataParallelExecutor   ← parallel variant of the executor
 │       ├── CellularAutomataRunner             ← internal – Callable for parallel transition
 │       └── CellularAutomataRefinementRunner   ← internal – Callable for parallel refinement
 │
 ├── model/
-│   ├── DefaultCell                        ← one cell; has a DefaultStatus + (col, row)
+│   ├── DefaultCell                        ← one cell; has a DefaultStatus + int[] coordinates
 │   ├── DefaultStatus                      ← a cell's state; key + arbitrary value Object
+│   ├── GridDimensions                     ← immutable nD descriptor (sizes, strides, total)
 │   └── NeighborhoodType                   ← enum: MOORE | VON_NEUMANN
 │
 ├── utils/
-│   └── Utils                              ← internal helpers (isInside, cloneMaps)
+│   └── Utils                              ← internal helpers (isInside, cloneGrid)
 │
 └── examples/
-    ├── GameOfLifeExample                  ← minimal runnable example (copy-paste start)
+    ├── GameOfLifeExample                  ← 2D minimal runnable example (copy-paste start)
+    ├── GameOfLife3DExample                ← 3D example: Carter Bays' 3D Life
     └── CustomStateExample                 ← advanced example with multi-value state
 ```
 
@@ -61,12 +72,21 @@ io.github.carmelolg.jcal
 | `CellularAutomata` | **Public API** | Core grid object; create via constructor |
 | `CellularAutomataConfiguration` | **Public API** | Always build via inner `Builder` |
 | `CellularAutomataExecutor` | **Extension point** | Subclass to define your rule |
-| `DefaultNeighborhood` | **Extension point** | Subclass for a custom neighborhood |
+| `DefaultNeighborhood` | **Extension point** | Subclass for a custom 2D neighborhood |
+| `DefaultNeighborhoodND` | **Extension point** | Subclass for a custom 3D/4D neighborhood |
+| `CellGrid` | **Public API** | Interface for grid access (2D and nD) |
+| `CellGrid2D` | **Public API** | 2D grid backed by `DefaultCell[][]` |
+| `CellGridFlat` | **Public API** | nD flat-array grid for 3D/4D use |
+| `GridDimensions` | **Public API** | Immutable nD grid descriptor |
 | `DefaultCell` | **Public API** | Returned by the grid; construct for initial state |
 | `DefaultStatus` | **Public API** | Create instances for each state your CA needs |
 | `NeighborhoodType` | **Public API** | Pass to builder when using a built-in neighborhood |
-| `MooreNeighborhood` | Public (use via `NeighborhoodType.MOORE`) | Rarely instantiated directly |
-| `VonNeumannNeighborhood` | Public (use via `NeighborhoodType.VON_NEUMANN`) | Rarely instantiated directly |
+| `MooreNeighborhood` | Public (use via `NeighborhoodType.MOORE`) | 2D, rarely instantiated directly |
+| `VonNeumannNeighborhood` | Public (use via `NeighborhoodType.VON_NEUMANN`) | 2D, rarely instantiated directly |
+| `Moore3DNeighborhood` | Public (use via `NeighborhoodType.MOORE` on 3D config) | Auto-resolved |
+| `VonNeumann3DNeighborhood` | Public (use via `NeighborhoodType.VON_NEUMANN` on 3D config) | Auto-resolved |
+| `Moore4DNeighborhood` | Public (use via `NeighborhoodType.MOORE` on 4D config) | Auto-resolved |
+| `VonNeumann4DNeighborhood` | Public (use via `NeighborhoodType.VON_NEUMANN` on 4D config) | Auto-resolved |
 | `CellularAutomataParallelExecutor` | **Extension point** | Parallel variant of executor |
 | `CellularAutomataRunner` | **Internal** | Do not use directly |
 | `CellularAutomataRefinementRunner` | **Internal** | Do not use directly |

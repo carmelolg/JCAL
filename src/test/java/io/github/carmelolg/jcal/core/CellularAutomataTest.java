@@ -31,13 +31,13 @@ public class CellularAutomataTest {
 	void init() throws Exception {
 
 		ca.init(_config);
-		assertInstanceOf(MooreNeighborhood.class.getClass(), ca.neighborhood.getClass());
-		assertTrue(ca.map.length == JUnitDataTest.WIDTH, "The map length is not " + JUnitDataTest.WIDTH);
-		assertTrue(ca.map[0].length == JUnitDataTest.HEIGHT, "The map height is not " + JUnitDataTest.HEIGHT);
-		assertTrue(ca.utilsMap.length == JUnitDataTest.WIDTH, "The cloned map length is not " + JUnitDataTest.WIDTH);
-		assertTrue(ca.utilsMap[0].length == JUnitDataTest.HEIGHT,
+		assertInstanceOf(MooreNeighborhood.class.getClass(), ca.getNeighborhood().getClass());
+		assertTrue(ca.getMap().length == JUnitDataTest.WIDTH, "The map length is not " + JUnitDataTest.WIDTH);
+		assertTrue(ca.getMap()[0].length == JUnitDataTest.HEIGHT, "The map height is not " + JUnitDataTest.HEIGHT);
+		assertTrue(ca.getUtilsMap().length == JUnitDataTest.WIDTH, "The cloned map length is not " + JUnitDataTest.WIDTH);
+		assertTrue(ca.getUtilsMap()[0].length == JUnitDataTest.HEIGHT,
 				"The cloned map height is not " + JUnitDataTest.HEIGHT);
-		assertTrue(ca.map[0][0].equals(JUnitDataTest.map[0][0]), "The map is incongruent after the initialization");
+		assertTrue(ca.getMap()[0][0].equals(JUnitDataTest.map[0][0]), "The map is incongruent after the initialization");
 
 	}
 
@@ -51,9 +51,9 @@ public class CellularAutomataTest {
 		ca.init(config);
 
 		int count = 0;
-		for (int i = 0; i < ca.map.length; i++) {
-			for (int j = 0; j < ca.map[0].length; j++) {
-				if (ca.map[i][j].equals(new DefaultCell(JUnitDataTest.alive, i, j))) {
+		for (int i = 0; i < ca.getMap().length; i++) {
+			for (int j = 0; j < ca.getMap()[0].length; j++) {
+				if (ca.getMap()[i][j].equals(new DefaultCell(JUnitDataTest.alive, i, j))) {
 					count++;
 				}
 			}

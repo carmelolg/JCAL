@@ -37,8 +37,7 @@ import io.github.carmelolg.jcal.model.NeighborhoodType;
  */
 public class CellularAutomataConfiguration {
 
-	private int width = 100;
-	private int height = 100;
+	private int[] dimensions = {100, 100};
 	private boolean isInfinite;
 	private int totalIterations;
 	private boolean activeCells; // Not used yet
@@ -47,12 +46,28 @@ public class CellularAutomataConfiguration {
 	private NeighborhoodType neighborhoodType;
 	private DefaultNeighborhood neighborhood;
 
+	/**
+	 * Returns the grid width (dimension 0).
+	 * @return the width
+	 */
 	public int getWidth() {
-		return width;
+		return dimensions[0];
 	}
 
+	/**
+	 * Returns the grid height (dimension 1).
+	 * @return the height
+	 */
 	public int getHeight() {
-		return height;
+		return dimensions[1];
+	}
+
+	/**
+	 * Returns a copy of the full dimensions array.
+	 * @return defensive copy of dimensions
+	 */
+	public int[] getDimensions() {
+		return dimensions.clone();
 	}
 
 	public boolean isInfinite() {
@@ -84,8 +99,7 @@ public class CellularAutomataConfiguration {
 	}
 
 	private CellularAutomataConfiguration(CellularAutomataConfigurationBuilder builder) {
-		this.width = builder.width;
-		this.height = builder.height;
+		this.dimensions = builder.dimensions.clone();
 		this.activeCells = builder.activeCells;
 		this.defaultStatus = builder.defaultStatus;
 		this.initalState = builder.initalState;
@@ -98,8 +112,7 @@ public class CellularAutomataConfiguration {
 	public static class CellularAutomataConfigurationBuilder {
 
 		/** Square map is the default */
-		private int width = 100;
-		private int height = 100;
+		private int[] dimensions = {100, 100};
 
 		/**
 		 * If true, the iterations will be infinite, <i>totalIterations</i> otherwise
@@ -123,7 +136,7 @@ public class CellularAutomataConfiguration {
 		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setWidth(int width) {
-			this.width = width;
+			this.dimensions[0] = width;
 			return this;
 		}
 
@@ -134,7 +147,18 @@ public class CellularAutomataConfiguration {
 		 * @return the builder {@link CellularAutomataConfigurationBuilder}
 		 */
 		public CellularAutomataConfigurationBuilder setHeight(int height) {
-			this.height = height;
+			this.dimensions[1] = height;
+			return this;
+		}
+
+		/**
+		 * Set the dimensions of the grid for 3D/4D support.
+		 *
+		 * @param dims the size of each dimension (2 to 4 values)
+		 * @return the builder {@link CellularAutomataConfigurationBuilder}
+		 */
+		public CellularAutomataConfigurationBuilder setDimensions(int... dims) {
+			this.dimensions = dims.clone();
 			return this;
 		}
 

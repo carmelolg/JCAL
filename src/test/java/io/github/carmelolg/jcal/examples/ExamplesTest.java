@@ -374,4 +374,54 @@ class ExamplesTest {
         assertEquals(CustomStateExample.COLD, result.getCurrentStatus(),
             "COLD cell with no heating neighbours should stay COLD");
     }
+
+    // =========================================================================
+    // GameOfLife3DExample
+    // =========================================================================
+
+    /** Smoke-test: the full 3D Game of Life example runs without throwing any exception. */
+    @Test
+    void gameOfLife3DExampleMain() throws Exception {
+        GameOfLife3DExample.main(new String[]{});
+    }
+
+    /** Dead cell with exactly 5 alive neighbours → becomes alive (birth rule). */
+    @Test
+    void carter3DLifeDeadCellWith5NeighborsBecomeAlive() {
+        GameOfLife3DExample.Carter3DLifeRule rule = new GameOfLife3DExample.Carter3DLifeRule();
+        DefaultCell deadCell = new DefaultCell(GameOfLife3DExample.DEAD, 2, 2, 2);
+        List<DefaultCell> neighbors = new java.util.ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            neighbors.add(new DefaultCell(GameOfLife3DExample.ALIVE, i, 0, 0));
+        DefaultCell result = rule.singleRun(deadCell, neighbors);
+        assertEquals(GameOfLife3DExample.ALIVE, result.getCurrentStatus(),
+                "Dead cell with 5 alive neighbours should be born");
+    }
+
+    /** Alive cell with 6 alive neighbours → survives. */
+    @Test
+    void carter3DLifeAliveCellWith6NeighborsSurvives() {
+        GameOfLife3DExample.Carter3DLifeRule rule = new GameOfLife3DExample.Carter3DLifeRule();
+        DefaultCell aliveCell = new DefaultCell(GameOfLife3DExample.ALIVE, 2, 2, 2);
+        List<DefaultCell> neighbors = new java.util.ArrayList<>();
+        for (int i = 0; i < 6; i++)
+            neighbors.add(new DefaultCell(GameOfLife3DExample.ALIVE, i, 0, 0));
+        DefaultCell result = rule.singleRun(aliveCell, neighbors);
+        assertEquals(GameOfLife3DExample.ALIVE, result.getCurrentStatus(),
+                "Alive cell with 6 alive neighbours should survive");
+    }
+
+    /** Alive cell with 2 alive neighbours → dies. */
+    @Test
+    void carter3DLifeAliveCellWith2NeighborsDies() {
+        GameOfLife3DExample.Carter3DLifeRule rule = new GameOfLife3DExample.Carter3DLifeRule();
+        DefaultCell aliveCell = new DefaultCell(GameOfLife3DExample.ALIVE, 2, 2, 2);
+        List<DefaultCell> neighbors = Arrays.asList(
+                new DefaultCell(GameOfLife3DExample.ALIVE, 1, 2, 2),
+                new DefaultCell(GameOfLife3DExample.ALIVE, 3, 2, 2)
+        );
+        DefaultCell result = rule.singleRun(aliveCell, neighbors);
+        assertEquals(GameOfLife3DExample.DEAD, result.getCurrentStatus(),
+                "Alive cell with 2 alive neighbours should die");
+    }
 }

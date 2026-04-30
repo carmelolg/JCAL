@@ -9,6 +9,42 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+### Added
+- **Multi-dimensional grid support (3D / 4D)** — the library now supports grids with 2, 3,
+  or 4 dimensions while maintaining full backward compatibility with the existing 2D API.
+  - `GridDimensions` — immutable nD grid descriptor (sizes, total cells, strides).
+  - `CellGrid` — new interface abstracting grid access (`get`, `set`, `dimensions`,
+    `allCoordinates`).
+  - `CellGrid2D` — 2D implementation backed by `DefaultCell[][]` for zero-overhead 2D usage.
+  - `CellGridFlat` — nD flat-array implementation with stride-based indexing.
+  - `DefaultNeighborhoodND` — abstract base for nD neighborhoods; bridges the 2D and nD APIs.
+  - `Moore3DNeighborhood` — 26-cell Moore neighborhood for 3D grids.
+  - `VonNeumann3DNeighborhood` — 6-cell orthogonal neighborhood for 3D grids.
+  - `Moore4DNeighborhood` — 80-cell Moore neighborhood for 4D grids.
+  - `VonNeumann4DNeighborhood` — 8-cell orthogonal neighborhood for 4D grids.
+  - `DefaultCell.getCoordinates()` — returns the full coordinate array.
+  - `DefaultCell(DefaultStatus, int...)` — varargs nD constructor.
+  - `CellularAutomata.getGrid()` / `getUtilsGrid()` — generic grid accessors.
+  - `CellularAutomataConfiguration.setDimensions(int...)` / `getDimensions()` — nD grid size.
+  - `GameOfLife3DExample` — Carter Bays' 3D Life variant demonstrating 3D grid usage.
+- **New tests** — 33 additional tests covering `GridDimensions`, `CellGridFlat`,
+  `Moore3DNeighborhood`, `VonNeumann3DNeighborhood`, 3D specification scenarios,
+  new `DefaultCell` methods, and the `GameOfLife3DExample`.
+
+### Changed
+- `CellularAutomata` now stores `CellGrid grid` / `CellGrid utilsGrid` internally instead of
+  raw `DefaultCell[][]` arrays; `getMap()` / `getUtilsMap()` remain as backward-compatible
+  accessors for 2D CAs.
+- `CellularAutomataExecutor.innerRun()` uses a double-buffer swap instead of cloning the full
+  grid on every iteration (performance improvement).
+- `CellularAutomataParallelExecutor.innerRun()` updated to use double-buffer swap via `CellGrid`.
+- Parallel runner classes (`CellularAutomataRunner`, `CellularAutomataRefinementRunner`) updated
+  to use the `CellGrid` API, enabling future nD parallel execution.
+- `DefaultCell` now stores coordinates as `int[]` instead of separate `int col, int row` fields;
+  `getCol()` and `getRow()` are retained for backward compatibility.
+- `CellularAutomataConfiguration` now stores grid sizes as `int[] dimensions` instead of
+  separate `width` / `height` fields; `getWidth()` / `getHeight()` are retained.
+
 ### Changed
 - Hugo documentation site visual theme refreshed for a more professional and user-friendly
   appearance:

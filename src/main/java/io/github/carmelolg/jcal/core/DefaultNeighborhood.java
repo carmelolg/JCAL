@@ -2,6 +2,8 @@ package io.github.carmelolg.jcal.core;
 
 import java.util.List;
 
+import io.github.carmelolg.jcal.core.grid.CellGrid;
+import io.github.carmelolg.jcal.core.grid.CellGrid2D;
 import io.github.carmelolg.jcal.model.DefaultCell;
 
 /**
@@ -46,4 +48,24 @@ public abstract class DefaultNeighborhood {
 	 * @return a list of {@link DefaultCell} that represent the neighbors of the (i,j) cell.
 	 */
 	public abstract List<DefaultCell> getNeighbors(DefaultCell[][] matrix, int i, int j);
+
+	/**
+	 * Returns the neighbors of the cell at the given coordinates in the given grid.
+	 *
+	 * <p>For 2D grids, delegates to {@link #getNeighbors(DefaultCell[][], int, int)}.
+	 * For higher-dimensional grids, subclasses should override this method or extend
+	 * {@link DefaultNeighborhoodND}.
+	 *
+	 * @param grid the grid containing the cells
+	 * @param coords the coordinates of the target cell
+	 * @return list of neighboring cells
+	 * @throws UnsupportedOperationException for non-2D grids if not overridden
+	 */
+	public List<DefaultCell> getNeighbors(CellGrid grid, int[] coords) {
+		if (grid instanceof CellGrid2D cg2d) {
+			return getNeighbors(cg2d.asMatrix(), coords[0], coords[1]);
+		}
+		throw new UnsupportedOperationException(
+				"This neighborhood only supports 2D grids. Extend DefaultNeighborhoodND for multi-dimensional support.");
+	}
 }
