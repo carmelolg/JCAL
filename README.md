@@ -1,6 +1,6 @@
 # 🧬 JCAL — Java Cellular Automata Library
 
-<img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg" alt="License"/><img src=".github/badges/jacoco.svg" alt="Test Coverage"/><img src="https://img.shields.io/badge/Java-16-orange.svg" alt="Java 16"/><img src="https://img.shields.io/badge/build-Maven-blue.svg" alt="Maven"/>
+<img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg" alt="License"/> <img src=".github/badges/jacoco.svg" alt="Test Coverage"/> <img src="https://img.shields.io/badge/Java-16-orange.svg" alt="Java 16"/> <img src="https://img.shields.io/badge/build-Maven-blue.svg" alt="Maven"/>
 
 > **Model natural and artificial phenomena** — lava flows, heat diffusion, Conway's Game of Life and more — with a
 > clean, extensible Java API. 2D, 3D, and 4D grids out of the box.
