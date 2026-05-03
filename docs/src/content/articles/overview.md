@@ -30,9 +30,9 @@ A Cellular Automaton is the quadruple **`<Z^d, S, X, σ>`**:
 
 | Symbol | Meaning | JCAL type |
 |--------|---------|-----------|
-| **Z^d** | A *d*-dimensional grid of cells | `CellGrid` → `CellGrid2D` (2D) or `CellGridFlat` (3D/4D) |
-| **S** | The finite set of possible cell states | `DefaultStatus` instances |
-| **X** | The neighborhood — which cells are "neighbors" | `DefaultNeighborhood` subclass |
+| **Z^d** | A *d*-dimensional grid of cells | `CellGrid` → `CellGrid` (2D) or `CellGrid` (3D/4D) |
+| **S** | The finite set of possible cell states | `CellState` instances |
+| **X** | The neighborhood — which cells are "neighbors" | `Neighborhood` subclass |
 | **σ** | The transition function — one step of evolution | `CellularAutomataExecutor` subclass |
 
 ### Neighborhood Strategies
@@ -46,8 +46,8 @@ The two most common neighborhood shapes are:
   orthogonal cells only: 4 in 2D, 6 in 3D, 8 in 4D.
   Use `NeighborhoodType.VON_NEUMANN`.
 
-You can also define a custom neighborhood by subclassing `DefaultNeighborhood` (2D) or
-`DefaultNeighborhoodND` (3D/4D). See [Neighborhoods](../neighborhoods/) for details.
+You can also define a custom neighborhood by subclassing `Neighborhood` (2D) or
+`Neighborhood` (3D/4D). See [Neighborhoods](../neighborhoods/) for details.
 
 ### Further Reading
 
@@ -78,13 +78,13 @@ multiple departments. That library was comprehensive but complex.
 
 | Class | Role |
 |-------|------|
-| `DefaultStatus` | A cell's state. Has a `key` (String) and a `value` (any Object). |
-| `DefaultCell` | One cell on the grid. Has a `DefaultStatus` and coordinate(s). |
+| `CellState` | A cell's state. Has a `key` (String) and a `value` (any Object). |
+| `Cell` | One cell on the grid. Has a `CellState` and coordinate(s). |
 | `CellularAutomataConfiguration` | Immutable configuration. Always use the inner `Builder`. |
 | `CellularAutomata` | The grid. Create from a configuration object. |
 | `CellularAutomataExecutor` | **Extend this** to define your transition rule (`singleRun`). |
-| `DefaultNeighborhood` | **Extend this** for a custom 2D neighborhood shape. |
-| `DefaultNeighborhoodND` | **Extend this** for a custom 3D/4D neighborhood shape. |
+| `Neighborhood` | **Extend this** for a custom 2D neighborhood shape. |
+| `Neighborhood` | **Extend this** for a custom 3D/4D neighborhood shape. |
 | `CellularAutomataParallelExecutor` | Parallel variant of `CellularAutomataExecutor`. |
 
 ### Grid Coordinate Convention

@@ -13,9 +13,9 @@ A Cellular Automaton is the quadruple **`<Z^d, S, X, σ>`**:
 
 | Symbol | Meaning | JCAL type |
 |--------|---------|-----------|
-| **Z^d** | *d*-dimensional grid of cells | `CellGrid` → `CellGrid2D` / `CellGridFlat` |
-| **S**  | Set of possible cell states | `DefaultStatus` |
-| **X**  | Neighborhood strategy | `DefaultNeighborhood` subclass |
+| **Z^d** | *d*-dimensional grid of cells | `CellGrid` (2D–4D, unified) |
+| **S**  | Set of possible cell states | `CellState` |
+| **X**  | Neighborhood strategy | `Neighborhood` subclass |
 | **σ**  | Transition function | `CellularAutomataExecutor` subclass |
 
 ## Key Features
@@ -34,13 +34,13 @@ A Cellular Automaton is the quadruple **`<Z^d, S, X, σ>`**:
 Conway's Game of Life in a few lines:
 
 ```java
-DefaultStatus dead  = new DefaultStatus("dead",  "0");
-DefaultStatus alive = new DefaultStatus("alive", "1");
+CellState dead  = new CellState("dead",  "0");
+CellState alive = new CellState("alive", "1");
 
-List<DefaultCell> seed = Arrays.asList(
-    new DefaultCell(alive, 5, 4),
-    new DefaultCell(alive, 5, 5),
-    new DefaultCell(alive, 5, 6)  // vertical blinker
+List<Cell> seed = Arrays.asList(
+    new Cell(alive, 5, 4),
+    new Cell(alive, 5, 5),
+    new Cell(alive, 5, 6)  // vertical blinker
 );
 
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()

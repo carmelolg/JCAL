@@ -45,14 +45,14 @@ state of their neighbors, not the partially-updated state.
 
 ## Implementing Refinements
 
-Override `refinements(DefaultCell cell)` in your executor and return the (possibly
+Override `refinements(Cell cell)` in your executor and return the (possibly
 modified) cell:
 
 ```java
 public class MyComplexRule extends CellularAutomataExecutor {
 
     @Override
-    public DefaultCell refinements(DefaultCell cell) {
+    public Cell refinements(Cell cell) {
         // Example: clamp temperature before neighbor lookup
         MyStatus status = (MyStatus) cell.getCurrentStatus();
         status.temperature = Math.max(0.0, Math.min(status.temperature, 1000.0));
@@ -61,11 +61,11 @@ public class MyComplexRule extends CellularAutomataExecutor {
     }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         // Neighbors already have their refined state
         MyStatus current = (MyStatus) cell.getCurrentStatus();
         // ... compute next state ...
-        return new DefaultCell(nextStatus, cell.getCol(), cell.getRow());
+        return new Cell(nextStatus, cell.getCol(), cell.getRow());
     }
 }
 ```
@@ -84,7 +84,7 @@ are clamped to the physical range `[0, 1000]` in the refinement phase.
 ### HeatStatus
 
 ```java
-public class HeatStatus extends DefaultStatus {
+public class HeatStatus extends CellState {
 
     public double temperature;
 
@@ -106,7 +106,7 @@ public class HeatStatus extends DefaultStatus {
 public class HeatDiffusionExecutor extends CellularAutomataExecutor {
 
     @Override
-    public DefaultCell refinements(DefaultCell cell) {
+    public Cell refinements(Cell cell) {
         HeatStatus s = (HeatStatus) cell.getCurrentStatus();
         // Clamp to physical bounds before sharing with neighbors
         s.temperature = Math.max(0.0, Math.min(s.temperature, 1000.0));
@@ -115,7 +115,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
     }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         double avgNeighborTemp = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average()
@@ -124,7 +124,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
         double current = ((HeatStatus) cell.getCurrentStatus()).temperature;
         double next = (current + avgNeighborTemp) / 2.0;  // simple diffusion
 
-        return new DefaultCell(new HeatStatus(next), cell.getCol(), cell.getRow());
+        return new Cell(new HeatStatus(next), cell.getCol(), cell.getRow());
     }
 }
 ```
@@ -135,8 +135,8 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
 HeatStatus cold = new HeatStatus(0.0);
 
 // A single hot spot in the center
-List<DefaultCell> hotSpot = List.of(
-    new DefaultCell(new HeatStatus(1000.0), 10, 10)
+List<Cell> hotSpot = List.of(
+    new Cell(new HeatStatus(1000.0), 10, 10)
 );
 
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
@@ -162,10 +162,10 @@ The refinements hook is also available on `CellularAutomataParallelExecutor`:
 public class MyParallelCCA extends CellularAutomataParallelExecutor {
 
     @Override
-    public DefaultCell refinements(DefaultCell cell) { ... }
+    public Cell refinements(Cell cell) { ... }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) { ... }
+    public Cell singleRun(Cell cell, List<Cell> neighbors) { ... }
 }
 ```
 
@@ -173,6 +173,6 @@ public class MyParallelCCA extends CellularAutomataParallelExecutor {
 
 ## See Also
 
-- [Custom State Objects](../custom-state/) — how to extend `DefaultStatus`.
+- [Custom State Objects](../custom-state/) — how to extend `CellState`.
 - [Implementing a Rule](../implementing-a-rule/) — the standard executor pattern.
 - [Parallel Execution](../parallel-execution/) — scale the CCA to large grids.

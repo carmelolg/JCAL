@@ -16,83 +16,75 @@ with a few additions for describing the extra dimensions.
 
 ## Core Concepts
 
-### CellGrid Interface
+### CellGrid
 
-The `CellGrid` interface abstracts away grid dimensionality. All executors and
-neighborhoods operate on `CellGrid` internally.
+`CellGrid` is the unified n-dimensional grid class (2D–4D) backed by a flat array with
+stride-based indexing. All executors and neighbourhoods operate on `CellGrid` internally.
 
 | Method | Description |
 |--------|-------------|
 | `get(int[] coords)` | Return the cell at the given n-dimensional coordinates |
-| `set(int[] coords, DefaultCell cell)` | Update a cell |
-| `isInside(int[] coords)` | Check whether coordinates are within bounds |
-| `allCoordinates()` | Stream every coordinate array in the grid |
-| `dimensions()` | Return the `GridDimensions` descriptor |
+| `set(int[] coords, Cell cell)` | Update a cell |
+| `allCoordinates()` | Return an unmodifiable list of every coordinate array in the grid |
+| `getDimensions()` | Return the `GridDimensions` descriptor |
+| `is2D()` | Convenience check for 2D grids |
 
 ### GridDimensions
 
-`GridDimensions` is an immutable descriptor that holds the sizes of each axis, the
-strides for flat-array indexing, and the total number of cells.
+`GridDimensions` is a Java 16 **record** — an immutable descriptor that holds the sizes
+of each axis, the strides for flat-array indexing, and the total number of cells.
 
 ```java
-GridDimensions dims = new GridDimensions(new int[]{ 10, 10, 5 }); // 10×10×5
-int totalCells = dims.getTotal();      // 500
-int[] sizes    = dims.getSizes();      // [10, 10, 5]
+GridDimensions dims = new GridDimensions(10, 10, 5); // 10×10×5
+int totalCells = dims.getTotalCells(); // 500
+int[] sizes    = dims.sizes();         // [10, 10, 5]
 ```
 
-### CellGridFlat
-
-`CellGridFlat` is the flat-array implementation used for 3D and 4D grids. It uses
-stride-based indexing to map n-dimensional coordinates to a 1D array.
-
-You do not instantiate `CellGridFlat` directly — JCAL creates it automatically when
-you configure `depth` (and optionally `time`) in the builder.
+`CellGrid` is created automatically by `CellularAutomata` based on the configured
+dimensions — you never instantiate it directly.
 
 ---
 
 ## Configuring a 3D Grid
 
-Add `.setDepth(int)` to your builder call. JCAL automatically selects `CellGridFlat`
-and the 3D neighborhood variant.
+Use `setDimensions(x, y, z)` in the builder. JCAL automatically selects the correct
+3D neighbourhood.
 
 ```java
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-    .setWidth(10)
-    .setHeight(10)
-    .setDepth(10)                           // third dimension (z)
+    .setDimensions(10, 10, 10)                      // 3D: x, y, z
     .setTotalIterations(5)
     .setDefaultStatus(dead)
-    .setNeighborhoodType(NeighborhoodType.MOORE)  // resolves to Moore3DNeighborhood
+    .setNeighborhoodType(NeighborhoodType.MOORE)    // resolves to Moore3DNeighborhood
     .setInitalState(seedCells)
     .build();
 ```
 
-`DefaultCell` for a 3D grid takes three coordinates:
+`Cell` for a 3D grid takes three coordinates:
 
 ```java
-new DefaultCell(alive, x, y, z)
+new Cell(alive, x, y, z)
 ```
 
 ---
 
 ## Configuring a 4D Grid
 
-Add `.setDepth(int)` **and** `.setTime(int)`:
+Use `setDimensions(x, y, z, w)`:
 
 ```java
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-    .setWidth(5).setHeight(5)
-    .setDepth(5).setTime(5)                 // 5×5×5×5 grid
+    .setDimensions(5, 5, 5, 5)                      // 4D: x, y, z, w
     .setTotalIterations(3)
     .setDefaultStatus(dead)
-    .setNeighborhoodType(NeighborhoodType.MOORE)  // resolves to Moore4DNeighborhood
+    .setNeighborhoodType(NeighborhoodType.MOORE)    // resolves to Moore4DNeighborhood
     .build();
 ```
 
-`DefaultCell` for a 4D grid takes four coordinates:
+`Cell` for a 4D grid takes four coordinates:
 
 ```java
-new DefaultCell(alive, x, y, z, t)
+new Cell(alive, x, y, z, w)
 ```
 
 ---
@@ -117,11 +109,11 @@ cell survives if it has 5 or 6 live neighbors.
 ```java
 public class GameOfLife3DExecutor extends CellularAutomataExecutor {
 
-    private static final DefaultStatus DEAD  = new DefaultStatus("dead",  0);
-    private static final DefaultStatus ALIVE = new DefaultStatus("alive", 1);
+    private static final CellState DEAD  = new CellState("dead",  0);
+    private static final CellState ALIVE = new CellState("alive", 1);
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();
@@ -131,7 +123,7 @@ public class GameOfLife3DExecutor extends CellularAutomataExecutor {
                           || (isAlive && (aliveCount == 5 || aliveCount == 6));
 
         int[] c = cell.getCoordinates();
-        DefaultCell next = new DefaultCell(DEAD, c[0], c[1], c[2]);
+        Cell next = new Cell(DEAD, c[0], c[1], c[2]);
         if (nextAlive) next.setCurrentStatus(ALIVE);
         return next;
     }
@@ -141,18 +133,18 @@ public class GameOfLife3DExecutor extends CellularAutomataExecutor {
 Running it:
 
 ```java
-DefaultStatus dead  = new DefaultStatus("dead",  0);
-DefaultStatus alive = new DefaultStatus("alive", 1);
+CellState dead  = new CellState("dead",  0);
+CellState alive = new CellState("alive", 1);
 
 // A small 3D seed
-List<DefaultCell> seed = List.of(
-    new DefaultCell(alive, 5, 5, 4),
-    new DefaultCell(alive, 5, 5, 5),
-    new DefaultCell(alive, 5, 5, 6)
+List<Cell> seed = List.of(
+    new Cell(alive, 5, 5, 4),
+    new Cell(alive, 5, 5, 5),
+    new Cell(alive, 5, 5, 6)
 );
 
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
-    .setWidth(10).setHeight(10).setDepth(10)
+    .setDimensions(10, 10, 10)
     .setTotalIterations(3)
     .setDefaultStatus(dead)
     .setNeighborhoodType(NeighborhoodType.MOORE)
@@ -172,20 +164,18 @@ To iterate over the grid in your own code, use the `CellGrid` returned by
 
 ```java
 CellGrid grid = ca.getGrid();
-grid.allCoordinates().forEach(coords -> {
-    DefaultCell cell = grid.get(coords);
+for (int[] coords : grid.allCoordinates()) {
+    Cell cell = grid.get(coords);
     System.out.println(Arrays.toString(coords) + " → " + cell.getCurrentStatus());
-});
+}
 ```
-
-For 2D backward compatibility, `ca.getMap()` still returns a `DefaultCell[][]`.
 
 ---
 
 ## Custom nD Neighborhoods
 
 See [Neighborhoods — 3D/4D Custom Neighborhood](../neighborhoods/#3d4d-custom-neighborhood)
-for a full example of extending `DefaultNeighborhoodND`.
+for a full example of extending `Neighborhood`.
 
 ---
 
@@ -193,5 +183,5 @@ for a full example of extending `DefaultNeighborhoodND`.
 
 - [Neighborhoods](../neighborhoods/) — all built-in and custom neighborhood strategies.
 - [Implementing a Rule](../implementing-a-rule/) — the executor pattern.
-- [Configuration Reference](../configuration/) — `setDepth` and `setTime` builder options.
-- [Design / Architecture](../../design/architecture/) — `CellGrid` interface and `CellGridFlat` internals.
+- [Configuration Reference](../configuration/) — `setDimensions` builder option.
+- [Design / Architecture](../../design/architecture/) — `CellGrid` interface and `CellGrid` internals.

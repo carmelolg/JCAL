@@ -38,9 +38,9 @@ No. You can use an anonymous class directly in your `main` method:
 ```java
 CellularAutomataExecutor rule = new CellularAutomataExecutor() {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         // inline rule logic
-        return new DefaultCell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
+        return new Cell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
     }
 };
 ```
@@ -53,7 +53,7 @@ and reuse.
 - `setNeighborhoodType(NeighborhoodType)` — selects a built-in neighborhood
   (`MOORE` or `VON_NEUMANN`). JCAL automatically picks the 2D, 3D, or 4D variant
   based on your grid dimensions.
-- `setNeighborhood(DefaultNeighborhood)` — provides a custom neighborhood instance.
+- `setNeighborhood(Neighborhood)` — provides a custom neighborhood instance.
   Use this for any non-standard shape.
 
 **Use exactly one of these** in each configuration.
@@ -74,13 +74,21 @@ follows the same convention.
 
 Call `System.out.println(ca)` after each `executor.run(ca)`, or override the executor's
 `run` method to log intermediate states. `CellularAutomata.toString()` renders the grid
-by calling `toString()` on each cell's `DefaultStatus`.
+by calling `toString()` on each cell's `CellState`.
 
-### How do I use `getMap()` / `getUtilsMap()` with a 3D grid?
+### How do I iterate over a 3D/4D grid?
 
-`getMap()` and `getUtilsMap()` only work for 2D grids and return `DefaultCell[][]`.
-For 3D/4D, use `ca.getGrid()` instead, which returns a `CellGrid` interface. See
-[3D and 4D Support](../3d-4d-support/) for details.
+Use `ca.getGrid()` which returns a `CellGrid`. Iterate with `allCoordinates()`:
+
+```java
+CellGrid grid = ca.getGrid();
+for (int[] coords : grid.allCoordinates()) {
+    Cell cell = grid.get(coords);
+    System.out.println(Arrays.toString(coords) + " → " + cell.getCurrentStatus());
+}
+```
+
+See [3D and 4D Support](../3d-4d-support/) for a full example.
 
 ---
 
@@ -104,18 +112,18 @@ Common causes:
   in the builder and that every cell in the initial condition was constructed with a
   non-null status.
 - You are casting to a custom status class but some cells were created with a plain
-  `DefaultStatus` — ensure consistency across all initial cells and the default.
+  `CellState` — ensure consistency across all initial cells and the default.
 - You are accessing the `currentStatus` field directly instead of via
   `getCurrentStatus()` — prefer the getter for null-safe access patterns.
 
 ### The automaton runs but `System.out.println(ca)` shows nothing useful.
 
-Override `toString()` in your `DefaultStatus` subclass (or ensure the `value` field
+Override `toString()` in your `CellState` subclass (or ensure the `value` field
 has a meaningful `toString()` representation) so the grid renders as expected.
 
 ### My custom 3D neighborhood returns the wrong number of neighbors.
 
-Verify that you are checking bounds with `grid.isInside(coords)` before calling
+Verify that you are checking bounds with `Utils.isInside(grid, coords)` before calling
 `grid.get(coords)`. Out-of-bounds coordinates at grid edges silently clip the neighbor
 list — this is expected behavior (no toric wrapping by default).
 

@@ -31,7 +31,7 @@ then add the dependency to your `pom.xml`:
 <dependency>
   <groupId>io.github.carmelolg</groupId>
   <artifactId>jcal</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0-rc2</version>
 </dependency>
 ```
 
@@ -72,21 +72,21 @@ The following example implements **Conway's Game of Life** — the most famous t
 ### Step 1 — Define States
 
 ```java
-DefaultStatus dead  = new DefaultStatus("dead",  "0");
-DefaultStatus alive = new DefaultStatus("alive", "1");
+CellState dead  = new CellState("dead",  "0");
+CellState alive = new CellState("alive", "1");
 ```
 
-`DefaultStatus` holds a `key` (String) and a `value` (any Object). Two statuses are
+`CellState` holds a `key` (String) and a `value` (any Object). Two statuses are
 equal when both fields are equal.
 
 ### Step 2 — Specify the Initial Condition
 
 ```java
 // A "blinker" — three vertically-aligned live cells
-List<DefaultCell> seed = Arrays.asList(
-    new DefaultCell(alive, 5, 4),
-    new DefaultCell(alive, 5, 5),
-    new DefaultCell(alive, 5, 6)
+List<Cell> seed = Arrays.asList(
+    new Cell(alive, 5, 4),
+    new Cell(alive, 5, 5),
+    new Cell(alive, 5, 6)
 );
 ```
 
@@ -110,22 +110,22 @@ See [Configuration Reference](../configuration/) for all available options.
 ### Step 4 — Implement the Transition Rule
 
 Extend `CellularAutomataExecutor` and implement `singleRun`. JCAL calls this method
-**once per cell per generation**; return a new `DefaultCell` with the cell's next state.
+**once per cell per generation**; return a new `Cell` with the cell's next state.
 
 ```java
 public class GameOfLifeExecutor extends CellularAutomataExecutor {
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
-        DefaultStatus dead  = new DefaultStatus("dead",  "0");
-        DefaultStatus alive = new DefaultStatus("alive", "1");
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        CellState dead  = new CellState("dead",  "0");
+        CellState alive = new CellState("alive", "1");
 
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(alive))
             .count();
 
         boolean isAlive = cell.getCurrentStatus().equals(alive);
-        DefaultCell next = new DefaultCell(dead, cell.getCol(), cell.getRow());
+        Cell next = new Cell(dead, cell.getCol(), cell.getRow());
 
         if (!isAlive && aliveCount == 3) {
             next.setCurrentStatus(alive);           // birth

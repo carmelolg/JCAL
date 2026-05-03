@@ -35,17 +35,17 @@ Extend `CellularAutomataParallelExecutor` instead of `CellularAutomataExecutor`.
 ```java
 public class GameOfLifeParallelExecutor extends CellularAutomataParallelExecutor {
 
-    private static final DefaultStatus DEAD  = new DefaultStatus("dead",  "0");
-    private static final DefaultStatus ALIVE = new DefaultStatus("alive", "1");
+    private static final CellState DEAD  = new CellState("dead",  "0");
+    private static final CellState ALIVE = new CellState("alive", "1");
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();
 
         boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
-        DefaultCell next = new DefaultCell(DEAD, cell.getCol(), cell.getRow());
+        Cell next = new Cell(DEAD, cell.getCol(), cell.getRow());
 
         if (!isAlive && aliveCount == 3) {
             next.setCurrentStatus(ALIVE);
@@ -91,7 +91,7 @@ The `refinements` hook is also available on `CellularAutomataParallelExecutor`:
 public class HeatDiffusionParallel extends CellularAutomataParallelExecutor {
 
     @Override
-    public DefaultCell refinements(DefaultCell cell) {
+    public Cell refinements(Cell cell) {
         // Clamp temperature — called in parallel for each cell
         HeatStatus s = (HeatStatus) cell.getCurrentStatus();
         s.temperature = Math.max(0.0, Math.min(s.temperature, 1000.0));
@@ -100,13 +100,13 @@ public class HeatDiffusionParallel extends CellularAutomataParallelExecutor {
     }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         double avg = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average().orElse(0.0);
 
         double next = (((HeatStatus) cell.getCurrentStatus()).temperature + avg) / 2.0;
-        return new DefaultCell(new HeatStatus(next), cell.getCol(), cell.getRow());
+        return new Cell(new HeatStatus(next), cell.getCol(), cell.getRow());
     }
 }
 ```

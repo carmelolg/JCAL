@@ -2,22 +2,22 @@
 title: "Custom State Objects"
 date: 2025-01-01
 draft: false
-summary: "Model richer per-cell data by extending DefaultStatus with a custom class."
+summary: "Model richer per-cell data by extending CellState with a custom class."
 weight: 60
 toc: true
 tags: ["status", "state", "custom"]
 ---
 
-The built-in `DefaultStatus` holds a `key` (String) and a `value` (any Object), which
+The built-in `CellState` holds a `key` (String) and a `value` (any Object), which
 is sufficient for simple automata such as a binary-state Game of Life. For more complex
 simulations — where each cell might carry temperature, pressure, material type, or any
-other domain-specific data — you can extend `DefaultStatus` with a custom class.
+other domain-specific data — you can extend `CellState` with a custom class.
 
 ---
 
 ## Overview
 
-1. **Define your custom status** by extending `DefaultStatus` and adding fields.
+1. **Define your custom status** by extending `CellState` and adding fields.
 2. **Cast in `singleRun`** — in your executor, cast `cell.getCurrentStatus()` to your
    subclass to access the extra fields.
 3. **Use your custom status** as the default status and in the initial condition list.
@@ -30,7 +30,7 @@ The `GoLStatus` class wraps a simple boolean `isAlive` field and produces a read
 `toString()` so the grid renders clearly.
 
 ```java
-public class GoLStatus extends DefaultStatus {
+public class GoLStatus extends CellState {
 
     public boolean isAlive;
 
@@ -54,7 +54,7 @@ Cast `currentStatus` to `GoLStatus` inside `singleRun`:
 public class GoLCustomExecutor extends CellularAutomataExecutor {
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> ((GoLStatus) n.getCurrentStatus()).isAlive)
             .count();
@@ -63,7 +63,7 @@ public class GoLCustomExecutor extends CellularAutomataExecutor {
         boolean nextAlive = (!isAlive && aliveCount == 3)
                           || (isAlive && (aliveCount == 2 || aliveCount == 3));
 
-        DefaultCell next = new DefaultCell(
+        Cell next = new Cell(
             new GoLStatus(nextAlive),
             cell.getCol(), cell.getRow()
         );
@@ -79,10 +79,10 @@ Use `GoLStatus` as the `defaultStatus` and in the initial condition:
 ```java
 GoLStatus dead = new GoLStatus(false);
 
-List<DefaultCell> seed = new ArrayList<>();
-seed.add(new DefaultCell(new GoLStatus(true), 1, 1));
-seed.add(new DefaultCell(new GoLStatus(true), 1, 2));
-seed.add(new DefaultCell(new GoLStatus(true), 1, 3));
+List<Cell> seed = new ArrayList<>();
+seed.add(new Cell(new GoLStatus(true), 1, 1));
+seed.add(new Cell(new GoLStatus(true), 1, 2));
+seed.add(new Cell(new GoLStatus(true), 1, 3));
 
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
     .setWidth(10).setHeight(10)
@@ -104,7 +104,7 @@ System.out.println(ca);
 For simulations that require a numeric quantity per cell:
 
 ```java
-public class HeatStatus extends DefaultStatus {
+public class HeatStatus extends CellState {
 
     public double temperature;
 
@@ -126,7 +126,7 @@ Use it in an executor that averages neighbors' temperatures:
 public class HeatDiffusionExecutor extends CellularAutomataExecutor {
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         double avgTemp = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average()
@@ -135,7 +135,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
         double current = ((HeatStatus) cell.getCurrentStatus()).temperature;
         double next = (current + avgTemp) / 2.0;
 
-        return new DefaultCell(new HeatStatus(next), cell.getCol(), cell.getRow());
+        return new Cell(new HeatStatus(next), cell.getCol(), cell.getRow());
     }
 }
 ```
@@ -144,7 +144,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
 
 ## Tips
 
-- Two `DefaultStatus` values are **equal** when both `key` and `value` are equal.
+- Two `CellState` values are **equal** when both `key` and `value` are equal.
   If you store mutable objects in `value`, override `equals` / `hashCode` in your
   subclass for correct comparison semantics.
 - The `value` field accepts any `Object`, so you can store a `Map`, a POJO, a

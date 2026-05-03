@@ -18,9 +18,9 @@ A Cellular Automaton is formally described as the quadruple **`<Z^d, S, X, σ>`*
 
 | Symbol | Meaning | JCAL type |
 |--------|---------|-----------|
-| **Z^d** | d-dimensional grid of cells | `CellGrid` (`CellGrid2D` for 2D, `CellGridFlat` for 3D/4D) |
-| **S**  | Set of possible cell states | `DefaultStatus` |
-| **X**  | Neighborhood strategy | `DefaultNeighborhood` subclass |
+| **Z^d** | d-dimensional grid of cells | `CellGrid` (`CellGrid` for 2D, `CellGrid` for 3D/4D) |
+| **S**  | Set of possible cell states | `CellState` |
+| **X**  | Neighborhood strategy | `Neighborhood` subclass |
 | **σ**  | Transition function | `CellularAutomataExecutor` subclass |
 
 ---
@@ -29,35 +29,32 @@ A Cellular Automaton is formally described as the quadruple **`<Z^d, S, X, σ>`*
 
 ```
 io.github.carmelolg.jcal
-├── configuration/
-│   └── CellularAutomataConfiguration      ← immutable config; use inner Builder
-│       └── CellularAutomataConfigurationBuilder
-│
 ├── core/
-│   ├── CellularAutomata                   ← the grid (CellGrid); holds neighborhood + config
+│   ├── CellularAutomata                   ← the grid (CellGrid); holds neighbourhood + config
+│   ├── CellularAutomataConfiguration      ← immutable config; use inner Builder
+│   │   └── CellularAutomataConfigurationBuilder
 │   ├── CellularAutomataExecutor           ← abstract; extend to define the transition rule
-│   ├── DefaultNeighborhood                ← abstract; extend for a custom 2D neighborhood
-│   ├── DefaultNeighborhoodND              ← abstract; extend for 3D/4D neighborhoods
+│   └── parallel/
+│       ├── CellularAutomataParallelExecutor   ← parallel variant of the executor
+│       ├── Runner                             ← internal — Callable for parallel transition
+│       └── RefinementRunner                   ← internal — Callable for parallel refinement
+│
+├── grid/
+│   ├── Cell                               ← one cell; has a CellState + int[] coordinates
+│   ├── CellState                          ← a cell's state; key + arbitrary value Object
+│   ├── CellGrid                           ← unified n-dimensional grid (2D–4D, flat array)
+│   └── GridDimensions                     ← immutable nD descriptor (sizes, strides, total)
+│
+├── neighborhood/
+│   ├── Neighborhood                       ← abstract base; extend for custom neighbourhoods
+│   ├── NDCapable                          ← marker interface; implement for 3D/4D custom neighbourhoods
+│   ├── NeighborhoodType                   ← enum: MOORE | VON_NEUMANN
 │   ├── MooreNeighborhood                  ← built-in 2D: 8 surrounding cells
 │   ├── VonNeumannNeighborhood             ← built-in 2D: 4 orthogonal cells
 │   ├── Moore3DNeighborhood                ← built-in 3D: 26 surrounding cells
 │   ├── VonNeumann3DNeighborhood           ← built-in 3D: 6 orthogonal cells
 │   ├── Moore4DNeighborhood                ← built-in 4D: 80 surrounding cells
-│   ├── VonNeumann4DNeighborhood           ← built-in 4D: 8 orthogonal cells
-│   ├── grid/
-│   │   ├── CellGrid                       ← interface: get/set/isInside/allCoordinates/dimensions
-│   │   ├── CellGrid2D                     ← 2D impl backed by DefaultCell[][]
-│   │   └── CellGridFlat                   ← nD flat-array impl with stride-based indexing
-│   └── parallel/
-│       ├── CellularAutomataParallelExecutor   ← parallel variant of the executor
-│       ├── CellularAutomataRunner             ← internal — Callable for parallel transition
-│       └── CellularAutomataRefinementRunner   ← internal — Callable for parallel refinement
-│
-├── model/
-│   ├── DefaultCell                        ← one cell; has a DefaultStatus + int[] coordinates
-│   ├── DefaultStatus                      ← a cell's state; key + arbitrary value Object
-│   ├── GridDimensions                     ← immutable nD descriptor (sizes, strides, total)
-│   └── NeighborhoodType                   ← enum: MOORE | VON_NEUMANN
+│   └── VonNeumann4DNeighborhood           ← built-in 4D: 8 orthogonal cells
 │
 ├── utils/
 │   └── Utils                              ← internal helpers (isInside, cloneGrid)
@@ -77,15 +74,13 @@ io.github.carmelolg.jcal
 | `CellularAutomata` | **Public API** | Core grid object |
 | `CellularAutomataConfiguration` | **Public API** | Always build via inner `Builder` |
 | `CellularAutomataExecutor` | **Extension point** | Subclass to define your rule |
-| `DefaultNeighborhood` | **Extension point** | Subclass for custom 2D neighborhood |
-| `DefaultNeighborhoodND` | **Extension point** | Subclass for custom 3D/4D neighborhood |
-| `CellGrid` | **Public API** | Interface for grid access (2D and nD) |
-| `CellGrid2D` | **Public API** | 2D grid backed by `DefaultCell[][]` |
-| `CellGridFlat` | **Public API** | nD flat-array grid for 3D/4D use |
+| `Neighborhood` | **Extension point** | Subclass for any custom neighbourhood (2D or nD) |
+| `NDCapable` | **Marker interface** | Implement alongside `Neighborhood` for 3D/4D custom neighbourhoods |
+| `CellGrid` | **Public API** | Unified n-dimensional grid class (2D–4D) |
 | `GridDimensions` | **Public API** | Immutable nD grid descriptor |
-| `DefaultCell` | **Public API** | Returned by the grid; construct for initial state |
-| `DefaultStatus` | **Public API** | Create instances for each state your CA needs |
-| `NeighborhoodType` | **Public API** | Pass to builder for built-in neighborhoods |
+| `Cell` | **Public API** | Returned by the grid; construct for initial state |
+| `CellState` | **Public API** | Create instances for each state your CA needs |
+| `NeighborhoodType` | **Public API** | Pass to builder for built-in neighbourhoods |
 | `MooreNeighborhood` | Public (via `NeighborhoodType.MOORE`) | 2D, rarely instantiated directly |
 | `VonNeumannNeighborhood` | Public (via `NeighborhoodType.VON_NEUMANN`) | 2D, rarely instantiated directly |
 | `Moore3DNeighborhood` | Public (auto-resolved for 3D) | Use `NeighborhoodType.MOORE` |
@@ -93,9 +88,9 @@ io.github.carmelolg.jcal
 | `Moore4DNeighborhood` | Public (auto-resolved for 4D) | Use `NeighborhoodType.MOORE` |
 | `VonNeumann4DNeighborhood` | Public (auto-resolved for 4D) | Use `NeighborhoodType.VON_NEUMANN` |
 | `CellularAutomataParallelExecutor` | **Extension point** | Parallel variant of executor |
-| `CellularAutomataRunner` | **Internal** | Do not use directly |
-| `CellularAutomataRefinementRunner` | **Internal** | Do not use directly |
-| `Utils` | Internal helper | May be used by custom neighborhoods |
+| `Runner` | **Internal** | Do not use directly |
+| `RefinementRunner` | **Internal** | Do not use directly |
+| `Utils` | Internal helper | May be used by custom neighbourhoods |
 
 ---
 
@@ -117,28 +112,28 @@ are processed.
 
 ## Grid Abstraction
 
-### CellGrid Interface
+### CellGrid
+
+`CellGrid` is the unified n-dimensional grid class (2D–4D) backed by a flat array
+with stride-based indexing. All executors and neighbourhoods operate on `CellGrid`.
 
 ```java
-public interface CellGrid {
-    DefaultCell get(int[] coords);
-    void set(int[] coords, DefaultCell cell);
-    boolean isInside(int[] coords);
-    Stream<int[]> allCoordinates();
-    GridDimensions dimensions();
-}
+Cell   get(int[] coords)
+void   set(int[] coords, Cell cell)
+List<int[]> allCoordinates()
+GridDimensions getDimensions()
+boolean is2D()
 ```
 
-- `CellGrid2D` — backed by `DefaultCell[][]`; returned by `getMap()` / `getUtilsMap()`
-  for 2D backward compatibility.
-- `CellGridFlat` — flat `DefaultCell[]` array with stride-based indexing; used for 3D/4D.
+`CellGrid` is always created by `CellularAutomata` — you never instantiate it directly.
 
 ### GridDimensions
 
-Stores the size of each axis and precomputes strides for O(1) flat-array indexing:
+A Java 16 **record** that stores the size of each axis and precomputes strides for
+O(1) flat-array indexing:
 
 ```
-flat index = coords[0] * stride[0] + coords[1] * stride[1] + ... + coords[n-1] * stride[n-1]
+flat index = coords[0] * stride[0] + coords[1] * stride[1] + … + coords[n-1] * stride[n-1]
 ```
 
 ---
@@ -153,31 +148,31 @@ Subclass `CellularAutomataExecutor` (sequential) or `CellularAutomataParallelExe
 ```java
 public class MyRule extends CellularAutomataExecutor {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         // inspect cell.getCurrentStatus() and neighbors
-        // return a new DefaultCell with the next state
+        // return a new Cell with the next state
     }
 }
 ```
 
 ### 2. Custom State
 
-`DefaultStatus` accepts any `Object` as its `value`:
+`CellState` accepts any `Object` as its `value`:
 
 ```java
-DefaultStatus complex = new DefaultStatus("state", Map.of("temp", 100, "pressure", 3));
+CellState complex = new CellState("state", Map.of("temp", 100, "pressure", 3));
 ```
 
-Two `DefaultStatus` values are equal when both `key` and `value` are equal.
+Two `CellState` values are equal when both `key` and `value` are equal.
 
 ### 3. Custom 2D Neighborhood
 
-Subclass `DefaultNeighborhood`:
+Subclass `Neighborhood`:
 
 ```java
-public class DiagonalNeighborhood extends DefaultNeighborhood {
+public class DiagonalNeighborhood extends Neighborhood {
     @Override
-    public List<DefaultCell> getNeighbors(DefaultCell[][] matrix, int i, int j) {
+    public List<Cell> getNeighbors(Cell[][] matrix, int i, int j) {
         // return a list of neighbor cells
     }
 }
@@ -185,12 +180,12 @@ public class DiagonalNeighborhood extends DefaultNeighborhood {
 
 ### 4. Custom nD Neighborhood
 
-Subclass `DefaultNeighborhoodND`:
+Subclass `Neighborhood`:
 
 ```java
-public class Custom3DNeighborhood extends DefaultNeighborhoodND {
+public class Custom3DNeighborhood extends Neighborhood {
     @Override
-    public List<DefaultCell> getNeighbors(CellGrid grid, int[] coords) {
+    public List<Cell> getNeighbors(CellGrid grid, int[] coords) {
         // return a list of neighbor cells
     }
 }
@@ -198,11 +193,11 @@ public class Custom3DNeighborhood extends DefaultNeighborhoodND {
 
 ### 5. CCA Pre-Processing
 
-Override `refinements(DefaultCell cell)` in your executor:
+Override `refinements(Cell cell)` in your executor:
 
 ```java
 @Override
-public DefaultCell refinements(DefaultCell cell) {
+public Cell refinements(Cell cell) {
     // update internal state before neighbors are read
     return cell;
 }

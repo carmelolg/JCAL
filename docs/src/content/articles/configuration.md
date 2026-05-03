@@ -32,14 +32,13 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
 |----------------|------|---------|----------|-------------|
 | `setWidth(int)` | `int` | `100` | No | Number of columns in the 2D grid |
 | `setHeight(int)` | `int` | `100` | No | Number of rows in the 2D grid |
-| `setDepth(int)` | `int` | — | For 3D | Depth dimension (z-axis) |
-| `setTime(int)` | `int` | — | For 4D | Fourth dimension |
+| `setDimensions(int...)` | `int...` | — | For 3D/4D | Grid dimensions: `(x,y,z)` or `(x,y,z,w)` |
 | `setTotalIterations(int)` | `int` | `0` | Yes (unless infinite) | Number of generations to simulate |
 | `setInfinite(boolean)` | `boolean` | `false` | No | Run until interrupted |
-| `setDefaultStatus(DefaultStatus)` | `DefaultStatus` | — | **Yes** | State applied to every cell at init |
-| `setInitalState(List<DefaultCell>)` | `List<DefaultCell>` | empty | No | Cells starting in a non-default state |
+| `setDefaultStatus(CellState)` | `CellState` | — | **Yes** | State applied to every cell at init |
+| `setInitalState(List<Cell>)` | `List<Cell>` | empty | No | Cells starting in a non-default state |
 | `setNeighborhoodType(NeighborhoodType)` | `NeighborhoodType` | — | One of these | Select a built-in neighborhood |
-| `setNeighborhood(DefaultNeighborhood)` | `DefaultNeighborhood` | — | One of these | Provide a custom 2D neighborhood |
+| `setNeighborhood(Neighborhood)` | `Neighborhood` | — | One of these | Provide a custom 2D neighborhood |
 
 {{< callout type="warning" >}}
 Use **exactly one** of `setNeighborhoodType` or `setNeighborhood`.  
@@ -68,23 +67,18 @@ public CellularAutomataConfigurationBuilder setHeight(int height);
 
 ---
 
-## Depth *(3D/4D only)*
+## Dimensions *(3D/4D)*
 
-Sets the third dimension (z-axis) of the grid. Required when building a 3D or 4D
-cellular automaton using `CellGridFlat`.
-
-```java
-public CellularAutomataConfigurationBuilder setDepth(int depth);
-```
-
----
-
-## Time *(4D only)*
-
-Sets the fourth dimension. Required when building a 4D cellular automaton.
+Sets all dimensions at once for 3D or 4D grids. Replaces `setWidth`/`setHeight`
+when building multi-dimensional cellular automata.
 
 ```java
-public CellularAutomataConfigurationBuilder setTime(int time);
+// 3D: x, y, z
+public CellularAutomataConfigurationBuilder setDimensions(int... dims);
+
+// Usage
+builder.setDimensions(10, 10, 10);  // 3D  10×10×10
+builder.setDimensions(5, 5, 5, 5);  // 4D  5×5×5×5
 ```
 
 ---
@@ -118,7 +112,7 @@ condition is overlaid. This is typically the "empty" or "dead" state.
 **Required.**
 
 ```java
-public CellularAutomataConfigurationBuilder setDefaultStatus(DefaultStatus defaultStatus);
+public CellularAutomataConfigurationBuilder setDefaultStatus(CellState defaultStatus);
 ```
 
 ---
@@ -129,7 +123,7 @@ Provides the list of cells that start in a state **other than** the default. All
 other cells are initialized with `defaultStatus`.
 
 ```java
-public CellularAutomataConfigurationBuilder setInitalState(List<DefaultCell> initalState);
+public CellularAutomataConfigurationBuilder setInitalState(List<Cell> initalState);
 ```
 
 {{< callout type="note" >}}
@@ -157,11 +151,11 @@ public CellularAutomataConfigurationBuilder setNeighborhoodType(NeighborhoodType
 
 ## Custom Neighborhood
 
-Provides a custom 2D neighborhood. The class must extend `DefaultNeighborhood` (2D)
-or `DefaultNeighborhoodND` (3D/4D).
+Provides a custom 2D neighborhood. The class must extend `Neighborhood` (2D)
+or `Neighborhood` (3D/4D).
 
 ```java
-public CellularAutomataConfigurationBuilder setNeighborhood(DefaultNeighborhood neighborhood);
+public CellularAutomataConfigurationBuilder setNeighborhood(Neighborhood neighborhood);
 ```
 
 See [Neighborhoods](../neighborhoods/) for examples.

@@ -15,7 +15,7 @@ determines how each cell evolves from one generation to the next.
 
 To define a transition function, extend `CellularAutomataExecutor` and implement
 `singleRun`. JCAL calls this method **once per cell per generation**, passing the
-current cell and its neighbors. Return a **new** `DefaultCell` carrying the cell's
+current cell and its neighbors. Return a **new** `Cell` carrying the cell's
 next state — never mutate the input cell.
 
 ```
@@ -29,17 +29,17 @@ singleRun(cell, neighbors) → next cell state
 ```java
 public class GameOfLifeExecutor extends CellularAutomataExecutor {
 
-    private static final DefaultStatus DEAD  = new DefaultStatus("dead",  "0");
-    private static final DefaultStatus ALIVE = new DefaultStatus("alive", "1");
+    private static final CellState DEAD  = new CellState("dead",  "0");
+    private static final CellState ALIVE = new CellState("alive", "1");
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();
 
         boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
-        DefaultCell next = new DefaultCell(DEAD, cell.getCol(), cell.getRow());
+        Cell next = new Cell(DEAD, cell.getCol(), cell.getRow());
 
         if (!isAlive && aliveCount == 3) {
             next.setCurrentStatus(ALIVE);       // birth
@@ -53,8 +53,8 @@ public class GameOfLifeExecutor extends CellularAutomataExecutor {
 ```
 
 {{< callout type="tip" >}}
-Declare `DefaultStatus` constants as static fields (or outside the method) to avoid
-creating thousands of equal objects per generation. `DefaultStatus.equals` checks both
+Declare `CellState` constants as static fields (or outside the method) to avoid
+creating thousands of equal objects per generation. `CellState.equals` checks both
 `key` and `value`, so reuse is safe.
 {{< /callout >}}
 
@@ -91,9 +91,9 @@ For quick experiments, you can define the rule inline without a named class:
 ```java
 CellularAutomataExecutor rule = new CellularAutomataExecutor() {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         // rule logic here
-        return new DefaultCell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
+        return new Cell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
     }
 };
 ```
@@ -112,7 +112,7 @@ distributes the work across threads automatically using Java parallel streams.
 ```java
 public class MyParallelRule extends CellularAutomataParallelExecutor {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public Cell singleRun(Cell cell, List<Cell> neighbors) {
         // exact same logic as the sequential version
     }
 }
@@ -129,7 +129,7 @@ lookup, override the `refinements` method:
 
 ```java
 @Override
-public DefaultCell refinements(DefaultCell cell) {
+public Cell refinements(Cell cell) {
     // Adjust internal state before neighbors are evaluated this generation
     return cell;
 }

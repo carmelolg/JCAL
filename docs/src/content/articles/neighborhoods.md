@@ -69,15 +69,15 @@ Only 4 orthogonal cells are neighbors.
 
 ## 2D Custom Neighborhood
 
-Extend `DefaultNeighborhood` and implement `getNeighbors(DefaultCell[][] matrix, int i, int j)`.
+Extend `Neighborhood` and implement `getNeighbors(Cell[][] matrix, int i, int j)`.
 Use `Utils.isInside(matrix, row, col)` to avoid out-of-bounds access.
 
 ```java
-public class DiagonalOnlyNeighborhood extends DefaultNeighborhood {
+public class DiagonalOnlyNeighborhood extends Neighborhood {
 
     @Override
-    public List<DefaultCell> getNeighbors(DefaultCell[][] matrix, int i, int j) {
-        List<DefaultCell> neighbors = new ArrayList<>();
+    public List<Cell> getNeighbors(Cell[][] matrix, int i, int j) {
+        List<Cell> neighbors = new ArrayList<>();
         int[][] diagonals = { {-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
 
         for (int[] d : diagonals) {
@@ -104,14 +104,14 @@ Use either `setNeighborhoodType` **or** `setNeighborhood` — never both.
 
 ## 3D/4D Custom Neighborhood
 
-Extend `DefaultNeighborhoodND` and implement `getNeighbors(CellGrid grid, int[] coords)`.
+Extend `Neighborhood` and implement `getNeighbors(CellGrid grid, int[] coords)`.
 
 ```java
-public class Custom3DNeighborhood extends DefaultNeighborhoodND {
+public class Custom3DNeighborhood extends Neighborhood {
 
     @Override
-    public List<DefaultCell> getNeighbors(CellGrid grid, int[] coords) {
-        List<DefaultCell> neighbors = new ArrayList<>();
+    public List<Cell> getNeighbors(CellGrid grid, int[] coords) {
+        List<Cell> neighbors = new ArrayList<>();
         int x = coords[0], y = coords[1], z = coords[2];
 
         // Example: only the 6 face-sharing neighbors (Von Neumann)
@@ -146,7 +146,7 @@ By default, cells at the grid boundary have fewer neighbors because JCAL does no
 the grid (no toric topology). Neighbors outside the grid bounds are simply omitted from
 the list passed to `singleRun`.
 
-If you need wrap-around behavior, implement it in your custom `DefaultNeighborhood` by
+If you need wrap-around behavior, implement it in your custom `Neighborhood` by
 applying modular arithmetic to the row/column indices.
 
 ---
