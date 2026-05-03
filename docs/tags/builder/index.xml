@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Builder on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/tags/builder/</link>
+    <link>https://carmelolg.github.io/JCAL/tags/builder/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 May 2026 22:52:32 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/tags/builder/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Sun, 03 May 2026 20:56:31 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/builder/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Configuration Reference</title>
-      <link>http://localhost:1313/JCAL/articles/configuration/</link>
+      <link>https://carmelolg.github.io/JCAL/articles/configuration/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/articles/configuration/</guid>
+      <guid>https://carmelolg.github.io/JCAL/articles/configuration/</guid>
       <description>All options available on CellularAutomataConfigurationBuilder.</description>
     </item>
     

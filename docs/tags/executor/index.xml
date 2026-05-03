@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Executor on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/tags/executor/</link>
+    <link>https://carmelolg.github.io/JCAL/tags/executor/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 May 2026 22:52:32 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/tags/executor/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Sun, 03 May 2026 20:56:31 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/executor/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Implementing a Rule</title>
-      <link>http://localhost:1313/JCAL/articles/implementing-a-rule/</link>
+      <link>https://carmelolg.github.io/JCAL/articles/implementing-a-rule/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/articles/implementing-a-rule/</guid>
+      <guid>https://carmelolg.github.io/JCAL/articles/implementing-a-rule/</guid>
       <description>How to write a transition function using CellularAutomataExecutor.</description>
     </item>
     
