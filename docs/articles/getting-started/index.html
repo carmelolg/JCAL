@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,11 +16,11 @@
 <meta property="og:title"       content="Getting Started">
 <meta property="og:description" content="Install JCAL and run your first cellular automaton in minutes.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/articles/getting-started/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/articles/getting-started/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/articles/getting-started/">
+<link rel="canonical" href="http://localhost:1313/JCAL/articles/getting-started/">
 
 
 
@@ -118,7 +118,7 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc1</span>
+  <span class="version-tag">v2.0.0-rc2</span>
 </div>
 
 
@@ -278,7 +278,7 @@ then add the dependency to your <code>pom.xml</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>io.github.carmelolg<span class="nt">&lt;/groupId&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>jcal<span class="nt">&lt;/artifactId&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>2.0.0-rc2<span class="nt">&lt;/version&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
 </span></span></code></pre></div><p>Also add the repository:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;repositories&gt;</span>
@@ -311,16 +311,16 @@ Maven Registry is the primary distribution channel.</div>
 <li><strong>Implement</strong> the transition rule.</li>
 </ol>
 <h3 id="step-1--define-states">Step 1 — Define States</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><p><code>DefaultStatus</code> holds a <code>key</code> (String) and a <code>value</code> (any Object). Two statuses are
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p><code>CellState</code> holds a <code>key</code> (String) and a <code>value</code> (any Object). Two statuses are
 equal when both fields are equal.</p>
 <h3 id="step-2--specify-the-initial-condition">Step 2 — Specify the Initial Condition</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// A &#34;blinker&#34; — three vertically-aligned live cells</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">6</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">6</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><p>Every cell not listed here starts in the default (dead) state.</p>
 <h3 id="step-3--configure-the-grid">Step 3 — Configure the Grid</h3>
@@ -335,20 +335,20 @@ equal when both fields are equal.</p>
 </span></span></span></code></pre></div><p>See <a href="../configuration/">Configuration Reference</a> for all available options.</p>
 <h3 id="step-4--implement-the-transition-rule">Step 4 — Implement the Transition Rule</h3>
 <p>Extend <code>CellularAutomataExecutor</code> and implement <code>singleRun</code>. JCAL calls this method
-<strong>once per cell per generation</strong>; return a new <code>DefaultCell</code> with the cell&rsquo;s next state.</p>
+<strong>once per cell per generation</strong>; return a new <code>Cell</code> with the cell&rsquo;s next state.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GameOfLifeExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CellState</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CellState</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">alive</span><span class="p">))</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">count</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isAlive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">alive</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Cell</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isAlive</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">next</span><span class="p">.</span><span class="na">setCurrentStatus</span><span class="p">(</span><span class="n">alive</span><span class="p">);</span><span class="w">           </span><span class="c1">// birth</span><span class="w">

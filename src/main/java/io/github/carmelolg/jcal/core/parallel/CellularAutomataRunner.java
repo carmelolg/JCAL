@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.grid.CellGrid;
-import io.github.carmelolg.jcal.model.DefaultCell;
+import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.grid.Cell;
 
-public class CellularAutomataRunner implements Callable<List<DefaultCell>> {
+public class CellularAutomataRunner implements Callable<List<Cell>> {
 
 	private CellularAutomata ca;
 	private int row, offset;
@@ -29,8 +29,8 @@ public class CellularAutomataRunner implements Callable<List<DefaultCell>> {
 	}
 
 	@Override
-	public List<DefaultCell> call() throws Exception {
-		List<DefaultCell> results = new ArrayList<DefaultCell>();
+	public List<Cell> call() throws Exception {
+		List<Cell> results = new ArrayList<Cell>();
 		CellGrid grid = ca.getGrid();
 		CellGrid utilsGrid = ca.getUtilsGrid();
 

@@ -1,4 +1,4 @@
-package io.github.carmelolg.jcal.model;
+package io.github.carmelolg.jcal.grid;
 
 /**
  * Represents the state of a single cell in the Cellular Automata.
@@ -13,25 +13,25 @@ package io.github.carmelolg.jcal.model;
  * <p><b>Extending for complex automata:</b>
  * <pre>{@code
  * // Simple two-state example
- * DefaultStatus dead  = new DefaultStatus("dead",  "0");
- * DefaultStatus alive = new DefaultStatus("alive", "1");
+ * CellState dead  = new CellState("dead",  "0");
+ * CellState alive = new CellState("alive", "1");
  *
  * // Rich state example (store arbitrary data in value)
- * DefaultStatus hotCell = new DefaultStatus("hot", Map.of("temp", 1000, "pressure", 3));
+ * CellState hotCell = new CellState("hot", Map.of("temp", 1000, "pressure", 3));
  * }</pre>
  *
- * <p>Two {@code DefaultStatus} instances are considered equal when both {@code key} and
+ * <p>Two {@code CellState} instances are considered equal when both {@code key} and
  * {@code value} are equal ({@link #equals(Object)}).
  *
  * @author Carmelo La Gamba
- * @see DefaultCell
+ * @see Cell
  */
-public class DefaultStatus {
+public class CellState {
 
 	String key;
 	Object value;
 
-	public DefaultStatus(String name, Object value) {
+	public CellState(String name, Object value) {
 		this.key = name;
 		this.value = value;
 	}
@@ -47,7 +47,7 @@ public class DefaultStatus {
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) return true;
-		if (!(object instanceof DefaultStatus status)) return false;
+		if (!(object instanceof CellState status)) return false;
 		return this.key.equals(status.key) && this.value.equals(status.value);
 	}
 
@@ -62,8 +62,8 @@ public class DefaultStatus {
 	}
 
 	@Override
-	public DefaultStatus clone() throws CloneNotSupportedException {
-		return new DefaultStatus(key, value);
+	public CellState clone() throws CloneNotSupportedException {
+		return new CellState(key, value);
 	}
 
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-	<meta name="generator" content="Hugo 0.161.1">
+	<meta name="generator" content="Hugo 0.161.1"><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -17,17 +17,17 @@
 <meta property="og:title"       content="JCAL Docs">
 <meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library">
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/">
+<link rel="canonical" href="http://localhost:1313/JCAL/">
 
 
 
-<link rel="alternate" type="application/rss&#43;xml" href="https://carmelolg.github.io/JCAL/index.xml" title="JCAL Docs">
+<link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/JCAL/index.xml" title="JCAL Docs">
 
-<link rel="alternate" type="application/json" href="https://carmelolg.github.io/JCAL/index.json" title="JCAL Docs">
+<link rel="alternate" type="application/json" href="http://localhost:1313/JCAL/index.json" title="JCAL Docs">
 
 
 
@@ -123,7 +123,7 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc1</span>
+  <span class="version-tag">v2.0.0-rc2</span>
 </div>
 
 
@@ -224,7 +224,7 @@
       
 
       
-      <div class="home-hero-version">v2.0.0-rc1</div>
+      <div class="home-hero-version">v2.0.0-rc2</div>
       
 
       <h1 class="home-hero-title">
@@ -277,17 +277,17 @@ then let JCAL handle the rest.</p>
       <tr>
           <td><strong>Z^d</strong></td>
           <td><em>d</em>-dimensional grid of cells</td>
-          <td><code>CellGrid</code> → <code>CellGrid2D</code> / <code>CellGridFlat</code></td>
+          <td><code>CellGrid</code> (2D–4D, unified)</td>
       </tr>
       <tr>
           <td><strong>S</strong></td>
           <td>Set of possible cell states</td>
-          <td><code>DefaultStatus</code></td>
+          <td><code>CellState</code></td>
       </tr>
       <tr>
           <td><strong>X</strong></td>
           <td>Neighborhood strategy</td>
-          <td><code>DefaultNeighborhood</code> subclass</td>
+          <td><code>Neighborhood</code> subclass</td>
       </tr>
       <tr>
           <td><strong>σ</strong></td>
@@ -333,13 +333,13 @@ then let JCAL handle the rest.</p>
 </table>
 <h2 id="quick-example">Quick Example</h2>
 <p>Conway&rsquo;s Game of Life in a few lines:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">6</span><span class="p">)</span><span class="w">  </span><span class="c1">// vertical blinker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">6</span><span class="p">)</span><span class="w">  </span><span class="c1">// vertical blinker</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="n">CellularAutomataConfiguration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="p">()</span><span class="w">

@@ -3,18 +3,18 @@ package io.github.carmelolg.jcal.examples;
 import java.util.Arrays;
 import java.util.List;
 
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration;
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
+import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
+import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
-import io.github.carmelolg.jcal.model.DefaultCell;
-import io.github.carmelolg.jcal.model.DefaultStatus;
-import io.github.carmelolg.jcal.model.NeighborhoodType;
+import io.github.carmelolg.jcal.grid.Cell;
+import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 
 /**
  * Demonstrates how to use JCAL with a multi-valued custom state.
  *
- * <p>{@link DefaultStatus} accepts any {@link Object} as its {@code value}, so
+ * <p>{@link CellState} accepts any {@link Object} as its {@code value}, so
  * you can model states that carry more than a single boolean flag.  This example
  * simulates a simplified <em>heat diffusion</em> automaton with three temperature
  * levels: {@code COLD}, {@code WARM}, and {@code HOT}.
@@ -30,7 +30,7 @@ import io.github.carmelolg.jcal.model.NeighborhoodType;
  * <p>The Von Neumann neighborhood (4 orthogonal cells) is used because heat flows
  * along axes, not diagonally.
  *
- * <p>This pattern – using integer or enum values inside {@link DefaultStatus} – is the
+ * <p>This pattern – using integer or enum values inside {@link CellState} – is the
  * recommended approach for Complex Cellular Automata (CCA) in JCAL.  For even richer
  * state you can store a {@code Map} or a custom POJO inside the {@code value} field.
  *
@@ -40,17 +40,17 @@ public class CustomStateExample {
 
     // --- Step 1: Define multi-valued states ---
     // The second argument (the value) can be any Object: String, Integer, Map, POJO, …
-    static final DefaultStatus COLD = new DefaultStatus("cold", 0);
-    static final DefaultStatus WARM = new DefaultStatus("warm", 1);
-    static final DefaultStatus HOT = new DefaultStatus("hot", 2);
+    static final CellState COLD = new CellState("cold", 0);
+    static final CellState WARM = new CellState("warm", 1);
+    static final CellState HOT = new CellState("hot", 2);
 
     public static void main(String[] args) throws Exception {
 
         // --- Step 2: Define the initial hot cells ---
         // Two adjacent hot cells near the centre of the grid
-        List<DefaultCell> initialState = Arrays.asList(
-                new DefaultCell(HOT, 0, 0),   // centre cell
-                new DefaultCell(HOT, 9, 9)    // cell directly to the right
+        List<Cell> initialState = Arrays.asList(
+                new Cell(HOT, 0, 0),   // centre cell
+                new Cell(HOT, 9, 9)    // cell directly to the right
         );
 
         // --- Step 3: Build the configuration ---
@@ -81,13 +81,13 @@ public class CustomStateExample {
     /**
      * Heat diffusion rule: hot cells radiate warmth to cold neighbours.
      *
-     * <p>This rule shows how to inspect the {@code value} field of a {@link DefaultStatus}
+     * <p>This rule shows how to inspect the {@code value} field of a {@link CellState}
      * (here an {@link Integer}) to drive branching logic beyond a simple alive/dead check.
      */
     static class HeatDiffusionRule extends CellularAutomataExecutor {
 
         @Override
-        public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+        public Cell singleRun(Cell cell, List<Cell> neighbors) {
             // Count how many neighbours are hot or warm
             long hotNeighborCount = neighbors.stream()
                     .filter(n -> n.getCurrentStatus().equals(HOT))
@@ -99,9 +99,9 @@ public class CustomStateExample {
             return getDefaultCell(cell, hotNeighborCount, warmNeighborCount);
         }
 
-        private DefaultCell getDefaultCell(DefaultCell cell, long hotNeighborCount, long warmNeighborCount) {
-            DefaultCell next = new DefaultCell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
-            DefaultStatus current = cell.getCurrentStatus();
+        private Cell getDefaultCell(Cell cell, long hotNeighborCount, long warmNeighborCount) {
+            Cell next = new Cell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
+            CellState current = cell.getCurrentStatus();
 
             if (current.equals(HOT)) {
                 next.setCurrentStatus(HOT);

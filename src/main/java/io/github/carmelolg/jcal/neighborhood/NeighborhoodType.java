@@ -1,4 +1,4 @@
-package io.github.carmelolg.jcal.model;
+package io.github.carmelolg.jcal.neighborhood;
 
 /**
  * Enumeration of the built-in neighborhood strategies.
@@ -14,13 +14,13 @@ package io.github.carmelolg.jcal.model;
  * </ul>
  *
  * <p>Pass the desired value to
- * {@link io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder#setNeighborhoodType(NeighborhoodType)}
+ * {@link io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder#setNeighborhoodType(NeighborhoodType)}
  * when building a configuration, or provide a fully custom
- * {@link io.github.carmelolg.jcal.core.DefaultNeighborhood} implementation instead.
+ * {@link io.github.carmelolg.jcal.neighborhood.Neighborhood} implementation instead.
  *
  * @author Carmelo La Gamba
- * @see io.github.carmelolg.jcal.core.MooreNeighborhood
- * @see io.github.carmelolg.jcal.core.VonNeumannNeighborhood
+ * @see io.github.carmelolg.jcal.neighborhood.MooreNeighborhood
+ * @see io.github.carmelolg.jcal.neighborhood.VonNeumannNeighborhood
  */
 public enum NeighborhoodType {
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
 
 <title>Custom State Objects — JCAL Docs</title>
-<meta name="description" content="Model richer per-cell data by extending DefaultStatus with a custom class.">
+<meta name="description" content="Model richer per-cell data by extending CellState with a custom class.">
 
 
 <meta name="author" content="carmelolg">
@@ -14,13 +14,13 @@
 
 
 <meta property="og:title"       content="Custom State Objects">
-<meta property="og:description" content="Model richer per-cell data by extending DefaultStatus with a custom class.">
+<meta property="og:description" content="Model richer per-cell data by extending CellState with a custom class.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/articles/custom-state/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/articles/custom-state/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/articles/custom-state/">
+<link rel="canonical" href="http://localhost:1313/JCAL/articles/custom-state/">
 
 
 
@@ -118,7 +118,7 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc1</span>
+  <span class="version-tag">v2.0.0-rc2</span>
 </div>
 
 
@@ -234,7 +234,7 @@
   <h1 class="page-title">Custom State Objects</h1>
 
   
-  <p class="page-summary">Model richer per-cell data by extending DefaultStatus with a custom class.</p>
+  <p class="page-summary">Model richer per-cell data by extending CellState with a custom class.</p>
   
 
   <div class="page-meta">
@@ -263,14 +263,14 @@
   </div>
 
   <div class="prose">
-    <p>The built-in <code>DefaultStatus</code> holds a <code>key</code> (String) and a <code>value</code> (any Object), which
+    <p>The built-in <code>CellState</code> holds a <code>key</code> (String) and a <code>value</code> (any Object), which
 is sufficient for simple automata such as a binary-state Game of Life. For more complex
 simulations — where each cell might carry temperature, pressure, material type, or any
-other domain-specific data — you can extend <code>DefaultStatus</code> with a custom class.</p>
+other domain-specific data — you can extend <code>CellState</code> with a custom class.</p>
 <hr>
 <h2 id="overview">Overview</h2>
 <ol>
-<li><strong>Define your custom status</strong> by extending <code>DefaultStatus</code> and adding fields.</li>
+<li><strong>Define your custom status</strong> by extending <code>CellState</code> and adding fields.</li>
 <li><strong>Cast in <code>singleRun</code></strong> — in your executor, cast <code>cell.getCurrentStatus()</code> to your
 subclass to access the extra fields.</li>
 <li><strong>Use your custom status</strong> as the default status and in the initial condition list.</li>
@@ -279,7 +279,7 @@ subclass to access the extra fields.</li>
 <h2 id="example-custom-status-for-game-of-life">Example: Custom Status for Game of Life</h2>
 <p>The <code>GoLStatus</code> class wraps a simple boolean <code>isAlive</code> field and produces a readable
 <code>toString()</code> so the grid renders clearly.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GoLStatus</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GoLStatus</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellState</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isAlive</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -298,7 +298,7 @@ subclass to access the extra fields.</li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GoLCustomExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">((</span><span class="n">GoLStatus</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">isAlive</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">count</span><span class="p">();</span><span class="w">
@@ -307,7 +307,7 @@ subclass to access the extra fields.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">nextAlive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isAlive</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">isAlive</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">aliveCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3</span><span class="p">));</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Cell</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="n">nextAlive</span><span class="p">),</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
@@ -318,10 +318,10 @@ subclass to access the extra fields.</li>
 <p>Use <code>GoLStatus</code> as the <code>defaultStatus</code> and in the initial condition:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">GoLStatus</span><span class="w"> </span><span class="n">dead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">seed</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GoLStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">));</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="n">CellularAutomataConfiguration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">10</span><span class="p">).</span><span class="na">setHeight</span><span class="p">(</span><span class="n">10</span><span class="p">)</span><span class="w">
@@ -337,7 +337,7 @@ subclass to access the extra fields.</li>
 </span></span></span></code></pre></div><hr>
 <h2 id="example-numeric-state-heat-diffusion">Example: Numeric State (Heat Diffusion)</h2>
 <p>For simulations that require a numeric quantity per cell:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatStatus</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatStatus</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellState</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">temperature</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -355,7 +355,7 @@ subclass to access the extra fields.</li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatDiffusionExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">avgTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">mapToDouble</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">((</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">temperature</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">average</span><span class="p">()</span><span class="w">
@@ -364,13 +364,13 @@ subclass to access the extra fields.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">temperature</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">avgTemp</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">.</span><span class="na">0</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HeatStatus</span><span class="p">(</span><span class="n">next</span><span class="p">),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HeatStatus</span><span class="p">(</span><span class="n">next</span><span class="p">),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><hr>
 <h2 id="tips">Tips</h2>
 <ul>
-<li>Two <code>DefaultStatus</code> values are <strong>equal</strong> when both <code>key</code> and <code>value</code> are equal.
+<li>Two <code>CellState</code> values are <strong>equal</strong> when both <code>key</code> and <code>value</code> are equal.
 If you store mutable objects in <code>value</code>, override <code>equals</code> / <code>hashCode</code> in your
 subclass for correct comparison semantics.</li>
 <li>The <code>value</code> field accepts any <code>Object</code>, so you can store a <code>Map</code>, a POJO, a

@@ -1,30 +1,30 @@
-package io.github.carmelolg.jcal.model;
+package io.github.carmelolg.jcal.grid;
 
 /**
  * Represents a single cell in the Cellular Automata grid.
  *
  * <p>Each cell has:
  * <ul>
- *   <li>a {@link DefaultStatus} holding the cell's current state (e.g. dead/alive,
+ *   <li>a {@link CellState} holding the cell's current state (e.g. dead/alive,
  *       a temperature level, etc.)</li>
  *   <li>grid coordinates stored as an {@code int[]} array that identify its position
  *       in the matrix (supports 2D, 3D, and 4D grids)</li>
  * </ul>
  *
- * <p>{@code DefaultCell} implements {@link Cloneable} so the library can take safe snapshots
+ * <p>{@code Cell} implements {@link Cloneable} so the library can take safe snapshots
  * of the grid before applying the transition function.
  *
  * <p><b>Extending cell state:</b> if you need richer per-cell data, create a custom
- * {@link DefaultStatus} subclass and store it in {@link #currentStatus}.  You do not
- * need to subclass {@code DefaultCell} itself.
+ * {@link CellState} subclass and store it in {@link #currentStatus}.  You do not
+ * need to subclass {@code Cell} itself.
  *
  * @author Carmelo La Gamba
- * @see DefaultStatus
+ * @see CellState
  * @see io.github.carmelolg.jcal.core.CellularAutomata
  */
-public class DefaultCell implements Cloneable {
+public class Cell implements Cloneable {
 
-	private DefaultStatus currentStatus;
+	private CellState currentStatus;
 	private final int[] coordinates;
 
 	/**
@@ -34,7 +34,7 @@ public class DefaultCell implements Cloneable {
 	 * @param col the column coordinate (x-axis)
 	 * @param row the row coordinate (y-axis)
 	 */
-	public DefaultCell(DefaultStatus currentStatus, int col, int row) {
+	public Cell(CellState currentStatus, int col, int row) {
 		super();
 		this.currentStatus = currentStatus;
 		this.coordinates = new int[]{col, row};
@@ -42,12 +42,12 @@ public class DefaultCell implements Cloneable {
 
 	/**
 	 * N-dimensional constructor. Use for 3D+ cells:
-	 * {@code new DefaultCell(status, x, y, z)}.
+	 * {@code new Cell(status, x, y, z)}.
 	 *
 	 * @param currentStatus the cell's initial status
 	 * @param coords the coordinates for each dimension
 	 */
-	public DefaultCell(DefaultStatus currentStatus, int... coords) {
+	public Cell(CellState currentStatus, int... coords) {
 		super();
 		this.currentStatus = currentStatus;
 		this.coordinates = coords.clone();
@@ -55,17 +55,17 @@ public class DefaultCell implements Cloneable {
 
 	/**
 	 * Returns the current status of this cell.
-	 * @return the {@link DefaultStatus}
+	 * @return the {@link CellState}
 	 */
-	public DefaultStatus getCurrentStatus() {
+	public CellState getCurrentStatus() {
 		return currentStatus;
 	}
 
 	/**
 	 * Sets the current status of this cell.
-	 * @param currentStatus the new {@link DefaultStatus}
+	 * @param currentStatus the new {@link CellState}
 	 */
-	public void setCurrentStatus(DefaultStatus currentStatus) {
+	public void setCurrentStatus(CellState currentStatus) {
 		this.currentStatus = currentStatus;
 	}
 
@@ -99,14 +99,14 @@ public class DefaultCell implements Cloneable {
 	}
 
 	@Override
-	public DefaultCell clone() throws CloneNotSupportedException {
-		return new DefaultCell(currentStatus, coordinates.clone());
+	public Cell clone() throws CloneNotSupportedException {
+		return new Cell(currentStatus, coordinates.clone());
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) return true;
-		if (!(object instanceof DefaultCell dc)) return false;
+		if (!(object instanceof Cell dc)) return false;
 		return java.util.Arrays.equals(dc.coordinates, this.coordinates)
 				&& java.util.Objects.equals(dc.currentStatus, this.currentStatus);
 	}

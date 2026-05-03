@@ -1,9 +1,9 @@
-package io.github.carmelolg.jcal.core;
+package io.github.carmelolg.jcal.neighborhood;
 
 import java.util.ArrayList;
 import java.util.List;
-import io.github.carmelolg.jcal.core.grid.CellGrid;
-import io.github.carmelolg.jcal.model.DefaultCell;
+import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
@@ -12,15 +12,15 @@ import io.github.carmelolg.jcal.utils.Utils;
  *
  * @author Carmelo La Gamba
  * @see Moore3DNeighborhood
- * @see DefaultNeighborhoodND
+ * @see Neighborhood
  */
-public class VonNeumann3DNeighborhood extends DefaultNeighborhoodND {
+public class VonNeumann3DNeighborhood extends Neighborhood implements NDCapable {
 
 	/** {@inheritDoc} */
 	@Override
-	public List<DefaultCell> getNeighbors(CellGrid grid, int[] coords) {
-		List<DefaultCell> neighbors = new ArrayList<>();
-		int[] sizes = grid.dimensions().getSizes();
+	public List<Cell> getNeighbors(CellGrid grid, int[] coords) {
+		List<Cell> neighbors = new ArrayList<>();
+		int[] sizes = grid.dimensions().sizes();
 		int x = coords[0], y = coords[1], z = coords[2];
 		int[][] offsets = {{1,0,0},{-1,0,0},{0,1,0},{0,-1,0},{0,0,1},{0,0,-1}};
 		for (int[] off : offsets) {

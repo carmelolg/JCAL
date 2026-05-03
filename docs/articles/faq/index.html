@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,11 +16,11 @@
 <meta property="og:title"       content="FAQ">
 <meta property="og:description" content="Frequently asked questions and common troubleshooting tips.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/articles/faq/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/articles/faq/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/articles/faq/">
+<link rel="canonical" href="http://localhost:1313/JCAL/articles/faq/">
 
 
 
@@ -118,7 +118,7 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc1</span>
+  <span class="version-tag">v2.0.0-rc2</span>
 </div>
 
 
@@ -279,9 +279,9 @@ JCAL into a commercial product.</p>
 <p>No. You can use an anonymous class directly in your <code>main</code> method:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// inline rule logic</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">};</span><span class="w">
 </span></span></span></code></pre></div><p>Named classes are recommended for non-trivial rules because they are easier to test
@@ -291,7 +291,7 @@ and reuse.</p>
 <li><code>setNeighborhoodType(NeighborhoodType)</code> — selects a built-in neighborhood
 (<code>MOORE</code> or <code>VON_NEUMANN</code>). JCAL automatically picks the 2D, 3D, or 4D variant
 based on your grid dimensions.</li>
-<li><code>setNeighborhood(DefaultNeighborhood)</code> — provides a custom neighborhood instance.
+<li><code>setNeighborhood(Neighborhood)</code> — provides a custom neighborhood instance.
 Use this for any non-standard shape.</li>
 </ul>
 <p><strong>Use exactly one of these</strong> in each configuration.</p>
@@ -306,11 +306,15 @@ follows the same convention.</p>
 <h3 id="how-do-i-print-the-grid-after-each-generation">How do I print the grid after each generation?</h3>
 <p>Call <code>System.out.println(ca)</code> after each <code>executor.run(ca)</code>, or override the executor&rsquo;s
 <code>run</code> method to log intermediate states. <code>CellularAutomata.toString()</code> renders the grid
-by calling <code>toString()</code> on each cell&rsquo;s <code>DefaultStatus</code>.</p>
-<h3 id="how-do-i-use-getmap--getutilsmap-with-a-3d-grid">How do I use <code>getMap()</code> / <code>getUtilsMap()</code> with a 3D grid?</h3>
-<p><code>getMap()</code> and <code>getUtilsMap()</code> only work for 2D grids and return <code>DefaultCell[][]</code>.
-For 3D/4D, use <code>ca.getGrid()</code> instead, which returns a <code>CellGrid</code> interface. See
-<a href="../3d-4d-support/">3D and 4D Support</a> for details.</p>
+by calling <code>toString()</code> on each cell&rsquo;s <code>CellState</code>.</p>
+<h3 id="how-do-i-iterate-over-a-3d4d-grid">How do I iterate over a 3D/4D grid?</h3>
+<p>Use <code>ca.getGrid()</code> which returns a <code>CellGrid</code>. Iterate with <code>allCoordinates()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellGrid</span><span class="w"> </span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ca</span><span class="p">.</span><span class="na">getGrid</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">grid</span><span class="p">.</span><span class="na">allCoordinates</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">coords</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; → &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>See <a href="../3d-4d-support/">3D and 4D Support</a> for a full example.</p>
 <hr>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="my-cells-are-not-evolving--they-all-stay-at-the-default-status">My cells are not evolving — they all stay at the default status.</h3>
@@ -329,15 +333,15 @@ For 3D/4D, use <code>ca.getGrid()</code> instead, which returns a <code>CellGrid
 in the builder and that every cell in the initial condition was constructed with a
 non-null status.</li>
 <li>You are casting to a custom status class but some cells were created with a plain
-<code>DefaultStatus</code> — ensure consistency across all initial cells and the default.</li>
+<code>CellState</code> — ensure consistency across all initial cells and the default.</li>
 <li>You are accessing the <code>currentStatus</code> field directly instead of via
 <code>getCurrentStatus()</code> — prefer the getter for null-safe access patterns.</li>
 </ul>
 <h3 id="the-automaton-runs-but-systemoutprintlnca-shows-nothing-useful">The automaton runs but <code>System.out.println(ca)</code> shows nothing useful.</h3>
-<p>Override <code>toString()</code> in your <code>DefaultStatus</code> subclass (or ensure the <code>value</code> field
+<p>Override <code>toString()</code> in your <code>CellState</code> subclass (or ensure the <code>value</code> field
 has a meaningful <code>toString()</code> representation) so the grid renders as expected.</p>
 <h3 id="my-custom-3d-neighborhood-returns-the-wrong-number-of-neighbors">My custom 3D neighborhood returns the wrong number of neighbors.</h3>
-<p>Verify that you are checking bounds with <code>grid.isInside(coords)</code> before calling
+<p>Verify that you are checking bounds with <code>Utils.isInside(grid, coords)</code> before calling
 <code>grid.get(coords)</code>. Out-of-bounds coordinates at grid edges silently clip the neighbor
 list — this is expected behavior (no toric wrapping by default).</p>
 <hr>
@@ -398,7 +402,7 @@ list — this is expected behavior (no toric wrapping by default).</p>
         <li><a href="#what-happens-if-i-call-both-settotaliterations-and-setinfinitetrue">What happens if I call both <code>setTotalIterations</code> and <code>setInfinite(true)</code>?</a></li>
         <li><a href="#why-is-the-builder-method-spelled-setinitalstate-one-t">Why is the builder method spelled <code>setInitalState</code> (one <code>t</code>)?</a></li>
         <li><a href="#how-do-i-print-the-grid-after-each-generation">How do I print the grid after each generation?</a></li>
-        <li><a href="#how-do-i-use-getmap--getutilsmap-with-a-3d-grid">How do I use <code>getMap()</code> / <code>getUtilsMap()</code> with a 3D grid?</a></li>
+        <li><a href="#how-do-i-iterate-over-a-3d4d-grid">How do I iterate over a 3D/4D grid?</a></li>
       </ul>
     </li>
     <li><a href="#troubleshooting">Troubleshooting</a>

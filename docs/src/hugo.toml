@@ -8,7 +8,7 @@ publishDir   = ".."
 [params]
   description   = "Official documentation for JCAL — Java Cellular Automata Library"
   author        = "carmelolg"
-  version       = "2.0.0-rc1"
+  version       = "2.0.0-rc2"
   github        = "https://github.com/carmelolg/JCAL"
   editBaseURL   = "https://github.com/carmelolg/JCAL/edit/master/docs/src/content"
   logoText      = "JCAL"

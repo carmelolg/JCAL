@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/tags/</link>
+    <link>http://localhost:1313/JCAL/tags/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 30 Apr 2026 22:12:55 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/tags/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Sun, 03 May 2026 22:52:32 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/tags/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
   </channel>

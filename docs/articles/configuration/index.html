@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,11 +16,11 @@
 <meta property="og:title"       content="Configuration Reference">
 <meta property="og:description" content="All options available on CellularAutomataConfigurationBuilder.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/articles/configuration/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/articles/configuration/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/articles/configuration/">
+<link rel="canonical" href="http://localhost:1313/JCAL/articles/configuration/">
 
 
 
@@ -118,7 +118,7 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc1</span>
+  <span class="version-tag">v2.0.0-rc2</span>
 </div>
 
 
@@ -301,18 +301,11 @@ calling <code>.build()</code>.</p>
           <td>Number of rows in the 2D grid</td>
       </tr>
       <tr>
-          <td><code>setDepth(int)</code></td>
-          <td><code>int</code></td>
+          <td><code>setDimensions(int...)</code></td>
+          <td><code>int...</code></td>
           <td>—</td>
-          <td>For 3D</td>
-          <td>Depth dimension (z-axis)</td>
-      </tr>
-      <tr>
-          <td><code>setTime(int)</code></td>
-          <td><code>int</code></td>
-          <td>—</td>
-          <td>For 4D</td>
-          <td>Fourth dimension</td>
+          <td>For 3D/4D</td>
+          <td>Grid dimensions: <code>(x,y,z)</code> or <code>(x,y,z,w)</code></td>
       </tr>
       <tr>
           <td><code>setTotalIterations(int)</code></td>
@@ -329,15 +322,15 @@ calling <code>.build()</code>.</p>
           <td>Run until interrupted</td>
       </tr>
       <tr>
-          <td><code>setDefaultStatus(DefaultStatus)</code></td>
-          <td><code>DefaultStatus</code></td>
+          <td><code>setDefaultStatus(CellState)</code></td>
+          <td><code>CellState</code></td>
           <td>—</td>
           <td><strong>Yes</strong></td>
           <td>State applied to every cell at init</td>
       </tr>
       <tr>
-          <td><code>setInitalState(List&lt;DefaultCell&gt;)</code></td>
-          <td><code>List&lt;DefaultCell&gt;</code></td>
+          <td><code>setInitalState(List&lt;Cell&gt;)</code></td>
+          <td><code>List&lt;Cell&gt;</code></td>
           <td>empty</td>
           <td>No</td>
           <td>Cells starting in a non-default state</td>
@@ -350,8 +343,8 @@ calling <code>.build()</code>.</p>
           <td>Select a built-in neighborhood</td>
       </tr>
       <tr>
-          <td><code>setNeighborhood(DefaultNeighborhood)</code></td>
-          <td><code>DefaultNeighborhood</code></td>
+          <td><code>setNeighborhood(Neighborhood)</code></td>
+          <td><code>Neighborhood</code></td>
           <td>—</td>
           <td>One of these</td>
           <td>Provide a custom 2D neighborhood</td>
@@ -376,14 +369,15 @@ calling <code>.build()</code>.</p>
 <p>Sets the number of <strong>rows</strong> in the grid (y-axis). Default: <code>100</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><hr>
-<h2 id="depth-3d4d-only">Depth <em>(3D/4D only)</em></h2>
-<p>Sets the third dimension (z-axis) of the grid. Required when building a 3D or 4D
-cellular automaton using <code>CellGridFlat</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setDepth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><hr>
-<h2 id="time-4d-only">Time <em>(4D only)</em></h2>
-<p>Sets the fourth dimension. Required when building a 4D cellular automaton.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setTime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w">
+<h2 id="dimensions-3d4d">Dimensions <em>(3D/4D)</em></h2>
+<p>Sets all dimensions at once for 3D or 4D grids. Replaces <code>setWidth</code>/<code>setHeight</code>
+when building multi-dimensional cellular automata.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 3D: x, y, z</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setDimensions</span><span class="p">(</span><span class="kt">int</span><span class="p">...</span><span class="w"> </span><span class="n">dims</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Usage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">builder</span><span class="p">.</span><span class="na">setDimensions</span><span class="p">(</span><span class="n">10</span><span class="p">,</span><span class="w"> </span><span class="n">10</span><span class="p">,</span><span class="w"> </span><span class="n">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// 3D  10×10×10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">builder</span><span class="p">.</span><span class="na">setDimensions</span><span class="p">(</span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">);</span><span class="w">  </span><span class="c1">// 4D  5×5×5×5</span><span class="w">
 </span></span></span></code></pre></div><hr>
 <h2 id="total-iterations">Total Iterations</h2>
 <p>Sets the number of <strong>generations</strong> (steps) to simulate. Required when
@@ -399,12 +393,12 @@ cellular automaton using <code>CellGridFlat</code>.</p>
 <p>Sets the initial state applied to <strong>every</strong> cell in the grid before the initial
 condition is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; state.<br>
 <strong>Required.</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setDefaultStatus</span><span class="p">(</span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">defaultStatus</span><span class="p">);</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setDefaultStatus</span><span class="p">(</span><span class="n">CellState</span><span class="w"> </span><span class="n">defaultStatus</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><hr>
 <h2 id="initial-condition">Initial Condition</h2>
 <p>Provides the list of cells that start in a state <strong>other than</strong> the default. All
 other cells are initialized with <code>defaultStatus</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setInitalState</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initalState</span><span class="p">);</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setInitalState</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initalState</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><div class="callout callout-note" role="alert">
   <div class="callout-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></div>
   <div class="callout-body">
@@ -445,9 +439,9 @@ correct implementation for 2D, 3D, or 4D based on the grid dimensions in the con
 </table>
 <hr>
 <h2 id="custom-neighborhood">Custom Neighborhood</h2>
-<p>Provides a custom 2D neighborhood. The class must extend <code>DefaultNeighborhood</code> (2D)
-or <code>DefaultNeighborhoodND</code> (3D/4D).</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setNeighborhood</span><span class="p">(</span><span class="n">DefaultNeighborhood</span><span class="w"> </span><span class="n">neighborhood</span><span class="p">);</span><span class="w">
+<p>Provides a custom 2D neighborhood. The class must extend <code>Neighborhood</code> (2D)
+or <code>Neighborhood</code> (3D/4D).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setNeighborhood</span><span class="p">(</span><span class="n">Neighborhood</span><span class="w"> </span><span class="n">neighborhood</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><p>See <a href="../neighborhoods/">Neighborhoods</a> for examples.</p>
 <hr>
 <h2 id="see-also">See Also</h2>
@@ -500,8 +494,7 @@ or <code>DefaultNeighborhoodND</code> (3D/4D).</p>
     <li><a href="#reference-table">Reference Table</a></li>
     <li><a href="#width">Width</a></li>
     <li><a href="#height">Height</a></li>
-    <li><a href="#depth-3d4d-only">Depth <em>(3D/4D only)</em></a></li>
-    <li><a href="#time-4d-only">Time <em>(4D only)</em></a></li>
+    <li><a href="#dimensions-3d4d">Dimensions <em>(3D/4D)</em></a></li>
     <li><a href="#total-iterations">Total Iterations</a></li>
     <li><a href="#infinite-loop">Infinite Loop</a></li>
     <li><a href="#default-status">Default Status</a></li>

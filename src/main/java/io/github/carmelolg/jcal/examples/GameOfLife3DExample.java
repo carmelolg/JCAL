@@ -3,21 +3,21 @@ package io.github.carmelolg.jcal.examples;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration;
-import io.github.carmelolg.jcal.configuration.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
+import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
+import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
-import io.github.carmelolg.jcal.core.grid.CellGridFlat;
-import io.github.carmelolg.jcal.model.DefaultCell;
-import io.github.carmelolg.jcal.model.DefaultStatus;
-import io.github.carmelolg.jcal.model.NeighborhoodType;
+import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.grid.Cell;
+import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 
 /**
  * A three-dimensional variant of Conway's Game of Life using JCAL.
  *
  * <p>This example demonstrates how to extend the library to 3D grids
  * using the {@code setDimensions(x, y, z)} builder method and a
- * {@link CellGridFlat}-backed grid.
+ * {@link CellGrid}-backed grid.
  *
  * <p>The rules used here are <em>Carter Bays' 3D Life</em> (one common variant):
  * <ul>
@@ -41,8 +41,8 @@ import io.github.carmelolg.jcal.model.NeighborhoodType;
  */
 public class GameOfLife3DExample {
 
-	public static final DefaultStatus DEAD  = new DefaultStatus("dead",  "0");
-	public static final DefaultStatus ALIVE = new DefaultStatus("alive", "1");
+	public static final CellState DEAD  = new CellState("dead",  "0");
+	public static final CellState ALIVE = new CellState("alive", "1");
 
 	/**
 	 * The six coordinates that form the 3D still-life under Carter Bays' S5,6/B5 rules.
@@ -55,9 +55,9 @@ public class GameOfLife3DExample {
 	public static void main(String[] args) throws Exception {
 
 		// 7x7x7 grid; initial state is a 6-cell diagonal still life
-		List<DefaultCell> initialState = new ArrayList<>();
+		List<Cell> initialState = new ArrayList<>();
 		for (int[] c : STILL_LIFE_COORDS)
-			initialState.add(new DefaultCell(ALIVE, c[0], c[1], c[2]));
+			initialState.add(new Cell(ALIVE, c[0], c[1], c[2]));
 
 		CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
 				.setDimensions(7, 7, 7)
@@ -74,9 +74,9 @@ public class GameOfLife3DExample {
 
 		// Print the alive cells after 3 iterations (still life: identical to the initial state)
 		System.out.println("Alive cells after 3 iterations (Carter Bays' 3D still life):");
-		CellGridFlat grid = (CellGridFlat) ca.getGrid();
+		CellGrid grid = ca.getGrid();
 		for (int[] coords : grid.allCoordinates()) {
-			DefaultCell cell = grid.get(coords);
+			Cell cell = grid.get(coords);
 			if (cell.getCurrentStatus().equals(ALIVE)) {
 				System.out.printf("  (%d,%d,%d)%n", coords[0], coords[1], coords[2]);
 			}
@@ -90,12 +90,12 @@ public class GameOfLife3DExample {
 	public static class Carter3DLifeRule extends CellularAutomataExecutor {
 
 		@Override
-		public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+		public Cell singleRun(Cell cell, List<Cell> neighbors) {
 			long aliveCount = neighbors.stream()
 					.filter(n -> n.getCurrentStatus().equals(ALIVE))
 					.count();
 
-			DefaultCell next = new DefaultCell(DEAD, cell.getCoordinates());
+			Cell next = new Cell(DEAD, cell.getCoordinates());
 
 			boolean alive = cell.getCurrentStatus().equals(ALIVE);
 			if (alive && (aliveCount == 5 || aliveCount == 6)) {

@@ -1,4 +1,4 @@
-package io.github.carmelolg.jcal.model;
+package io.github.carmelolg.jcal.grid;
 
 /**
  * Immutable description of an n-dimensional grid (2 to 4 dimensions).
@@ -7,9 +7,7 @@ package io.github.carmelolg.jcal.model;
  *
  * @author Carmelo La Gamba
  */
-public final class GridDimensions {
-
-	private final int[] sizes;
+public record GridDimensions(int... sizes) {
 
 	/**
 	 * Creates a GridDimensions with the given sizes.
@@ -43,7 +41,8 @@ public final class GridDimensions {
 	 *
 	 * @return defensive copy of sizes
 	 */
-	public int[] getSizes() {
+	@Override
+	public int[] sizes() {
 		return sizes.clone();
 	}
 
@@ -72,7 +71,7 @@ public final class GridDimensions {
 	 * Computes row-major strides.
 	 *
 	 * @return strides array where {@code strides[i]} is the step in the flat array
-	 *         to advance dimension {@code i} by 1
+	 * to advance dimension {@code i} by 1
 	 */
 	public int[] computeStrides() {
 		int n = sizes.length;
