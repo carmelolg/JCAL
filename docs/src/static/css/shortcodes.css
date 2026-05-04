@@ -4,10 +4,11 @@
 .table-wrapper {
   overflow-x: auto;
   margin: 1rem 0;
+  width: 100%;
 }
 
 .table-wrapper table {
-  width: 100%;
+  width: 100% !important;
   border-collapse: collapse;
   margin: 0;
 }
