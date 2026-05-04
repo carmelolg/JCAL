@@ -314,9 +314,8 @@ once built; all settings must be applied before calling <code>.build()</code>.</
 <h3 id="width">Width</h3>
 <p>Sets the number of <strong>columns</strong> in the grid.</p>
 <p><strong>Default: 100</strong></p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -331,7 +330,6 @@ once built; all settings must be applied before calling <code>.build()</code>.</
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setWidth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">);</span><span class="w">
@@ -339,9 +337,8 @@ once built; all settings must be applied before calling <code>.build()</code>.</
 <h3 id="height">Height</h3>
 <p>Sets the number of <strong>rows</strong> in the grid.</p>
 <p><strong>Default: 100</strong></p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -356,7 +353,6 @@ once built; all settings must be applied before calling <code>.build()</code>.</
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">);</span><span class="w">
@@ -368,9 +364,8 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
 <blockquote>
 <p><strong>Note:</strong> <code>setInfinite(true)</code> and <code>setTotalIterations</code> are mutually exclusive.</p>
 </blockquote>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -385,7 +380,6 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setInfinite</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">isInfinite</span><span class="p">);</span><span class="w">
@@ -393,9 +387,8 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
 <h3 id="total-iterations">Total iterations</h3>
 <p>Sets the number of generations (steps) to simulate.</p>
 <p><strong>Required when <code>isInfinite</code> is <code>false</code>.</strong></p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -410,7 +403,6 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setTotalIterations</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">totalIterations</span><span class="p">);</span><span class="w">
@@ -419,9 +411,8 @@ When <code>false</code> (the default), the automaton stops after <code>totalIter
 <p>Sets the initial state applied to <strong>every</strong> cell in the grid before the initial condition
 is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; state.</p>
 <p><strong>Required.</strong></p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -436,7 +427,6 @@ is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; sta
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setDefaultStatus</span><span class="p">(</span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">defaultStatus</span><span class="p">);</span><span class="w">
@@ -444,9 +434,8 @@ is overlaid. This is typically the &ldquo;empty&rdquo; or &ldquo;dead&rdquo; sta
 <h3 id="initial-condition">Initial condition</h3>
 <p>Provides the list of cells that start in a state <strong>other than</strong> the default. All other
 cells are initialized with the default status.</p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -461,16 +450,14 @@ cells are initialized with the default status.</p>
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setInitalState</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initalState</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><hr>
 <h3 id="built-in-neighborhood">Built-in neighborhood</h3>
 <p>Selects one of the pre-defined neighborhood shapes from the <code>NeighborhoodType</code> enum.</p>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -487,7 +474,6 @@ cells are initialized with the default status.</p>
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setNeighborhoodType</span><span class="p">(</span><span class="n">NeighborhoodType</span><span class="w"> </span><span class="n">neighborhoodType</span><span class="p">);</span><span class="w">
@@ -497,9 +483,8 @@ cells are initialized with the default status.</p>
 <blockquote>
 <p><strong>Note:</strong> Use either <code>setNeighborhoodType</code> or <code>setNeighborhood</code> — not both.</p>
 </blockquote>
-<div class="table-wrapper">
-  <table class="table-striped">
-    <table>
+<div class="table-wrapper table-striped">
+  <table>
   <thead>
       <tr>
           <th>Parameter</th>
@@ -514,7 +499,6 @@ cells are initialized with the default status.</p>
   </tbody>
 </table>
 
-  </table>
 </div>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setNeighborhood</span><span class="p">(</span><span class="n">DefaultNeighborhood</span><span class="w"> </span><span class="n">neighborhood</span><span class="p">);</span><span class="w">
