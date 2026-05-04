@@ -22,15 +22,15 @@ other domain-specific data — you can extend `DefaultStatus` with a custom clas
 
 ### The custom status class
 
-{{< code lang="JAVA" file="custom-status/status.java">}}{{< /code >}}
+{{< code lang="JAVA" file="status.java">}}{{< /code >}}
 
 ### The executor
 
-{{< code lang="JAVA" file="custom-status/executor.java">}}{{< /code >}}
+{{< code lang="JAVA" file="executor.java">}}{{< /code >}}
 
 ### The application entry point
 
-{{< code lang="JAVA" file="custom-status/application.java">}}{{< /code >}}
+{{< code lang="JAVA" file="application.java">}}{{< /code >}}
 
 ---
 

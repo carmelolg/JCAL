@@ -12,7 +12,7 @@ JCAL is published on the **GitHub Maven Registry**. Follow the
 [GitHub guide](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages)
 to configure authentication, then add this dependency to your `pom.xml`:
 
-{{< code lang="xml" file="getting-started/dependency.xml">}}{{< /code >}}
+{{< code lang="xml" file="dependency.xml">}}{{< /code >}}
 
 > **Note:** You need a GitHub personal access token with `read:packages` scope. See the
 > linked guide for instructions on setting up your `~/.m2/settings.xml`.
@@ -44,11 +44,11 @@ cellular automaton. It demonstrates all four steps of the JCAL workflow:
 Extend `CellularAutomataExecutor` and implement `singleRun`. This method is called
 once per cell per generation; return the cell's next state.
 
-{{< code lang="JAVA" file="getting-started/gol-executor.java">}}{{< /code >}}
+{{< code lang="JAVA" file="gol-executor.java">}}{{< /code >}}
 
 ### Step 2 — Configure and run
 
-{{< code lang="JAVA" file="getting-started/main.java">}}{{< /code >}}
+{{< code lang="JAVA" file="main.java">}}{{< /code >}}
 
 Run the `main` method. The CA iterates for the configured number of steps and
 prints the final grid to standard output.

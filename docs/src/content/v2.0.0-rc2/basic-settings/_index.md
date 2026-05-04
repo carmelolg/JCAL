@@ -19,13 +19,13 @@ singleRun(cell, neighbors) → next cell state
 
 ### Example: Conway's Game of Life executor
 
-{{< code lang="JAVA" file="basic-settings/gol-executor.java">}}{{< /code >}}
+{{< code lang="JAVA" file="gol-executor.java">}}{{< /code >}}
 
 ### Running the cellular automaton
 
 Once you have an executor, wire it together with a configured grid and call `run`:
 
-{{< code lang="JAVA" file="basic-settings/main.java">}}{{< /code >}}
+{{< code lang="JAVA" file="main.java">}}{{< /code >}}
 
 ---
 

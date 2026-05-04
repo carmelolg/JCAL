@@ -8,7 +8,7 @@ To run a cellular automaton with JCAL, you must first build a `CellularAutomataC
 using the fluent `CellularAutomataConfigurationBuilder`. Configuration objects are **immutable**
 once built; all settings must be applied before calling `.build()`.
 
-{{< code lang="JAVA" file="builder-settings/builder.java">}}{{< /code >}}
+{{< code lang="JAVA" file="builder.java">}}{{< /code >}}
 
 ---
 

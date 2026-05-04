@@ -28,20 +28,20 @@ naturally to automata that need richer per-cell state.
 
 Define your own class that extends `DefaultStatus` and adds domain-specific fields.
 
-{{< code lang="JAVA" file="custom-status/status.java">}}{{< /code >}}
+{{< code lang="JAVA" file="status.java">}}{{< /code >}}
 
 ### The executor
 
 In `singleRun`, cast the current status to your custom class to read its fields.
 Always return a new `DefaultCell` with the next state — do not mutate the input cell.
 
-{{< code lang="JAVA" file="custom-status/executor.java">}}{{< /code >}}
+{{< code lang="JAVA" file="executor.java">}}{{< /code >}}
 
 ### The application entry point
 
 Use your custom status as the `defaultStatus` and when constructing initial cells.
 
-{{< code lang="JAVA" file="custom-status/application.java">}}{{< /code >}}
+{{< code lang="JAVA" file="application.java">}}{{< /code >}}
 
 ---
 

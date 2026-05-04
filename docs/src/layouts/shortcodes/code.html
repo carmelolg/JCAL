@@ -2,10 +2,11 @@
 {{- $lang := .Get "lang" -}}
 
 {{- if $file -}}
-  {{- $full_path := printf "%s/%s" .Page.File.Dir $file -}}
-  {{- with resources.Get $full_path -}}
+  {{- $full_path := printf "content/%s%s" .Page.File.Dir $file -}}
+  {{- $content := os.ReadFile $full_path -}}
+  {{- if $content -}}
 ```{{ $lang | lower }}
-{{ .Content }}
+{{ $content }}
 ```
   {{- else -}}
 {{ .Inner }}
