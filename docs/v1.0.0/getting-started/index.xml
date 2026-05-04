@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/v1.0.0/getting-started/</link>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 04 May 2026 21:29:48 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/v1.0.0/getting-started/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Mon, 04 May 2026 19:42:04 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/getting-started/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Getting Started</title>
-      <link>http://localhost:1313/JCAL/v1.0.0/getting-started/getting-started/</link>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v1.0.0/getting-started/getting-started/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/getting-started/</guid>
       <description>&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 &lt;h3 id=&#34;option-1--github-maven-registry&#34;&gt;Option 1 — GitHub Maven Registry&lt;/h3&gt;
 &lt;p&gt;JCAL is published on the &lt;strong&gt;GitHub Maven Registry&lt;/strong&gt;. Follow the
