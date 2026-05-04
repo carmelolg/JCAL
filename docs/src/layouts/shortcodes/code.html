@@ -1,0 +1,15 @@
+{{- $file := .Get "file" -}}
+{{- $lang := .Get "lang" -}}
+
+{{- if $file -}}
+  {{- $full_path := printf "%s/%s" .Page.File.Dir $file -}}
+  {{- with resources.Get $full_path -}}
+```{{ $lang | lower }}
+{{ .Content }}
+```
+  {{- else -}}
+{{ .Inner }}
+  {{- end -}}
+{{- else -}}
+{{ .Inner }}
+{{- end -}}

@@ -1,0 +1,6 @@
+{{- $style := .Get "style" -}}
+<div class="table-wrapper">
+  <table class="{{ $style }}">
+    {{ .Inner | markdownify }}
+  </table>
+</div>

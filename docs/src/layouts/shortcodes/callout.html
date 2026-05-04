@@ -1,0 +1,24 @@
+{{- $type := .Get "type" | default "info" -}}
+{{- $icon := "ℹ️" -}}
+{{- $class := "callout-info" -}}
+
+{{- if eq $type "warning" -}}
+  {{- $icon = "⚠️" -}}
+  {{- $class = "callout-warning" -}}
+{{- else if eq $type "error" -}}
+  {{- $icon = "❌" -}}
+  {{- $class = "callout-error" -}}
+{{- else if eq $type "note" -}}
+  {{- $icon = "📝" -}}
+  {{- $class = "callout-note" -}}
+{{- else if eq $type "success" -}}
+  {{- $icon = "✅" -}}
+  {{- $class = "callout-success" -}}
+{{- end -}}
+
+<div class="callout {{ $class }}">
+  <span class="callout-icon">{{ $icon }}</span>
+  <div class="callout-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
