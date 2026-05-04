@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/about-jcal/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 19:48:53 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/about-jcal/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Overview</title>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/about-jcal/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/about-jcal/overview/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-cellular-automaton&#34;&gt;What is a Cellular Automaton?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;Cellular Automaton (CA)&lt;/strong&gt; is a discrete computational model consisting of a grid of
+cells, each holding a finite state. At each time step, every cell updates its state
+according to a fixed &lt;strong&gt;transition function&lt;/strong&gt; that depends on the cell&amp;rsquo;s current state and
+the states of its immediate neighbors.&lt;/p&gt;
+&lt;p&gt;Despite their simple rules, cellular automata can produce remarkably complex behavior —
+making them a powerful tool for modeling natural phenomena such as population dynamics,
+fluid flow, landslides, and lava flows.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

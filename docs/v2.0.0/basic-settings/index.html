@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="base-url" content="/JCAL/">
+
+<title>Implementing a Rule — JCAL Docs</title>
+<meta name="description" content="Official documentation for JCAL — Java Cellular Automata Library">
+
+
+<meta name="author" content="carmelolg">
+
+
+
+<meta property="og:title"       content="Implementing a Rule">
+<meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library">
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v2.0.0/basic-settings/">
+
+
+
+<link rel="canonical" href="https://carmelolg.github.io/JCAL/v2.0.0/basic-settings/">
+
+
+
+<link rel="alternate" type="application/rss&#43;xml" href="https://carmelolg.github.io/JCAL/v2.0.0/basic-settings/index.xml" title="JCAL Docs">
+
+
+
+
+<link rel="stylesheet" href="/JCAL/css/main.min.50359e498833ba5ee76f58bb81d27a1e77ffd4bc0b06546f3a6645d835b9bd87.css" integrity="sha256-UDWeSYgzul7nb1i7gdJ6Hnf/1LwLBlRvOmZF2DW5vYc=">
+
+
+<link rel="stylesheet" href="/JCAL/css/shortcodes.css">
+
+
+<link rel="icon" type="image/svg+xml" href="/JCAL/favicon.svg">
+
+
+<script>
+  (function(){
+    var t=localStorage.getItem("shiori-theme");
+    if(t){document.documentElement.setAttribute("data-theme",t);}
+    else if(window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}
+  })();
+</script>
+
+
+
+<script src="/JCAL/js/main.min.70f17b946abaab707e5eaecaf9de1c9e7be5bd8dc9224f4dca2489f4d105b460.js" integrity="sha256-cPF7lGq6q3B&#43;Xq7K&#43;d4cnnvlvY3JIk9NyiSJ9NEFtGA=" defer></script>
+
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <header class="site-header" role="banner">
+  
+  <button id="hamburger" class="icon-btn" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="site-sidebar">
+    <svg viewBox="0 0 16 16"><path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"/></svg>
+  </button>
+
+  
+  <a class="header-logo" href="/JCAL/" aria-label="JCAL Docs home">
+    
+    <span class="header-logo-text">JCAL</span>
+  </a>
+  <div class="header-search-wrap">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+      <input
+        id="header-search-input"
+        class="search-input"
+        type="search"
+        placeholder="Search docs…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search documentation"
+      >
+      <div id="header-search-results" class="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+
+  
+  <div class="header-actions">
+    
+    <a href="https://github.com/carmelolg/JCAL" class="icon-btn" target="_blank" rel="noopener" aria-label="GitHub repository">
+      <svg viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+    </a>
+    
+
+    
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+      
+      <svg class="icon-sun" viewBox="0 0 24 24" style="display:none">
+        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        <line x1="12" y1="2"  x2="12" y2="5"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="2"  y1="12" x2="5"  y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.22"  y1="4.22"  x2="6.34"  y2="6.34"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      
+      <svg class="icon-moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+
+  <div class="layout">
+    <aside class="site-sidebar" id="site-sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar-mobile-header">
+  <button id="sidebar-close" class="icon-btn sidebar-close" type="button" aria-label="Close sidebar">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.22 3.22a.75.75 0 0 1 1.06 0L8 6.94l3.72-3.72a.75.75 0 1 1 1.06 1.06L9.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06L8 9.06l-3.72 3.72a.75.75 0 1 1-1.06-1.06L6.94 8 3.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg>
+  </button>
+</div>
+
+
+
+<div class="sidebar-version">
+  <select id="version-picker" class="version-picker" aria-label="Documentation version">
+    
+    <option value="/JCAL/v2.0.0/" selected>v2.0.0</option>
+    
+    <option value="/JCAL/v1.0.0/" >v1.0.0</option>
+    
+  </select>
+</div>
+
+
+
+<div class="sidebar-search-wrap">
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+    <input
+      id="sidebar-search-input"
+      class="search-input"
+      type="search"
+      placeholder="Search docs…"
+      autocomplete="off"
+      spellcheck="false"
+      aria-label="Search"
+    >
+    <div id="sidebar-search-results" class="search-results" role="listbox"></div>
+  </div>
+</div>
+
+<nav aria-label="Documentation navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Getting Started</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/getting-started/overview/" aria-current="false">Overview
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/getting-started/getting-started/" aria-current="false">Getting Started
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Reference</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/implementing-a-rule/" aria-current="false">Implementing a Rule
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/configuration/" aria-current="false">Configuration Reference
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/neighborhoods/" aria-current="false">Neighborhoods
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/custom-state/" aria-current="false">Custom State Objects
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/complex-ca/" aria-current="false">Complex Cellular Automata
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/parallel-execution/" aria-current="false">Parallel Execution
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/reference/3d-4d-support/" aria-current="false">3D and 4D Support
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Design</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/design/architecture/" aria-current="false">Architecture
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Examples</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/examples/game-of-life-2d/" aria-current="false">Conway&#39;s Game of Life (2D)
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/examples/game-of-life-3d/" aria-current="false">Conway&#39;s Game of Life (3D)
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/examples/heat-diffusion/" aria-current="false">Heat Diffusion
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Appendix</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/appendix/faq/" aria-current="false">FAQ
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0/appendix/changelog/" aria-current="false">Changelog
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    </nav>
+
+    </aside>
+
+    <main class="main-content" id="main-content">
+      
+<div class="content-inner">
+
+  
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="/JCAL/">Home</a>
+  <span class="sep" aria-hidden="true">/</span>
+
+  
+    
+    
+      
+      
+      
+      <a href="/JCAL/v2.0.0/">v2.0.0</a>
+      <span class="sep" aria-hidden="true">/</span>
+    
+  
+
+  
+  
+    <a href="/JCAL/v2.0.0/">JCAL Documentation</a>
+    <span class="sep" aria-hidden="true">/</span>
+  
+  
+
+  <span class="current" aria-current="page">Implementing a Rule</span>
+</nav>
+
+
+
+  <h1 class="page-title">Implementing a Rule</h1>
+
+  
+  <p class="page-summary">How to write a transition function using CellularAutomataExecutor.</p>
+  
+
+  
+  <div class="prose" style="margin-bottom: var(--sp-8);"><h2 id="the-transition-function">The transition function</h2>
+<p>In JCAL, the <strong>transition function</strong> (σ) is the core of any cellular automaton. It
+determines how each cell evolves from one generation to the next.</p>
+<p>To define a transition function, extend <code>CellularAutomataExecutor</code> and implement the
+<code>singleRun</code> method. JCAL calls this method <strong>once per cell per generation</strong>, passing the
+current cell and its neighbors. Return a new <code>DefaultCell</code> carrying the cell&rsquo;s next state.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">singleRun(cell, neighbors) → next cell state
+</span></span></code></pre></div><h3 id="example-conways-game-of-life-executor">Example: Conway&rsquo;s Game of Life executor</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GOLExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		
+</span></span></span><span class="line"><span class="cl"><span class="w">       	</span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">dead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       	</span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">Long</span><span class="w"> </span><span class="n">alives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="na">currentStatus</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">alive</span><span class="p">)).</span><span class="na">count</span><span class="p">();</span><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">toReturn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">());</span><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="na">currentStatus</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">dead</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">alives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">toReturn</span><span class="p">.</span><span class="na">currentStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alive</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="na">currentStatus</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">alive</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">alives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">alives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">toReturn</span><span class="p">.</span><span class="na">currentStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alive</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">toReturn</span><span class="p">.</span><span class="na">currentStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dead</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="n">toReturn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+<h3 id="running-the-cellular-automaton">Running the cellular automaton</h3>
+<p>Once you have an executor, wire it together with a configured grid and call <code>run</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">WIDTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">10</span><span class="p">,</span><span class="w"> </span><span class="n">HEIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">dead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultStatus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span><span class="w"> </span><span class="n">alive</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initalState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">initalState</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">initalState</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">initalState</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">initalState</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		
+</span></span></span><span class="line"><span class="cl"><span class="w">	    
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="n">configBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CellularAutomataConfiguration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">configBuilder</span><span class="p">.</span><span class="na">setHeight</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">setTotalIterations</span><span class="p">(</span><span class="n">10</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">setDefaultStatus</span><span class="p">(</span><span class="n">Main</span><span class="p">.</span><span class="na">dead</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">setNeighborhoodType</span><span class="p">(</span><span class="n">NeighborhoodType</span><span class="p">.</span><span class="na">MOORE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">setInitalState</span><span class="p">(</span><span class="n">initalState</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="cm">/** ... */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	    
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">CellularAutomata</span><span class="w"> </span><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomata</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">GOLExecutor</span><span class="w"> </span><span class="n">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GOLExecutor</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">executor</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">ca</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ca</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="parallel-execution">Parallel execution</h2>
+<p>For large grids, replace <code>CellularAutomataExecutor</code> with
+<code>CellularAutomataParallelExecutor</code>. The <code>singleRun</code> signature is identical; JCAL
+distributes the work across threads automatically.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyParallelRule</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataParallelExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// same logic as the sequential version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><hr>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../getting-started/">Getting Started</a> — a complete Quick Start example.</li>
+<li><a href="../builder-settings/">Configuration Reference</a> — all builder options.</li>
+<li><a href="../custom-status/">Custom State Objects</a> — enrich cell state beyond key/value strings.</li>
+<li><a href="../cca/">Complex Cellular Automata</a> — the refinements hook for CCA pre-processing.</li>
+</ul>
+</div>
+  
+
+  
+  
+  
+  <div class="section-grid">
+    
+  </div>
+  
+
+</div>
+
+    </main>
+
+    
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+  <div class="footer-content">
+    <div class="footer-grid">
+      
+      <div class="footer-brand">
+        <a href="/JCAL/" class="footer-logo">JCAL</a>
+        
+        <p class="footer-tagline">A lightweight Java library for Cellular Automata simulations</p>
+        
+        
+        <p class="footer-license">
+          CC BY-NC-SA 4.0
+          
+          <a href="https://github.com/carmelolg/JCAL/blob/master/LICENSE.md" target="_blank" rel="noopener">License</a>
+          
+        </p>
+        
+        <div class="footer-social">
+          
+          <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+            </svg>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">Documentation</p>
+        <nav class="footer-nav" aria-label="Documentation links">
+          
+          
+            
+            
+              
+                
+              
+            
+          
+          
+          
+            
+              <a href="/JCAL/v2.0.0/about-jcal/" class="footer-nav-link">Overview</a>
+            
+              <a href="/JCAL/v2.0.0/getting-started/" class="footer-nav-link">Getting Started</a>
+            
+              <a href="/JCAL/v2.0.0/basic-settings/" class="footer-nav-link">Implementing a Rule</a>
+            
+              <a href="/JCAL/v2.0.0/builder-settings/" class="footer-nav-link">Configuration Reference</a>
+            
+              <a href="/JCAL/v2.0.0/custom-status/" class="footer-nav-link">Custom State Objects</a>
+            
+              <a href="/JCAL/v2.0.0/cca/" class="footer-nav-link">Complex Cellular Automata</a>
+            
+              <a href="/JCAL/v2.0.0/faq/" class="footer-nav-link">FAQ</a>
+            
+              <a href="/JCAL/v2.0.0/reference/" class="footer-nav-link">Reference</a>
+            
+              <a href="/JCAL/v2.0.0/design/" class="footer-nav-link">Design</a>
+            
+              <a href="/JCAL/v2.0.0/examples/" class="footer-nav-link">Examples</a>
+            
+              <a href="/JCAL/v2.0.0/appendix/" class="footer-nav-link">Appendix</a>
+            
+          
+        </nav>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">About</p>
+        <p class="footer-meta">
+          Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
+        </p>
+        <p class="footer-meta">
+          <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
+          theme by <a href="https://github.com/carmelolg" target="_blank" rel="noopener">carmelolg</a>
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="footer-bottom">
+      
+      <span>&copy; 2026 carmelolg — all rights reserved</span>
+      
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

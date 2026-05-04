@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Examples on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/v2.0.0/examples/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 19:48:53 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/examples/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Conway&#39;s Game of Life (2D)</title>
+      <link>https://carmelolg.github.io/JCAL/v2.0.0/examples/game-of-life-2d/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/v2.0.0/examples/game-of-life-2d/</guid>
+      <description>Classic two-state 2D cellular automaton with Moore neighborhood.</description>
+    </item>
+    
+    <item>
+      <title>Conway&#39;s Game of Life (3D)</title>
+      <link>https://carmelolg.github.io/JCAL/v2.0.0/examples/game-of-life-3d/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/v2.0.0/examples/game-of-life-3d/</guid>
+      <description>Three-dimensional cellular automaton with Carter Bays&amp;rsquo; S5,6/B5 rules.</description>
+    </item>
+    
+    <item>
+      <title>Heat Diffusion</title>
+      <link>https://carmelolg.github.io/JCAL/v2.0.0/examples/heat-diffusion/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/v2.0.0/examples/heat-diffusion/</guid>
+      <description>Multi-valued cell states and Von Neumann neighborhood heat propagation.</description>
+    </item>
+    
+  </channel>
+</rss>
