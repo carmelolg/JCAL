@@ -15,6 +15,8 @@ publishDir   = ".."
   quickStartURL = "/articles/getting-started/"
   heroTitle     = "JCAL <span>Documentation</span>"
   dateFormat    = "January 2, 2006"
+  license       = "CC BY-NC-SA 4.0"
+  licenseURL    = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 [markup]
   [markup.highlight]

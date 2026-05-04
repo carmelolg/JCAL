@@ -2,36 +2,6 @@
 title: "JCAL Documentation"
 ---
 
-## 📚 Choose Your Version
-
-<div class="row g-3 mb-5">
-  <div class="col-md-6">
-    <div class="card h-100 border-primary">
-      <div class="card-body">
-        <h5 class="card-title">✨ v2.0.0-rc2 (Current)</h5>
-        <p class="card-text text-muted">
-          Latest release with n-dimensional support (2D/3D/4D), production-ready logging, and enhanced features.
-        </p>
-        <a href="/v2.0.0-rc2/" class="btn btn-primary btn-sm">View Documentation</a>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-md-6">
-    <div class="card h-100 border-secondary">
-      <div class="card-body">
-        <h5 class="card-title">🏛️ v1.0.0 (Stable)</h5>
-        <p class="card-text text-muted">
-          First stable release - foundation for cellular automata modeling. Well-tested and production-ready.
-        </p>
-        <a href="/v1.0.0/" class="btn btn-secondary btn-sm">View Documentation</a>
-      </div>
-    </div>
-  </div>
-</div>
-
----
-
 ## What JCAL Is
 
 **JCAL** (Java Cellular Automata Library) is a lightweight Java library for building and
