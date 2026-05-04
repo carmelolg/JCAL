@@ -11,11 +11,6 @@ then let JCAL handle the rest.
 
 **Latest Version**: [v2.0.0]({{< ref "/v2.0.0" >}})
 
-<div class="home-buttons">
-  <a href="{{< ref "/v2.0.0/getting-started/getting-started" >}}" class="btn btn-primary">Get Started</a>
-  <a href="https://github.com/carmelolg/JCAL" class="btn btn-secondary">View on GitHub</a>
-</div>
-
 ## Documentation Versions
 
 Select a documentation version:
