@@ -76,7 +76,7 @@ public class CustomStateExample {
 
         // Print the resulting grid (cell values: 0=cold, 1=warm, 2=hot)
         logger.info("Grid after 3 iterations (0=cold, 1=warm, 2=hot):");
-        logger.info("{}", ca);
+        logger.info("\n{}", ca);
     }
 
     // -------------------------------------------------------------------------

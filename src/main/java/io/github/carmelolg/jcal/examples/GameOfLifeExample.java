@@ -73,7 +73,7 @@ public class GameOfLifeExample {
 
         // Print the resulting grid (each cell shows its status value)
         logger.info("Grid after 2 iterations:");
-        logger.info("{}", ca);
+        logger.info("\n{}", ca);
     }
 
     // -------------------------------------------------------------------------
