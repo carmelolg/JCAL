@@ -39,9 +39,13 @@ publishDir   = ".."
 [menu]
   [[menu.main]]
     name   = "Articles"
-    url    = "/articles/"
+    url    = "/v2.0.0-rc2/articles/"
     weight = 1
   [[menu.main]]
     name   = "Design"
-    url    = "/design/"
+    url    = "/v2.0.0-rc2/design/"
     weight = 2
+  [[menu.main]]
+    name   = "Reference"
+    url    = "/v2.0.0-rc2/reference/"
+    weight = 3

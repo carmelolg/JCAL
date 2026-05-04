@@ -1,5 +1,6 @@
 ---
 title: "JCAL Documentation"
+menu: "main"
 ---
 
 ## 📚 Choose Your Version
