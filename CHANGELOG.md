@@ -7,6 +7,34 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.0.0] — 2026-05-04
+
+### Added
+- **SLF4J logging integration** — production-ready logging across all core components
+  - INFO level: CA initialization, execution lifecycle
+  - DEBUG level: grid operations, transitions, refinements
+  - WARN/ERROR level: validation failures, configuration issues
+- Comprehensive Javadoc enhancements across all public APIs
+- GitHub Pages documentation site with versioned content (v1.0.0, v2.0.0)
+
+### Changed
+- Code cleanup: removed 4 unused utility methods (`isInside/Cell[][]`, `setConfig()`, `setNeighborhood()`, `getCells()`)
+- Dependencies: added `slf4j-api:2.0.13` and `slf4j-simple:2.0.13` for production logging
+- Documentation restructured with Hugo and Shiori theme for better user experience
+- Shiori theme updated: responsive design, improved navigation, versioned sidebar
+
+### Fixed
+- Removed dead code in `CellularAutomata.init()` (unreachable `try-catch`)
+- GitHub Pages build issues resolved (recursive symlink exclusion)
+- Homepage button paths corrected for multi-version documentation
+
+### Tests
+- Test suite reduced from 148 to **140 tests** (removed tests for deleted methods)
+- Maintained **100% instruction coverage** (JaCoCo) after code cleanup
+- All 140 tests passing on production build
+
+---
+
 ## [2.0.0-rc2] — 2026-05-04
 
 ### Added
@@ -116,7 +144,9 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/carmelolg/JCAL/compare/2.0.0-rc1...HEAD
+[Unreleased]: https://github.com/carmelolg/JCAL/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/carmelolg/JCAL/compare/2.0.0-rc2...2.0.0
+[2.0.0-rc2]: https://github.com/carmelolg/JCAL/compare/2.0.0-rc1...2.0.0-rc2
 [2.0.0-rc1]: https://github.com/carmelolg/JCAL/compare/1.0.0...2.0.0-rc1
 [1.0.0]: https://github.com/carmelolg/JCAL/compare/1.0.0.alpha...1.0.0
 [1.0.0-alpha]: https://github.com/carmelolg/JCAL/compare/0.1.0-alpha...1.0.0.alpha

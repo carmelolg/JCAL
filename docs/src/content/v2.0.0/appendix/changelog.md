@@ -1,6 +1,6 @@
 ---
 title: "Changelog"
-date: 2026-04-30
+date: 2026-05-04
 draft: false
 summary: "Release notes and version history for JCAL."
 toc: true
@@ -9,6 +9,34 @@ toc: true
 All notable changes to JCAL are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions align with [Semantic Versioning](https://semver.org/).
+
+---
+
+## [2.0.0] — 2026-05-04
+
+### Added
+- **SLF4J logging integration** — production-ready logging across all core components
+  - INFO level: CA initialization, execution lifecycle
+  - DEBUG level: grid operations, transitions, refinements
+  - WARN/ERROR level: validation failures, configuration issues
+- Comprehensive Javadoc enhancements across all public APIs
+- GitHub Pages documentation site with versioned content (v1.0.0, v2.0.0)
+
+### Changed
+- Code cleanup: removed 4 unused utility methods (`isInside/Cell[][]`, `setConfig()`, `setNeighborhood()`, `getCells()`)
+- Dependencies: added `slf4j-api:2.0.13` and `slf4j-simple:2.0.13` for production logging
+- Documentation restructured with Hugo and Shiori theme for better user experience
+- Shiori theme updated: responsive design, improved navigation, versioned sidebar
+
+### Fixed
+- Removed dead code in `CellularAutomata.init()` (unreachable `try-catch`)
+- GitHub Pages build issues resolved (recursive symlink exclusion)
+- Homepage button paths corrected for multi-version documentation
+
+### Tests
+- Test suite reduced from 148 to **140 tests** (removed tests for deleted methods)
+- Maintained **100% instruction coverage** (JaCoCo) after code cleanup
+- All 140 tests passing on production build
 
 ---
 
