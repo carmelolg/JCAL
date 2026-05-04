@@ -9,10 +9,10 @@ simulating [Cellular Automata](https://mathworld.wolfram.com/CellularAutomaton.h
 minimal boilerplate. Define your grid, states, neighborhood strategy, and transition rule —
 then let JCAL handle the rest.
 
-**Latest Version**: [v2.0.0](/JCAL/v2.0.0-rc2/)
+**Latest Version**: [v2.0.0](/JCAL/v2.0.0/)
 
 <div class="home-buttons">
-  <a href="/JCAL/v2.0.0-rc2/getting-started/" class="btn btn-primary">Get Started</a>
+  <a href="/JCAL/v2.0.0/getting-started/" class="btn btn-primary">Get Started</a>
   <a href="https://github.com/carmelolg/JCAL" class="btn btn-secondary">View on GitHub</a>
 </div>
 
