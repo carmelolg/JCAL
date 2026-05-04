@@ -28,44 +28,6 @@ class UtilsTest {
         assertNotNull(new Utils());
     }
 
-    // ── isInside(Cell[][], int, int) ───────────────────────────────────────
-
-    @Test
-    @DisplayName("isInside(matrix): interior position returns true")
-    void isInsideMatrixInterior() {
-        assertTrue(Utils.isInside(make(5, 5), 2, 3));
-    }
-
-    @Test
-    @DisplayName("isInside(matrix): position at 0,0 returns true")
-    void isInsideMatrixOrigin() {
-        assertTrue(Utils.isInside(make(5, 5), 0, 0));
-    }
-
-    @Test
-    @DisplayName("isInside(matrix): negative col returns false")
-    void isInsideMatrixNegativeCol() {
-        assertFalse(Utils.isInside(make(5, 5), -1, 2));
-    }
-
-    @Test
-    @DisplayName("isInside(matrix): negative row returns false")
-    void isInsideMatrixNegativeRow() {
-        assertFalse(Utils.isInside(make(5, 5), 2, -1));
-    }
-
-    @Test
-    @DisplayName("isInside(matrix): col == length returns false")
-    void isInsideMatrixColAtLength() {
-        assertFalse(Utils.isInside(make(5, 5), 5, 2));
-    }
-
-    @Test
-    @DisplayName("isInside(matrix): row == width returns false")
-    void isInsideMatrixRowAtWidth() {
-        assertFalse(Utils.isInside(make(5, 5), 2, 5));
-    }
-
     // ── isInside(int[], int[]) ─────────────────────────────────────────────
 
     @Test

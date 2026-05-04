@@ -7,7 +7,7 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [2.0.0-rc2] — 2026-05-04
 
 ### Added
 - `ExamplesTest` — smoke tests and branch-coverage tests for all three example programs

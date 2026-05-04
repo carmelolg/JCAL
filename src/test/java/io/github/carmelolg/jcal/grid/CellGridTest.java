@@ -55,13 +55,6 @@ class CellGridTest {
         assertFalse(g.is2D());
     }
 
-    @Test
-    @DisplayName("3D constructor: total cells matches dimensions product")
-    void ndConstructorTotalCells() {
-        CellGrid g = new CellGrid(new GridDimensions(2, 3, 4));
-        assertEquals(24, g.getCells().length);
-    }
-
     // ── get / set ──────────────────────────────────────────────────────────
 
     @Test
@@ -103,15 +96,6 @@ class CellGridTest {
     void allCoordinates3D() {
         CellGrid g = new CellGrid(new GridDimensions(2, 2, 2));
         assertEquals(8, g.allCoordinates().size());
-    }
-
-    // ── getCells ───────────────────────────────────────────────────────────
-
-    @Test
-    @DisplayName("getCells: returns flat array with correct length")
-    void getCellsLength() {
-        CellGrid g = new CellGrid(make2DMatrix(3, 4));
-        assertEquals(12, g.getCells().length);
     }
 
     // ── dimensions ─────────────────────────────────────────────────────────

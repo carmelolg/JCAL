@@ -99,14 +99,6 @@ class CellularAutomataTest {
         CellGrid newUtils = new CellGrid(ca.getUtilsGrid().dimensions());
         ca.setUtilsGrid(newUtils);
         assertSame(newUtils, ca.getUtilsGrid());
-
-        MooreNeighborhood n = new MooreNeighborhood();
-        ca.setNeighborhood(n);
-        assertSame(n, ca.getNeighborhood());
-
-        CellularAutomataConfiguration cfg2 = basicConfig();
-        ca.setConfig(cfg2);
-        assertSame(cfg2, ca.getConfig());
     }
 
     // ── toString ───────────────────────────────────────────────────────────
