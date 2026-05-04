@@ -1,0 +1,10 @@
+# GitHub Pages Jekyll configuration for JCAL docs
+# This file tells Jekyll to build from docs/src and exclude the theme submodule
+
+source: src
+destination: _site
+
+# Exclude submodule from Jekyll processing
+exclude:
+  - src/themes/
+  - node_modules/
