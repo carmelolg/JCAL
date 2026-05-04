@@ -3,12 +3,16 @@ package io.github.carmelolg.jcal.core.parallel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
 public class CellularAutomataRunner implements Callable<List<Cell>> {
+
+	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRunner.class);
 
 	private CellularAutomata ca;
 	private int row, offset;
@@ -30,6 +34,7 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 
 	@Override
 	public List<Cell> call() throws Exception {
+		logger.debug("Processing transition for row {} with offset {}", row, offset);
 		List<Cell> results = new ArrayList<Cell>();
 		CellGrid grid = ca.getGrid();
 		CellGrid utilsGrid = ca.getUtilsGrid();

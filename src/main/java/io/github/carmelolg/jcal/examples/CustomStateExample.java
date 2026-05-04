@@ -3,6 +3,9 @@ package io.github.carmelolg.jcal.examples;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
@@ -38,6 +41,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  */
 public class CustomStateExample {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomStateExample.class);
+
     // --- Step 1: Define multi-valued states ---
     // The second argument (the value) can be any Object: String, Integer, Map, POJO, …
     static final CellState COLD = new CellState("cold", 0);
@@ -70,8 +75,8 @@ public class CustomStateExample {
         ca = rule.run(ca);   // evolves for 3 steps
 
         // Print the resulting grid (cell values: 0=cold, 1=warm, 2=hot)
-        System.out.println("Grid after 3 iterations (0=cold, 1=warm, 2=hot):");
-        System.out.println(ca);
+        logger.info("Grid after 3 iterations (0=cold, 1=warm, 2=hot):");
+        logger.info("{}", ca);
     }
 
     // -------------------------------------------------------------------------

@@ -1,6 +1,8 @@
 package io.github.carmelolg.jcal.core;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
@@ -43,6 +45,8 @@ import io.github.carmelolg.jcal.grid.Cell;
  */
 public abstract class CellularAutomataExecutor {
 
+	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataExecutor.class);
+
 	/**
 	 * Run the transaction function
 	 * 
@@ -52,15 +56,23 @@ public abstract class CellularAutomataExecutor {
 	 */
 	public CellularAutomata run(CellularAutomata ca) throws Exception {
 
+		logger.info("Starting execution with {} iterations", 
+			ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
+		
 		if (ca.getConfig().isInfinite()) {
 			while (!Thread.currentThread().isInterrupted()) {
 				innerRun(ca);
 			}
 		} else {
-			for (int i = 0; i < ca.getConfig().getTotalIterations(); i++) {
+			int totalIterations = ca.getConfig().getTotalIterations();
+			for (int i = 0; i < totalIterations; i++) {
 				innerRun(ca);
+				if ((i + 1) % Math.max(1, totalIterations / 10) == 0 || i == 0) {
+					logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
+				}
 			}
 		}
+		logger.info("Execution completed");
 		return ca;
 
 	}
@@ -70,18 +82,23 @@ public abstract class CellularAutomataExecutor {
 		CellGrid current = ca.getGrid();
 		CellGrid next = ca.getUtilsGrid();
 
+		logger.debug("Starting iteration cycle");
+		
 		// Step 1: refinements in-place on current
+		logger.debug("Applying refinements");
 		for (int[] coords : current.allCoordinates()) {
 			current.set(coords, refinements(current.get(coords)));
 		}
 
 		// Step 2: transition — read current, write next
+		logger.debug("Computing transitions");
 		for (int[] coords : current.allCoordinates()) {
 			next.set(coords, singleRun(current.get(coords),
 					ca.getNeighborhood().getNeighbors(current, coords)));
 		}
 
 		// Step 3: double-buffer swap
+		logger.debug("Swapping buffers");
 		ca.setGrid(next);
 		ca.setUtilsGrid(current);
 

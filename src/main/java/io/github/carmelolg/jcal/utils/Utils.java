@@ -15,20 +15,6 @@ import io.github.carmelolg.jcal.grid.Cell;
 public class Utils {
 
     /**
-     * This method check if a position in matrix is out of bound or not.
-     *
-     * @param <b>matrix</b> the full matrix
-     * @param <b>col</b>    the column expressed by int
-     * @param <b>row</b>    the row expressed by int
-     * @return <b>true</b> if the (col,row) position is inside the matrix, <b>false</b> otherwise
-     */
-    public static boolean isInside(Cell[][] matrix, int col, int row) {
-        if ((col < 0) || (row < 0)) return false;
-        if ((row >= matrix[0].length) || (col >= matrix.length)) return false;
-        return true;
-    }
-
-    /**
      * Checks if the given coordinates are inside a grid with the given sizes.
      *
      * @param sizes  the sizes of each dimension

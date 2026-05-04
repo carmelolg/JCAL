@@ -81,9 +81,4 @@ public class CellGrid {
 	public boolean is2D() {
 		return dims.getDimensionCount() == 2;
 	}
-
-	/** Returns the underlying flat cell array. */
-	public Cell[] getCells() {
-		return cells;
-	}
 }

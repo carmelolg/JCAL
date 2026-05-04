@@ -1,6 +1,8 @@
 package io.github.carmelolg.jcal.core;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.neighborhood.Neighborhood;
 import io.github.carmelolg.jcal.grid.Cell;
@@ -36,6 +38,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  * @see io.github.carmelolg.jcal.core.CellularAutomata
  */
 public class CellularAutomataConfiguration {
+
+    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataConfiguration.class);
 
     private int[] dimensions = {100, 100};
     private boolean isInfinite;
@@ -113,6 +117,8 @@ public class CellularAutomataConfiguration {
     }
 
     public static class CellularAutomataConfigurationBuilder {
+
+        private static final Logger logger = LoggerFactory.getLogger(CellularAutomataConfigurationBuilder.class);
 
         /**
          * Square map is the default
@@ -258,6 +264,9 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfiguration build() {
+            logger.debug("Building configuration: dimensions={}, infinite={}, iterations={}, neighborhood={}",
+                java.util.Arrays.toString(dimensions), isInfinite, totalIterations,
+                neighborhoodType != null ? neighborhoodType : (neighborhood != null ? neighborhood.getClass().getSimpleName() : "NONE"));
             return new CellularAutomataConfiguration(this);
         }
 

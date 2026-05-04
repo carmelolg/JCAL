@@ -3,6 +3,9 @@ package io.github.carmelolg.jcal.examples;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
@@ -41,6 +44,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  */
 public class GameOfLife3DExample {
 
+	private static final Logger logger = LoggerFactory.getLogger(GameOfLife3DExample.class);
+
 	public static final CellState DEAD  = new CellState("dead",  "0");
 	public static final CellState ALIVE = new CellState("alive", "1");
 
@@ -73,12 +78,12 @@ public class GameOfLife3DExample {
 		ca = rule.run(ca);
 
 		// Print the alive cells after 3 iterations (still life: identical to the initial state)
-		System.out.println("Alive cells after 3 iterations (Carter Bays' 3D still life):");
+		logger.info("Alive cells after 3 iterations (Carter Bays' 3D still life):");
 		CellGrid grid = ca.getGrid();
 		for (int[] coords : grid.allCoordinates()) {
 			Cell cell = grid.get(coords);
 			if (cell.getCurrentStatus().equals(ALIVE)) {
-				System.out.printf("  (%d,%d,%d)%n", coords[0], coords[1], coords[2]);
+				logger.info("  ({},{},{})", coords[0], coords[1], coords[2]);
 			}
 		}
 	}

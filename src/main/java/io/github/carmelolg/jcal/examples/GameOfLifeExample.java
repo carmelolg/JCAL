@@ -3,6 +3,9 @@ package io.github.carmelolg.jcal.examples;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
@@ -34,6 +37,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  * @see CustomStateExample for a more advanced example with multi-value cell states
  */
 public class GameOfLifeExample {
+
+    private static final Logger logger = LoggerFactory.getLogger(GameOfLifeExample.class);
 
     // --- Step 1: Define possible cell states ---
     // A status has a string key (for identification) and an arbitrary value (for display/logic).
@@ -67,8 +72,8 @@ public class GameOfLifeExample {
         ca = rule.run(ca);                                   // evolves for 2 steps
 
         // Print the resulting grid (each cell shows its status value)
-        System.out.println("Grid after 2 iterations:");
-        System.out.println(ca);
+        logger.info("Grid after 2 iterations:");
+        logger.info("{}", ca);
     }
 
     // -------------------------------------------------------------------------

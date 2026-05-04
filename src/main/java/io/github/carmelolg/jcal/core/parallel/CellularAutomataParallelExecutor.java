@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
@@ -26,6 +28,8 @@ import io.github.carmelolg.jcal.grid.Cell;
  */
 public abstract class CellularAutomataParallelExecutor {
 
+    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataParallelExecutor.class);
+
     /**
      * Run using parallelism the transaction function
      *
@@ -35,15 +39,23 @@ public abstract class CellularAutomataParallelExecutor {
      */
     public CellularAutomata run(CellularAutomata ca) throws Exception {
 
+        logger.info("Starting parallel execution with {} iterations", 
+            ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
+
         if (ca.getConfig().isInfinite()) {
             while (!Thread.currentThread().isInterrupted()) {
                 innerRun(ca);
             }
         } else {
-            for (int i = 0; i < ca.getConfig().getTotalIterations(); i++) {
+            int totalIterations = ca.getConfig().getTotalIterations();
+            for (int i = 0; i < totalIterations; i++) {
                 innerRun(ca);
+                if ((i + 1) % Math.max(1, totalIterations / 10) == 0 || i == 0) {
+                    logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
+                }
             }
         }
+        logger.info("Parallel execution completed");
         return ca;
 
     }
@@ -51,8 +63,10 @@ public abstract class CellularAutomataParallelExecutor {
     private CellularAutomata innerRun(CellularAutomata ca) throws SecurityException {
 
         int rowCount = ca.getGrid().dimensions().getSize(0);
+        logger.debug("Starting parallel iteration cycle with {} rows", rowCount);
 
         // Step 1: refinements in-place on grid
+        logger.debug("Submitting refinement tasks");
         Collection<CellularAutomataRefinementRunner> refinementTasks = new ArrayList<CellularAutomataRefinementRunner>();
         for (int i = 0; i < rowCount; i++) {
             refinementTasks.add(new CellularAutomataRefinementRunner(ca, i, 1, this));
@@ -61,11 +75,14 @@ public abstract class CellularAutomataParallelExecutor {
             try {
                 task.call();
             } catch (Exception e) {
+                logger.error("Error during parallel refinement", e);
                 throw new RuntimeException(e);
             }
         });
+        logger.debug("Refinement tasks completed");
 
         // Step 2: transition — read grid, write utilsGrid
+        logger.debug("Submitting transition tasks");
         Collection<CellularAutomataRunner> tasks = new ArrayList<CellularAutomataRunner>();
         for (int i = 0; i < rowCount; i++) {
             tasks.add(new CellularAutomataRunner(ca, i, 1, this));
@@ -74,11 +91,14 @@ public abstract class CellularAutomataParallelExecutor {
             try {
                 task.call();
             } catch (Exception e) {
+                logger.error("Error during parallel transition", e);
                 throw new RuntimeException(e);
             }
         });
+        logger.debug("Transition tasks completed");
 
         // Step 3: double-buffer swap
+        logger.debug("Swapping buffers");
         CellGrid temp = ca.getGrid();
         ca.setGrid(ca.getUtilsGrid());
         ca.setUtilsGrid(temp);
