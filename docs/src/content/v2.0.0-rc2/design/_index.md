@@ -1,5 +1,6 @@
 ---
 title: "Design"
+weight: 30
 ---
 
 Architecture and design documentation for JCAL contributors and advanced users.

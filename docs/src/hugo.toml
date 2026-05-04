@@ -15,6 +15,7 @@ publishDir   = ".."
   license        = "https://github.com/carmelolg/JCAL/blob/master/LICENSE.md"
   github         = "https://github.com/carmelolg/JCAL"
   editBaseURL    = "https://github.com/carmelolg/JCAL/edit/master/docs/src/content"
+  showEditButton = false
   logoText       = "JCAL"
   quickStartURL  = "/v2.0.0-rc2/articles/getting-started/"
   heroTitle      = "JCAL <span>Documentation</span>"

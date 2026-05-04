@@ -60,6 +60,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.0.0-rc2/reference/implementing-a-rule/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.0.0-rc2/design/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0-rc2/reference/configuration/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -106,9 +109,6 @@
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/tags/architecture/</loc>
-    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://carmelolg.github.io/JCAL/v2.0.0-rc2/design/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/tags/internals/</loc>
