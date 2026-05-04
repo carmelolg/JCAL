@@ -89,3 +89,40 @@
   border-left-color: #00cc00;
   background-color: #e6ffe6;
 }
+
+/* Homepage buttons */
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: #0969da;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0860ca;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #0969da;
+  border-color: #0969da;
+}
+
+.btn-secondary:hover {
+  background-color: #f3f5f7;
+}
