@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articles on JCAL Docs</title>
+    <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 21:03:57 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/v2.0.0-rc2/articles/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Overview</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/overview/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/overview/</guid>
+      <description>What is a Cellular Automaton, and what is JCAL?</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/getting-started/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/getting-started/</guid>
+      <description>Install JCAL and run your first cellular automaton in minutes.</description>
+    </item>
+    
+    <item>
+      <title>Complete Examples</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/complete-examples/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/complete-examples/</guid>
+      <description>Fully-commented, runnable examples that demonstrate complete cellular automata implementations.</description>
+    </item>
+    
+    <item>
+      <title>Implementing a Rule</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/implementing-a-rule/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/implementing-a-rule/</guid>
+      <description>How to write a transition function using CellularAutomataExecutor.</description>
+    </item>
+    
+    <item>
+      <title>Configuration Reference</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/configuration/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/configuration/</guid>
+      <description>All options available on CellularAutomataConfigurationBuilder.</description>
+    </item>
+    
+    <item>
+      <title>Neighborhoods</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/neighborhoods/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/neighborhoods/</guid>
+      <description>Built-in and custom neighborhood strategies for 2D, 3D, and 4D grids.</description>
+    </item>
+    
+    <item>
+      <title>Custom State Objects</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/custom-state/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/custom-state/</guid>
+      <description>Model richer per-cell data by extending CellState with a custom class.</description>
+    </item>
+    
+    <item>
+      <title>Complex Cellular Automata</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/complex-ca/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/complex-ca/</guid>
+      <description>Model advanced phenomena with the refinements hook and custom state objects.</description>
+    </item>
+    
+    <item>
+      <title>Parallel Execution</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/parallel-execution/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/parallel-execution/</guid>
+      <description>Scale JCAL to large grids with CellularAutomataParallelExecutor.</description>
+    </item>
+    
+    <item>
+      <title>3D and 4D Support</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/3d-4d-support/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/3d-4d-support/</guid>
+      <description>Run cellular automata on 3D and 4D grids with built-in neighborhoods and a flat-array grid.</description>
+    </item>
+    
+    <item>
+      <title>FAQ</title>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/faq/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/faq/</guid>
+      <description>Frequently asked questions and common troubleshooting tips.</description>
+    </item>
+    
+  </channel>
+</rss>

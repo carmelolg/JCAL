@@ -6,15 +6,15 @@
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 May 2026 20:56:31 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 21:18:24 +0200</lastBuildDate>
     <atom:link href="https://carmelolg.github.io/JCAL/tags/internals/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Architecture</title>
-      <link>https://carmelolg.github.io/JCAL/design/architecture/</link>
+      <link>https://carmelolg.github.io/JCAL/v2.0.0-rc2/design/architecture/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/design/architecture/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v2.0.0-rc2/design/architecture/</guid>
       <description>Package structure, component roles, data flow, and extension points.</description>
     </item>
     

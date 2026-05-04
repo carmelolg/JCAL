@@ -32,7 +32,10 @@
 
 
 
-<link rel="stylesheet" href="/JCAL/css/main.min.cb24221b8806e88e4024e78b08b2534b72caec71d5a12a2180460626bcba2c7b.css" integrity="sha256-yyQiG4gG6I5AJOeLCLJTS3LK7HHVoSohgEYGJry6LHs=">
+<link rel="stylesheet" href="/JCAL/css/main.min.50359e498833ba5ee76f58bb81d27a1e77ffd4bc0b06546f3a6645d835b9bd87.css" integrity="sha256-UDWeSYgzul7nb1i7gdJ6Hnf/1LwLBlRvOmZF2DW5vYc=">
+
+
+<link rel="stylesheet" href="/JCAL/css/shortcodes.css">
 
 
 <link rel="icon" type="image/svg+xml" href="/JCAL/favicon.svg">
@@ -48,7 +51,7 @@
 
 
 
-<script src="/JCAL/js/main.min.3280a6c34e61e1692d2064519b0bf6ffc44e52a4d4cea8d25e864fcdd83d3d9d.js" integrity="sha256-MoCmw05h4WktIGRRmwv2/8ROUqTUzqjSXoZPzdg9PZ0=" defer></script>
+<script src="/JCAL/js/main.min.70f17b946abaab707e5eaecaf9de1c9e7be5bd8dc9224f4dca2489f4d105b460.js" integrity="sha256-cPF7lGq6q3B&#43;Xq7K&#43;d4cnnvlvY3JIk9NyiSJ9NEFtGA=" defer></script>
 
 </head>
 <body>
@@ -123,7 +126,13 @@
 
 
 <div class="sidebar-version">
-  <span class="version-tag">v2.0.0-rc2</span>
+  <select id="version-picker" class="version-picker" aria-label="Documentation version">
+    
+    <option value="/JCAL/v2.0.0-rc2/" selected>v2.0.0-rc2</option>
+    
+    <option value="/JCAL/v1.0.0/" >v1.0.0</option>
+    
+  </select>
 </div>
 
 
@@ -145,73 +154,111 @@
 </div>
 
 <nav aria-label="Documentation navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Getting Started</span>
 
-  
-  <div class="sidebar-section">
-    <span class="sidebar-section-title">Articles</span>
-
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/getting-started/overview/" aria-current="false">Overview
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/getting-started/getting-started/" aria-current="false">Getting Started
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
     
-    <ul class="sidebar-nav-list">
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/overview/" aria-current="false">Overview
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/getting-started/" aria-current="false">Getting Started
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/implementing-a-rule/" aria-current="false">Implementing a Rule
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/configuration/" aria-current="false">Configuration Reference
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/neighborhoods/" aria-current="false">Neighborhoods
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/custom-state/" aria-current="false">Custom State Objects
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/complex-ca/" aria-current="false">Complex Cellular Automata
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/parallel-execution/" aria-current="false">Parallel Execution
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/3d-4d-support/" aria-current="false">3D and 4D Support
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/faq/" aria-current="false">FAQ
-        </a>
-      </li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Reference</span>
 
-  
-  <div class="sidebar-section">
-    <span class="sidebar-section-title">Design</span>
-
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/implementing-a-rule/" aria-current="false">Implementing a Rule
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/configuration/" aria-current="false">Configuration Reference
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/neighborhoods/" aria-current="false">Neighborhoods
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/custom-state/" aria-current="false">Custom State Objects
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/complex-ca/" aria-current="false">Complex Cellular Automata
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/parallel-execution/" aria-current="false">Parallel Execution
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/reference/3d-4d-support/" aria-current="false">3D and 4D Support
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
     
-    <ul class="sidebar-nav-list">
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/design/architecture/" aria-current="false">Architecture
-        </a>
-      </li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  
-</nav>
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Examples</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/examples/game-of-life-2d/" aria-current="false">Conway&#39;s Game of Life (2D)
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/examples/game-of-life-3d/" aria-current="false">Conway&#39;s Game of Life (3D)
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/examples/heat-diffusion/" aria-current="false">Heat Diffusion
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Appendix</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/appendix/faq/" aria-current="false">FAQ
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/appendix/changelog/" aria-current="false">Changelog
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Design</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v2.0.0-rc2/design/architecture/" aria-current="false">Architecture
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    </nav>
 
     </aside>
 
@@ -241,11 +288,12 @@
 
       <div class="home-actions">
         
-        <a href="/articles/getting-started/" class="btn btn-primary">
+        
+        
+        <a href="/JCAL/v2.0.0-rc2/articles/getting-started/" class="btn btn-primary">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></svg>
           Get Started
         </a>
-        
         
         <a href="https://github.com/carmelolg/JCAL" class="btn btn-secondary" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
@@ -259,131 +307,37 @@
   
   <div class="content-inner">
     
-    <div class="prose" style="margin-bottom: var(--sp-10);"><h2 id="what-jcal-is">What JCAL Is</h2>
+    <div class="prose" style="margin-bottom: var(--sp-10);"><h2 id="what-is-jcal">What is JCAL?</h2>
 <p><strong>JCAL</strong> (Java Cellular Automata Library) is a lightweight Java library for building and
 simulating <a href="https://mathworld.wolfram.com/CellularAutomaton.html">Cellular Automata</a> with
 minimal boilerplate. Define your grid, states, neighborhood strategy, and transition rule —
 then let JCAL handle the rest.</p>
-<h2 id="formal-model">Formal Model</h2>
-<p>A Cellular Automaton is the quadruple <strong><code>&lt;Z^d, S, X, σ&gt;</code></strong>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Symbol</th>
-          <th>Meaning</th>
-          <th>JCAL type</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Z^d</strong></td>
-          <td><em>d</em>-dimensional grid of cells</td>
-          <td><code>CellGrid</code> (2D–4D, unified)</td>
-      </tr>
-      <tr>
-          <td><strong>S</strong></td>
-          <td>Set of possible cell states</td>
-          <td><code>CellState</code></td>
-      </tr>
-      <tr>
-          <td><strong>X</strong></td>
-          <td>Neighborhood strategy</td>
-          <td><code>Neighborhood</code> subclass</td>
-      </tr>
-      <tr>
-          <td><strong>σ</strong></td>
-          <td>Transition function</td>
-          <td><code>CellularAutomataExecutor</code> subclass</td>
-      </tr>
-  </tbody>
-</table>
-<h2 id="key-features">Key Features</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>☕ <strong>Idiomatic Java</strong></td>
-          <td>Fluent builder API, abstract base classes, standard collections</td>
-      </tr>
-      <tr>
-          <td>📐 <strong>Multi-dimensional</strong></td>
-          <td>2D, 3D, and 4D grids with matching built-in neighborhoods</td>
-      </tr>
-      <tr>
-          <td>🏘️ <strong>Built-in neighborhoods</strong></td>
-          <td>Moore and Von Neumann for 2D, 3D, and 4D</td>
-      </tr>
-      <tr>
-          <td>🔌 <strong>Extensible</strong></td>
-          <td>Custom states, neighborhoods, and rules with minimal code</td>
-      </tr>
-      <tr>
-          <td>⚙️ <strong>Complex CA support</strong></td>
-          <td>Refinement hook enables rich multi-value simulations</td>
-      </tr>
-      <tr>
-          <td>⚡ <strong>Parallel execution</strong></td>
-          <td><code>CellularAutomataParallelExecutor</code> — same API, more threads</td>
-      </tr>
-  </tbody>
-</table>
-<h2 id="quick-example">Quick Example</h2>
-<p>Conway&rsquo;s Game of Life in a few lines:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">dead</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">CellState</span><span class="w"> </span><span class="n">alive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Cell</span><span class="p">(</span><span class="n">alive</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">,</span><span class="w"> </span><span class="n">6</span><span class="p">)</span><span class="w">  </span><span class="c1">// vertical blinker</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">CellularAutomataConfiguration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="p">()</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">10</span><span class="p">).</span><span class="na">setHeight</span><span class="p">(</span><span class="n">10</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setTotalIterations</span><span class="p">(</span><span class="n">2</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setDefaultStatus</span><span class="p">(</span><span class="n">dead</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setNeighborhoodType</span><span class="p">(</span><span class="n">NeighborhoodType</span><span class="p">.</span><span class="na">MOORE</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setInitalState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">CellularAutomata</span><span class="w"> </span><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomata</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GameOfLifeExecutor</span><span class="p">().</span><span class="na">run</span><span class="p">(</span><span class="n">ca</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ca</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><h2 id="acknowledgements">Acknowledgements</h2>
-<p>Inspired by research carried out at the <a href="https://www.unical.it/">University of Calabria</a>
-on Cellular Automata models for natural-phenomena simulation.</p>
+<p><strong>Latest Version</strong>: <a href="/v2.0.0-rc2/">v2.0.0-rc2</a></p>
+<p>Select a documentation version to get started:</p>
 </div>
     
 
+    
     <div class="home-sections">
       <h2 class="home-sections-title">Documentation</h2>
       <div class="section-grid">
         
-        <a class="card" href="/JCAL/articles/">
-          <div class="card-icon">📖
-          </div>
-          <div class="card-title">Articles</div>
-          
-          <div class="card-description">10 pages</div>
-          
+        
+        <a class="card" href="/JCAL/v2.0.0-rc2/">
+          <div class="card-icon">📚</div>
+          <div class="card-title">v2.0.0-rc2</div>
+          <div class="card-description">View documentation</div>
         </a>
         
-        <a class="card" href="/JCAL/design/">
-          <div class="card-icon">🏗️
-          </div>
-          <div class="card-title">Design</div>
-          
-          <div class="card-description">1 pages</div>
-          
+        <a class="card" href="/JCAL/v1.0.0/">
+          <div class="card-icon">📚</div>
+          <div class="card-title">v1.0.0</div>
+          <div class="card-description">View documentation</div>
         </a>
         
       </div>
     </div>
+    
   </div>
 
 
@@ -393,16 +347,67 @@ on Cellular Automata models for natural-phenomena simulation.</p>
   </div>
 
   <footer class="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <span>
-      carmelolg — 
-      Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
-      &amp; <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
-    </span>
-    <div class="footer-links">
+  <div class="footer-content">
+    <div class="footer-grid">
       
-      <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-brand">
+        <a href="/JCAL/" class="footer-logo">JCAL</a>
+        
+        <p class="footer-tagline">A lightweight Java library for Cellular Automata simulations</p>
+        
+        
+        <p class="footer-license">
+          CC BY-NC-SA 4.0
+          
+          <a href="https://github.com/carmelolg/JCAL/blob/master/LICENSE.md" target="_blank" rel="noopener">License</a>
+          
+        </p>
+        
+        <div class="footer-social">
+          
+          <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+            </svg>
+          </a>
+          
+          
+        </div>
+      </div>
+
       
+      <div class="footer-section">
+        <p class="footer-section-title">Documentation</p>
+        <nav class="footer-nav" aria-label="Documentation links">
+          
+          
+            
+            
+              
+            
+          
+          
+          
+        </nav>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">About</p>
+        <p class="footer-meta">
+          Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
+        </p>
+        <p class="footer-meta">
+          <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
+          theme by <a href="https://github.com/carmelolg" target="_blank" rel="noopener">carmelolg</a>
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="footer-bottom">
+      
+      <span>&copy; 2026 carmelolg — all rights reserved</span>
       
     </div>
   </div>

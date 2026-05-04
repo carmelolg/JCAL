@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quickstart on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/tags/quickstart/</link>
+    <link>http://localhost:1313/JCAL/tags/quickstart/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 May 2026 20:56:31 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/tags/quickstart/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Mon, 04 May 2026 21:03:57 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/tags/quickstart/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Getting Started</title>
-      <link>https://carmelolg.github.io/JCAL/articles/getting-started/</link>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/getting-started/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/articles/getting-started/</guid>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/getting-started/</guid>
       <description>Install JCAL and run your first cellular automaton in minutes.</description>
     </item>
     

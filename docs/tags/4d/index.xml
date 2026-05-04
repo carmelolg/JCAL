@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>4d on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/tags/4d/</link>
+    <link>http://localhost:1313/JCAL/tags/4d/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 May 2026 20:56:31 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/tags/4d/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Mon, 04 May 2026 21:03:57 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/tags/4d/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>3D and 4D Support</title>
-      <link>https://carmelolg.github.io/JCAL/articles/3d-4d-support/</link>
+      <link>http://localhost:1313/JCAL/v2.0.0-rc2/articles/3d-4d-support/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/articles/3d-4d-support/</guid>
+      <guid>http://localhost:1313/JCAL/v2.0.0-rc2/articles/3d-4d-support/</guid>
       <description>Run cellular automata on 3D and 4D grids with built-in neighborhoods and a flat-array grid.</description>
     </item>
     

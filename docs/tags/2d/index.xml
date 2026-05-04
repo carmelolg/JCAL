@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2d on JCAL Docs</title>
+    <link>http://localhost:1313/JCAL/tags/2d/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 12:57:01 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/tags/2d/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Conway&#39;s Game of Life (2D)</title>
+      <link>http://localhost:1313/JCAL/examples/game-of-life-2d/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/JCAL/examples/game-of-life-2d/</guid>
+      <description>Classic two-state 2D cellular automaton with Moore neighborhood.</description>
+    </item>
+    
+  </channel>
+</rss>

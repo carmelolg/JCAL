@@ -27,7 +27,10 @@
 
 
 
-<link rel="stylesheet" href="/JCAL/css/main.min.cb24221b8806e88e4024e78b08b2534b72caec71d5a12a2180460626bcba2c7b.css" integrity="sha256-yyQiG4gG6I5AJOeLCLJTS3LK7HHVoSohgEYGJry6LHs=">
+<link rel="stylesheet" href="/JCAL/css/main.min.50359e498833ba5ee76f58bb81d27a1e77ffd4bc0b06546f3a6645d835b9bd87.css" integrity="sha256-UDWeSYgzul7nb1i7gdJ6Hnf/1LwLBlRvOmZF2DW5vYc=">
+
+
+<link rel="stylesheet" href="/JCAL/css/shortcodes.css">
 
 
 <link rel="icon" type="image/svg+xml" href="/JCAL/favicon.svg">
@@ -43,7 +46,7 @@
 
 
 
-<script src="/JCAL/js/main.min.3280a6c34e61e1692d2064519b0bf6ffc44e52a4d4cea8d25e864fcdd83d3d9d.js" integrity="sha256-MoCmw05h4WktIGRRmwv2/8ROUqTUzqjSXoZPzdg9PZ0=" defer></script>
+<script src="/JCAL/js/main.min.70f17b946abaab707e5eaecaf9de1c9e7be5bd8dc9224f4dca2489f4d105b460.js" integrity="sha256-cPF7lGq6q3B&#43;Xq7K&#43;d4cnnvlvY3JIk9NyiSJ9NEFtGA=" defer></script>
 
 </head>
 <body>
@@ -117,9 +120,11 @@
 
 
 
+
 <div class="sidebar-version">
   <span class="version-tag">v2.0.0-rc2</span>
 </div>
+
 
 
 
@@ -139,74 +144,7 @@
   </div>
 </div>
 
-<nav aria-label="Documentation navigation">
-
-  
-  <div class="sidebar-section">
-    <span class="sidebar-section-title">Articles</span>
-
-    
-    <ul class="sidebar-nav-list">
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/overview/" aria-current="false">Overview
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/getting-started/" aria-current="false">Getting Started
-        </a>
-      </li>
-      <li class="sidebar-nav-item active">
-        <a href="/JCAL/articles/implementing-a-rule/" aria-current="page">Implementing a Rule
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/configuration/" aria-current="false">Configuration Reference
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/neighborhoods/" aria-current="false">Neighborhoods
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/custom-state/" aria-current="false">Custom State Objects
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/complex-ca/" aria-current="false">Complex Cellular Automata
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/parallel-execution/" aria-current="false">Parallel Execution
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/3d-4d-support/" aria-current="false">3D and 4D Support
-        </a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/articles/faq/" aria-current="false">FAQ
-        </a>
-      </li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  
-
-  
-  <div class="sidebar-section">
-    <span class="sidebar-section-title">Design</span>
-
-    
-    <ul class="sidebar-nav-list">
-      <li class="sidebar-nav-item">
-        <a href="/JCAL/design/architecture/" aria-current="false">Architecture
-        </a>
-      </li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  
-</nav>
+<nav aria-label="Documentation navigation"></nav>
 
     </aside>
 
@@ -216,8 +154,13 @@
 
   
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a>
+  <a href="/JCAL/">Home</a>
   <span class="sep" aria-hidden="true">/</span>
+
+  
+    
+    
+  
 
   
   
@@ -245,11 +188,14 @@
     
     <div class="tags-list" style="margin: 0;">
       
-      <a class="tag-link" href="/tags/executor/">executor</a>
+      <a class="tag-link" href="/JCAL/tags/executor/">executor</a>
       
-      <a class="tag-link" href="/tags/rule/">rule</a>
+      <a class="tag-link" href="/JCAL/tags/rule/">rule</a>
       
     </div>
+    
+
+    
     
 
     
@@ -294,13 +240,12 @@ next state — never mutate the input cell.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">next</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><div class="callout callout-tip" role="alert">
-  <div class="callout-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"/></svg></div>
-  <div class="callout-body">
-    <div class="callout-title">Tip</div>
-    <div>Declare <code>CellState</code> constants as static fields (or outside the method) to avoid
+</span></span></span></code></pre></div><div class="callout callout-info">
+  <span class="callout-icon">ℹ️</span>
+  <div class="callout-content">
+    Declare <code>CellState</code> constants as static fields (or outside the method) to avoid
 creating thousands of equal objects per generation. <code>CellState.equals</code> checks both
-<code>key</code> and <code>value</code>, so reuse is safe.</div>
+<code>key</code> and <code>value</code>, so reuse is safe.
   </div>
 </div>
 
@@ -369,12 +314,12 @@ lookup, override the <code>refinements</code> method:</p>
 <nav class="prev-next" aria-label="Previous and next pages">
   <div>
     
-    <a class="prev-next-link prev" href="/JCAL/articles/getting-started/">
+    <a class="prev-next-link prev" href="/JCAL/articles/complete-examples/">
       <span class="prev-next-direction">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"/></svg>
         Previous
       </span>
-      <span class="prev-next-title">Getting Started</span>
+      <span class="prev-next-title">Complete Examples</span>
     </a>
     
   </div>
@@ -419,16 +364,99 @@ lookup, override the <code>refinements</code> method:</p>
   </div>
 
   <footer class="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <span>
-      carmelolg — 
-      Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
-      &amp; <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
-    </span>
-    <div class="footer-links">
+  <div class="footer-content">
+    <div class="footer-grid">
       
-      <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-brand">
+        <a href="/JCAL/" class="footer-logo">JCAL</a>
+        
+        
+        <p class="footer-license">
+          License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+        </p>
+        
+        <div class="footer-social">
+          
+          <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+            </svg>
+          </a>
+          
+          
+        </div>
+      </div>
+
       
+      <div class="footer-section">
+        <p class="footer-section-title">Documentation</p>
+        <nav class="footer-nav" aria-label="Documentation links">
+          
+          
+            
+            
+              
+            
+          
+          
+          
+            
+              <a href="/JCAL/v2.0.0-rc2/about-jcal/" class="footer-nav-link">Overview</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/getting-started/" class="footer-nav-link">Getting Started</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/basic-settings/" class="footer-nav-link">Implementing a Rule</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/builder-settings/" class="footer-nav-link">Configuration Reference</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/custom-status/" class="footer-nav-link">Custom State Objects</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/cca/" class="footer-nav-link">Complex Cellular Automata</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/faq/" class="footer-nav-link">FAQ</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/reference/" class="footer-nav-link">Reference</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/examples/" class="footer-nav-link">Examples</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/appendix/" class="footer-nav-link">Appendix</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/articles/" class="footer-nav-link">Articles</a>
+            
+              <a href="/JCAL/v2.0.0-rc2/design/" class="footer-nav-link">Design</a>
+            
+          
+          <a href="https://github.com/carmelolg/JCAL/releases" class="footer-nav-link">Releases</a>
+        </nav>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">Resources</p>
+        <nav class="footer-nav" aria-label="Resources">
+          <a href="https://github.com/carmelolg/JCAL" class="footer-nav-link">GitHub Repository</a>
+          <a href="https://github.com/carmelolg/JCAL/issues" class="footer-nav-link">Report Issues</a>
+          <a href="https://github.com/carmelolg/JCAL/wiki" class="footer-nav-link">Wiki</a>
+        </nav>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">About</p>
+        <p class="footer-meta">
+          Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
+        </p>
+        <p class="footer-meta">
+          <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
+          theme by <a href="https://github.com/carmelolg" target="_blank" rel="noopener">carmelolg</a>
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="footer-bottom">
+      
+      <span>&copy; 2026 carmelolg — all rights reserved</span>
       
     </div>
   </div>

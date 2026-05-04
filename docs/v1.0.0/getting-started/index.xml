@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 21:18:24 +0200</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/getting-started/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/getting-started/getting-started/</guid>
+      <description>&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;h3 id=&#34;option-1--github-maven-registry&#34;&gt;Option 1 — GitHub Maven Registry&lt;/h3&gt;
+&lt;p&gt;JCAL is published on the &lt;strong&gt;GitHub Maven Registry&lt;/strong&gt;. Follow the
+&lt;a href=&#34;https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages&#34;&gt;GitHub guide&lt;/a&gt;
+to configure authentication, then add this dependency to your &lt;code&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;io.github.carmelolg&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;jcal&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.0.0.alpha&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You need a GitHub personal access token with &lt;code&gt;read:packages&lt;/code&gt; scope. See the
+linked guide for instructions on setting up your &lt;code&gt;~/.m2/settings.xml&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-2--download-the-jar&#34;&gt;Option 2 — Download the JAR&lt;/h3&gt;
+&lt;p&gt;Download the latest release JAR from the
+&lt;a href=&#34;https://github.com/carmelolg/JCAL/releases&#34;&gt;Releases page&lt;/a&gt; and add it to your project&amp;rsquo;s
+build path as a local dependency.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

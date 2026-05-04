@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JCAL Documentation on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/v2.0.0-rc2/</link>
+    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 May 2026 21:18:24 +0200</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0-rc2/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+  </channel>
+</rss>
