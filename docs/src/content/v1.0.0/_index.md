@@ -28,7 +28,7 @@ with minimal boilerplate.
 
 ## What's new in v2.0.0-rc2?
 
-Looking for the latest features? See the [v2.0.0-rc2 documentation](/v2.0.0-rc2/).
+Looking for the latest features? See the [v2.0.0 documentation](/v2.0.0/).
 
 - **n-dimensional grids** — 2D, 3D, and 4D support via `CellGrid`
 - **Production-ready logging** — SLF4J logging throughout

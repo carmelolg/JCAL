@@ -30,7 +30,7 @@ then add the dependency to your `pom.xml`:
 <dependency>
   <groupId>io.github.carmelolg</groupId>
   <artifactId>jcal</artifactId>
-  <version>2.0.0-rc2</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
