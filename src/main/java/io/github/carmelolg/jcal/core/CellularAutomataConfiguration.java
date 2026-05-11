@@ -49,6 +49,7 @@ public class CellularAutomataConfiguration {
     private List<Cell> initalState;
     private NeighborhoodType neighborhoodType;
     private Neighborhood neighborhood;
+    private NativeRule nativeRule;
 
     /**
      * Returns the grid width (dimension 0).
@@ -105,6 +106,16 @@ public class CellularAutomataConfiguration {
         return neighborhood;
     }
 
+    /**
+     * Returns the built-in Rust rule configured for native execution,
+     * or {@code null} when the Java execution path should be used.
+     *
+     * @return the {@link NativeRule}, or {@code null}
+     */
+    public NativeRule getNativeRule() {
+        return nativeRule;
+    }
+
     private CellularAutomataConfiguration(CellularAutomataConfigurationBuilder builder) {
         this.dimensions = builder.dimensions.clone();
         this.activeCells = builder.activeCells;
@@ -114,6 +125,7 @@ public class CellularAutomataConfiguration {
         this.totalIterations = builder.totalIterations;
         this.neighborhoodType = builder.neighborhoodType;
         this.neighborhood = builder.neighborhood;
+        this.nativeRule = builder.nativeRule;
     }
 
     public static class CellularAutomataConfigurationBuilder {
@@ -136,6 +148,7 @@ public class CellularAutomataConfiguration {
         private List<Cell> initalState;
         private NeighborhoodType neighborhoodType;
         private Neighborhood neighborhood;
+        private NativeRule nativeRule;
 
         public CellularAutomataConfigurationBuilder() {
         }
@@ -255,6 +268,24 @@ public class CellularAutomataConfiguration {
          */
         public CellularAutomataConfigurationBuilder setNeighborhood(Neighborhood neighborhood) {
             this.neighborhood = neighborhood;
+            return this;
+        }
+
+        /**
+         * Enables the native Rust execution path for this configuration.
+         *
+         * <p>When a matching built-in rule is available and the native engine is loaded,
+         * {@link CellularAutomataExecutor#run(CellularAutomata)} will delegate to the
+         * Rust core instead of the Java transition loop.
+         *
+         * <p>Only binary (two-state) automata are supported natively.  Automata with
+         * more than two states fall back to the Java path automatically.
+         *
+         * @param rule the {@link NativeRule} to use
+         * @return the builder {@link CellularAutomataConfigurationBuilder}
+         */
+        public CellularAutomataConfigurationBuilder useNativeRule(NativeRule rule) {
+            this.nativeRule = rule;
             return this;
         }
 

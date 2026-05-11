@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
+import io.github.carmelolg.jcal.grid.CellState;
 
 /**
  * Abstract base class for implementing the transition function of a Cellular Automata.
@@ -56,6 +57,12 @@ public abstract class CellularAutomataExecutor {
 	 */
 	public CellularAutomata run(CellularAutomata ca) throws Exception {
 
+		NativeRule nativeRule = ca.getConfig().getNativeRule();
+		if (nativeRule != null && NativeEngine.isAvailable()) {
+			logger.info("Routing to native Rust engine (rule={})", nativeRule);
+			return runNative(ca, nativeRule);
+		}
+
 		logger.info("Starting execution with {} iterations", 
 			ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
 		
@@ -75,6 +82,69 @@ public abstract class CellularAutomataExecutor {
 		logger.info("Execution completed");
 		return ca;
 
+	}
+
+	// ─────────────────────────────────────────────────────────────────────────
+	// Native execution path
+	// ─────────────────────────────────────────────────────────────────────────
+
+	private CellularAutomata runNative(CellularAutomata ca, NativeRule rule) throws Exception {
+		CellularAutomataConfiguration cfg = ca.getConfig();
+		int[] dims = cfg.getDimensions();
+		int ndim = dims.length;
+
+		// Neighborhood: 0 = Moore, 1 = Von Neumann
+		int nbhd = cfg.getNeighborhoodType() != null
+				? cfg.getNeighborhoodType().ordinal()
+				: 0;
+
+		// Encode current grid → flat int[]
+		CellGrid grid = ca.getGrid();
+		List<int[]> allCoords = grid.allCoordinates();
+		int cellCount = allCoords.size();
+		int[] states = new int[cellCount];
+		CellState defaultStatus = cfg.getDefaultStatus();
+		for (int i = 0; i < cellCount; i++) {
+			states[i] = grid.get(allCoords.get(i)).getCurrentStatus().equals(defaultStatus) ? 0 : 1;
+		}
+
+		// Identify the "alive" state (first non-default entry in initialState list)
+		CellState aliveStatus = defaultStatus;
+		if (cfg.getInitalState() != null) {
+			for (Cell c : cfg.getInitalState()) {
+				if (!c.getCurrentStatus().equals(defaultStatus)) {
+					aliveStatus = c.getCurrentStatus();
+					break;
+				}
+			}
+		}
+
+		try (NativeAutomaton automaton = createNativeAutomaton(ndim, dims, nbhd, rule)) {
+			automaton.initCells(states);
+			automaton.run(cfg.getTotalIterations());
+			automaton.getGrid(states);
+		}
+
+		// Decode flat int[] → grid
+		final CellState alive = aliveStatus;
+		for (int i = 0; i < cellCount; i++) {
+			int[] coords = allCoords.get(i);
+			CellState newState = states[i] == 0 ? defaultStatus : alive;
+			grid.get(coords).setCurrentStatus(newState);
+		}
+		ca.setGrid(grid);
+
+		logger.info("Native execution completed");
+		return ca;
+	}
+
+	private NativeAutomaton createNativeAutomaton(int ndim, int[] dims, int nbhd, NativeRule rule) {
+		return switch (ndim) {
+			case 2 -> NativeEngine.create2d(dims[0], dims[1], nbhd, rule.getId());
+			case 3 -> NativeEngine.create3d(dims[0], dims[1], dims[2], nbhd, rule.getId());
+			case 4 -> NativeEngine.create4d(dims[0], dims[1], dims[2], dims[3], nbhd, rule.getId());
+			default -> throw new IllegalArgumentException("Unsupported dimensions: " + ndim);
+		};
 	}
 
 	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException {

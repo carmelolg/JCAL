@@ -120,7 +120,62 @@
 					<additionalClasspathElements>
 						<additionalClasspathElement>src/test/java/</additionalClasspathElement>
 					</additionalClasspathElements>
+					<argLine>-Djava.library.path=${project.build.directory}/native-libs${path.separator}${java.library.path}</argLine>
 				</configuration>
+			</plugin>
+			<!-- Build Rust native library before compiling Java -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>cargo-build-ffi</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>cargo</executable>
+							<workingDirectory>${user.home}/workspace/workspace-rust/jcal-rs</workingDirectory>
+							<arguments>
+								<argument>build</argument>
+								<argument>--release</argument>
+								<argument>-p</argument>
+								<argument>jcal-rs-ffi</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Copy native library to target for Surefire and embedding -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>copy-native-lib</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/native-libs</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${user.home}/workspace/workspace-rust/jcal-rs/target/release</directory>
+									<includes>
+										<include>libjcal_rs_ffi.dylib</include>
+										<include>libjcal_rs_ffi.so</include>
+										<include>jcal_rs_ffi.dll</include>
+									</includes>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
