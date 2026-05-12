@@ -12,23 +12,23 @@ import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
 /**
- * Parallel variant of {@link io.github.carmelolg.jcal.core.CellularAutomataExecutor} that
+ * Parallel variant of {@link io.github.carmelolg.jcal.core.CellularAutomataRule} that
  * processes cells concurrently using Java parallel streams.
  *
  * <p>The API is identical to its sequential counterpart: override
- * {@link #singleRun(io.github.carmelolg.jcal.grid.Cell, java.util.List)} with the
+ * {@link #transition(io.github.carmelolg.jcal.grid.Cell, java.util.List)} with the
  * cell transition logic.  The framework distributes work across rows automatically.
  *
  * <p>Use this executor for large grids where sequential execution is too slow.  For small
  * grids or rapid prototyping, the non-parallel
- * {@link io.github.carmelolg.jcal.core.CellularAutomataExecutor} is simpler.
+ * {@link io.github.carmelolg.jcal.core.CellularAutomataRule} is simpler.
  *
  * @author Carmelo La Gamba
- * @see io.github.carmelolg.jcal.core.CellularAutomataExecutor
+ * @see io.github.carmelolg.jcal.core.CellularAutomataRule
  */
-public abstract class CellularAutomataParallelExecutor {
+public abstract class CellularAutomataParallelRule {
 
-    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataParallelExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataParallelRule.class);
 
     /**
      * Run using parallelism the transaction function
@@ -108,7 +108,7 @@ public abstract class CellularAutomataParallelExecutor {
     }
 
     /**
-     * The single run is the transaction function's core. Here, you explain what
+     * The transition function's core. Here, you explain what
      * happen and what your transaction function do. Consider to implement only what
      * happen in a single cell, this behavior will be replaced for all cells of the
      * matrix You will receive in input the single cell and its neighbors
@@ -117,7 +117,7 @@ public abstract class CellularAutomataParallelExecutor {
      * @param <b>neighbors</b> the neighbors
      * @return the {@link Cell} updated
      */
-    public abstract Cell singleRun(Cell cell, List<Cell> neighbors);
+    public abstract Cell transition(Cell cell, List<Cell> neighbors);
 
     /**
      * If you want to implement a CCA (Complex Cellular Automata), you need refine your cells status before the next iteration.

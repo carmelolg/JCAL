@@ -11,18 +11,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests for CellularAutomataExecutor using a Game-of-Life rule as the concrete implementation.
+ * Tests for CellularAutomataRule using a Game-of-Life rule as the concrete implementation.
  */
-@DisplayName("CellularAutomataExecutor")
-class CellularAutomataExecutorTest {
+@DisplayName("CellularAutomataRule")
+class CellularAutomataRuleTest {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
 
     /** Minimal Game-of-Life executor for test purposes. */
-    private static class GoLExecutor extends CellularAutomataExecutor {
+    private static class GoLExecutor extends CellularAutomataRule {
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             long aliveCount = neighbors.stream()
                     .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
             boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
@@ -34,9 +34,9 @@ class CellularAutomataExecutorTest {
     }
 
     /** Executor that overrides refinements to set every cell to ALIVE before transition. */
-    private static class RefiningExecutor extends CellularAutomataExecutor {
+    private static class RefiningExecutor extends CellularAutomataRule {
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             return new Cell(cell.getCurrentStatus(), cell.getCoordinates());
         }
 
@@ -142,7 +142,7 @@ class CellularAutomataExecutorTest {
     @Test
     @DisplayName("overriding refinements is applied before transition")
     void refinementsAppliedBeforeTransition() throws Exception {
-        // RefiningExecutor sets every cell to ALIVE in refinements then copies status in singleRun.
+        // RefiningExecutor sets every cell to ALIVE in refinements then copies status in transition.
         // After 1 step all cells must be ALIVE.
         CellularAutomata ca = buildCa(3, 3, 1, null);
         new RefiningExecutor().run(ca);

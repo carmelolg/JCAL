@@ -11,17 +11,17 @@ import io.github.carmelolg.jcal.grid.Cell;
  * Abstract base class for implementing the transition function of a Cellular Automata.
  *
  * <p>To define the behaviour of your automaton, create a concrete subclass and implement
- * {@link #singleRun(Cell, java.util.List)}.  That method is called once per cell per
+ * {@link #transition(Cell, java.util.List)}.  That method is called once per cell per
  * generation: it receives the current cell and its neighbours and must return the cell's
  * next state.
  *
  * <p><b>Minimal example – Game of Life rule:</b>
  * <pre>{@code
- * public class GameOfLifeRule extends CellularAutomataExecutor {
+ * public class GameOfLifeRule extends CellularAutomataRule {
  *     private static final CellState DEAD  = new CellState("dead",  "0");
  *     private static final CellState ALIVE = new CellState("alive", "1");
  *
- *     public Cell singleRun(Cell cell, List<Cell> neighbors) {
+ *     public Cell transition(Cell cell, List<Cell> neighbors) {
  *         long aliveCount = neighbors.stream()
  *             .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
  *         Cell next = new Cell(DEAD, cell.getCol(), cell.getRow());
@@ -41,11 +41,11 @@ import io.github.carmelolg.jcal.grid.Cell;
  *
  * @author Carmelo La Gamba
  * @see CellularAutomata
- * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelExecutor
+ * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelRule
  */
-public abstract class CellularAutomataExecutor {
+public abstract class CellularAutomataRule {
 
-	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataExecutor.class);
+	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRule.class);
 
 	/**
 	 * Run the transaction function
@@ -93,7 +93,7 @@ public abstract class CellularAutomataExecutor {
 		// Step 2: transition — read current, write next
 		logger.debug("Computing transitions");
 		for (int[] coords : current.allCoordinates()) {
-			next.set(coords, singleRun(current.get(coords),
+			next.set(coords, transition(current.get(coords),
 					ca.getNeighborhood().getNeighbors(current, coords)));
 		}
 
@@ -106,7 +106,7 @@ public abstract class CellularAutomataExecutor {
 	}
 
 	/**
-	 * The single run is the transaction function's core. Here, you explain what
+	 * The transition function's core. Here, you explain what
 	 * happen and what your transaction function do. Consider to implement only what
 	 * happen in a single cell, this behavior will be replaced for all cells of the
 	 * matrix You will receive in input the single cell and its neighbors
@@ -116,7 +116,7 @@ public abstract class CellularAutomataExecutor {
 	 * @param <b>neighbors</b> the neighbors
 	 * @return the {@link Cell} updated
 	 */
-	public abstract Cell singleRun(Cell cell, List<Cell> neighbors);
+	public abstract Cell transition(Cell cell, List<Cell> neighbors);
 	
 	/**
 	 * If you want to implement a CCA (Complex Cellular Automata), you need refine your cells status before the next iteration.

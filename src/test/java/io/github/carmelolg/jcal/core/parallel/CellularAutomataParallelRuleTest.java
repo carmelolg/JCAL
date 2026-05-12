@@ -13,26 +13,26 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests for CellularAutomataParallelExecutor using a simple identity rule.
+ * Tests for CellularAutomataParallelRule using a simple identity rule.
  */
-@DisplayName("CellularAutomataParallelExecutor")
-class CellularAutomataParallelExecutorTest {
+@DisplayName("CellularAutomataParallelRule")
+class CellularAutomataParallelRuleTest {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
 
     /** Identity executor: every cell keeps its current state. */
-    private static class IdentityParallelExecutor extends CellularAutomataParallelExecutor {
+    private static class IdentityParallelExecutor extends CellularAutomataParallelRule {
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             return new Cell(cell.getCurrentStatus(), cell.getCoordinates());
         }
     }
 
     /** Game-of-Life parallel executor. */
-    private static class GoLParallelExecutor extends CellularAutomataParallelExecutor {
+    private static class GoLParallelExecutor extends CellularAutomataParallelRule {
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             long aliveCount = neighbors.stream()
                     .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
             boolean isAlive = cell.getCurrentStatus().equals(ALIVE);
@@ -44,9 +44,9 @@ class CellularAutomataParallelExecutorTest {
     }
 
     /** Parallel executor that overrides refinements. */
-    private static class RefiningParallelExecutor extends CellularAutomataParallelExecutor {
+    private static class RefiningParallelExecutor extends CellularAutomataParallelRule {
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             return new Cell(cell.getCurrentStatus(), cell.getCoordinates());
         }
 
@@ -124,9 +124,9 @@ class CellularAutomataParallelExecutorTest {
     @DisplayName("exception in refinements propagates as RuntimeException")
     void refinementsExceptionPropagatesAsRuntimeException() throws Exception {
         CellularAutomata ca = buildCa(3, 3, 1, null);
-        CellularAutomataParallelExecutor throwing = new CellularAutomataParallelExecutor() {
+        CellularAutomataParallelRule throwing = new CellularAutomataParallelRule() {
             @Override
-            public Cell singleRun(Cell cell, List<Cell> neighbors) { return cell; }
+            public Cell transition(Cell cell, List<Cell> neighbors) { return cell; }
             @Override
             public Cell refinements(Cell cell) { throw new RuntimeException("intentional refinement error"); }
         };
@@ -134,13 +134,13 @@ class CellularAutomataParallelExecutorTest {
     }
 
     @Test
-    @DisplayName("exception in singleRun propagates as RuntimeException")
-    void singleRunExceptionPropagatesAsRuntimeException() throws Exception {
+    @DisplayName("exception in transition propagates as RuntimeException")
+    void transitionExceptionPropagatesAsRuntimeException() throws Exception {
         CellularAutomata ca = buildCa(3, 3, 1, null);
-        CellularAutomataParallelExecutor throwing = new CellularAutomataParallelExecutor() {
+        CellularAutomataParallelRule throwing = new CellularAutomataParallelRule() {
             @Override
-            public Cell singleRun(Cell cell, List<Cell> neighbors) {
-                throw new RuntimeException("intentional singleRun error");
+            public Cell transition(Cell cell, List<Cell> neighbors) {
+                throw new RuntimeException("intentional transition error");
             }
         };
         assertThrows(RuntimeException.class, () -> throwing.run(ca));

@@ -16,7 +16,7 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 
 	private CellularAutomata ca;
 	private int row, offset;
-	private CellularAutomataParallelExecutor executor;
+	private CellularAutomataParallelRule executor;
 
 	/**
 	 * Callable are used to implement the parallelism using JDK. Each instance of this class run on a single thread.
@@ -25,7 +25,7 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 	 * @param offset the offset in order to create a chunk where run the transition function. Ex. chunk [row, row + offset]
 	 * @param executor the executor implemented in order to run the custom transition function
 	 */
-	protected CellularAutomataRunner(CellularAutomata ca, int row, int offset, CellularAutomataParallelExecutor executor) {
+	protected CellularAutomataRunner(CellularAutomata ca, int row, int offset, CellularAutomataParallelRule executor) {
 		this.ca = ca;
 		this.row = row;
 		this.offset = offset;
@@ -41,7 +41,7 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 
 		for (int[] coords : grid.allCoordinates()) {
 			if (coords[0] >= row && coords[0] < (row + 1) * offset) {
-				utilsGrid.set(coords, executor.singleRun(grid.get(coords),
+				utilsGrid.set(coords, executor.transition(grid.get(coords),
 						ca.getNeighborhood().getNeighbors(grid, coords)));
 			}
 		}

@@ -36,7 +36,7 @@ import io.github.carmelolg.jcal.utils.Utils;
  * }</pre>
  *
  * @author Carmelo La Gamba
- * @see CellularAutomataExecutor
+ * @see CellularAutomataRule
  * @see io.github.carmelolg.jcal.core.CellularAutomataConfiguration
  * @see Neighborhood
  * © 2023 is licensed under CC BY-NC-SA 4.0

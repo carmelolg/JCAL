@@ -64,7 +64,7 @@ class ExamplesTest {
     @DisplayName("HeatDiffusionRule: HOT cell stays HOT")
     void heatRuleHotStaysHot() {
         Cell hot = new Cell(CustomStateExample.HOT, 1, 1);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(hot, List.of());
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(hot, List.of());
         assertEquals(CustomStateExample.HOT, result.getCurrentStatus());
     }
 
@@ -73,7 +73,7 @@ class ExamplesTest {
     void heatRuleWarmBecomesHot() {
         Cell warm = new Cell(CustomStateExample.WARM, 1, 1);
         Cell hotNeighbor = new Cell(CustomStateExample.HOT, 1, 2);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(warm, List.of(hotNeighbor));
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(warm, List.of(hotNeighbor));
         assertEquals(CustomStateExample.HOT, result.getCurrentStatus());
     }
 
@@ -81,7 +81,7 @@ class ExamplesTest {
     @DisplayName("HeatDiffusionRule: WARM cell with no neighbours cools to COLD")
     void heatRuleWarmCoolsToCold() {
         Cell warm = new Cell(CustomStateExample.WARM, 1, 1);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(warm, List.of());
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(warm, List.of());
         assertEquals(CustomStateExample.COLD, result.getCurrentStatus());
     }
 
@@ -90,7 +90,7 @@ class ExamplesTest {
     void heatRuleWarmStaysWarm() {
         Cell warm = new Cell(CustomStateExample.WARM, 1, 1);
         Cell warmNeighbor = new Cell(CustomStateExample.WARM, 1, 2);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(warm, List.of(warmNeighbor));
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(warm, List.of(warmNeighbor));
         assertEquals(CustomStateExample.WARM, result.getCurrentStatus());
     }
 
@@ -99,7 +99,7 @@ class ExamplesTest {
     void heatRuleColdBecomesWarmFromHot() {
         Cell cold = new Cell(CustomStateExample.COLD, 1, 1);
         Cell hotNeighbor = new Cell(CustomStateExample.HOT, 1, 2);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(cold, List.of(hotNeighbor));
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(cold, List.of(hotNeighbor));
         assertEquals(CustomStateExample.WARM, result.getCurrentStatus());
     }
 
@@ -110,7 +110,7 @@ class ExamplesTest {
         List<Cell> neighbors = List.of(
                 new Cell(CustomStateExample.WARM, 0, 1),
                 new Cell(CustomStateExample.WARM, 2, 1));
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(cold, neighbors);
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(cold, neighbors);
         assertEquals(CustomStateExample.WARM, result.getCurrentStatus());
     }
 
@@ -118,7 +118,7 @@ class ExamplesTest {
     @DisplayName("HeatDiffusionRule: COLD cell with no hot/warm neighbours stays COLD")
     void heatRuleColdStaysCold() {
         Cell cold = new Cell(CustomStateExample.COLD, 1, 1);
-        Cell result = new CustomStateExample.HeatDiffusionRule().singleRun(cold, List.of());
+        Cell result = new CustomStateExample.HeatDiffusionRule().transition(cold, List.of());
         assertEquals(CustomStateExample.COLD, result.getCurrentStatus());
     }
 
@@ -127,7 +127,7 @@ class ExamplesTest {
     void heatRuleUnknownStateThrows() {
         Cell unknown = new Cell(new CellState("plasma", 99), 1, 1);
         assertThrows(IllegalStateException.class,
-                () -> new CustomStateExample.HeatDiffusionRule().singleRun(unknown, List.of()));
+                () -> new CustomStateExample.HeatDiffusionRule().transition(unknown, List.of()));
     }
 
     // ── Carter3DLifeRule branch coverage ──────────────────────────────────
@@ -139,7 +139,7 @@ class ExamplesTest {
         List<Cell> neighbors = new ArrayList<>();
         for (int i = 0; i < 5; i++)
             neighbors.add(new Cell(GameOfLife3DExample.ALIVE, i, 1, 0));
-        Cell result = new GameOfLife3DExample.Carter3DLifeRule().singleRun(dead, neighbors);
+        Cell result = new GameOfLife3DExample.Carter3DLifeRule().transition(dead, neighbors);
         assertEquals(GameOfLife3DExample.ALIVE, result.getCurrentStatus());
     }
 
@@ -150,7 +150,7 @@ class ExamplesTest {
         List<Cell> neighbors = new ArrayList<>();
         for (int i = 0; i < 5; i++)
             neighbors.add(new Cell(GameOfLife3DExample.ALIVE, i, 1, 0));
-        Cell result = new GameOfLife3DExample.Carter3DLifeRule().singleRun(alive, neighbors);
+        Cell result = new GameOfLife3DExample.Carter3DLifeRule().transition(alive, neighbors);
         assertEquals(GameOfLife3DExample.ALIVE, result.getCurrentStatus());
     }
 
@@ -161,7 +161,7 @@ class ExamplesTest {
         List<Cell> neighbors = new ArrayList<>();
         for (int i = 0; i < 6; i++)
             neighbors.add(new Cell(GameOfLife3DExample.ALIVE, i, 1, 0));
-        Cell result = new GameOfLife3DExample.Carter3DLifeRule().singleRun(alive, neighbors);
+        Cell result = new GameOfLife3DExample.Carter3DLifeRule().transition(alive, neighbors);
         assertEquals(GameOfLife3DExample.ALIVE, result.getCurrentStatus());
     }
 
@@ -169,7 +169,7 @@ class ExamplesTest {
     @DisplayName("Carter3DLifeRule: alive cell with wrong neighbour count dies")
     void carter3DAliveWithWrongCountDies() {
         Cell alive = new Cell(GameOfLife3DExample.ALIVE, 0, 0, 0);
-        Cell result = new GameOfLife3DExample.Carter3DLifeRule().singleRun(alive, List.of());
+        Cell result = new GameOfLife3DExample.Carter3DLifeRule().transition(alive, List.of());
         assertEquals(GameOfLife3DExample.DEAD, result.getCurrentStatus());
     }
 

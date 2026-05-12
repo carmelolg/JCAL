@@ -16,7 +16,7 @@ public class CellularAutomataRefinementRunner implements Callable<List<Cell>> {
 
 	private CellularAutomata ca;
 	private int row, offset;
-	private CellularAutomataParallelExecutor executor;
+	private CellularAutomataParallelRule executor;
 
 	/**
 	 * Callable are used to implement the parallelism using JDK. Each instance of this class run on a single thread.
@@ -25,7 +25,7 @@ public class CellularAutomataRefinementRunner implements Callable<List<Cell>> {
 	 * @param offset the offset in order to create a chunk where run the transition function. Ex. chunk [row, row + offset]
 	 * @param executor the executor implemented in order to run the custom transition function
 	 */
-	protected CellularAutomataRefinementRunner(CellularAutomata ca, int row, int offset, CellularAutomataParallelExecutor executor) {
+	protected CellularAutomataRefinementRunner(CellularAutomata ca, int row, int offset, CellularAutomataParallelRule executor) {
 		this.ca = ca;
 		this.row = row;
 		this.offset = offset;

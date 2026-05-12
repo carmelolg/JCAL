@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
+import io.github.carmelolg.jcal.core.CellularAutomataRule;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
@@ -21,8 +21,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  * <ol>
  *   <li>Define the possible cell states ({@link CellState}).</li>
  *   <li>Build the configuration ({@link CellularAutomataConfiguration}).</li>
- *   <li>Implement the transition rule by extending {@link CellularAutomataExecutor}.</li>
- *   <li>Initialize the grid and call {@link CellularAutomataExecutor#run(CellularAutomata)}.</li>
+ *   <li>Implement the transition rule by extending {@link CellularAutomataRule}.</li>
+ *   <li>Initialize the grid and call {@link CellularAutomataRule#run(CellularAutomata)}.</li>
  * </ol>
  *
  * <p>The initial pattern used here is the <em>blinker</em>: three horizontally adjacent
@@ -31,7 +31,7 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  * <p><b>Expected output after 2 iterations:</b> the blinker returns to its original
  * horizontal orientation (period-2 oscillator).
  *
- * <p>Copy-paste this class and change {@link GameOfLifeRule#singleRun} to experiment with
+ * <p>Copy-paste this class and change {@link GameOfLifeRule#transition} to experiment with
  * different rules.
  *
  * @see CustomStateExample for a more advanced example with multi-value cell states
@@ -68,7 +68,7 @@ public class GameOfLifeExample {
 
         // --- Step 4: Initialize the automaton and run ---
         CellularAutomata ca = new CellularAutomata(config); // allocates the grid
-        CellularAutomataExecutor rule = new GameOfLifeRule();
+        CellularAutomataRule rule = new GameOfLifeRule();
         ca = rule.run(ca);                                   // evolves for 2 steps
 
         // Print the resulting grid (each cell shows its status value)
@@ -88,12 +88,12 @@ public class GameOfLifeExample {
      *   <li>All other cells die or stay dead (underpopulation / overcrowding).</li>
      * </ul>
      *
-     * <p>Override {@code singleRun} to change the rule without touching anything else.
+     * <p>Override {@code transition} to change the rule without touching anything else.
      */
-    static class GameOfLifeRule extends CellularAutomataExecutor {
+    static class GameOfLifeRule extends CellularAutomataRule {
 
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             // Count how many neighbours are currently alive
             long aliveNeighborCount = neighbors.stream()
                 .filter(n -> n.getCurrentStatus().equals(ALIVE))
