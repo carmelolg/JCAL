@@ -74,7 +74,7 @@ public class HeatStatus extends DefaultStatus {
     }
 }
 
-public class HeatDiffusionExecutor extends CellularAutomataRule {
+public class HeatDiffusionRule extends CellularAutomataRule {
 
     @Override
     public DefaultCell refinements(DefaultCell cell) {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,11 +16,11 @@
 <meta property="og:title"       content="Changelog">
 <meta property="og:description" content="Release notes and version history for JCAL.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v2.0.0/appendix/changelog/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/v2.0.0/appendix/changelog/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/v2.0.0/appendix/changelog/">
+<link rel="canonical" href="http://localhost:1313/JCAL/v2.0.0/appendix/changelog/">
 
 
 
@@ -313,6 +313,22 @@
 The format follows <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.
 Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <hr>
+<h2 id="unreleased">[Unreleased]</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Breaking:</strong> <code>CellularAutomataExecutor</code> renamed to <code>CellularAutomataRule</code> — the new name
+better reflects what the developer provides: a <em>rule</em>, not an executor</li>
+<li><strong>Breaking:</strong> <code>CellularAutomataParallelExecutor</code> renamed to <code>CellularAutomataParallelRule</code>
+for the same reason</li>
+<li><strong>Breaking:</strong> abstract method <code>singleRun(Cell, List&lt;Cell&gt;)</code> renamed to
+<code>transition(Cell, List&lt;Cell&gt;)</code> — aligns with standard cellular automata theory terminology</li>
+</ul>
+<blockquote>
+<p><strong>Migration:</strong> replace <code>extends CellularAutomataExecutor</code> with <code>extends CellularAutomataRule</code>,
+<code>extends CellularAutomataParallelExecutor</code> with <code>extends CellularAutomataParallelRule</code>, and
+rename any <code>singleRun</code> override to <code>transition</code>.</p>
+</blockquote>
+<hr>
 <h2 id="200--2026-05-04">[2.0.0] — 2026-05-04</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -326,7 +342,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <li>Comprehensive Javadoc enhancements across all public APIs</li>
 <li>GitHub Pages documentation site with versioned content (v1.0.0, v2.0.0)</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="changed-1">Changed</h3>
 <ul>
 <li>Code cleanup: removed 4 unused utility methods (<code>isInside/Cell[][]</code>, <code>setConfig()</code>, <code>setNeighborhood()</code>, <code>getCells()</code>)</li>
 <li>Dependencies: added <code>slf4j-api:2.0.13</code> and <code>slf4j-simple:2.0.13</code> for production logging</li>
@@ -352,7 +368,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <li><code>ExamplesTest</code> — smoke tests and branch-coverage tests for all three example programs
 (<code>GameOfLifeExample</code>, <code>CustomStateExample</code>, <code>GameOfLife3DExample</code>)</li>
 </ul>
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 <ul>
 <li><code>DefaultCell</code> renamed to <code>Cell</code> (package <code>grid</code>) — cleaner, idiomatic name</li>
 <li><code>DefaultStatus</code> renamed to <code>CellState</code> (package <code>grid</code>) — cleaner, idiomatic name</li>
@@ -368,7 +384,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <li>Test suite expanded from 99 to <strong>148 tests</strong> — <strong>100% instruction coverage</strong> (JaCoCo)</li>
 <li>Added specification tests: blinker oscillator (Game of Life), still-life 3D (Carter Bays)</li>
 <li>Added reflection-based test for the unreachable <code>resolveNeighborhood</code> default branch</li>
-<li>Added exception-path tests for <code>CellularAutomataParallelExecutor</code> lambda handlers</li>
+<li>Added exception-path tests for <code>CellularAutomataParallelRule</code> lambda handlers</li>
 </ul>
 <hr>
 <h2 id="200-rc1--2026-04-30">[2.0.0-rc1] — 2026-04-30</h2>
@@ -389,7 +405,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <li>Hugo-based documentation site rebuilt from scratch with shiori theme</li>
 <li>JCAL favicon (cellular automata grid with blinker pattern)</li>
 </ul>
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 <ul>
 <li><strong>Breaking:</strong> <code>CellularAutomataConfiguration.Builder.setWidth(int)</code> and <code>.setHeight(int)</code> now deprecated in favor of <code>.setDimensions(int...)</code> for 2D grids</li>
 <li>All grid implementations now backed by <code>CellGrid</code> internally</li>
@@ -424,10 +440,10 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
 <h3 id="added-3">Added</h3>
 <ul>
 <li>Initial release of JCAL</li>
-<li>Core API: <code>CellularAutomata</code>, <code>CellularAutomataExecutor</code>, <code>CellularAutomataConfiguration</code></li>
+<li>Core API: <code>CellularAutomata</code>, <code>CellularAutomataRule</code>, <code>CellularAutomataConfiguration</code></li>
 <li>2D grid support: <code>CellGrid2D</code> with Moore and Von Neumann neighborhoods</li>
 <li>Cell state management: <code>CellState</code>, <code>Cell</code></li>
-<li>Parallel execution via <code>CellularAutomataParallelExecutor</code></li>
+<li>Parallel execution via <code>CellularAutomataParallelRule</code></li>
 <li>Basic example: <code>GameOfLifeExample</code></li>
 <li>Maven publication to GitHub Packages</li>
 </ul>
@@ -468,10 +484,15 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
   <p class="toc-title">On this page</p>
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#unreleased">[Unreleased]</a>
+      <ul>
+        <li><a href="#changed">Changed</a></li>
+      </ul>
+    </li>
     <li><a href="#200--2026-05-04">[2.0.0] — 2026-05-04</a>
       <ul>
         <li><a href="#added">Added</a></li>
-        <li><a href="#changed">Changed</a></li>
+        <li><a href="#changed-1">Changed</a></li>
         <li><a href="#fixed">Fixed</a></li>
         <li><a href="#tests">Tests</a></li>
       </ul>
@@ -479,7 +500,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
     <li><a href="#200-rc2--2026-05-04">[2.0.0-rc2] — 2026-05-04</a>
       <ul>
         <li><a href="#added-1">Added</a></li>
-        <li><a href="#changed-1">Changed</a></li>
+        <li><a href="#changed-2">Changed</a></li>
         <li><a href="#fixed-1">Fixed</a></li>
         <li><a href="#tests-1">Tests</a></li>
       </ul>
@@ -487,7 +508,7 @@ Versions align with <a href="https://semver.org/">Semantic Versioning</a>.</p>
     <li><a href="#200-rc1--2026-04-30">[2.0.0-rc1] — 2026-04-30</a>
       <ul>
         <li><a href="#added-2">Added</a></li>
-        <li><a href="#changed-2">Changed</a></li>
+        <li><a href="#changed-3">Changed</a></li>
         <li><a href="#removed">Removed</a></li>
         <li><a href="#fixed-2">Fixed</a></li>
         <li><a href="#performance">Performance</a></li>

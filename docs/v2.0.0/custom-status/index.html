@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,15 +16,15 @@
 <meta property="og:title"       content="Custom State Objects">
 <meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library">
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v2.0.0/custom-status/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/v2.0.0/custom-status/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/v2.0.0/custom-status/">
+<link rel="canonical" href="http://localhost:1313/JCAL/v2.0.0/custom-status/">
 
 
 
-<link rel="alternate" type="application/rss&#43;xml" href="https://carmelolg.github.io/JCAL/v2.0.0/custom-status/index.xml" title="JCAL Docs">
+<link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/JCAL/v2.0.0/custom-status/index.xml" title="JCAL Docs">
 
 
 
@@ -305,7 +305,7 @@ other domain-specific data — you can extend <code>DefaultStatus</code> with a 
 <h2 id="overview">Overview</h2>
 <ol>
 <li><strong>Define your custom status</strong> by extending <code>DefaultStatus</code> and adding fields.</li>
-<li><strong>Cast in <code>singleRun</code></strong> — in your executor, cast <code>cell.getCurrentStatus()</code> to your
+<li><strong>Cast in <code>transition</code></strong> — in your executor, cast <code>cell.getCurrentStatus()</code> to your
 custom class to access the extra fields.</li>
 <li><strong>Use your custom status</strong> as the default status and in the initial condition list.</li>
 </ol>
@@ -332,7 +332,7 @@ naturally to automata that need richer per-cell state.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 <h3 id="the-executor">The executor</h3>
-<p>In <code>singleRun</code>, cast the current status to your custom class to read its fields.
+<p>In <code>transition</code>, cast the current status to your custom class to read its fields.
 Always return a new <code>DefaultCell</code> with the next state — do not mutate the input cell.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GoLDSExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">

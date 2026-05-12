@@ -45,12 +45,12 @@ public class GoLStatus extends CellState {
 }
 ```
 
-### The Executor
+### The Rule
 
 Cast `currentStatus` to `GoLStatus` inside `transition`:
 
 ```java
-public class GoLCustomExecutor extends CellularAutomataRule {
+public class GoLCustomRule extends CellularAutomataRule {
 
     @Override
     public Cell transition(Cell cell, List<Cell> neighbors) {
@@ -92,7 +92,7 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
     .build();
 
 CellularAutomata ca = new CellularAutomata(config);
-ca = new GoLCustomExecutor().run(ca);
+ca = new GoLCustomRule().run(ca);
 System.out.println(ca);
 ```
 
@@ -122,7 +122,7 @@ public class HeatStatus extends CellState {
 Use it in an executor that averages neighbors' temperatures:
 
 ```java
-public class HeatDiffusionExecutor extends CellularAutomataRule {
+public class HeatDiffusionRule extends CellularAutomataRule {
 
     @Override
     public Cell transition(Cell cell, List<Cell> neighbors) {

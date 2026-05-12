@@ -112,7 +112,7 @@ Extend `CellularAutomataRule` and implement `transition`. JCAL calls this method
 **once per cell per generation**; return a new `Cell` with the cell's next state.
 
 ```java
-public class GameOfLifeExecutor extends CellularAutomataRule {
+public class GameOfLifeRule extends CellularAutomataRule {
 
     @Override
     public Cell transition(Cell cell, List<Cell> neighbors) {
@@ -142,8 +142,8 @@ public class GameOfLifeExecutor extends CellularAutomataRule {
 
 ```java
 CellularAutomata ca = new CellularAutomata(config);
-GameOfLifeExecutor executor = new GameOfLifeExecutor();
-ca = executor.run(ca);
+GameOfLifeRule rule = new GameOfLifeRule();
+ca = rule.run(ca);
 System.out.println(ca);
 ```
 
@@ -154,7 +154,7 @@ The blinker will have rotated 90° after one generation (2 iterations = back to 
 
 ## Next Steps
 
-- [Implementing a Rule](../implementing-a-rule/) — deeper dive into the executor pattern.
+- [Implementing a Rule](../implementing-a-rule/) — deeper dive into the rule pattern.
 - [Configuration Reference](../configuration/) — all available builder options.
 - [Custom State Objects](../custom-state/) — model richer state with custom Java classes.
 - [3D and 4D Support](../3d-4d-support/) — run simulations in higher dimensions.

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
 
 <title>Parallel Execution — JCAL Docs</title>
-<meta name="description" content="Scale JCAL to large grids with CellularAutomataParallelExecutor.">
+<meta name="description" content="Scale JCAL to large grids with CellularAutomataParallelRule.">
 
 
 <meta name="author" content="carmelolg">
@@ -14,13 +14,13 @@
 
 
 <meta property="og:title"       content="Parallel Execution">
-<meta property="og:description" content="Scale JCAL to large grids with CellularAutomataParallelExecutor.">
+<meta property="og:description" content="Scale JCAL to large grids with CellularAutomataParallelRule.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v2.0.0/reference/parallel-execution/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/v2.0.0/reference/parallel-execution/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/v2.0.0/reference/parallel-execution/">
+<link rel="canonical" href="http://localhost:1313/JCAL/v2.0.0/reference/parallel-execution/">
 
 
 
@@ -292,7 +292,7 @@
   <h1 class="page-title">Parallel Execution</h1>
 
   
-  <p class="page-summary">Scale JCAL to large grids with CellularAutomataParallelExecutor.</p>
+  <p class="page-summary">Scale JCAL to large grids with CellularAutomataParallelRule.</p>
   
 
   <div class="page-meta">
@@ -310,29 +310,29 @@
 
   <div class="prose">
     <p>For large grids where the sequential executor becomes a bottleneck, JCAL provides
-<code>CellularAutomataParallelExecutor</code> — a drop-in replacement that distributes the
+<code>CellularAutomataParallelRule</code> — a drop-in replacement that distributes the
 transition function across multiple threads using Java parallel streams.</p>
 <hr>
 <h2 id="when-to-use">When to Use</h2>
 <p>The parallel executor is beneficial when:</p>
 <ul>
 <li>Your grid is <strong>large</strong> (typically 500×500 or more in 2D, smaller thresholds in 3D/4D).</li>
-<li>The transition function (<code>singleRun</code>) is <strong>computationally intensive</strong> per cell.</li>
+<li>The transition function (<code>transition</code>) is <strong>computationally intensive</strong> per cell.</li>
 <li>Your hardware has <strong>multiple CPU cores</strong> available.</li>
 </ul>
 <p>For small grids or trivially cheap rules, the thread-management overhead of parallel
 streams can make the parallel executor <em>slower</em> than the sequential one. Benchmark first.</p>
 <hr>
 <h2 id="usage">Usage</h2>
-<p>Extend <code>CellularAutomataParallelExecutor</code> instead of <code>CellularAutomataExecutor</code>. The
-<code>singleRun</code> method signature is <strong>identical</strong> — no API changes required.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GameOfLifeParallelExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataParallelExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+<p>Extend <code>CellularAutomataParallelRule</code> instead of <code>CellularAutomataRule</code>. The
+<code>transition</code> method signature is <strong>identical</strong> — no API changes required.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GameOfLifeParallelRule</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataParallelRule</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CellState</span><span class="w"> </span><span class="n">DEAD</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;dead&#34;</span><span class="p">,</span><span class="w">  </span><span class="s">&#34;0&#34;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CellState</span><span class="w"> </span><span class="n">ALIVE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellState</span><span class="p">(</span><span class="s">&#34;alive&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">transition</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">aliveCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">ALIVE</span><span class="p">))</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">count</span><span class="p">();</span><span class="w">
@@ -351,28 +351,28 @@ streams can make the parallel executor <em>slower</em> than the sequential one. 
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p>Run it exactly as you would the sequential executor:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellularAutomata</span><span class="w"> </span><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomata</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">GameOfLifeParallelExecutor</span><span class="w"> </span><span class="n">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GameOfLifeParallelExecutor</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">GameOfLifeParallelRule</span><span class="w"> </span><span class="n">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GameOfLifeParallelRule</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">executor</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">ca</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><hr>
 <h2 id="thread-safety">Thread Safety</h2>
-<p>JCAL guarantees that each call to <code>singleRun</code> is <strong>independent</strong>: the method receives
+<p>JCAL guarantees that each call to <code>transition</code> is <strong>independent</strong>: the method receives
 a snapshot of the grid taken before any cell is mutated. As long as your implementation
-of <code>singleRun</code> does not access shared mutable state outside of its arguments, it is
+of <code>transition</code> does not access shared mutable state outside of its arguments, it is
 thread-safe by design.</p>
 <div class="callout callout-warning" role="alert">
   <div class="callout-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg></div>
   <div class="callout-body">
     <div class="callout-title">Warning</div>
-    <div>Do <strong>not</strong> use mutable instance fields in your <code>CellularAutomataParallelExecutor</code>
+    <div>Do <strong>not</strong> use mutable instance fields in your <code>CellularAutomataParallelRule</code>
 subclass unless they are explicitly thread-safe (e.g., <code>AtomicInteger</code>, <code>ConcurrentHashMap</code>).
-The <code>singleRun</code> method is called concurrently for different cells.</div>
+The <code>transition</code> method is called concurrently for different cells.</div>
   </div>
 </div>
 
 <hr>
 <h2 id="parallel-cca-with-refinements">Parallel CCA (with Refinements)</h2>
-<p>The <code>refinements</code> hook is also available on <code>CellularAutomataParallelExecutor</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatDiffusionParallel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataParallelExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+<p>The <code>refinements</code> hook is also available on <code>CellularAutomataParallelRule</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatDiffusionParallel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataParallelRule</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">refinements</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -384,7 +384,7 @@ The <code>singleRun</code> method is called concurrently for different cells.</d
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cell</span><span class="w"> </span><span class="nf">transition</span><span class="p">(</span><span class="n">Cell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Cell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">mapToDouble</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">((</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">temperature</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">average</span><span class="p">().</span><span class="na">orElse</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">);</span><span class="w">
@@ -396,9 +396,9 @@ The <code>singleRun</code> method is called concurrently for different cells.</d
 </span></span></span></code></pre></div><p>The refinement phase and the transition phase are each fully parallelized internally.</p>
 <hr>
 <h2 id="internal-architecture">Internal Architecture</h2>
-<p>Internally, <code>CellularAutomataParallelExecutor</code> uses:</p>
+<p>Internally, <code>CellularAutomataParallelRule</code> uses:</p>
 <ul>
-<li><strong><code>CellularAutomataRunner</code></strong> — a <code>Callable</code> that applies <code>singleRun</code> to a subset
+<li><strong><code>CellularAutomataRunner</code></strong> — a <code>Callable</code> that applies <code>transition</code> to a subset
 of cells in parallel.</li>
 <li><strong><code>CellularAutomataRefinementRunner</code></strong> — a <code>Callable</code> that applies <code>refinements</code>
 in parallel before the snapshot is taken.</li>

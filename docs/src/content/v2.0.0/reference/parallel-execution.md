@@ -32,7 +32,7 @@ Extend `CellularAutomataParallelRule` instead of `CellularAutomataRule`. The
 `transition` method signature is **identical** — no API changes required.
 
 ```java
-public class GameOfLifeParallelExecutor extends CellularAutomataParallelRule {
+public class GameOfLifeParallelRule extends CellularAutomataParallelRule {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
@@ -61,7 +61,7 @@ Run it exactly as you would the sequential executor:
 
 ```java
 CellularAutomata ca = new CellularAutomata(config);
-GameOfLifeParallelExecutor executor = new GameOfLifeParallelExecutor();
+GameOfLifeParallelRule executor = new GameOfLifeParallelRule();
 ca = executor.run(ca);
 ```
 

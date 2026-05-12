@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+<head><script src="/JCAL/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=JCAL/livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="base-url" content="/JCAL/">
@@ -16,15 +16,15 @@
 <meta property="og:title"       content="FAQ">
 <meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library">
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v2.0.0/faq/">
+<meta property="og:url"         content="http://localhost:1313/JCAL/v2.0.0/faq/">
 
 
 
-<link rel="canonical" href="https://carmelolg.github.io/JCAL/v2.0.0/faq/">
+<link rel="canonical" href="http://localhost:1313/JCAL/v2.0.0/faq/">
 
 
 
-<link rel="alternate" type="application/rss&#43;xml" href="https://carmelolg.github.io/JCAL/v2.0.0/faq/index.xml" title="JCAL Docs">
+<link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/JCAL/v2.0.0/faq/index.xml" title="JCAL Docs">
 
 
 
@@ -316,9 +316,9 @@ JCAL into a commercial product.</p>
 <p>No. You can use an anonymous class or a lambda-style anonymous subclass directly in
 your <code>main</code> method. Named classes are recommended for non-trivial rules because they
 are easier to test and reuse.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CellularAutomataRule</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CellularAutomataRule</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">transition</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// inline rule logic</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
@@ -352,10 +352,10 @@ class provides a default <code>toString()</code> that renders the grid to a stri
 <li><strong>Initial condition</strong> — have you called <code>setInitalState(...)</code> with a non-empty list?</li>
 <li><strong>Neighborhood</strong> — is a neighborhood type set (<code>setNeighborhoodType</code> or <code>setNeighborhood</code>)?</li>
 <li><strong>Total iterations</strong> — is <code>setTotalIterations(n)</code> set to a value greater than zero?</li>
-<li><strong>Transition logic</strong> — does your <code>singleRun</code> method return the correct next state for
-the cells in question? Add a <code>System.out.println</code> inside <code>singleRun</code> to trace execution.</li>
+<li><strong>Transition logic</strong> — does your <code>transition</code> method return the correct next state for
+the cells in question? Add a <code>System.out.println</code> inside <code>transition</code> to trace execution.</li>
 </ol>
-<h3 id="i-get-a-nullpointerexception-inside-singlerun">I get a <code>NullPointerException</code> inside <code>singleRun</code>.</h3>
+<h3 id="i-get-a-nullpointerexception-inside-transition">I get a <code>NullPointerException</code> inside <code>transition</code>.</h3>
 <p>The most common cause is accessing <code>cell.getCurrentStatus()</code> or a neighbor&rsquo;s status
 without null-checking. Verify that:</p>
 <ul>

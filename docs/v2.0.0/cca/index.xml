@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Complex Cellular Automata on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/v2.0.0/cca/</link>
+    <link>http://localhost:1313/JCAL/v2.0.0/cca/</link>
     <description>Model advanced phenomena using the refinements hook and custom state objects.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 06 May 2026 18:16:56 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/cca/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Tue, 12 May 2026 22:14:11 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/v2.0.0/cca/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
   </channel>

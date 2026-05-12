@@ -54,7 +54,7 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
     .build();
 
 CellularAutomata ca = new CellularAutomata(config);
-ca = new GameOfLifeExecutor().run(ca);
+ca = new GameOfLifeRule().run(ca);
 System.out.println(ca);
 ```
 

@@ -26,7 +26,7 @@ transition(cell, neighbors) → next cell state
 ## Minimal Example
 
 ```java
-public class GameOfLifeExecutor extends CellularAutomataRule {
+public class GameOfLifeRule extends CellularAutomataRule {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
@@ -61,7 +61,7 @@ creating thousands of equal objects per generation. `CellState.equals` checks bo
 
 ## Running the Automaton
 
-Wire the executor together with a configured grid and call `run`:
+Wire the rule together with a configured grid and call `run`:
 
 ```java
 CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder()
@@ -73,8 +73,8 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
     .build();
 
 CellularAutomata ca = new CellularAutomata(config);
-GameOfLifeExecutor executor = new GameOfLifeExecutor();
-ca = executor.run(ca);
+GameOfLifeRule rule = new GameOfLifeRule();
+ca = rule.run(ca);
 System.out.println(ca);
 ```
 

@@ -99,10 +99,10 @@ public class HeatStatus extends CellState {
 }
 ```
 
-### HeatDiffusionExecutor
+### HeatDiffusionRule
 
 ```java
-public class HeatDiffusionExecutor extends CellularAutomataRule {
+public class HeatDiffusionRule extends CellularAutomataRule {
 
     @Override
     public Cell refinements(Cell cell) {
@@ -147,7 +147,7 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
     .build();
 
 CellularAutomata ca = new CellularAutomata(config);
-ca = new HeatDiffusionExecutor().run(ca);
+ca = new HeatDiffusionRule().run(ca);
 System.out.println(ca);
 ```
 
