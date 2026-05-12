@@ -1,6 +1,6 @@
 +++
 title = "Implementing a Rule"
-description = "How to write a transition function using CellularAutomataExecutor."
+description = "How to write a transition function using CellularAutomataRule."
 weight = 3
 +++
 
@@ -9,12 +9,12 @@ weight = 3
 In JCAL, the **transition function** (σ) is the core of any cellular automaton. It
 determines how each cell evolves from one generation to the next.
 
-To define a transition function, extend `CellularAutomataExecutor` and implement the
-`singleRun` method. JCAL calls this method **once per cell per generation**, passing the
+To define a transition function, extend `CellularAutomataRule` and implement the
+`transition` method. JCAL calls this method **once per cell per generation**, passing the
 current cell and its neighbors. Return a new `DefaultCell` carrying the cell's next state.
 
 ```
-singleRun(cell, neighbors) → next cell state
+transition(cell, neighbors) → next cell state
 ```
 
 ### Example: Conway's Game of Life executor
@@ -31,14 +31,14 @@ Once you have an executor, wire it together with a configured grid and call `run
 
 ## Parallel execution
 
-For large grids, replace `CellularAutomataExecutor` with
-`CellularAutomataParallelExecutor`. The `singleRun` signature is identical; JCAL
+For large grids, replace `CellularAutomataRule` with
+`CellularAutomataParallelRule`. The `transition` signature is identical; JCAL
 distributes the work across threads automatically.
 
 ```java
-public class MyParallelRule extends CellularAutomataParallelExecutor {
+public class MyParallelRule extends CellularAutomataParallelRule {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public DefaultCell transition(DefaultCell cell, List<DefaultCell> neighbors) {
         // same logic as the sequential version
     }
 }

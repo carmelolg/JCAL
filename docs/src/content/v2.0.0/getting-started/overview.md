@@ -32,7 +32,7 @@ A Cellular Automaton is the quadruple **`<Zᵈ, S, X, σ>`**:
 | **Zᵈ** | A *d*-dimensional grid of cells | `CellGrid` → `CellGrid` (2D) or `CellGrid` (3D/4D) |
 | **S** | The finite set of possible cell states | `CellState` instances |
 | **X** | The neighborhood — which cells are "neighbors" | `Neighborhood` subclass |
-| **σ** | The transition function — one step of evolution | `CellularAutomataExecutor` subclass |
+| **σ** | The transition function — one step of evolution | `CellularAutomataRule` subclass |
 
 ### Neighborhood Strategies
 
@@ -81,10 +81,10 @@ multiple departments. That library was comprehensive but complex.
 | `Cell` | One cell on the grid. Has a `CellState` and coordinate(s). |
 | `CellularAutomataConfiguration` | Immutable configuration. Always use the inner `Builder`. |
 | `CellularAutomata` | The grid. Create from a configuration object. |
-| `CellularAutomataExecutor` | **Extend this** to define your transition rule (`singleRun`). |
+| `CellularAutomataRule` | **Extend this** to define your transition rule (`transition`). |
 | `Neighborhood` | **Extend this** for a custom 2D neighborhood shape. |
 | `Neighborhood` | **Extend this** for a custom 3D/4D neighborhood shape. |
-| `CellularAutomataParallelExecutor` | Parallel variant of `CellularAutomataExecutor`. |
+| `CellularAutomataParallelRule` | Parallel variant of `CellularAutomataRule`. |
 
 ### Grid Coordinate Convention
 

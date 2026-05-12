@@ -106,13 +106,13 @@ A classic 3D Life rule: a dead cell is born if it has exactly 4 live neighbors; 
 cell survives if it has 5 or 6 live neighbors.
 
 ```java
-public class GameOfLife3DExecutor extends CellularAutomataExecutor {
+public class GameOfLife3DExecutor extends CellularAutomataRule {
 
     private static final CellState DEAD  = new CellState("dead",  0);
     private static final CellState ALIVE = new CellState("alive", 1);
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();

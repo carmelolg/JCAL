@@ -24,7 +24,7 @@ A Cellular Automaton is formally described as the quadruple **`<Z`<span style="c
 | **Z<sup>d</sup>** | A *d*-dimensional grid of cells | `DefaultCell[][]` inside `CellularAutomata` |
 | **S** | The finite set of possible cell states | `DefaultStatus` instances |
 | **X** | The neighborhood — which cells are considered "neighbors" | `DefaultNeighborhood` subclass |
-| **σ** | The transition function — one step of evolution | `CellularAutomataExecutor` subclass |
+| **σ** | The transition function — one step of evolution | `CellularAutomataRule` subclass |
 
 ### Neighborhood strategies
 

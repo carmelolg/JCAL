@@ -18,7 +18,7 @@ A Cellular Automaton is the quadruple **`<Z^d, S, X, σ>`**:
 | **Z^d** | *d*-dimensional grid of cells | `CellGrid` (2D–4D, unified) |
 | **S**  | Set of possible cell states | `CellState` |
 | **X**  | Neighborhood strategy | `Neighborhood` subclass |
-| **σ**  | Transition function | `CellularAutomataExecutor` subclass |
+| **σ**  | Transition function | `CellularAutomataRule` subclass |
 
 ## Key Features
 
@@ -29,7 +29,7 @@ A Cellular Automaton is the quadruple **`<Z^d, S, X, σ>`**:
 | 🏘️ **Built-in neighborhoods** | Moore and Von Neumann for 2D, 3D, and 4D |
 | 🔌 **Extensible** | Custom states, neighborhoods, and rules with minimal code |
 | ⚙️ **Complex CA support** | Refinement hook enables rich multi-value simulations |
-| ⚡ **Parallel execution** | `CellularAutomataParallelExecutor` — same API, more threads |
+| ⚡ **Parallel execution** | `CellularAutomataParallelRule` — same API, more threads |
 
 ## Quick Example
 

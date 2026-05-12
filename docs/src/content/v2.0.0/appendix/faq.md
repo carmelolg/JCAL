@@ -35,9 +35,9 @@ JCAL into a commercial product.
 No. You can use an anonymous class directly in your `main` method:
 
 ```java
-CellularAutomataExecutor rule = new CellularAutomataExecutor() {
+CellularAutomataRule rule = new CellularAutomataRule() {
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         // inline rule logic
         return new Cell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
     }
@@ -100,10 +100,10 @@ Check the following:
 1. **Initial condition** — Did you call `setInitalState(...)` with a non-empty list?
 2. **Neighborhood** — Is a neighborhood set (`setNeighborhoodType` or `setNeighborhood`)?
 3. **Total iterations** — Is `setTotalIterations(n)` set to a value **greater than zero**?
-4. **Transition logic** — Does `singleRun` return the correct next state? Add a
-   `System.out.println` inside `singleRun` to trace execution.
+4. **Transition logic** — Does `transition` return the correct next state? Add a
+   `System.out.println` inside `transition` to trace execution.
 
-### I get a `NullPointerException` inside `singleRun`.
+### I get a `NullPointerException` inside `transition`.
 
 Common causes:
 

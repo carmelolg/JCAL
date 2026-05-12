@@ -2,7 +2,7 @@
 title: "Implementing a Rule"
 date: 2026-04-30
 draft: false
-summary: "How to write a transition function using CellularAutomataExecutor."
+summary: "How to write a transition function using CellularAutomataRule."
 weight: 30
 toc: true
 ---
@@ -12,13 +12,13 @@ toc: true
 In JCAL, the **transition function** (σ) is the core of any cellular automaton. It
 determines how each cell evolves from one generation to the next.
 
-To define a transition function, extend `CellularAutomataExecutor` and implement
-`singleRun`. JCAL calls this method **once per cell per generation**, passing the
+To define a transition function, extend `CellularAutomataRule` and implement
+`transition`. JCAL calls this method **once per cell per generation**, passing the
 current cell and its neighbors. Return a **new** `Cell` carrying the cell's
 next state — never mutate the input cell.
 
 ```
-singleRun(cell, neighbors) → next cell state
+transition(cell, neighbors) → next cell state
 ```
 
 ---
@@ -26,13 +26,13 @@ singleRun(cell, neighbors) → next cell state
 ## Minimal Example
 
 ```java
-public class GameOfLifeExecutor extends CellularAutomataExecutor {
+public class GameOfLifeExecutor extends CellularAutomataRule {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();
@@ -88,9 +88,9 @@ indefinitely when `setInfinite(true)`) and returns the updated `CellularAutomata
 For quick experiments, you can define the rule inline without a named class:
 
 ```java
-CellularAutomataExecutor rule = new CellularAutomataExecutor() {
+CellularAutomataRule rule = new CellularAutomataRule() {
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         // rule logic here
         return new Cell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
     }
@@ -104,14 +104,14 @@ test, reuse, and document.
 
 ## Parallel Execution
 
-For large grids, replace `CellularAutomataExecutor` with
-`CellularAutomataParallelExecutor`. The `singleRun` signature is identical; JCAL
+For large grids, replace `CellularAutomataRule` with
+`CellularAutomataParallelRule`. The `transition` signature is identical; JCAL
 distributes the work across threads automatically using Java parallel streams.
 
 ```java
-public class MyParallelRule extends CellularAutomataParallelExecutor {
+public class MyParallelRule extends CellularAutomataParallelRule {
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         // exact same logic as the sequential version
     }
 }

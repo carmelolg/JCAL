@@ -23,7 +23,7 @@ Use the refinements hook when:
   before the transition function runs (e.g., heat diffusion, lava flow, erosion).
 - Your simulation requires **per-cell bookkeeping between generations** — decrementing
   a counter, normalizing a fractional flow, clamping a temperature to physical bounds.
-- The `singleRun` transition function alone is insufficient to model the phenomenon.
+- The `transition` transition function alone is insufficient to model the phenomenon.
 
 ---
 
@@ -33,11 +33,11 @@ Use the refinements hook when:
 for each generation:
   1. refinements(cell)           — applied to every cell  [optional CCA hook]
   2. snapshot the grid           — clone the map before any mutation
-  3. singleRun(cell, neighbors)  — per cell, reads the snapshot, returns next state
+  3. transition(cell, neighbors)  — per cell, reads the snapshot, returns next state
   4. copy results back           — update the main map with all new states
 ```
 
-The snapshot in step 2 ensures that all cells in `singleRun` see the *pre-transition*
+The snapshot in step 2 ensures that all cells in `transition` see the *pre-transition*
 state of their neighbors, not the partially-updated state.
 
 ---
@@ -48,7 +48,7 @@ Override `refinements(Cell cell)` in your executor and return the (possibly
 modified) cell:
 
 ```java
-public class MyComplexRule extends CellularAutomataExecutor {
+public class MyComplexRule extends CellularAutomataRule {
 
     @Override
     public Cell refinements(Cell cell) {
@@ -60,7 +60,7 @@ public class MyComplexRule extends CellularAutomataExecutor {
     }
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         // Neighbors already have their refined state
         MyStatus current = (MyStatus) cell.getCurrentStatus();
         // ... compute next state ...
@@ -102,7 +102,7 @@ public class HeatStatus extends CellState {
 ### HeatDiffusionExecutor
 
 ```java
-public class HeatDiffusionExecutor extends CellularAutomataExecutor {
+public class HeatDiffusionExecutor extends CellularAutomataRule {
 
     @Override
     public Cell refinements(Cell cell) {
@@ -114,7 +114,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
     }
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         double avgNeighborTemp = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average()
@@ -155,16 +155,16 @@ System.out.println(ca);
 
 ## Combining with Parallel Execution
 
-The refinements hook is also available on `CellularAutomataParallelExecutor`:
+The refinements hook is also available on `CellularAutomataParallelRule`:
 
 ```java
-public class MyParallelCCA extends CellularAutomataParallelExecutor {
+public class MyParallelCCA extends CellularAutomataParallelRule {
 
     @Override
     public Cell refinements(Cell cell) { ... }
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) { ... }
+    public Cell transition(Cell cell, List<Cell> neighbors) { ... }
 }
 ```
 

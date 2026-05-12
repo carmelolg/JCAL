@@ -26,7 +26,7 @@ Use the refinements hook when:
 for each generation:
   1. refinements(cell)        — applied to every cell  [optional CCA hook]
   2. snapshot the grid        — clone the map before any mutation
-  3. singleRun(cell, neighbors) — per cell, reads the snapshot, returns next state
+  3. transition(cell, neighbors) — per cell, reads the snapshot, returns next state
   4. copy results back        — update the main map with all new states
 ```
 
@@ -35,7 +35,7 @@ for each generation:
 Override `refinements(DefaultCell cell)` in your executor class. Return the modified cell.
 
 ```java
-public class MyComplexRule extends CellularAutomataExecutor {
+public class MyComplexRule extends CellularAutomataRule {
 
     @Override
     public DefaultCell refinements(DefaultCell cell) {
@@ -47,7 +47,7 @@ public class MyComplexRule extends CellularAutomataExecutor {
     }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public DefaultCell transition(DefaultCell cell, List<DefaultCell> neighbors) {
         // Standard transition logic — neighbors already have refined state
         MyStatus current = (MyStatus) cell.getCurrentStatus();
         // ... compute next state ...
@@ -74,7 +74,7 @@ public class HeatStatus extends DefaultStatus {
     }
 }
 
-public class HeatDiffusionExecutor extends CellularAutomataExecutor {
+public class HeatDiffusionExecutor extends CellularAutomataRule {
 
     @Override
     public DefaultCell refinements(DefaultCell cell) {
@@ -86,7 +86,7 @@ public class HeatDiffusionExecutor extends CellularAutomataExecutor {
     }
 
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public DefaultCell transition(DefaultCell cell, List<DefaultCell> neighbors) {
         double avgTemp = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average()

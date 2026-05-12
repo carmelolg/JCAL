@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
+import io.github.carmelolg.jcal.core.CellularAutomataRule;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
@@ -93,7 +93,7 @@ public class CustomStateExample {
 
         // --- Step 4: Initialize the automaton and run ---
         CellularAutomata ca = new CellularAutomata(config);
-        CellularAutomataExecutor rule = new HeatDiffusionRule();
+        CellularAutomataRule rule = new HeatDiffusionRule();
         ca = rule.run(ca);   // evolves for 3 steps
 
         // Print the resulting grid (cell values: 0=cold, 1=warm, 2=hot)
@@ -111,10 +111,10 @@ public class CustomStateExample {
      * <p>This rule shows how to inspect the {@code value} field of a {@link CellState}
      * (here an {@link Integer}) to drive branching logic beyond a simple alive/dead check.
      */
-    static class HeatDiffusionRule extends CellularAutomataExecutor {
+    static class HeatDiffusionRule extends CellularAutomataRule {
 
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             // Count how many neighbours are hot or warm
             long hotNeighborCount = neighbors.stream()
                     .filter(n -> n.getCurrentStatus().equals(HOT))

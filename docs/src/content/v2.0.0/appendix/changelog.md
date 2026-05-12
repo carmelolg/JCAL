@@ -12,6 +12,22 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Changed
+- **Breaking:** `CellularAutomataExecutor` renamed to `CellularAutomataRule` — the new name
+  better reflects what the developer provides: a *rule*, not an executor
+- **Breaking:** `CellularAutomataParallelExecutor` renamed to `CellularAutomataParallelRule`
+  for the same reason
+- **Breaking:** abstract method `singleRun(Cell, List<Cell>)` renamed to
+  `transition(Cell, List<Cell>)` — aligns with standard cellular automata theory terminology
+
+> **Migration:** replace `extends CellularAutomataExecutor` with `extends CellularAutomataRule`,
+> `extends CellularAutomataParallelExecutor` with `extends CellularAutomataParallelRule`, and
+> rename any `singleRun` override to `transition`.
+
+---
+
 ## [2.0.0] — 2026-05-04
 
 ### Added
@@ -59,7 +75,7 @@ Versions align with [Semantic Versioning](https://semver.org/).
 - Test suite expanded from 99 to **148 tests** — **100% instruction coverage** (JaCoCo)
 - Added specification tests: blinker oscillator (Game of Life), still-life 3D (Carter Bays)
 - Added reflection-based test for the unreachable `resolveNeighborhood` default branch
-- Added exception-path tests for `CellularAutomataParallelExecutor` lambda handlers
+- Added exception-path tests for `CellularAutomataParallelRule` lambda handlers
 
 ---
 
@@ -112,10 +128,10 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ### Added
 - Initial release of JCAL
-- Core API: `CellularAutomata`, `CellularAutomataExecutor`, `CellularAutomataConfiguration`
+- Core API: `CellularAutomata`, `CellularAutomataRule`, `CellularAutomataConfiguration`
 - 2D grid support: `CellGrid2D` with Moore and Von Neumann neighborhoods
 - Cell state management: `CellState`, `Cell`
-- Parallel execution via `CellularAutomataParallelExecutor`
+- Parallel execution via `CellularAutomataParallelRule`
 - Basic example: `GameOfLifeExample`
 - Maven publication to GitHub Packages
 

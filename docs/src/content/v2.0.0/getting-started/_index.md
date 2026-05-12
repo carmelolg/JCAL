@@ -37,11 +37,11 @@ cellular automaton. It demonstrates all four steps of the JCAL workflow:
 1. Define the possible **states** (`DefaultStatus`).
 2. Specify the **initial condition** (which cells start alive).
 3. **Configure** the grid via `CellularAutomataConfigurationBuilder`.
-4. **Implement** the transition rule by extending `CellularAutomataExecutor`.
+4. **Implement** the transition rule by extending `CellularAutomataRule`.
 
 ### Step 1 — Implement the transition rule
 
-Extend `CellularAutomataExecutor` and implement `singleRun`. This method is called
+Extend `CellularAutomataRule` and implement `transition`. This method is called
 once per cell per generation; return the cell's next state.
 
 {{< code lang="JAVA" file="gol-executor.java">}}{{< /code >}}

@@ -108,14 +108,14 @@ See [Configuration Reference](../configuration/) for all available options.
 
 ### Step 4 — Implement the Transition Rule
 
-Extend `CellularAutomataExecutor` and implement `singleRun`. JCAL calls this method
+Extend `CellularAutomataRule` and implement `transition`. JCAL calls this method
 **once per cell per generation**; return a new `Cell` with the cell's next state.
 
 ```java
-public class GameOfLifeExecutor extends CellularAutomataExecutor {
+public class GameOfLifeExecutor extends CellularAutomataRule {
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         CellState dead  = new CellState("dead",  "0");
         CellState alive = new CellState("alive", "1");
 

@@ -17,7 +17,7 @@ other domain-specific data — you can extend `CellState` with a custom class.
 ## Overview
 
 1. **Define your custom status** by extending `CellState` and adding fields.
-2. **Cast in `singleRun`** — in your executor, cast `cell.getCurrentStatus()` to your
+2. **Cast in `transition`** — in your executor, cast `cell.getCurrentStatus()` to your
    subclass to access the extra fields.
 3. **Use your custom status** as the default status and in the initial condition list.
 
@@ -47,13 +47,13 @@ public class GoLStatus extends CellState {
 
 ### The Executor
 
-Cast `currentStatus` to `GoLStatus` inside `singleRun`:
+Cast `currentStatus` to `GoLStatus` inside `transition`:
 
 ```java
-public class GoLCustomExecutor extends CellularAutomataExecutor {
+public class GoLCustomExecutor extends CellularAutomataRule {
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> ((GoLStatus) n.getCurrentStatus()).isAlive)
             .count();
@@ -122,10 +122,10 @@ public class HeatStatus extends CellState {
 Use it in an executor that averages neighbors' temperatures:
 
 ```java
-public class HeatDiffusionExecutor extends CellularAutomataExecutor {
+public class HeatDiffusionExecutor extends CellularAutomataRule {
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         double avgTemp = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average()

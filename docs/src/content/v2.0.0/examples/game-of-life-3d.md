@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.CellularAutomataExecutor;
+import io.github.carmelolg.jcal.core.CellularAutomataRule;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
@@ -95,7 +95,7 @@ public class GameOfLife3DExample {
 
         CellularAutomata ca = new CellularAutomata(config);
 
-        CellularAutomataExecutor rule = new Carter3DLifeRule();
+        CellularAutomataRule rule = new Carter3DLifeRule();
         ca = rule.run(ca);
 
         // Print the alive cells after 3 iterations (still life: identical to the initial state)
@@ -113,10 +113,10 @@ public class GameOfLife3DExample {
      * Carter Bays' survival rule for 3D Life:
      * survive on 5–6 alive neighbours; born on exactly 5 alive neighbours.
      */
-    public static class Carter3DLifeRule extends CellularAutomataExecutor {
+    public static class Carter3DLifeRule extends CellularAutomataRule {
 
         @Override
-        public Cell singleRun(Cell cell, List<Cell> neighbors) {
+        public Cell transition(Cell cell, List<Cell> neighbors) {
             long aliveCount = neighbors.stream()
                     .filter(n -> n.getCurrentStatus().equals(ALIVE))
                     .count();

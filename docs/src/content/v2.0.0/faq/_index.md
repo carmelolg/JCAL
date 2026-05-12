@@ -34,9 +34,9 @@ your `main` method. Named classes are recommended for non-trivial rules because 
 are easier to test and reuse.
 
 ```java
-CellularAutomataExecutor rule = new CellularAutomataExecutor() {
+CellularAutomataRule rule = new CellularAutomataRule() {
     @Override
-    public DefaultCell singleRun(DefaultCell cell, List<DefaultCell> neighbors) {
+    public DefaultCell transition(DefaultCell cell, List<DefaultCell> neighbors) {
         // inline rule logic
         return new DefaultCell(cell.getCurrentStatus(), cell.getCol(), cell.getRow());
     }
@@ -82,10 +82,10 @@ Check the following:
 1. **Initial condition** — have you called `setInitalState(...)` with a non-empty list?
 2. **Neighborhood** — is a neighborhood type set (`setNeighborhoodType` or `setNeighborhood`)?
 3. **Total iterations** — is `setTotalIterations(n)` set to a value greater than zero?
-4. **Transition logic** — does your `singleRun` method return the correct next state for
-   the cells in question? Add a `System.out.println` inside `singleRun` to trace execution.
+4. **Transition logic** — does your `transition` method return the correct next state for
+   the cells in question? Add a `System.out.println` inside `transition` to trace execution.
 
-### I get a `NullPointerException` inside `singleRun`.
+### I get a `NullPointerException` inside `transition`.
 
 The most common cause is accessing `cell.getCurrentStatus()` or a neighbor's status
 without null-checking. Verify that:

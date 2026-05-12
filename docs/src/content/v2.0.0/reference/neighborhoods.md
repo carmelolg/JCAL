@@ -143,7 +143,7 @@ Then pass it via the builder:
 
 By default, cells at the grid boundary have fewer neighbors because JCAL does not wrap
 the grid (no toric topology). Neighbors outside the grid bounds are simply omitted from
-the list passed to `singleRun`.
+the list passed to `transition`.
 
 If you need wrap-around behavior, implement it in your custom `Neighborhood` by
 applying modular arithmetic to the row/column indices.
@@ -152,6 +152,6 @@ applying modular arithmetic to the row/column indices.
 
 ## See Also
 
-- [Implementing a Rule](../implementing-a-rule/) — how to use the neighbors list in `singleRun`.
+- [Implementing a Rule](../implementing-a-rule/) — how to use the neighbors list in `transition`.
 - [3D and 4D Support](../3d-4d-support/) — multi-dimensional grids and neighborhoods.
 - [Configuration Reference](../configuration/) — how to register a neighborhood in the builder.

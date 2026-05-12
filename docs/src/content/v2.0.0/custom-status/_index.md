@@ -12,7 +12,7 @@ other domain-specific data — you can extend `DefaultStatus` with a custom clas
 ## Overview
 
 1. **Define your custom status** by extending `DefaultStatus` and adding fields.
-2. **Cast in `singleRun`** — in your executor, cast `cell.getCurrentStatus()` to your
+2. **Cast in `transition`** — in your executor, cast `cell.getCurrentStatus()` to your
    custom class to access the extra fields.
 3. **Use your custom status** as the default status and in the initial condition list.
 
@@ -32,7 +32,7 @@ Define your own class that extends `DefaultStatus` and adds domain-specific fiel
 
 ### The executor
 
-In `singleRun`, cast the current status to your custom class to read its fields.
+In `transition`, cast the current status to your custom class to read its fields.
 Always return a new `DefaultCell` with the next state — do not mutate the input cell.
 
 {{< code lang="JAVA" file="executor.java">}}{{< /code >}}

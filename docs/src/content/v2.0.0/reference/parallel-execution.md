@@ -2,13 +2,13 @@
 title: "Parallel Execution"
 date: 2026-04-30
 draft: false
-summary: "Scale JCAL to large grids with CellularAutomataParallelExecutor."
+summary: "Scale JCAL to large grids with CellularAutomataParallelRule."
 weight: 80
 toc: true
 ---
 
 For large grids where the sequential executor becomes a bottleneck, JCAL provides
-`CellularAutomataParallelExecutor` — a drop-in replacement that distributes the
+`CellularAutomataParallelRule` — a drop-in replacement that distributes the
 transition function across multiple threads using Java parallel streams.
 
 ---
@@ -18,7 +18,7 @@ transition function across multiple threads using Java parallel streams.
 The parallel executor is beneficial when:
 
 - Your grid is **large** (typically 500×500 or more in 2D, smaller thresholds in 3D/4D).
-- The transition function (`singleRun`) is **computationally intensive** per cell.
+- The transition function (`transition`) is **computationally intensive** per cell.
 - Your hardware has **multiple CPU cores** available.
 
 For small grids or trivially cheap rules, the thread-management overhead of parallel
@@ -28,17 +28,17 @@ streams can make the parallel executor *slower* than the sequential one. Benchma
 
 ## Usage
 
-Extend `CellularAutomataParallelExecutor` instead of `CellularAutomataExecutor`. The
-`singleRun` method signature is **identical** — no API changes required.
+Extend `CellularAutomataParallelRule` instead of `CellularAutomataRule`. The
+`transition` method signature is **identical** — no API changes required.
 
 ```java
-public class GameOfLifeParallelExecutor extends CellularAutomataParallelExecutor {
+public class GameOfLifeParallelExecutor extends CellularAutomataParallelRule {
 
     private static final CellState DEAD  = new CellState("dead",  "0");
     private static final CellState ALIVE = new CellState("alive", "1");
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         long aliveCount = neighbors.stream()
             .filter(n -> n.getCurrentStatus().equals(ALIVE))
             .count();
@@ -69,25 +69,25 @@ ca = executor.run(ca);
 
 ## Thread Safety
 
-JCAL guarantees that each call to `singleRun` is **independent**: the method receives
+JCAL guarantees that each call to `transition` is **independent**: the method receives
 a snapshot of the grid taken before any cell is mutated. As long as your implementation
-of `singleRun` does not access shared mutable state outside of its arguments, it is
+of `transition` does not access shared mutable state outside of its arguments, it is
 thread-safe by design.
 
 {{< callout type="warning" >}}
-Do **not** use mutable instance fields in your `CellularAutomataParallelExecutor`
+Do **not** use mutable instance fields in your `CellularAutomataParallelRule`
 subclass unless they are explicitly thread-safe (e.g., `AtomicInteger`, `ConcurrentHashMap`).
-The `singleRun` method is called concurrently for different cells.
+The `transition` method is called concurrently for different cells.
 {{< /callout >}}
 
 ---
 
 ## Parallel CCA (with Refinements)
 
-The `refinements` hook is also available on `CellularAutomataParallelExecutor`:
+The `refinements` hook is also available on `CellularAutomataParallelRule`:
 
 ```java
-public class HeatDiffusionParallel extends CellularAutomataParallelExecutor {
+public class HeatDiffusionParallel extends CellularAutomataParallelRule {
 
     @Override
     public Cell refinements(Cell cell) {
@@ -99,7 +99,7 @@ public class HeatDiffusionParallel extends CellularAutomataParallelExecutor {
     }
 
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         double avg = neighbors.stream()
             .mapToDouble(n -> ((HeatStatus) n.getCurrentStatus()).temperature)
             .average().orElse(0.0);
@@ -116,9 +116,9 @@ The refinement phase and the transition phase are each fully parallelized intern
 
 ## Internal Architecture
 
-Internally, `CellularAutomataParallelExecutor` uses:
+Internally, `CellularAutomataParallelRule` uses:
 
-- **`CellularAutomataRunner`** — a `Callable` that applies `singleRun` to a subset
+- **`CellularAutomataRunner`** — a `Callable` that applies `transition` to a subset
   of cells in parallel.
 - **`CellularAutomataRefinementRunner`** — a `Callable` that applies `refinements`
   in parallel before the snapshot is taken.

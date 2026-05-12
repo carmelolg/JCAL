@@ -21,7 +21,7 @@ A Cellular Automaton is formally described as the quadruple **`<Z^d, S, X, σ>`*
 | **Z^d** | d-dimensional grid of cells | `CellGrid` (`CellGrid` for 2D, `CellGrid` for 3D/4D) |
 | **S**  | Set of possible cell states | `CellState` |
 | **X**  | Neighborhood strategy | `Neighborhood` subclass |
-| **σ**  | Transition function | `CellularAutomataExecutor` subclass |
+| **σ**  | Transition function | `CellularAutomataRule` subclass |
 
 ---
 
@@ -33,9 +33,9 @@ io.github.carmelolg.jcal
 │   ├── CellularAutomata                   ← the grid (CellGrid); holds neighbourhood + config
 │   ├── CellularAutomataConfiguration      ← immutable config; use inner Builder
 │   │   └── CellularAutomataConfigurationBuilder
-│   ├── CellularAutomataExecutor           ← abstract; extend to define the transition rule
+│   ├── CellularAutomataRule           ← abstract; extend to define the transition rule
 │   └── parallel/
-│       ├── CellularAutomataParallelExecutor   ← parallel variant of the executor
+│       ├── CellularAutomataParallelRule   ← parallel variant of the executor
 │       ├── Runner                             ← internal — Callable for parallel transition
 │       └── RefinementRunner                   ← internal — Callable for parallel refinement
 │
@@ -73,7 +73,7 @@ io.github.carmelolg.jcal
 |-------|--------|-------|
 | `CellularAutomata` | **Public API** | Core grid object |
 | `CellularAutomataConfiguration` | **Public API** | Always build via inner `Builder` |
-| `CellularAutomataExecutor` | **Extension point** | Subclass to define your rule |
+| `CellularAutomataRule` | **Extension point** | Subclass to define your rule |
 | `Neighborhood` | **Extension point** | Subclass for any custom neighbourhood (2D or nD) |
 | `NDCapable` | **Marker interface** | Implement alongside `Neighborhood` for 3D/4D custom neighbourhoods |
 | `CellGrid` | **Public API** | Unified n-dimensional grid class (2D–4D) |
@@ -87,7 +87,7 @@ io.github.carmelolg.jcal
 | `VonNeumann3DNeighborhood` | Public (auto-resolved for 3D) | Use `NeighborhoodType.VON_NEUMANN` |
 | `Moore4DNeighborhood` | Public (auto-resolved for 4D) | Use `NeighborhoodType.MOORE` |
 | `VonNeumann4DNeighborhood` | Public (auto-resolved for 4D) | Use `NeighborhoodType.VON_NEUMANN` |
-| `CellularAutomataParallelExecutor` | **Extension point** | Parallel variant of executor |
+| `CellularAutomataParallelRule` | **Extension point** | Parallel variant of executor |
 | `Runner` | **Internal** | Do not use directly |
 | `RefinementRunner` | **Internal** | Do not use directly |
 | `Utils` | Internal helper | May be used by custom neighbourhoods |
@@ -100,11 +100,11 @@ io.github.carmelolg.jcal
 for each generation:
   1. refinements(cell)           — applied to every cell  [optional CCA hook]
   2. snapshot the grid           — clone the grid before any mutation
-  3. singleRun(cell, neighbors)  — per cell, reads snapshot, writes result
+  3. transition(cell, neighbors)  — per cell, reads snapshot, writes result
   4. copy result back            — update the main grid with all new states
 ```
 
-The snapshot in step 2 ensures full isolation: all cells in `singleRun` see the
+The snapshot in step 2 ensures full isolation: all cells in `transition` see the
 *pre-transition* state of their neighbors, regardless of the order in which cells
 are processed.
 
@@ -142,13 +142,13 @@ flat index = coords[0] * stride[0] + coords[1] * stride[1] + … + coords[n-1] *
 
 ### 1. Custom Transition Rule
 
-Subclass `CellularAutomataExecutor` (sequential) or `CellularAutomataParallelExecutor`
+Subclass `CellularAutomataRule` (sequential) or `CellularAutomataParallelRule`
 (parallel):
 
 ```java
-public class MyRule extends CellularAutomataExecutor {
+public class MyRule extends CellularAutomataRule {
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         // inspect cell.getCurrentStatus() and neighbors
         // return a new Cell with the next state
     }
