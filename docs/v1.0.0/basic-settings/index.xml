@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Implementing a Rule on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/v1.0.0/basic-settings/</link>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/basic-settings/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 May 2026 22:14:11 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/v1.0.0/basic-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Tue, 12 May 2026 20:54:42 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/basic-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Implementing a Rule</title>
-      <link>http://localhost:1313/JCAL/v1.0.0/basic-settings/implementing-a-rule/</link>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/basic-settings/implementing-a-rule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v1.0.0/basic-settings/implementing-a-rule/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/basic-settings/implementing-a-rule/</guid>
       <description>&lt;h2 id=&#34;the-transition-function&#34;&gt;The transition function&lt;/h2&gt;
 &lt;p&gt;In JCAL, the &lt;strong&gt;transition function&lt;/strong&gt; (σ) is the core of any cellular automaton. It
 determines how each cell evolves from one generation to the next.&lt;/p&gt;

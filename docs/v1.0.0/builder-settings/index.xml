@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Configuration Reference on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/v1.0.0/builder-settings/</link>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/builder-settings/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 May 2026 22:14:11 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/v1.0.0/builder-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Tue, 12 May 2026 20:54:42 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/builder-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Configuration Reference</title>
-      <link>http://localhost:1313/JCAL/v1.0.0/builder-settings/configuration/</link>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/builder-settings/configuration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v1.0.0/builder-settings/configuration/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/builder-settings/configuration/</guid>
       <description>&lt;p&gt;To run a cellular automaton with JCAL, you must first build a &lt;code&gt;CellularAutomataConfiguration&lt;/code&gt;
 using the fluent &lt;code&gt;CellularAutomataConfigurationBuilder&lt;/code&gt;. Configuration objects are &lt;strong&gt;immutable&lt;/strong&gt;
 once built; all settings must be applied before calling &lt;code&gt;.build()&lt;/code&gt;.&lt;/p&gt;
