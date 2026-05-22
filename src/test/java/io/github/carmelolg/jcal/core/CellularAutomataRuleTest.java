@@ -2,11 +2,14 @@ package io.github.carmelolg.jcal.core;
 
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -175,5 +178,78 @@ class CellularAutomataRuleTest {
         t.interrupt();
         t.join(2000);
         assertFalse(t.isAlive(), "Thread should have terminated after interrupt");
+    }
+
+    // ── GenerationListener ────────────────────────────────────────────────
+
+    @Test
+    @DisplayName("listener is called once per iteration")
+    void listenerCalledOncePerIteration() throws Exception {
+        AtomicInteger callCount = new AtomicInteger(0);
+        GoLExecutor rule = new GoLExecutor();
+        rule.addGenerationListener((gen, snap) -> callCount.incrementAndGet());
+
+        CellularAutomata ca = buildCa(3, 3, 5, null);
+        rule.run(ca);
+
+        assertEquals(5, callCount.get(), "Listener should be called once per iteration");
+    }
+
+    @Test
+    @DisplayName("listener receives sequential generation numbers starting at 1")
+    void listenerReceivesSequentialGenerations() throws Exception {
+        List<Integer> generations = new ArrayList<>();
+        GoLExecutor rule = new GoLExecutor();
+        rule.addGenerationListener((gen, snap) -> generations.add(gen));
+
+        CellularAutomata ca = buildCa(3, 3, 4, null);
+        rule.run(ca);
+
+        assertEquals(List.of(1, 2, 3, 4), generations);
+    }
+
+    @Test
+    @DisplayName("listener snapshot reflects the grid state after the transition")
+    void listenerSnapshotReflectsStateAfterTransition() throws Exception {
+        List<Cell> initial = List.of(
+                new Cell(ALIVE, 2, 1),
+                new Cell(ALIVE, 2, 2),
+                new Cell(ALIVE, 2, 3)
+        );
+        List<GridSnapshot> snapshots = new ArrayList<>();
+        GoLExecutor rule = new GoLExecutor();
+        rule.addGenerationListener((gen, snap) -> snapshots.add(snap));
+
+        CellularAutomata ca = buildCa(5, 5, 1, initial);
+        rule.run(ca);
+
+        assertEquals(1, snapshots.size());
+        GridSnapshot snap = snapshots.get(0);
+        assertEquals(1, snap.getGeneration());
+        assertEquals(ALIVE, snap.getState(1, 2), "Blinker: (1,2) should be alive after step 1");
+        assertEquals(ALIVE, snap.getState(2, 2), "Blinker: (2,2) should be alive after step 1");
+        assertEquals(ALIVE, snap.getState(3, 2), "Blinker: (3,2) should be alive after step 1");
+    }
+
+    @Test
+    @DisplayName("multiple listeners are called in registration order each iteration")
+    void multipleListenersCalledInOrder() throws Exception {
+        List<String> callOrder = new ArrayList<>();
+        GoLExecutor rule = new GoLExecutor();
+        rule.addGenerationListener((gen, snap) -> callOrder.add("A"));
+        rule.addGenerationListener((gen, snap) -> callOrder.add("B"));
+
+        CellularAutomata ca = buildCa(3, 3, 2, null);
+        rule.run(ca);
+
+        assertEquals(List.of("A", "B", "A", "B"), callOrder,
+                "Both listeners should be called in registration order each iteration");
+    }
+
+    @Test
+    @DisplayName("addGenerationListener throws NullPointerException for null listener")
+    void addListenerRejectsNull() {
+        assertThrows(NullPointerException.class,
+                () -> new GoLExecutor().addGenerationListener(null));
     }
 }

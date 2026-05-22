@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/</link>
+    <link>http://localhost:1313/JCAL/v2.0.0/getting-started/</link>
     <description>Install JCAL and run your first cellular automaton.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 May 2026 20:54:42 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/getting-started/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Fri, 22 May 2026 21:45:30 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/JCAL/v2.0.0/getting-started/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Overview</title>
-      <link>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/overview/</link>
+      <link>http://localhost:1313/JCAL/v2.0.0/getting-started/overview/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/overview/</guid>
+      <guid>http://localhost:1313/JCAL/v2.0.0/getting-started/overview/</guid>
       <description>What is a Cellular Automaton, and what is JCAL?</description>
     </item>
     
     <item>
       <title>Getting Started</title>
-      <link>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/getting-started/</link>
+      <link>http://localhost:1313/JCAL/v2.0.0/getting-started/getting-started/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/getting-started/</guid>
+      <guid>http://localhost:1313/JCAL/v2.0.0/getting-started/getting-started/</guid>
       <description>Install JCAL and run your first cellular automaton in minutes.</description>
     </item>
     
