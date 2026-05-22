@@ -140,7 +140,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -153,7 +153,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -164,7 +164,7 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setDefaultStatus(DEAD)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -177,7 +177,7 @@ class CellularAutomataTest {
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .setNeighborhood(new MooreNeighborhood())
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -188,7 +188,7 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -201,7 +201,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -214,7 +214,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -227,7 +227,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -246,7 +246,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhood(nonNd)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -260,7 +260,7 @@ class CellularAutomataTest {
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .setInitalState(initial)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -274,7 +274,7 @@ class CellularAutomataTest {
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .setInitalState(initial)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test

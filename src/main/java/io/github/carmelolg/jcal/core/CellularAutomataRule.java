@@ -81,9 +81,9 @@ public abstract class CellularAutomataRule {
 	 * 
 	 * @param ca the {@link CellularAutomata} configured
 	 * @return the new {@link CellularAutomata} after n-interactions
-	 * @throws Exception if something go wrong.
+	 * @throws CellularAutomataException if something goes wrong during execution
 	 */
-	public CellularAutomata run(CellularAutomata ca) throws Exception {
+	public CellularAutomata run(CellularAutomata ca) {
 
 		logger.info("Starting execution with {} iterations", 
 			ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());

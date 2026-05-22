@@ -1,3 +1,5 @@
+.github/copilot-report/
+
 target/*
 /target/
 
