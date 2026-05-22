@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Implementing a Rule on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/v2.0.0/basic-settings/</link>
+    <link>https://carmelolg.github.io/JCAL/v2.0.0/basic-settings/</link>
     <description>How to write a transition function using CellularAutomataRule.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 21:45:30 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/v2.0.0/basic-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Fri, 22 May 2026 19:52:03 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/basic-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
   </channel>

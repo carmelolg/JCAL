@@ -2,27 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Internals on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/tags/internals/</link>
+    <link>https://carmelolg.github.io/JCAL/tags/internals/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 21:45:30 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/tags/internals/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Fri, 22 May 2026 19:52:03 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/tags/internals/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Architecture</title>
-      <link>http://localhost:1313/JCAL/v2.0.0/design/architecture/</link>
+      <link>https://carmelolg.github.io/JCAL/v2.0.0/design/architecture/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v2.0.0/design/architecture/</guid>
-      <description>Package structure, component roles, data flow, and extension points.</description>
-    </item>
-    
-    <item>
-      <title>Architecture</title>
-      <link>http://localhost:1313/JCAL/v2.1.0/design/architecture/</link>
-      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v2.1.0/design/architecture/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v2.0.0/design/architecture/</guid>
       <description>Package structure, component roles, data flow, and extension points.</description>
     </item>
     
