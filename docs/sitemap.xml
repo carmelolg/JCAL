@@ -20,7 +20,12 @@
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/about-jcal/</loc>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/about-jcal/</loc>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/getting-started/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/getting-started/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v1.0.0/getting-started/</loc>
@@ -29,29 +34,51 @@
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/basic-settings/</loc>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/basic-settings/</loc>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v1.0.0/builder-settings/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/builder-settings/</loc>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/builder-settings/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v1.0.0/custom-status/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/custom-status/</loc>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/custom-status/</loc>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v1.0.0/cca/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/cca/</loc>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/cca/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v1.0.0/faq/</loc>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/faq/</loc>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/faq/</loc>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/getting-started/overview/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/getting-started/overview/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/design/architecture/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/design/architecture/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/getting-started/getting-started/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/getting-started/getting-started/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/</loc>
@@ -60,14 +87,29 @@
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/implementing-a-rule/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/implementing-a-rule/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/design/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/design/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/examples/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/configuration/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/configuration/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/examples/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/appendix/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/appendix/</loc>
     <lastmod>2026-05-04T00:00:00+00:00</lastmod>
@@ -75,25 +117,58 @@
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/neighborhoods/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/neighborhoods/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/custom-state/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/custom-state/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/complex-ca/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/complex-ca/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/generation-listener/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/parallel-execution/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/parallel-execution/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/ui-visualization/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/reference/3d-4d-support/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/reference/3d-4d-support/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/appendix/faq/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/JCAL/v2.0.0/appendix/changelog/</loc>
-    <lastmod>2026-05-04T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/JCAL/v2.1.0/appendix/faq/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/appendix/changelog/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/examples/game-of-life-ui/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.0.0/appendix/changelog/</loc>
     <lastmod>2026-05-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/</loc>
@@ -102,10 +177,19 @@
     <loc>http://localhost:1313/JCAL/v2.0.0/examples/game-of-life-2d/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/examples/game-of-life-2d/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/examples/game-of-life-3d/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/examples/game-of-life-3d/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/JCAL/v2.0.0/examples/heat-diffusion/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/JCAL/v2.1.0/examples/heat-diffusion/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/JCAL/tags/architecture/</loc>

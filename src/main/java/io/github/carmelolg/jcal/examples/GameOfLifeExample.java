@@ -10,8 +10,10 @@ import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataRule;
+import io.github.carmelolg.jcal.core.GenerationListener;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 
 /**
@@ -22,6 +24,7 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  *   <li>Define the possible cell states ({@link CellState}).</li>
  *   <li>Build the configuration ({@link CellularAutomataConfiguration}).</li>
  *   <li>Implement the transition rule by extending {@link CellularAutomataRule}.</li>
+ *   <li>Register a {@link GenerationListener} to inspect the grid after each step.</li>
  *   <li>Initialize the grid and call {@link CellularAutomataRule#run(CellularAutomata)}.</li>
  * </ol>
  *
@@ -66,14 +69,25 @@ public class GameOfLifeExample {
             .setNeighborhoodType(NeighborhoodType.MOORE) // 8-cell Moore neighborhood
             .build();
 
-        // --- Step 4: Initialize the automaton and run ---
+        // --- Step 4: Initialize the automaton, register listener, and run ---
         CellularAutomata ca = new CellularAutomata(config); // allocates the grid
         CellularAutomataRule rule = new GameOfLifeRule();
-        ca = rule.run(ca);                                   // evolves for 2 steps
 
-        // Print the resulting grid (each cell shows its status value)
-        logger.info("Grid after 2 iterations:");
-        logger.info("\n{}", ca);
+        // The listener is called once per generation with an immutable GridSnapshot.
+        rule.addGenerationListener((int gen, GridSnapshot snap) -> {
+            int rows = snap.getDimensions().getSize(0);
+            int cols = snap.getDimensions().getSize(1);
+            StringBuilder sb = new StringBuilder();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    sb.append(snap.getState(r, c).getValue()).append(" ");
+                }
+                sb.append("\n");
+            }
+            logger.info("Grid after generation {}:\n{}", gen, sb);
+        });
+
+        rule.run(ca); // evolves for 2 steps, listener fires after each one
     }
 
     // -------------------------------------------------------------------------
