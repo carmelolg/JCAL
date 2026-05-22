@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Complex Cellular Automata on JCAL Docs</title>
-    <link>http://localhost:1313/JCAL/v1.0.0/cca/</link>
+    <link>https://carmelolg.github.io/JCAL/v1.0.0/cca/</link>
     <description>Official documentation for JCAL — Java Cellular Automata Library</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 21:45:30 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/JCAL/v1.0.0/cca/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    <lastBuildDate>Fri, 22 May 2026 20:00:07 +0000</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/cca/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     
     <item>
       <title>Complex Cellular Automata</title>
-      <link>http://localhost:1313/JCAL/v1.0.0/cca/complex-ca/</link>
+      <link>https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/JCAL/v1.0.0/cca/complex-ca/</guid>
+      <guid>https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/</guid>
       <description>&lt;p&gt;A &lt;strong&gt;Complex Cellular Automaton (CCA)&lt;/strong&gt; extends the standard CA model with a
 &lt;strong&gt;pre-processing step&lt;/strong&gt; that runs before the transition function reads its neighbors.
 This refinement step gives each cell the opportunity to update its internal state
