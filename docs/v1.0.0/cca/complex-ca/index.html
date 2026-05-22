@@ -1,85 +1,479 @@
-<!doctype html><html lang=en data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=base-url content="/JCAL/"><title>Complex Cellular Automata — JCAL Docs</title><meta name=description content="Official documentation for JCAL — Java Cellular Automata Library"><meta name=author content="carmelolg"><meta property="og:title" content="Complex Cellular Automata"><meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library"><meta property="og:type" content="article"><meta property="og:url" content="https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/"><link rel=canonical href=https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/><link rel=stylesheet href=/JCAL/css/main.min.50359e498833ba5ee76f58bb81d27a1e77ffd4bc0b06546f3a6645d835b9bd87.css integrity="sha256-UDWeSYgzul7nb1i7gdJ6Hnf/1LwLBlRvOmZF2DW5vYc="><link rel=stylesheet href=/JCAL/css/shortcodes.css><link rel=icon type=image/svg+xml href=/JCAL/favicon.svg><script>(function(){var e=localStorage.getItem("shiori-theme");e?document.documentElement.setAttribute("data-theme",e):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.setAttribute("data-theme","dark")})()</script><script src=/JCAL/js/main.min.70f17b946abaab707e5eaecaf9de1c9e7be5bd8dc9224f4dca2489f4d105b460.js integrity="sha256-cPF7lGq6q3B+Xq7K+d4cnnvlvY3JIk9NyiSJ9NEFtGA=" defer></script></head><body><div class=sidebar-overlay id=sidebar-overlay></div><header class=site-header role=banner><button id=hamburger class=icon-btn aria-label="Toggle sidebar" aria-expanded=false aria-controls=site-sidebar>
-<svg viewBox="0 0 16 16"><path d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 010 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 010 1.5H1.75A.75.75.0 011 7.75zM1.75 12h12.5a.75.75.0 010 1.5H1.75a.75.75.0 010-1.5z"/></svg>
-</button>
-<a class=header-logo href=/JCAL/ aria-label="JCAL Docs home"><span class=header-logo-text>JCAL</span></a><div class=header-search-wrap><div class=search-box><svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74A6 6 0 012.758 2.758a6 6 0 018.982 7.922l3.04 3.04a.749.749.0 01-.326 1.275.749.749.0 01-.734-.215zM11.5 7A4.499 4.499.0 102.503 7 4.499 4.499.0 0011.5 7z"/></svg>
-<input id=header-search-input class=search-input type=search placeholder="Search docs…" autocomplete=off spellcheck=false aria-label="Search documentation"><div id=header-search-results class=search-results role=listbox aria-label="Search results"></div></div></div><div class=header-actions><a href=https://github.com/carmelolg/JCAL class=icon-btn target=_blank rel=noopener aria-label="GitHub repository"><svg viewBox="0 0 16 16"><path d="M8 0c4.42.0 8 3.58 8 8a8.013 8.013.0 01-5.45 7.59c-.4.08-.55-.17-.55-.38.0-.27.01-1.13.01-2.2.0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95.0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12.0.0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27s-1.36.09-2 .27c-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15.0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94.0.67.01 1.3.01 1.49.0.21-.15.45-.55.38A7.995 7.995.0 010 8c0-4.42 3.58-8 8-8z"/></svg>
-</a><button id=theme-toggle class=icon-btn aria-label="Toggle dark mode">
-<svg class="icon-sun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="4" fill="currentColor"/><line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg></button></div></header><div class=layout><aside class=site-sidebar id=site-sidebar aria-label="Sidebar navigation"><div class=sidebar-mobile-header><button id=sidebar-close class="icon-btn sidebar-close" type=button aria-label="Close sidebar">
-<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.22 3.22a.75.75.0 011.06.0L8 6.94l3.72-3.72a.75.75.0 111.06 1.06L9.06 8l3.72 3.72a.75.75.0 11-1.06 1.06L8 9.06l-3.72 3.72a.75.75.0 11-1.06-1.06L6.94 8 3.22 4.28a.75.75.0 010-1.06z"/></svg></button></div><div class=sidebar-version><select id=version-picker class=version-picker aria-label="Documentation version"><option value=/JCAL/v2.1.0/>v2.1.0</option><option value=/JCAL/v2.0.0/>v2.0.0</option><option value=/JCAL/v1.0.0/ selected>v1.0.0</option></select></div><div class=sidebar-search-wrap><div class=search-box><svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74A6 6 0 012.758 2.758a6 6 0 018.982 7.922l3.04 3.04a.749.749.0 01-.326 1.275.749.749.0 01-.734-.215zM11.5 7A4.499 4.499.0 102.503 7 4.499 4.499.0 0011.5 7z"/></svg>
-<input id=sidebar-search-input class=search-input type=search placeholder="Search docs…" autocomplete=off spellcheck=false aria-label=Search><div id=sidebar-search-results class=search-results role=listbox></div></div></div><nav aria-label="Documentation navigation"><div class=sidebar-section><span class=sidebar-section-title>Overview</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/about-jcal/overview/ aria-current=false>Overview</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>Getting Started</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/getting-started/getting-started/ aria-current=false>Getting Started</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>Implementing a Rule</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/basic-settings/implementing-a-rule/ aria-current=false>Implementing a Rule</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>Configuration Reference</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/builder-settings/configuration/ aria-current=false>Configuration Reference</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>Custom State Objects</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/custom-status/custom-status/ aria-current=false>Custom State Objects</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>Complex Cellular Automata</span><ul class=sidebar-nav-list><li class="sidebar-nav-item active"><a href=/JCAL/v1.0.0/cca/complex-ca/ aria-current=page>Complex Cellular Automata</a></li></ul></div><hr class=sidebar-divider><div class=sidebar-section><span class=sidebar-section-title>FAQ</span><ul class=sidebar-nav-list><li class=sidebar-nav-item><a href=/JCAL/v1.0.0/faq/faq/ aria-current=false>FAQ</a></li></ul></div><hr class=sidebar-divider></nav></aside><main class=main-content id=main-content><div class=content-inner><nav class=breadcrumbs aria-label=Breadcrumb><a href=/JCAL/>Home</a>
-<span class=sep aria-hidden=true>/</span>
-<a href=/JCAL/v1.0.0/>v1.0.0</a>
-<span class=sep aria-hidden=true>/</span>
-<a href=/JCAL/v1.0.0/>JCAL Documentation — v1.0.0</a>
-<span class=sep aria-hidden=true>/</span>
-<span class=current aria-current=page>Complex Cellular Automata</span></nav><h1 class=page-title>Complex Cellular Automata</h1><div class=page-meta><time datetime=0001-01-01>January 1, 0001</time></div><div class=prose><p>A <strong>Complex Cellular Automaton (CCA)</strong> extends the standard CA model with a
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="base-url" content="/JCAL/">
+
+<title>Complex Cellular Automata — JCAL Docs</title>
+<meta name="description" content="Official documentation for JCAL — Java Cellular Automata Library">
+
+
+<meta name="author" content="carmelolg">
+
+
+
+<meta property="og:title"       content="Complex Cellular Automata">
+<meta property="og:description" content="Official documentation for JCAL — Java Cellular Automata Library">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/">
+
+
+
+<link rel="canonical" href="https://carmelolg.github.io/JCAL/v1.0.0/cca/complex-ca/">
+
+
+
+
+
+
+<link rel="stylesheet" href="/JCAL/css/main.min.50359e498833ba5ee76f58bb81d27a1e77ffd4bc0b06546f3a6645d835b9bd87.css" integrity="sha256-UDWeSYgzul7nb1i7gdJ6Hnf/1LwLBlRvOmZF2DW5vYc=">
+
+
+<link rel="stylesheet" href="/JCAL/css/shortcodes.css">
+
+
+<link rel="icon" type="image/svg+xml" href="/JCAL/favicon.svg">
+
+
+<script>
+  (function(){
+    var t=localStorage.getItem("shiori-theme");
+    if(t){document.documentElement.setAttribute("data-theme",t);}
+    else if(window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}
+  })();
+</script>
+
+
+
+<script src="/JCAL/js/main.min.70f17b946abaab707e5eaecaf9de1c9e7be5bd8dc9224f4dca2489f4d105b460.js" integrity="sha256-cPF7lGq6q3B&#43;Xq7K&#43;d4cnnvlvY3JIk9NyiSJ9NEFtGA=" defer></script>
+
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <header class="site-header" role="banner">
+  
+  <button id="hamburger" class="icon-btn" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="site-sidebar">
+    <svg viewBox="0 0 16 16"><path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"/></svg>
+  </button>
+
+  
+  <a class="header-logo" href="/JCAL/" aria-label="JCAL Docs home">
+    
+    <span class="header-logo-text">JCAL</span>
+  </a>
+  <div class="header-search-wrap">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+      <input
+        id="header-search-input"
+        class="search-input"
+        type="search"
+        placeholder="Search docs…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search documentation"
+      >
+      <div id="header-search-results" class="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+
+  
+  <div class="header-actions">
+    
+    <a href="https://github.com/carmelolg/JCAL" class="icon-btn" target="_blank" rel="noopener" aria-label="GitHub repository">
+      <svg viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+    </a>
+    
+
+    
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+      
+      <svg class="icon-sun" viewBox="0 0 24 24" style="display:none">
+        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        <line x1="12" y1="2"  x2="12" y2="5"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="2"  y1="12" x2="5"  y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.22"  y1="4.22"  x2="6.34"  y2="6.34"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      
+      <svg class="icon-moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+
+  <div class="layout">
+    <aside class="site-sidebar" id="site-sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar-mobile-header">
+  <button id="sidebar-close" class="icon-btn sidebar-close" type="button" aria-label="Close sidebar">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.22 3.22a.75.75 0 0 1 1.06 0L8 6.94l3.72-3.72a.75.75 0 1 1 1.06 1.06L9.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06L8 9.06l-3.72 3.72a.75.75 0 1 1-1.06-1.06L6.94 8 3.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg>
+  </button>
+</div>
+
+
+
+<div class="sidebar-version">
+  <select id="version-picker" class="version-picker" aria-label="Documentation version">
+    
+    <option value="/JCAL/v2.1.0/" >v2.1.0</option>
+    
+    <option value="/JCAL/v2.0.0/" >v2.0.0</option>
+    
+    <option value="/JCAL/v1.0.0/" selected>v1.0.0</option>
+    
+  </select>
+</div>
+
+
+
+<div class="sidebar-search-wrap">
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 16 16"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+    <input
+      id="sidebar-search-input"
+      class="search-input"
+      type="search"
+      placeholder="Search docs…"
+      autocomplete="off"
+      spellcheck="false"
+      aria-label="Search"
+    >
+    <div id="sidebar-search-results" class="search-results" role="listbox"></div>
+  </div>
+</div>
+
+<nav aria-label="Documentation navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Overview</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/about-jcal/overview/" aria-current="false">Overview
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Getting Started</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/getting-started/getting-started/" aria-current="false">Getting Started
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Implementing a Rule</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/basic-settings/implementing-a-rule/" aria-current="false">Implementing a Rule
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Configuration Reference</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/builder-settings/configuration/" aria-current="false">Configuration Reference
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Custom State Objects</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/custom-status/custom-status/" aria-current="false">Custom State Objects
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Complex Cellular Automata</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item active">
+          <a href="/JCAL/v1.0.0/cca/complex-ca/" aria-current="page">Complex Cellular Automata
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">FAQ</span>
+
+      
+      <ul class="sidebar-nav-list">
+        <li class="sidebar-nav-item">
+          <a href="/JCAL/v1.0.0/faq/faq/" aria-current="false">FAQ
+          </a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sidebar-divider">
+    </nav>
+
+    </aside>
+
+    <main class="main-content" id="main-content">
+      
+<div class="content-inner">
+
+  
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="/JCAL/">Home</a>
+  <span class="sep" aria-hidden="true">/</span>
+
+  
+    
+    
+      
+      
+      
+      <a href="/JCAL/v1.0.0/">v1.0.0</a>
+      <span class="sep" aria-hidden="true">/</span>
+    
+  
+
+  
+  
+    <a href="/JCAL/v1.0.0/">JCAL Documentation — v1.0.0</a>
+    <span class="sep" aria-hidden="true">/</span>
+  
+  
+
+  <span class="current" aria-current="page">Complex Cellular Automata</span>
+</nav>
+
+
+
+  <h1 class="page-title">Complex Cellular Automata</h1>
+
+  
+
+  <div class="page-meta">
+    <time datetime="0001-01-01">
+      January 1, 0001
+    </time>
+
+    
+
+    
+    
+
+    
+  </div>
+
+  <div class="prose">
+    <p>A <strong>Complex Cellular Automaton (CCA)</strong> extends the standard CA model with a
 <strong>pre-processing step</strong> that runs before the transition function reads its neighbors.
 This refinement step gives each cell the opportunity to update its internal state
 (for example, accumulate incoming flows or decrement a counter) before those updated
-values are seen by neighboring cells in the same generation.</p><h2 id=when-to-use-a-cca>When to use a CCA</h2><p>Use the refinements hook when:</p><ul><li>A cell&rsquo;s next state depends on <strong>accumulated quantities</strong> that must be resolved
-before the transition function is applied (e.g., heat diffusion, lava flow, erosion).</li><li>Your simulation requires cells to perform <strong>bookkeeping between generations</strong> — such
-as decrementing a lifetime counter or normalizing a fractional flow value.</li><li>The transition function alone is insufficient to model the phenomenon correctly.</li></ul><h2 id=data-flow-per-generation>Data flow per generation</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>for each generation:
-</span></span><span class=line><span class=cl>  1. refinements(cell)        — applied to every cell  [optional CCA hook]
-</span></span><span class=line><span class=cl>  2. snapshot the grid        — clone the map before any mutation
-</span></span><span class=line><span class=cl>  3. singleRun(cell, neighbors) — per cell, reads the snapshot, returns next state
-</span></span><span class=line><span class=cl>  4. copy results back        — update the main map with all new states
-</span></span></code></pre></div><h2 id=implementing-refinements>Implementing refinements</h2><p>Override <code>refinements(DefaultCell cell)</code> in your executor class. Return the modified cell.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MyComplexRule</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>CellularAutomataExecutor</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>DefaultCell</span><span class=w> </span><span class=nf>refinements</span><span class=p>(</span><span class=n>DefaultCell</span><span class=w> </span><span class=n>cell</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>MyStatus</span><span class=w> </span><span class=n>status</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>MyStatus</span><span class=p>)</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCurrentStatus</span><span class=p>();</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>status</span><span class=p>.</span><span class=na>normalizeFlow</span><span class=p>();</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>cell</span><span class=p>.</span><span class=na>setCurrentStatus</span><span class=p>(</span><span class=n>status</span><span class=p>);</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>cell</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>DefaultCell</span><span class=w> </span><span class=nf>singleRun</span><span class=p>(</span><span class=n>DefaultCell</span><span class=w> </span><span class=n>cell</span><span class=p>,</span><span class=w> </span><span class=n>List</span><span class=o>&lt;</span><span class=n>DefaultCell</span><span class=o>&gt;</span><span class=w> </span><span class=n>neighbors</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>MyStatus</span><span class=w> </span><span class=n>current</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>MyStatus</span><span class=p>)</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCurrentStatus</span><span class=p>();</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// ... compute next state ...</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>DefaultCell</span><span class=p>(</span><span class=n>nextStatus</span><span class=p>,</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCol</span><span class=p>(),</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getRow</span><span class=p>());</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span></code></pre></div><h2 id=combining-with-a-custom-status>Combining with a custom status</h2><p>CCA implementations almost always pair the <code>refinements</code> hook with a
-<a href=../custom-status/>custom state object</a> that carries the extra per-cell data.</p><h3 id=example-pattern-heat-diffusion>Example pattern: heat diffusion</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>HeatStatus</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>DefaultStatus</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>double</span><span class=w> </span><span class=n>temperature</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=nf>HeatStatus</span><span class=p>(</span><span class=kt>double</span><span class=w> </span><span class=n>temperature</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=kd>super</span><span class=p>(</span><span class=s>&#34;heat&#34;</span><span class=p>,</span><span class=w> </span><span class=n>temperature</span><span class=p>);</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>temperature</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>temperature</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>HeatDiffusionExecutor</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>CellularAutomataExecutor</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>DefaultCell</span><span class=w> </span><span class=nf>refinements</span><span class=p>(</span><span class=n>DefaultCell</span><span class=w> </span><span class=n>cell</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>HeatStatus</span><span class=w> </span><span class=n>s</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>HeatStatus</span><span class=p>)</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCurrentStatus</span><span class=p>();</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>s</span><span class=p>.</span><span class=na>temperature</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Math</span><span class=p>.</span><span class=na>max</span><span class=p>(</span><span class=n>0</span><span class=p>.</span><span class=na>0</span><span class=p>,</span><span class=w> </span><span class=n>Math</span><span class=p>.</span><span class=na>min</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=na>temperature</span><span class=p>,</span><span class=w> </span><span class=n>1000</span><span class=p>.</span><span class=na>0</span><span class=p>));</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>cell</span><span class=p>.</span><span class=na>setCurrentStatus</span><span class=p>(</span><span class=n>s</span><span class=p>);</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>cell</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>DefaultCell</span><span class=w> </span><span class=nf>singleRun</span><span class=p>(</span><span class=n>DefaultCell</span><span class=w> </span><span class=n>cell</span><span class=p>,</span><span class=w> </span><span class=n>List</span><span class=o>&lt;</span><span class=n>DefaultCell</span><span class=o>&gt;</span><span class=w> </span><span class=n>neighbors</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=kt>double</span><span class=w> </span><span class=n>avgTemp</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>neighbors</span><span class=p>.</span><span class=na>stream</span><span class=p>()</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>.</span><span class=na>mapToDouble</span><span class=p>(</span><span class=n>n</span><span class=w> </span><span class=o>-&gt;</span><span class=w> </span><span class=p>((</span><span class=n>HeatStatus</span><span class=p>)</span><span class=w> </span><span class=n>n</span><span class=p>.</span><span class=na>getCurrentStatus</span><span class=p>()).</span><span class=na>temperature</span><span class=p>)</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>.</span><span class=na>average</span><span class=p>()</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>.</span><span class=na>orElse</span><span class=p>(</span><span class=n>0</span><span class=p>.</span><span class=na>0</span><span class=p>);</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=kt>double</span><span class=w> </span><span class=n>current</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>((</span><span class=n>HeatStatus</span><span class=p>)</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCurrentStatus</span><span class=p>()).</span><span class=na>temperature</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=kt>double</span><span class=w> </span><span class=n>next</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>current</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>avgTemp</span><span class=p>)</span><span class=w> </span><span class=o>/</span><span class=w> </span><span class=n>2</span><span class=p>.</span><span class=na>0</span><span class=p>;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>DefaultCell</span><span class=p>(</span><span class=k>new</span><span class=w> </span><span class=n>HeatStatus</span><span class=p>(</span><span class=n>next</span><span class=p>),</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getCol</span><span class=p>(),</span><span class=w> </span><span class=n>cell</span><span class=p>.</span><span class=na>getRow</span><span class=p>());</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
-</span></span></span></code></pre></div><hr><h2 id=see-also>See also</h2><ul><li><a href=../custom-status/>Custom State Objects</a> — how to extend <code>DefaultStatus</code>.</li><li><a href=../basic-settings/>Implementing a Rule</a> — the standard executor pattern.</li><li><a href=../builder-settings/>Configuration Reference</a> — builder options.</li></ul></div></div></main></div><footer class=site-footer role=contentinfo><div class=footer-content><div class=footer-grid><div class=footer-brand><a href=/JCAL/ class=footer-logo>JCAL</a><p class=footer-tagline>A lightweight Java library for Cellular Automata simulations</p><p class=footer-license>CC BY-NC-SA 4.0
-<a href=https://github.com/carmelolg/JCAL/blob/master/LICENSE.md target=_blank rel=noopener>License</a></p><div class=footer-social><a href=https://github.com/carmelolg/JCAL target=_blank rel=noopener aria-label=GitHub><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0c4.42.0 8 3.58 8 8a8.013 8.013.0 01-5.45 7.59c-.4.08-.55-.17-.55-.38.0-.27.01-1.13.01-2.2.0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95.0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12.0.0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27s-1.36.09-2 .27c-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15.0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94.0.67.01 1.3.01 1.49.0.21-.15.45-.55.38A7.995 7.995.0 010 8c0-4.42 3.58-8 8-8z"/></svg></a></div></div><div class=footer-section><p class=footer-section-title>Documentation</p><nav class=footer-nav aria-label="Documentation links"><a href=/JCAL/v1.0.0/about-jcal/ class=footer-nav-link>Overview</a>
-<a href=/JCAL/v1.0.0/getting-started/ class=footer-nav-link>Getting Started</a>
-<a href=/JCAL/v1.0.0/basic-settings/ class=footer-nav-link>Implementing a Rule</a>
-<a href=/JCAL/v1.0.0/builder-settings/ class=footer-nav-link>Configuration Reference</a>
-<a href=/JCAL/v1.0.0/custom-status/ class=footer-nav-link>Custom State Objects</a>
-<a href=/JCAL/v1.0.0/cca/ class=footer-nav-link>Complex Cellular Automata</a>
-<a href=/JCAL/v1.0.0/faq/ class=footer-nav-link>FAQ</a></nav></div><div class=footer-section><p class=footer-section-title>About</p><p class=footer-meta>Built with <a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></p><p class=footer-meta><a href=https://github.com/carmelolg/shiori target=_blank rel=noopener>Shiori</a>
-theme by <a href=https://github.com/carmelolg target=_blank rel=noopener>carmelolg</a></p></div></div><div class=footer-bottom><span>&copy; 2026 carmelolg — all rights reserved</span></div></div></footer></body></html>
+values are seen by neighboring cells in the same generation.</p>
+<h2 id="when-to-use-a-cca">When to use a CCA</h2>
+<p>Use the refinements hook when:</p>
+<ul>
+<li>A cell&rsquo;s next state depends on <strong>accumulated quantities</strong> that must be resolved
+before the transition function is applied (e.g., heat diffusion, lava flow, erosion).</li>
+<li>Your simulation requires cells to perform <strong>bookkeeping between generations</strong> — such
+as decrementing a lifetime counter or normalizing a fractional flow value.</li>
+<li>The transition function alone is insufficient to model the phenomenon correctly.</li>
+</ul>
+<h2 id="data-flow-per-generation">Data flow per generation</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for each generation:
+</span></span><span class="line"><span class="cl">  1. refinements(cell)        — applied to every cell  [optional CCA hook]
+</span></span><span class="line"><span class="cl">  2. snapshot the grid        — clone the map before any mutation
+</span></span><span class="line"><span class="cl">  3. singleRun(cell, neighbors) — per cell, reads the snapshot, returns next state
+</span></span><span class="line"><span class="cl">  4. copy results back        — update the main map with all new states
+</span></span></code></pre></div><h2 id="implementing-refinements">Implementing refinements</h2>
+<p>Override <code>refinements(DefaultCell cell)</code> in your executor class. Return the modified cell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyComplexRule</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">refinements</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyStatus</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MyStatus</span><span class="p">)</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">status</span><span class="p">.</span><span class="na">normalizeFlow</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">cell</span><span class="p">.</span><span class="na">setCurrentStatus</span><span class="p">(</span><span class="n">status</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cell</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyStatus</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">MyStatus</span><span class="p">)</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// ... compute next state ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="n">nextStatus</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h2 id="combining-with-a-custom-status">Combining with a custom status</h2>
+<p>CCA implementations almost always pair the <code>refinements</code> hook with a
+<a href="../custom-status/">custom state object</a> that carries the extra per-cell data.</p>
+<h3 id="example-pattern-heat-diffusion">Example pattern: heat diffusion</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatStatus</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DefaultStatus</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">temperature</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HeatStatus</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">temperature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="s">&#34;heat&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">temperature</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temperature</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HeatDiffusionExecutor</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CellularAutomataExecutor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">refinements</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">HeatStatus</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">s</span><span class="p">.</span><span class="na">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">,</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">.</span><span class="na">0</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">cell</span><span class="p">.</span><span class="na">setCurrentStatus</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cell</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DefaultCell</span><span class="w"> </span><span class="nf">singleRun</span><span class="p">(</span><span class="n">DefaultCell</span><span class="w"> </span><span class="n">cell</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DefaultCell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neighbors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">avgTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbors</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">mapToDouble</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">((</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">temperature</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">average</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">HeatStatus</span><span class="p">)</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCurrentStatus</span><span class="p">()).</span><span class="na">temperature</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">avgTemp</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">.</span><span class="na">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultCell</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">HeatStatus</span><span class="p">(</span><span class="n">next</span><span class="p">),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getCol</span><span class="p">(),</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><hr>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../custom-status/">Custom State Objects</a> — how to extend <code>DefaultStatus</code>.</li>
+<li><a href="../basic-settings/">Implementing a Rule</a> — the standard executor pattern.</li>
+<li><a href="../builder-settings/">Configuration Reference</a> — builder options.</li>
+</ul>
+
+  </div>
+
+  
+
+
+</div>
+
+    </main>
+
+    
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+  <div class="footer-content">
+    <div class="footer-grid">
+      
+      <div class="footer-brand">
+        <a href="/JCAL/" class="footer-logo">JCAL</a>
+        
+        <p class="footer-tagline">A lightweight Java library for Cellular Automata simulations</p>
+        
+        
+        <p class="footer-license">
+          CC BY-NC-SA 4.0
+          
+          <a href="https://github.com/carmelolg/JCAL/blob/master/LICENSE.md" target="_blank" rel="noopener">License</a>
+          
+        </p>
+        
+        <div class="footer-social">
+          
+          <a href="https://github.com/carmelolg/JCAL" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+            </svg>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">Documentation</p>
+        <nav class="footer-nav" aria-label="Documentation links">
+          
+          
+            
+            
+              
+                
+              
+            
+          
+          
+          
+            
+              <a href="/JCAL/v1.0.0/about-jcal/" class="footer-nav-link">Overview</a>
+            
+              <a href="/JCAL/v1.0.0/getting-started/" class="footer-nav-link">Getting Started</a>
+            
+              <a href="/JCAL/v1.0.0/basic-settings/" class="footer-nav-link">Implementing a Rule</a>
+            
+              <a href="/JCAL/v1.0.0/builder-settings/" class="footer-nav-link">Configuration Reference</a>
+            
+              <a href="/JCAL/v1.0.0/custom-status/" class="footer-nav-link">Custom State Objects</a>
+            
+              <a href="/JCAL/v1.0.0/cca/" class="footer-nav-link">Complex Cellular Automata</a>
+            
+              <a href="/JCAL/v1.0.0/faq/" class="footer-nav-link">FAQ</a>
+            
+          
+        </nav>
+      </div>
+
+      
+      <div class="footer-section">
+        <p class="footer-section-title">About</p>
+        <p class="footer-meta">
+          Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
+        </p>
+        <p class="footer-meta">
+          <a href="https://github.com/carmelolg/shiori" target="_blank" rel="noopener">Shiori</a>
+          theme by <a href="https://github.com/carmelolg" target="_blank" rel="noopener">carmelolg</a>
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="footer-bottom">
+      
+      <span>&copy; 2026 carmelolg — all rights reserved</span>
+      
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
