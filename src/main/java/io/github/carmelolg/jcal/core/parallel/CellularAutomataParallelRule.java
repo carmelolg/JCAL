@@ -3,13 +3,16 @@ package io.github.carmelolg.jcal.core.parallel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.core.CellularAutomataException;
+import io.github.carmelolg.jcal.core.GenerationListener;
 import io.github.carmelolg.jcal.grid.Cell;
+import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 
 /**
  * Parallel variant of {@link io.github.carmelolg.jcal.core.CellularAutomataRule} that
@@ -30,26 +33,51 @@ public abstract class CellularAutomataParallelRule {
 
     private static final Logger logger = LoggerFactory.getLogger(CellularAutomataParallelRule.class);
 
+    private final List<GenerationListener> listeners = new ArrayList<>();
+
+    /**
+     * Registers a {@link GenerationListener} that will be notified after each completed
+     * generation when {@link #run(CellularAutomata)} is called.
+     *
+     * @param listener the listener to add; must not be {@code null}
+     */
+    public void addGenerationListener(GenerationListener listener) {
+        Objects.requireNonNull(listener, "listener must not be null");
+        listeners.add(listener);
+    }
+
+    private void notifyListeners(int generation, CellularAutomata ca) {
+        if (!listeners.isEmpty()) {
+            GridSnapshot snapshot = GridSnapshot.of(generation, ca.getGrid());
+            for (GenerationListener l : listeners) {
+                l.onGeneration(generation, snapshot);
+            }
+        }
+    }
+
     /**
      * Run using parallelism the transaction function
      *
      * @param ca the {@link CellularAutomata} configured
      * @return the new {@link CellularAutomata} after n-interactions
-     * @throws Exception if something go wrong.
+     * @throws CellularAutomataException if something goes wrong during execution
      */
-    public CellularAutomata run(CellularAutomata ca) throws Exception {
+    public CellularAutomata run(CellularAutomata ca) {
 
-        logger.info("Starting parallel execution with {} iterations", 
+        logger.info("Starting parallel execution with {} iterations",
             ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
 
         if (ca.getConfig().isInfinite()) {
+            int gen = 0;
             while (!Thread.currentThread().isInterrupted()) {
                 innerRun(ca);
+                notifyListeners(++gen, ca);
             }
         } else {
             int totalIterations = ca.getConfig().getTotalIterations();
             for (int i = 0; i < totalIterations; i++) {
                 innerRun(ca);
+                notifyListeners(i + 1, ca);
                 if ((i + 1) % Math.max(1, totalIterations / 10) == 0 || i == 0) {
                     logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
                 }
@@ -60,7 +88,7 @@ public abstract class CellularAutomataParallelRule {
 
     }
 
-    private CellularAutomata innerRun(CellularAutomata ca) throws SecurityException {
+    private CellularAutomata innerRun(CellularAutomata ca) {
 
         int rowCount = ca.getGrid().dimensions().getSize(0);
         logger.debug("Starting parallel iteration cycle with {} rows", rowCount);
@@ -69,7 +97,7 @@ public abstract class CellularAutomataParallelRule {
         logger.debug("Submitting refinement tasks");
         Collection<CellularAutomataRefinementRunner> refinementTasks = new ArrayList<CellularAutomataRefinementRunner>();
         for (int i = 0; i < rowCount; i++) {
-            refinementTasks.add(new CellularAutomataRefinementRunner(ca, i, 1, this));
+            refinementTasks.add(new CellularAutomataRefinementRunner(ca, i, this));
         }
         refinementTasks.stream().parallel().forEach(task -> {
             try {
@@ -85,7 +113,7 @@ public abstract class CellularAutomataParallelRule {
         logger.debug("Submitting transition tasks");
         Collection<CellularAutomataRunner> tasks = new ArrayList<CellularAutomataRunner>();
         for (int i = 0; i < rowCount; i++) {
-            tasks.add(new CellularAutomataRunner(ca, i, 1, this));
+            tasks.add(new CellularAutomataRunner(ca, i, this));
         }
         tasks.stream().parallel().forEach(task -> {
             try {

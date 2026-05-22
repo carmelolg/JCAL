@@ -15,35 +15,36 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRunner.class);
 
 	private CellularAutomata ca;
-	private int row, offset;
+	private int row;
 	private CellularAutomataParallelRule executor;
 
 	/**
 	 * Callable are used to implement the parallelism using JDK. Each instance of this class run on a single thread.
 	 * @param ca the {@link CellularAutomata} instance
-	 * @param row the current row where to run the transition function
-	 * @param offset the offset in order to create a chunk where run the transition function. Ex. chunk [row, row + offset]
-	 * @param executor the executor implemented in order to run the custom transition function
+	 * @param row the row index this task is responsible for
+	 * @param executor the executor implementing the custom transition function
 	 */
-	protected CellularAutomataRunner(CellularAutomata ca, int row, int offset, CellularAutomataParallelRule executor) {
+	protected CellularAutomataRunner(CellularAutomata ca, int row, CellularAutomataParallelRule executor) {
 		this.ca = ca;
 		this.row = row;
-		this.offset = offset;
 		this.executor = executor;
 	}
 
 	@Override
-	public List<Cell> call() throws Exception {
-		logger.debug("Processing transition for row {} with offset {}", row, offset);
+	public List<Cell> call() {
+		logger.debug("Processing transition for row {}", row);
 		List<Cell> results = new ArrayList<Cell>();
 		CellGrid grid = ca.getGrid();
 		CellGrid utilsGrid = ca.getUtilsGrid();
 
-		for (int[] coords : grid.allCoordinates()) {
-			if (coords[0] >= row && coords[0] < (row + 1) * offset) {
-				utilsGrid.set(coords, executor.transition(grid.get(coords),
-						ca.getNeighborhood().getNeighbors(grid, coords)));
-			}
+		int totalCells = grid.dimensions().getTotalCells();
+		int rowCount = grid.dimensions().getSize(0);
+		int sliceSize = totalCells / rowCount;
+
+		List<int[]> slice = grid.allCoordinates().subList(row * sliceSize, (row + 1) * sliceSize);
+		for (int[] coords : slice) {
+			utilsGrid.set(coords, executor.transition(grid.get(coords),
+					ca.getNeighborhood().getNeighbors(grid, coords)));
 		}
 
 		return results;

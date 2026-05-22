@@ -2,12 +2,14 @@ package io.github.carmelolg.jcal.core.parallel;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
+import io.github.carmelolg.jcal.core.GenerationListener;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -167,5 +169,40 @@ class CellularAutomataParallelRuleTest {
         t.interrupt();
         t.join(2000);
         assertFalse(t.isAlive(), "Thread should have terminated after interrupt");
+    }
+
+    @Test
+    @DisplayName("GenerationListener is called exactly N times for N iterations")
+    void generationListenerCalledNTimes() throws Exception {
+        int iterations = 5;
+        CellularAutomata ca = buildCa(4, 4, iterations, null);
+        IdentityParallelExecutor executor = new IdentityParallelExecutor();
+
+        List<Integer> generationsSeen = new ArrayList<>();
+        executor.addGenerationListener((gen, snap) -> generationsSeen.add(gen));
+
+        executor.run(ca);
+
+        assertEquals(iterations, generationsSeen.size(), "Listener should be called once per iteration");
+        for (int i = 0; i < iterations; i++) {
+            assertEquals(i + 1, generationsSeen.get(i), "Generation index should be 1-based");
+        }
+    }
+
+    @Test
+    @DisplayName("multiple GenerationListeners are all notified")
+    void multipleListenersAllNotified() throws Exception {
+        CellularAutomata ca = buildCa(3, 3, 3, null);
+        IdentityParallelExecutor executor = new IdentityParallelExecutor();
+
+        List<Integer> calls1 = new ArrayList<>();
+        List<Integer> calls2 = new ArrayList<>();
+        executor.addGenerationListener((gen, snap) -> calls1.add(gen));
+        executor.addGenerationListener((gen, snap) -> calls2.add(gen));
+
+        executor.run(ca);
+
+        assertEquals(3, calls1.size());
+        assertEquals(3, calls2.size());
     }
 }
