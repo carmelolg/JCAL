@@ -1,11 +1,14 @@
 package io.github.carmelolg.jcal.core;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
+import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 
 /**
  * Abstract base class for implementing the transition function of a Cellular Automata.
@@ -47,6 +50,32 @@ public abstract class CellularAutomataRule {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRule.class);
 
+	private final List<GenerationListener> listeners = new ArrayList<>();
+
+	/**
+	 * Registers a {@link GenerationListener} that will be notified after each completed
+	 * generation when {@link #run(CellularAutomata)} is called.
+	 *
+	 * <p>Multiple listeners can be registered; they are called in registration order.
+	 *
+	 * @param listener the listener to add; must not be {@code null}
+	 * @see GenerationListener
+	 * @see GridSnapshot
+	 */
+	public void addGenerationListener(GenerationListener listener) {
+		Objects.requireNonNull(listener, "listener must not be null");
+		listeners.add(listener);
+	}
+
+	private void notifyListeners(int generation, CellularAutomata ca) {
+		if (!listeners.isEmpty()) {
+			GridSnapshot snapshot = GridSnapshot.of(generation, ca.getGrid());
+			for (GenerationListener l : listeners) {
+				l.onGeneration(generation, snapshot);
+			}
+		}
+	}
+
 	/**
 	 * Run the transaction function
 	 * 
@@ -60,13 +89,16 @@ public abstract class CellularAutomataRule {
 			ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
 		
 		if (ca.getConfig().isInfinite()) {
+			int gen = 0;
 			while (!Thread.currentThread().isInterrupted()) {
 				innerRun(ca);
+				notifyListeners(++gen, ca);
 			}
 		} else {
 			int totalIterations = ca.getConfig().getTotalIterations();
 			for (int i = 0; i < totalIterations; i++) {
 				innerRun(ca);
+				notifyListeners(i + 1, ca);
 				if ((i + 1) % Math.max(1, totalIterations / 10) == 0 || i == 0) {
 					logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
 				}
@@ -77,7 +109,7 @@ public abstract class CellularAutomataRule {
 
 	}
 
-	private CellularAutomata innerRun(CellularAutomata ca) throws CloneNotSupportedException {
+	private CellularAutomata innerRun(CellularAutomata ca) {
 
 		CellGrid current = ca.getGrid();
 		CellGrid next = ca.getUtilsGrid();

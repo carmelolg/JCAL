@@ -10,9 +10,10 @@ import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataRule;
-import io.github.carmelolg.jcal.grid.CellGrid;
+import io.github.carmelolg.jcal.core.GenerationListener;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 
 /**
@@ -75,17 +76,23 @@ public class GameOfLife3DExample {
 		CellularAutomata ca = new CellularAutomata(config);
 
 		CellularAutomataRule rule = new Carter3DLifeRule();
-		ca = rule.run(ca);
 
-		// Print the alive cells after 3 iterations (still life: identical to the initial state)
-		logger.info("Alive cells after 3 iterations (Carter Bays' 3D still life):");
-		CellGrid grid = ca.getGrid();
-		for (int[] coords : grid.allCoordinates()) {
-			Cell cell = grid.get(coords);
-			if (cell.getCurrentStatus().equals(ALIVE)) {
-				logger.info("  ({},{},{})", coords[0], coords[1], coords[2]);
+		// The listener logs alive cells after each generation.
+		rule.addGenerationListener((int gen, GridSnapshot snap) -> {
+			logger.info("Generation {}:", gen);
+			int[] sizes = snap.getDimensions().sizes();
+			for (int x = 0; x < sizes[0]; x++) {
+				for (int y = 0; y < sizes[1]; y++) {
+					for (int z = 0; z < sizes[2]; z++) {
+						if (snap.getState(new int[]{x, y, z}).equals(ALIVE)) {
+							logger.info("  ({},{},{})", x, y, z);
+						}
+					}
+				}
 			}
-		}
+		});
+
+		rule.run(ca);
 	}
 
 	/**

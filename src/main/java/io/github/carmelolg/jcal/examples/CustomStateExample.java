@@ -10,8 +10,10 @@ import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataRule;
+import io.github.carmelolg.jcal.core.GenerationListener;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
+import io.github.carmelolg.jcal.grid.GridSnapshot;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 
 /**
@@ -69,14 +71,25 @@ public class CustomStateExample {
                 .setNeighborhoodType(NeighborhoodType.VON_NEUMANN) // 4-cell orthogonal neighbourhood
                 .build();
 
-        // --- Step 4: Initialize the automaton and run ---
+        // --- Step 4: Initialize the automaton, register listener, and run ---
         CellularAutomata ca = new CellularAutomata(config);
         CellularAutomataRule rule = new HeatDiffusionRule();
-        ca = rule.run(ca);   // evolves for 3 steps
 
-        // Print the resulting grid (cell values: 0=cold, 1=warm, 2=hot)
-        logger.info("Grid after 3 iterations (0=cold, 1=warm, 2=hot):");
-        logger.info("\n{}", ca);
+        // The listener logs the grid (0=cold, 1=warm, 2=hot) after each generation.
+        rule.addGenerationListener((int gen, GridSnapshot snap) -> {
+            int rows = snap.getDimensions().getSize(0);
+            int cols = snap.getDimensions().getSize(1);
+            StringBuilder sb = new StringBuilder();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    sb.append(snap.getState(r, c).getValue()).append(" ");
+                }
+                sb.append("\n");
+            }
+            logger.info("Grid after generation {} (0=cold, 1=warm, 2=hot):\n{}", gen, sb);
+        });
+
+        rule.run(ca); // evolves for 3 steps, listener fires after each one
     }
 
     // -------------------------------------------------------------------------
