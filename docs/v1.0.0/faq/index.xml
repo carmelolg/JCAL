@@ -1,32 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>FAQ on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/v1.0.0/faq/</link>
-    <description>Official documentation for JCAL — Java Cellular Automata Library</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 19:52:03 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/faq/index.xml" rel="self" type="application/rss+xml"></atom:link>
-    
-    
-    <item>
-      <title>FAQ</title>
-      <link>https://carmelolg.github.io/JCAL/v1.0.0/faq/faq/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://carmelolg.github.io/JCAL/v1.0.0/faq/faq/</guid>
-      <description>&lt;h2 id=&#34;general&#34;&gt;General&lt;/h2&gt;
-&lt;h3 id=&#34;what-java-version-does-jcal-require&#34;&gt;What Java version does JCAL require?&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FAQ on JCAL Docs</title><link>https://carmelolg.github.io/JCAL/v1.0.0/faq/</link><description>Official documentation for JCAL — Java Cellular Automata Library</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 22 May 2026 21:59:43 +0200</lastBuildDate><atom:link href="https://carmelolg.github.io/JCAL/v1.0.0/faq/index.xml" rel="self" type="application/rss+xml"/><item><title>FAQ</title><link>https://carmelolg.github.io/JCAL/v1.0.0/faq/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://carmelolg.github.io/JCAL/v1.0.0/faq/faq/</guid><description>&lt;h2 id="general"&gt;General&lt;/h2&gt;
+&lt;h3 id="what-java-version-does-jcal-require"&gt;What Java version does JCAL require?&lt;/h3&gt;
 &lt;p&gt;JCAL is compiled with &lt;code&gt;--release 16&lt;/code&gt;, so it requires &lt;strong&gt;Java 16 or later&lt;/strong&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;is-jcal-available-on-maven-central&#34;&gt;Is JCAL available on Maven Central?&lt;/h3&gt;
+&lt;h3 id="is-jcal-available-on-maven-central"&gt;Is JCAL available on Maven Central?&lt;/h3&gt;
 &lt;p&gt;Not yet. JCAL is currently published on the &lt;strong&gt;GitHub Maven Registry&lt;/strong&gt;. See
-&lt;a href=&#34;../getting-started/&#34;&gt;Getting Started&lt;/a&gt; for installation instructions.&lt;/p&gt;
-&lt;h3 id=&#34;can-i-use-jcal-in-a-commercial-project&#34;&gt;Can I use JCAL in a commercial project?&lt;/h3&gt;
+&lt;a href="../getting-started/"&gt;Getting Started&lt;/a&gt; for installation instructions.&lt;/p&gt;
+&lt;h3 id="can-i-use-jcal-in-a-commercial-project"&gt;Can I use JCAL in a commercial project?&lt;/h3&gt;
 &lt;p&gt;JCAL is licensed under
-&lt;a href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;CC BY-NC-SA 4.0&lt;/a&gt;, which
+&lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;, which
 &lt;strong&gt;does not permit commercial use&lt;/strong&gt;. Please review the license terms before integrating
-JCAL into a commercial product.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+JCAL into a commercial product.&lt;/p&gt;</description></item></channel></rss>

@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Configuration Reference on JCAL Docs</title>
-    <link>https://carmelolg.github.io/JCAL/v2.0.0/builder-settings/</link>
-    <description>All options available on CellularAutomataConfigurationBuilder.</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 22 May 2026 19:52:03 +0000</lastBuildDate>
-    <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/builder-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
-    
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Configuration Reference on JCAL Docs</title><link>https://carmelolg.github.io/JCAL/v2.0.0/builder-settings/</link><description>All options available on CellularAutomataConfigurationBuilder.</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 22 May 2026 21:59:43 +0200</lastBuildDate><atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/builder-settings/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
