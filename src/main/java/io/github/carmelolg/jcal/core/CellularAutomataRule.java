@@ -1,14 +1,11 @@
 package io.github.carmelolg.jcal.core;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellGrid;
-import io.github.carmelolg.jcal.grid.GridSnapshot;
 
 /**
  * Abstract base class for implementing the transition function of a Cellular Automata.
@@ -46,35 +43,9 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  * @see CellularAutomata
  * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelRule
  */
-public abstract class CellularAutomataRule {
+public abstract class CellularAutomataRule extends AbstractCellularAutomataRule {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRule.class);
-
-	private final List<GenerationListener> listeners = new ArrayList<>();
-
-	/**
-	 * Registers a {@link GenerationListener} that will be notified after each completed
-	 * generation when {@link #run(CellularAutomata)} is called.
-	 *
-	 * <p>Multiple listeners can be registered; they are called in registration order.
-	 *
-	 * @param listener the listener to add; must not be {@code null}
-	 * @see GenerationListener
-	 * @see GridSnapshot
-	 */
-	public void addGenerationListener(GenerationListener listener) {
-		Objects.requireNonNull(listener, "listener must not be null");
-		listeners.add(listener);
-	}
-
-	private void notifyListeners(int generation, CellularAutomata ca) {
-		if (!listeners.isEmpty()) {
-			GridSnapshot snapshot = GridSnapshot.of(generation, ca.getGrid());
-			for (GenerationListener l : listeners) {
-				l.onGeneration(generation, snapshot);
-			}
-		}
-	}
 
 	/**
 	 * Run the transaction function
@@ -131,33 +102,8 @@ public abstract class CellularAutomataRule {
 
 		// Step 3: double-buffer swap
 		logger.debug("Swapping buffers");
-		ca.setGrid(next);
-		ca.setUtilsGrid(current);
+		swapBuffers(ca);
 
 		return ca;
-	}
-
-	/**
-	 * The transition function's core. Here, you explain what
-	 * happen and what your transaction function do. Consider to implement only what
-	 * happen in a single cell, this behavior will be replaced for all cells of the
-	 * matrix You will receive in input the single cell and its neighbors
-	 * 
-	 * 
-	 * @param <b>cell</b>      a single cell
-	 * @param <b>neighbors</b> the neighbors
-	 * @return the {@link Cell} updated
-	 */
-	public abstract Cell transition(Cell cell, List<Cell> neighbors);
-	
-	/**
-	 * If you want to implement a CCA (Complex Cellular Automata), you need refine your cells status before the next iteration.
-	 * If you override this function, you'll be able to update the status of the current cells before the next iteration.
-	 * <b>If you use a simple CA, you can skip this implementation.</b>
-	 * @param cell the current cell to update
-	 * @return a {@link Cell} instance.
-	 */
-	public Cell refinements(Cell cell) {
-		return cell;
 	}
 }

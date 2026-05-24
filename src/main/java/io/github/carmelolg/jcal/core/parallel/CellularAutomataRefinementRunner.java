@@ -1,7 +1,5 @@
 package io.github.carmelolg.jcal.core.parallel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +8,7 @@ import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
-public class CellularAutomataRefinementRunner implements Callable<List<Cell>> {
+public class CellularAutomataRefinementRunner implements Callable<Void> {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRefinementRunner.class);
 
@@ -31,21 +29,15 @@ public class CellularAutomataRefinementRunner implements Callable<List<Cell>> {
 	}
 
 	@Override
-	public List<Cell> call() {
+	public Void call() {
 		logger.debug("Processing refinement for row {}", row);
-		List<Cell> results = new ArrayList<Cell>();
 		CellGrid grid = ca.getGrid();
 
-		int totalCells = grid.dimensions().getTotalCells();
-		int rowCount = grid.dimensions().getSize(0);
-		int sliceSize = totalCells / rowCount;
-
-		List<int[]> slice = grid.allCoordinates().subList(row * sliceSize, (row + 1) * sliceSize);
-		for (int[] coords : slice) {
+		for (int[] coords : grid.coordinatesForRow(row)) {
 			grid.set(coords, executor.refinements(grid.get(coords)));
 		}
 
-		return results;
+		return null;
 	}
 
 }

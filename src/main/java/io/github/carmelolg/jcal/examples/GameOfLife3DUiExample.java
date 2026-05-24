@@ -81,7 +81,7 @@ public class GameOfLife3DUiExample {
             .setTotalIterations(20)
             .setDefaultStatus(DEAD)
             .setNeighborhoodType(NeighborhoodType.MOORE)
-            .setInitalState(initialState)
+            .setInitialState(initialState)
             .build();
 
         CellularAutomata ca = new CellularAutomata(config);

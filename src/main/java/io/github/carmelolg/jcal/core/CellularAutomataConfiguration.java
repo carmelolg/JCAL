@@ -1,5 +1,7 @@
 package io.github.carmelolg.jcal.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +30,7 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  *   <li>{@link #getWidth()} / {@link #getHeight()} - grid dimensions (default 100x100)</li>
  *   <li>{@link #isInfinite()} / {@link #getTotalIterations()} - run mode (mutually exclusive)</li>
  *   <li>{@link #getDefaultStatus()} - initial state applied to every cell</li>
- *   <li>{@link #getInitalState()} - optional list of cells with non-default initial states</li>
+ *   <li>{@link #getInitialState()} - optional list of cells with non-default initial states</li>
  *   <li>{@link #getNeighborhoodType()} or {@link #getNeighborhood()} - neighborhood strategy
  *       (exactly one must be set)</li>
  * </ul>
@@ -39,14 +41,12 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  */
 public class CellularAutomataConfiguration {
 
-    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataConfiguration.class);
-
     private int[] dimensions = {100, 100};
     private boolean isInfinite;
     private int totalIterations;
     private boolean activeCells; // Not used yet
     private CellState defaultStatus;
-    private List<Cell> initalState;
+    private List<Cell> initialState;
     private NeighborhoodType neighborhoodType;
     private Neighborhood neighborhood;
 
@@ -85,16 +85,20 @@ public class CellularAutomataConfiguration {
         return totalIterations;
     }
 
-    public boolean getActiveCells() {
+    public boolean isActiveCells() {
         return activeCells;
+    }
+
+    public boolean getActiveCells() {
+        return isActiveCells();
     }
 
     public CellState getDefaultStatus() {
         return defaultStatus;
     }
 
-    public List<Cell> getInitalState() {
-        return initalState;
+    public List<Cell> getInitialState() {
+        return initialState;
     }
 
     public NeighborhoodType getNeighborhoodType() {
@@ -109,7 +113,9 @@ public class CellularAutomataConfiguration {
         this.dimensions = builder.dimensions.clone();
         this.activeCells = builder.activeCells;
         this.defaultStatus = builder.defaultStatus;
-        this.initalState = builder.initalState;
+        this.initialState = builder.initialState != null
+                ? Collections.unmodifiableList(new ArrayList<>(builder.initialState))
+                : null;
         this.isInfinite = builder.isInfinite;
         this.totalIterations = builder.totalIterations;
         this.neighborhoodType = builder.neighborhoodType;
@@ -133,7 +139,7 @@ public class CellularAutomataConfiguration {
 
         private boolean activeCells;
         private CellState defaultStatus;
-        private List<Cell> initalState;
+        private List<Cell> initialState;
         private NeighborhoodType neighborhoodType;
         private Neighborhood neighborhood;
 
@@ -195,15 +201,16 @@ public class CellularAutomataConfiguration {
         }
 
         /**
-         * <b>Function temporary suspended.</b>
+         * Enables the active-cells optimization: when {@code true}, the transition
+         * function will iterate only over cells with a non-default/non-dead state,
+         * reducing computation for sparse grids.
          *
-         * @param activeCells <b><i>true</i></b> if you want otpimize the transition
-         *                    function using on the iterations only the active cells
-         *                    (cells with status not empty/dead), <b><i>false</i></b>
-         *                    otherwise
+         * <p><b>Note:</b> this is a planned future optimization; the flag is accepted
+         * and stored but not yet honoured by the engine.</p>
+         *
+         * @param activeCells {@code true} to enable the optimization, {@code false} otherwise
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
-        @Deprecated
         public CellularAutomataConfigurationBuilder setActiveCells(boolean activeCells) {
             this.activeCells = activeCells;
             return this;
@@ -221,15 +228,14 @@ public class CellularAutomataConfiguration {
         }
 
         /**
-         * Set the inital configuration from where starting the cellular automata.
-         * Pratically, the cells that in the starting phase have different status of
-         * empty/dead.
+         * Set the initial configuration from where starting the cellular automata.
+         * Cells listed here will have a non-default status at generation 0.
          *
-         * @param initalState a {@link List} of {@link Cell}
+         * @param initialState a {@link List} of {@link Cell}
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
-        public CellularAutomataConfigurationBuilder setInitalState(List<Cell> initalState) {
-            this.initalState = initalState;
+        public CellularAutomataConfigurationBuilder setInitialState(List<Cell> initialState) {
+            this.initialState = initialState;
             return this;
         }
 

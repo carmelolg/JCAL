@@ -211,7 +211,7 @@ class ExamplesTest {
                         .setTotalIterations(iters)
                         .setDefaultStatus(GameOfLife3DExample.DEAD)
                         .setNeighborhoodType(io.github.carmelolg.jcal.neighborhood.NeighborhoodType.MOORE)
-                        .setInitalState(initial)
+                        .setInitialState(initial)
                         .build();
 
         io.github.carmelolg.jcal.core.CellularAutomata ca =

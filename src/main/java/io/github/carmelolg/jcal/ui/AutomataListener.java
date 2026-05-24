@@ -15,7 +15,7 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  * <p>Register an instance of this class on a
  * {@link io.github.carmelolg.jcal.core.CellularAutomataRule} to see the grid
  * evolve in real time.  The standard {@link GridDisplay} implementation is
- * {@link AutomataWindow}; you may supply any alternative display (e.g., a JavaFX
+ * {@link CellularAutomataDisplay}; you may supply any alternative display (e.g., a JavaFX
  * wrapper or a test stub) as long as it implements {@link GridDisplay}.
  *
  * <p>The optional {@code delayMs} parameter introduces a {@link Thread#sleep}
@@ -23,7 +23,7 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  *
  * <p><b>Typical usage:</b>
  * <pre>{@code
- * AutomataWindow window = new AutomataWindow(renderer, 12);
+ * CellularAutomataDisplay window = new CellularAutomataDisplay(renderer, 12);
  * window.show();
  *
  * AutomataListener listener = new AutomataListener(window, 100); // 100 ms per frame
@@ -40,9 +40,8 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  * effectively limits the frame rate without blocking the Swing EDT.
  *
  * @author Carmelo La Gamba
- * @see AutomataWindow
+ * @see CellularAutomataDisplay
  * @see GenerationListener
- * @see AutomataViewer
  */
 public class AutomataListener implements GenerationListener {
 

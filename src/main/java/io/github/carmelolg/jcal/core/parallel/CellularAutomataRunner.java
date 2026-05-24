@@ -1,7 +1,5 @@
 package io.github.carmelolg.jcal.core.parallel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +8,7 @@ import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
-public class CellularAutomataRunner implements Callable<List<Cell>> {
+public class CellularAutomataRunner implements Callable<Void> {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRunner.class);
 
@@ -31,23 +29,17 @@ public class CellularAutomataRunner implements Callable<List<Cell>> {
 	}
 
 	@Override
-	public List<Cell> call() {
+	public Void call() {
 		logger.debug("Processing transition for row {}", row);
-		List<Cell> results = new ArrayList<Cell>();
 		CellGrid grid = ca.getGrid();
 		CellGrid utilsGrid = ca.getUtilsGrid();
 
-		int totalCells = grid.dimensions().getTotalCells();
-		int rowCount = grid.dimensions().getSize(0);
-		int sliceSize = totalCells / rowCount;
-
-		List<int[]> slice = grid.allCoordinates().subList(row * sliceSize, (row + 1) * sliceSize);
-		for (int[] coords : slice) {
+		for (int[] coords : grid.coordinatesForRow(row)) {
 			utilsGrid.set(coords, executor.transition(grid.get(coords),
 					ca.getNeighborhood().getNeighbors(grid, coords)));
 		}
 
-		return results;
+		return null;
 	}
 
 }

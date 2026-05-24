@@ -12,7 +12,9 @@ import io.github.carmelolg.jcal.grid.Cell;
  *
  * @author Carmelo La Gamba
  */
-public class Utils {
+public final class Utils {
+
+    private Utils() {}
 
     /**
      * Checks if the given coordinates are inside a grid with the given sizes.

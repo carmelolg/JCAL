@@ -76,7 +76,7 @@ public class GameOfLifeAdvancedUiExample {
             .setInfinite(false)
             .setTotalIterations(200)
             .setDefaultStatus(DEAD)
-            .setInitalState(initialState)
+            .setInitialState(initialState)
             .setNeighborhoodType(NeighborhoodType.MOORE)
             .build();
 

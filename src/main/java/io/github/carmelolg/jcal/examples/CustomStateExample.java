@@ -67,7 +67,7 @@ public class CustomStateExample {
                 .setInfinite(false)                             // run for a fixed number of steps
                 .setTotalIterations(3)                          // 3 generations
                 .setDefaultStatus(COLD)                         // all cells start cold
-                .setInitalState(initialState)                   // place the hot cells
+                .setInitialState(initialState)                   // place the hot cells
                 .setNeighborhoodType(NeighborhoodType.VON_NEUMANN) // 4-cell orthogonal neighbourhood
                 .build();
 

@@ -65,7 +65,7 @@ public class GameOfLifeExample {
             .setInfinite(false)                      // run for a fixed number of steps
             .setTotalIterations(2)                   // 2 generations
             .setDefaultStatus(DEAD)                  // all cells start as dead
-            .setInitalState(initialState)            // override specific cells
+            .setInitialState(initialState)            // override specific cells
             .setNeighborhoodType(NeighborhoodType.MOORE) // 8-cell Moore neighborhood
             .build();
 

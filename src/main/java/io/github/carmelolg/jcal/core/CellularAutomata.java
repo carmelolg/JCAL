@@ -9,12 +9,7 @@ import io.github.carmelolg.jcal.grid.GridDimensions;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 import io.github.carmelolg.jcal.neighborhood.Neighborhood;
 import io.github.carmelolg.jcal.neighborhood.NDCapable;
-import io.github.carmelolg.jcal.neighborhood.MooreNeighborhood;
-import io.github.carmelolg.jcal.neighborhood.Moore3DNeighborhood;
-import io.github.carmelolg.jcal.neighborhood.Moore4DNeighborhood;
-import io.github.carmelolg.jcal.neighborhood.VonNeumannNeighborhood;
-import io.github.carmelolg.jcal.neighborhood.VonNeumann3DNeighborhood;
-import io.github.carmelolg.jcal.neighborhood.VonNeumann4DNeighborhood;
+import io.github.carmelolg.jcal.neighborhood.NeighborhoodFactory;
 import io.github.carmelolg.jcal.utils.Utils;
 
 /**
@@ -90,7 +85,12 @@ public class CellularAutomata {
         check();
 
         int[] dims = config.getDimensions();
-        GridDimensions gridDims = new GridDimensions(dims);
+        GridDimensions gridDims;
+        try {
+            gridDims = new GridDimensions(dims);
+        } catch (IllegalArgumentException e) {
+            throw new CellularAutomataException(e.getMessage());
+        }
         
         logger.debug("Creating grid with dimensions: {}", java.util.Arrays.toString(dims));
         grid = new CellGrid(gridDims);
@@ -99,9 +99,9 @@ public class CellularAutomata {
             grid.set(coords, new Cell(config.getDefaultStatus(), coords));
         logger.debug("Grid initialized with {} cells", totalCells);
 
-        if (config.getInitalState() != null && !config.getInitalState().isEmpty()) {
-            logger.debug("Setting initial state with {} cells", config.getInitalState().size());
-            for (Cell settedCell : config.getInitalState()) {
+        if (config.getInitialState() != null && !config.getInitialState().isEmpty()) {
+            logger.debug("Setting initial state with {} cells", config.getInitialState().size());
+            for (Cell settedCell : config.getInitialState()) {
                 grid.set(settedCell.getCoordinates(), settedCell);
             }
         }
@@ -110,7 +110,7 @@ public class CellularAutomata {
             neighborhood = config.getNeighborhood();
             logger.debug("Using custom neighborhood: {}", neighborhood.getClass().getSimpleName());
         } else {
-            neighborhood = resolveNeighborhood(config.getNeighborhoodType(), dims.length);
+            neighborhood = NeighborhoodFactory.create(config.getNeighborhoodType(), dims.length);
             logger.debug("Using neighborhood type: {}", config.getNeighborhoodType());
         }
 
@@ -120,15 +120,6 @@ public class CellularAutomata {
             throw new CellularAutomataException("Failed to initialize the utils grid", e);
         }
         logger.info("Cellular Automata initialized successfully");
-    }
-
-    private Neighborhood resolveNeighborhood(NeighborhoodType type, int dimCount) {
-        return switch (dimCount) {
-            case 2 -> type == NeighborhoodType.MOORE ? new MooreNeighborhood() : new VonNeumannNeighborhood();
-            case 3 -> type == NeighborhoodType.MOORE ? new Moore3DNeighborhood() : new VonNeumann3DNeighborhood();
-            case 4 -> type == NeighborhoodType.MOORE ? new Moore4DNeighborhood() : new VonNeumann4DNeighborhood();
-            default -> throw new IllegalArgumentException("Unsupported dimension count: " + dimCount);
-        };
     }
 
     private void check() {
@@ -155,24 +146,14 @@ public class CellularAutomata {
         }
 
         int[] dims = config.getDimensions();
-        if (dims.length < 2 || dims.length > 4) {
-            logger.error("Invalid dimensions: expected 2-4 dimensions, got {}", dims.length);
-            throw new CellularAutomataException("Grid dimensions must be between 2 and 4, got: " + dims.length);
-        }
-        for (int d : dims) {
-            if (d <= 0) {
-                logger.error("Invalid dimension size: all sizes must be > 0, got {}", d);
-                throw new CellularAutomataException("All grid dimension sizes must be > 0");
-            }
-        }
         int dimCount = dims.length;
         if (config.getNeighborhood() != null && dimCount > 2
                 && !(config.getNeighborhood() instanceof NDCapable)) {
             logger.error("Invalid neighborhood: custom neighborhood for {}D grid must implement NDCapable", dimCount);
             throw new CellularAutomataException("For n-dimensional CAs (n > 2), the custom neighborhood must implement NDCapable");
         }
-        if (config.getInitalState() != null) {
-            for (Cell cell : config.getInitalState()) {
+        if (config.getInitialState() != null) {
+            for (Cell cell : config.getInitialState()) {
                 int[] coords = cell.getCoordinates();
                 if (coords.length != dimCount) {
                     logger.error("Invalid initial state: coordinate dimension mismatch, expected {}, got {}", dimCount, coords.length);
@@ -199,11 +180,11 @@ public class CellularAutomata {
     }
 
     /**
-     * Sets the active grid.
+     * Sets the active grid (package-private: internal double-buffer implementation detail).
      *
      * @param grid the new grid
      */
-    public void setGrid(CellGrid grid) {
+    void setGrid(CellGrid grid) {
         logger.debug("Swapping grid");
         this.grid = grid;
     }
@@ -218,11 +199,11 @@ public class CellularAutomata {
     }
 
     /**
-     * Sets the double-buffer grid.
+     * Sets the double-buffer grid (package-private: internal double-buffer implementation detail).
      *
      * @param utilsGrid the new utils grid
      */
-    public void setUtilsGrid(CellGrid utilsGrid) {
+    void setUtilsGrid(CellGrid utilsGrid) {
         logger.debug("Swapping utils grid");
         this.utilsGrid = utilsGrid;
     }
@@ -255,7 +236,7 @@ public class CellularAutomata {
             int cols = grid.dimensions().sizes()[1];
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++)
-                    builder.append(grid.get(i, j).getCurrentStatus() + " ");
+                    builder.append(grid.get(i, j).getCurrentStatus()).append(' ');
                 builder.append("\n");
             }
         } else {
@@ -264,7 +245,7 @@ public class CellularAutomata {
             for (int i = 1; i < gdims.getDimensionCount(); i++) sliceSize *= gdims.getSize(i);
             int count = 0;
             for (int[] coords : grid.allCoordinates()) {
-                builder.append(grid.get(coords).getCurrentStatus() + " ");
+                builder.append(grid.get(coords).getCurrentStatus()).append(' ');
                 if (++count % sliceSize == 0) builder.append("\n");
             }
         }

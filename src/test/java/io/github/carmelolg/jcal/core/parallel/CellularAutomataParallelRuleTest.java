@@ -65,7 +65,7 @@ class CellularAutomataParallelRuleTest {
                 .setTotalIterations(iters)
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
-                .setInitalState(initial)
+                .setInitialState(initial)
                 .build();
         return new CellularAutomata(cfg);
     }
