@@ -322,34 +322,34 @@ with a few additions for describing the extra dimensions.</p>
 <p><code>CellGrid</code> is the unified n-dimensional grid class (2D–4D) backed by a flat array with
 stride-based indexing. All executors and neighbourhoods operate on <code>CellGrid</code> internally.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>get(int[] coords)</code></td>
-          <td>Return the cell at the given n-dimensional coordinates</td>
-      </tr>
-      <tr>
-          <td><code>set(int[] coords, Cell cell)</code></td>
-          <td>Update a cell</td>
-      </tr>
-      <tr>
-          <td><code>allCoordinates()</code></td>
-          <td>Return an unmodifiable list of every coordinate array in the grid</td>
-      </tr>
-      <tr>
-          <td><code>getDimensions()</code></td>
-          <td>Return the <code>GridDimensions</code> descriptor</td>
-      </tr>
-      <tr>
-          <td><code>is2D()</code></td>
-          <td>Convenience check for 2D grids</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>get(int[] coords)</code></td>
+					<td>Return the cell at the given n-dimensional coordinates</td>
+			</tr>
+			<tr>
+					<td><code>set(int[] coords, Cell cell)</code></td>
+					<td>Update a cell</td>
+			</tr>
+			<tr>
+					<td><code>allCoordinates()</code></td>
+					<td>Return an unmodifiable list of every coordinate array in the grid</td>
+			</tr>
+			<tr>
+					<td><code>getDimensions()</code></td>
+					<td>Return the <code>GridDimensions</code> descriptor</td>
+			</tr>
+			<tr>
+					<td><code>is2D()</code></td>
+					<td>Convenience check for 2D grids</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="griddimensions">GridDimensions</h3>
 <p><code>GridDimensions</code> is a Java 16 <strong>record</strong> — an immutable descriptor that holds the sizes
@@ -386,28 +386,28 @@ dimensions — you never instantiate it directly.</p>
 </span></span></span></code></pre></div><hr>
 <h2 id="built-in-neighborhood-sizes">Built-in Neighborhood Sizes</h2>
 <table>
-  <thead>
-      <tr>
-          <th><code>NeighborhoodType</code></th>
-          <th>2D</th>
-          <th>3D</th>
-          <th>4D</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>MOORE</code></td>
-          <td>8</td>
-          <td>26</td>
-          <td>80</td>
-      </tr>
-      <tr>
-          <td><code>VON_NEUMANN</code></td>
-          <td>4</td>
-          <td>6</td>
-          <td>8</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><code>NeighborhoodType</code></th>
+					<th>2D</th>
+					<th>3D</th>
+					<th>4D</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>MOORE</code></td>
+					<td>8</td>
+					<td>26</td>
+					<td>80</td>
+			</tr>
+			<tr>
+					<td><code>VON_NEUMANN</code></td>
+					<td>4</td>
+					<td>6</td>
+					<td>8</td>
+			</tr>
+	</tbody>
 </table>
 <p>The correct class is resolved automatically based on the number of dimensions in the
 configuration.</p>

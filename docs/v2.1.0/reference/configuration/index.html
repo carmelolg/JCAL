@@ -340,80 +340,80 @@ calling <code>.build()</code>.</p>
 </span></span></span></code></pre></div><hr>
 <h2 id="reference-table">Reference Table</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Builder Method</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>setWidth(int)</code></td>
-          <td><code>int</code></td>
-          <td><code>100</code></td>
-          <td>No</td>
-          <td>Number of columns in the 2D grid</td>
-      </tr>
-      <tr>
-          <td><code>setHeight(int)</code></td>
-          <td><code>int</code></td>
-          <td><code>100</code></td>
-          <td>No</td>
-          <td>Number of rows in the 2D grid</td>
-      </tr>
-      <tr>
-          <td><code>setDimensions(int...)</code></td>
-          <td><code>int...</code></td>
-          <td>—</td>
-          <td>For 3D/4D</td>
-          <td>Grid dimensions: <code>(x,y,z)</code> or <code>(x,y,z,w)</code></td>
-      </tr>
-      <tr>
-          <td><code>setTotalIterations(int)</code></td>
-          <td><code>int</code></td>
-          <td><code>0</code></td>
-          <td>Yes (unless infinite)</td>
-          <td>Number of generations to simulate</td>
-      </tr>
-      <tr>
-          <td><code>setInfinite(boolean)</code></td>
-          <td><code>boolean</code></td>
-          <td><code>false</code></td>
-          <td>No</td>
-          <td>Run until interrupted</td>
-      </tr>
-      <tr>
-          <td><code>setDefaultStatus(CellState)</code></td>
-          <td><code>CellState</code></td>
-          <td>—</td>
-          <td><strong>Yes</strong></td>
-          <td>State applied to every cell at init</td>
-      </tr>
-      <tr>
-          <td><code>setInitalState(List&lt;Cell&gt;)</code></td>
-          <td><code>List&lt;Cell&gt;</code></td>
-          <td>empty</td>
-          <td>No</td>
-          <td>Cells starting in a non-default state</td>
-      </tr>
-      <tr>
-          <td><code>setNeighborhoodType(NeighborhoodType)</code></td>
-          <td><code>NeighborhoodType</code></td>
-          <td>—</td>
-          <td>One of these</td>
-          <td>Select a built-in neighborhood</td>
-      </tr>
-      <tr>
-          <td><code>setNeighborhood(Neighborhood)</code></td>
-          <td><code>Neighborhood</code></td>
-          <td>—</td>
-          <td>One of these</td>
-          <td>Provide a custom 2D neighborhood</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Builder Method</th>
+					<th>Type</th>
+					<th>Default</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>setWidth(int)</code></td>
+					<td><code>int</code></td>
+					<td><code>100</code></td>
+					<td>No</td>
+					<td>Number of columns in the 2D grid</td>
+			</tr>
+			<tr>
+					<td><code>setHeight(int)</code></td>
+					<td><code>int</code></td>
+					<td><code>100</code></td>
+					<td>No</td>
+					<td>Number of rows in the 2D grid</td>
+			</tr>
+			<tr>
+					<td><code>setDimensions(int...)</code></td>
+					<td><code>int...</code></td>
+					<td>—</td>
+					<td>For 3D/4D</td>
+					<td>Grid dimensions: <code>(x,y,z)</code> or <code>(x,y,z,w)</code></td>
+			</tr>
+			<tr>
+					<td><code>setTotalIterations(int)</code></td>
+					<td><code>int</code></td>
+					<td><code>0</code></td>
+					<td>Yes (unless infinite)</td>
+					<td>Number of generations to simulate</td>
+			</tr>
+			<tr>
+					<td><code>setInfinite(boolean)</code></td>
+					<td><code>boolean</code></td>
+					<td><code>false</code></td>
+					<td>No</td>
+					<td>Run until interrupted</td>
+			</tr>
+			<tr>
+					<td><code>setDefaultStatus(CellState)</code></td>
+					<td><code>CellState</code></td>
+					<td>—</td>
+					<td><strong>Yes</strong></td>
+					<td>State applied to every cell at init</td>
+			</tr>
+			<tr>
+					<td><code>setInitalState(List&lt;Cell&gt;)</code></td>
+					<td><code>List&lt;Cell&gt;</code></td>
+					<td>empty</td>
+					<td>No</td>
+					<td>Cells starting in a non-default state</td>
+			</tr>
+			<tr>
+					<td><code>setNeighborhoodType(NeighborhoodType)</code></td>
+					<td><code>NeighborhoodType</code></td>
+					<td>—</td>
+					<td>One of these</td>
+					<td>Select a built-in neighborhood</td>
+			</tr>
+			<tr>
+					<td><code>setNeighborhood(Neighborhood)</code></td>
+					<td><code>Neighborhood</code></td>
+					<td>—</td>
+					<td>One of these</td>
+					<td>Provide a custom 2D neighborhood</td>
+			</tr>
+	</tbody>
 </table>
 <div class="callout callout-warning" role="alert">
   <div class="callout-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg></div>
@@ -478,28 +478,28 @@ API and will not be changed to preserve backward compatibility.</div>
 correct implementation for 2D, 3D, or 4D based on the grid dimensions in the config.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">CellularAutomataConfigurationBuilder</span><span class="w"> </span><span class="nf">setNeighborhoodType</span><span class="p">(</span><span class="n">NeighborhoodType</span><span class="w"> </span><span class="n">neighborhoodType</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>Value</th>
-          <th>2D</th>
-          <th>3D</th>
-          <th>4D</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>NeighborhoodType.MOORE</code></td>
-          <td>8 neighbors</td>
-          <td>26 neighbors</td>
-          <td>80 neighbors</td>
-      </tr>
-      <tr>
-          <td><code>NeighborhoodType.VON_NEUMANN</code></td>
-          <td>4 neighbors</td>
-          <td>6 neighbors</td>
-          <td>8 neighbors</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Value</th>
+					<th>2D</th>
+					<th>3D</th>
+					<th>4D</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>NeighborhoodType.MOORE</code></td>
+					<td>8 neighbors</td>
+					<td>26 neighbors</td>
+					<td>80 neighbors</td>
+			</tr>
+			<tr>
+					<td><code>NeighborhoodType.VON_NEUMANN</code></td>
+					<td>4 neighbors</td>
+					<td>6 neighbors</td>
+					<td>8 neighbors</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="custom-neighborhood">Custom Neighborhood</h2>

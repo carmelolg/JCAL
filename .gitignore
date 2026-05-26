@@ -32,6 +32,4 @@ replay_pid*
 
 .settings
 docs/src/public/*
-!docs/src/
-docs/
 docs/src/themes/shiori/exampleSite/
