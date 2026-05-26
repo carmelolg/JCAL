@@ -6,7 +6,7 @@
     <description>Model richer cell state by extending DefaultStatus with a custom Java class.</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 May 2026 20:09:32 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2026 20:15:37 +0000</lastBuildDate>
     <atom:link href="https://carmelolg.github.io/JCAL/v2.0.0/custom-status/index.xml" rel="self" type="application/rss+xml"></atom:link>
     
     

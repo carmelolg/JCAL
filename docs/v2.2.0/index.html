@@ -320,78 +320,78 @@ then let JCAL handle the rest.</p>
 <h2 id="formal-model">Formal Model</h2>
 <p>A Cellular Automaton is the quadruple <strong><code>&lt;Z^d, S, X, σ&gt;</code></strong>:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Symbol</th>
-          <th>Meaning</th>
-          <th>JCAL type</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Z^d</strong></td>
-          <td><em>d</em>-dimensional grid of cells</td>
-          <td><code>CellGrid</code> (2D–4D, unified)</td>
-      </tr>
-      <tr>
-          <td><strong>S</strong></td>
-          <td>Set of possible cell states</td>
-          <td><code>CellState</code></td>
-      </tr>
-      <tr>
-          <td><strong>X</strong></td>
-          <td>Neighborhood strategy</td>
-          <td><code>Neighborhood</code> subclass</td>
-      </tr>
-      <tr>
-          <td><strong>σ</strong></td>
-          <td>Transition function</td>
-          <td><code>CellularAutomataRule</code> subclass</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Symbol</th>
+					<th>Meaning</th>
+					<th>JCAL type</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Z^d</strong></td>
+					<td><em>d</em>-dimensional grid of cells</td>
+					<td><code>CellGrid</code> (2D–4D, unified)</td>
+			</tr>
+			<tr>
+					<td><strong>S</strong></td>
+					<td>Set of possible cell states</td>
+					<td><code>CellState</code></td>
+			</tr>
+			<tr>
+					<td><strong>X</strong></td>
+					<td>Neighborhood strategy</td>
+					<td><code>Neighborhood</code> subclass</td>
+			</tr>
+			<tr>
+					<td><strong>σ</strong></td>
+					<td>Transition function</td>
+					<td><code>CellularAutomataRule</code> subclass</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="key-features">Key Features</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>☕ <strong>Idiomatic Java</strong></td>
-          <td>Fluent builder API, abstract base classes, standard collections</td>
-      </tr>
-      <tr>
-          <td>📐 <strong>Multi-dimensional</strong></td>
-          <td>2D, 3D, and 4D grids with matching built-in neighborhoods</td>
-      </tr>
-      <tr>
-          <td>🏘️ <strong>Built-in neighborhoods</strong></td>
-          <td>Moore and Von Neumann for 2D, 3D, and 4D</td>
-      </tr>
-      <tr>
-          <td>🔌 <strong>Extensible</strong></td>
-          <td>Custom states, neighborhoods, and rules with minimal code</td>
-      </tr>
-      <tr>
-          <td>⚙️ <strong>Complex CA support</strong></td>
-          <td>Refinement hook enables rich multi-value simulations</td>
-      </tr>
-      <tr>
-          <td>⚡ <strong>Parallel execution</strong></td>
-          <td><code>CellularAutomataParallelRule</code> — same API, more threads</td>
-      </tr>
-      <tr>
-          <td>👁️ <strong>Generation listeners</strong></td>
-          <td><code>GenerationListener</code> + <code>GridSnapshot</code> for callbacks after each step</td>
-      </tr>
-      <tr>
-          <td>🖥️ <strong>Swing UI layer</strong></td>
-          <td><code>CellularAutomataUIRunner</code> for real-time visual simulations</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>☕ <strong>Idiomatic Java</strong></td>
+					<td>Fluent builder API, abstract base classes, standard collections</td>
+			</tr>
+			<tr>
+					<td>📐 <strong>Multi-dimensional</strong></td>
+					<td>2D, 3D, and 4D grids with matching built-in neighborhoods</td>
+			</tr>
+			<tr>
+					<td>🏘️ <strong>Built-in neighborhoods</strong></td>
+					<td>Moore and Von Neumann for 2D, 3D, and 4D</td>
+			</tr>
+			<tr>
+					<td>🔌 <strong>Extensible</strong></td>
+					<td>Custom states, neighborhoods, and rules with minimal code</td>
+			</tr>
+			<tr>
+					<td>⚙️ <strong>Complex CA support</strong></td>
+					<td>Refinement hook enables rich multi-value simulations</td>
+			</tr>
+			<tr>
+					<td>⚡ <strong>Parallel execution</strong></td>
+					<td><code>CellularAutomataParallelRule</code> — same API, more threads</td>
+			</tr>
+			<tr>
+					<td>👁️ <strong>Generation listeners</strong></td>
+					<td><code>GenerationListener</code> + <code>GridSnapshot</code> for callbacks after each step</td>
+			</tr>
+			<tr>
+					<td>🖥️ <strong>Swing UI layer</strong></td>
+					<td><code>CellularAutomataUIRunner</code> for real-time visual simulations</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="quick-example">Quick Example</h2>
 <p>Conway&rsquo;s Game of Life in a few lines:</p>

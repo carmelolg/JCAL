@@ -341,22 +341,22 @@ the transition rule itself.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onGeneration</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">generation</span><span class="p">,</span><span class="w"> </span><span class="n">GridSnapshot</span><span class="w"> </span><span class="n">snapshot</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>generation</code></td>
-          <td>1-based index of the completed generation</td>
-      </tr>
-      <tr>
-          <td><code>snapshot</code></td>
-          <td>Immutable <code>GridSnapshot</code> of the grid after the transition</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Parameter</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>generation</code></td>
+					<td>1-based index of the completed generation</td>
+			</tr>
+			<tr>
+					<td><code>snapshot</code></td>
+					<td>Immutable <code>GridSnapshot</code> of the grid after the transition</td>
+			</tr>
+	</tbody>
 </table>
 <p>Register listeners on any <code>CellularAutomataRule</code> (or <code>CellularAutomataParallelRule</code>)
 before calling <code>run</code>:</p>
@@ -395,34 +395,34 @@ for manual inspection outside of a listener.</p>
 </span></span></span></code></pre></div><p>The flat list follows the same row-major ordering as <code>CellGrid.allCoordinates()</code>.</p>
 <h3 id="available-methods">Available methods</h3>
 <table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>getGeneration()</code></td>
-          <td>The generation index at which the snapshot was taken</td>
-      </tr>
-      <tr>
-          <td><code>getDimensions()</code></td>
-          <td>The <code>GridDimensions</code> of this snapshot</td>
-      </tr>
-      <tr>
-          <td><code>getCellStates()</code></td>
-          <td>Unmodifiable flat list of all <code>CellState</code> values (row-major)</td>
-      </tr>
-      <tr>
-          <td><code>getState(int col, int row)</code></td>
-          <td>2D convenience accessor</td>
-      </tr>
-      <tr>
-          <td><code>getState(int[] coords)</code></td>
-          <td>nD accessor</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>getGeneration()</code></td>
+					<td>The generation index at which the snapshot was taken</td>
+			</tr>
+			<tr>
+					<td><code>getDimensions()</code></td>
+					<td>The <code>GridDimensions</code> of this snapshot</td>
+			</tr>
+			<tr>
+					<td><code>getCellStates()</code></td>
+					<td>Unmodifiable flat list of all <code>CellState</code> values (row-major)</td>
+			</tr>
+			<tr>
+					<td><code>getState(int col, int row)</code></td>
+					<td>2D convenience accessor</td>
+			</tr>
+			<tr>
+					<td><code>getState(int[] coords)</code></td>
+					<td>nD accessor</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="common-patterns">Common Patterns</h2>
