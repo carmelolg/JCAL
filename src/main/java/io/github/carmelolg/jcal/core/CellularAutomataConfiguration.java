@@ -77,34 +77,42 @@ public class CellularAutomataConfiguration {
         return dimensions.clone();
     }
 
+    /** @return {@code true} if the automaton runs indefinitely; {@code false} if bounded by {@link #getTotalIterations()} */
     public boolean isInfinite() {
         return isInfinite;
     }
 
+    /** @return the maximum number of generations to run (relevant only when {@link #isInfinite()} is {@code false}) */
     public int getTotalIterations() {
         return totalIterations;
     }
 
+    /** @return {@code true} if active-cells optimisation is enabled */
     public boolean isActiveCells() {
         return activeCells;
     }
 
+    /** @return {@code true} if active-cells optimisation is enabled (alias for {@link #isActiveCells()}) */
     public boolean getActiveCells() {
         return isActiveCells();
     }
 
+    /** @return the {@link CellState} assigned to all cells not listed in the initial state */
     public CellState getDefaultStatus() {
         return defaultStatus;
     }
 
+    /** @return the unmodifiable list of cells that override the default state at generation 0, or {@code null} if not set */
     public List<Cell> getInitialState() {
         return initialState;
     }
 
+    /** @return the built-in {@link NeighborhoodType} (e.g. MOORE or VON_NEUMANN), or {@code null} if a custom neighborhood was set */
     public NeighborhoodType getNeighborhoodType() {
         return neighborhoodType;
     }
 
+    /** @return the custom {@link Neighborhood} instance, or {@code null} if a built-in type was selected */
     public Neighborhood getNeighborhood() {
         return neighborhood;
     }
@@ -153,6 +161,7 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setWidth(int width) {
+            if (width <= 0) throw new IllegalArgumentException("width must be > 0, got: " + width);
             this.dimensions[0] = width;
             return this;
         }
@@ -164,6 +173,7 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setHeight(int height) {
+            if (height <= 0) throw new IllegalArgumentException("height must be > 0, got: " + height);
             this.dimensions[1] = height;
             return this;
         }
@@ -175,6 +185,10 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setDimensions(int... dims) {
+            for (int i = 0; i < dims.length; i++) {
+                if (dims[i] <= 0)
+                    throw new IllegalArgumentException("dimension[" + i + "] must be > 0, got: " + dims[i]);
+            }
             this.dimensions = dims.clone();
             return this;
         }
@@ -256,7 +270,9 @@ public class CellularAutomataConfiguration {
          * extend the {@link Neighborhood} class. For n-dimensional support (n &gt; 2),
          * the class should also implement {@link io.github.carmelolg.jcal.neighborhood.NDCapable}.
          *
-         * @param neighborhood
+         * @param neighborhood the custom {@link Neighborhood} implementation to use; must extend
+         *                     {@link Neighborhood} and, for grids with more than 2 dimensions,
+         *                     also implement {@link io.github.carmelolg.jcal.neighborhood.NDCapable}
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setNeighborhood(Neighborhood neighborhood) {
@@ -267,7 +283,7 @@ public class CellularAutomataConfiguration {
         /**
          * Build the configuration object
          *
-         * @return the builder {@link CellularAutomataConfigurationBuilder}
+         * @return a new immutable {@link CellularAutomataConfiguration} built from this builder's settings
          */
         public CellularAutomataConfiguration build() {
             logger.debug("Building configuration: dimensions={}, infinite={}, iterations={}, neighborhood={}",

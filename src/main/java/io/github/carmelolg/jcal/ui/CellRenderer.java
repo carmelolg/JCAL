@@ -30,7 +30,7 @@ import io.github.carmelolg.jcal.grid.CellState;
  *
  * @author Carmelo La Gamba
  * @see GridPanel
- * @see AutomataWindow
+ * @see CellularAutomataDisplay
  */
 @FunctionalInterface
 public interface CellRenderer {

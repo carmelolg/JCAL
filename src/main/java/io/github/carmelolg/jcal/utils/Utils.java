@@ -8,7 +8,7 @@ import io.github.carmelolg.jcal.grid.Cell;
  *
  * <p>These helpers are used throughout the library but are not part of the
  * public extension API.  Callers may use them when implementing custom
- * {@link io.github.carmelolg.jcal.neighborhood.Neighborhood>} classes.
+ * {@link io.github.carmelolg.jcal.neighborhood.Neighborhood} classes.
  *
  * @author Carmelo La Gamba
  */

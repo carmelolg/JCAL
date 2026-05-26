@@ -37,50 +37,25 @@ import io.github.carmelolg.jcal.grid.CellGrid;
  * computing neighbours, override {@link #refinements(Cell)} as well.
  *
  * <p>For multi-threaded execution see
- * {@link io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelExecutor}.
+ * {@link CellularAutomataParallelRule}.
  *
  * @author Carmelo La Gamba
  * @see CellularAutomata
- * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelRule
+ * @see CellularAutomataParallelRule
  */
 public abstract class CellularAutomataRule extends AbstractCellularAutomataRule {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRule.class);
 
 	/**
-	 * Run the transaction function
-	 * 
-	 * @param ca the {@link CellularAutomata} configured
-	 * @return the new {@link CellularAutomata} after n-interactions
-	 * @throws CellularAutomataException if something goes wrong during execution
+	 * Executes a single generation sequentially: applies refinements in-place on the
+	 * current grid, computes transitions into the utility buffer, then swaps the buffers.
+	 *
+	 * @param ca the automaton to advance by one generation
+	 * @return the updated automaton
 	 */
-	public CellularAutomata run(CellularAutomata ca) {
-
-		logger.info("Starting execution with {} iterations", 
-			ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
-		
-		if (ca.getConfig().isInfinite()) {
-			int gen = 0;
-			while (!Thread.currentThread().isInterrupted()) {
-				innerRun(ca);
-				notifyListeners(++gen, ca);
-			}
-		} else {
-			int totalIterations = ca.getConfig().getTotalIterations();
-			for (int i = 0; i < totalIterations; i++) {
-				innerRun(ca);
-				notifyListeners(i + 1, ca);
-				if ((i + 1) % Math.max(1, totalIterations / 10) == 0 || i == 0) {
-					logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
-				}
-			}
-		}
-		logger.info("Execution completed");
-		return ca;
-
-	}
-
-	private CellularAutomata innerRun(CellularAutomata ca) {
+	@Override
+	protected CellularAutomata executeGeneration(CellularAutomata ca) {
 
 		CellGrid current = ca.getGrid();
 		CellGrid next = ca.getUtilsGrid();

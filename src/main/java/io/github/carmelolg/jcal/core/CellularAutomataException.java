@@ -15,6 +15,8 @@ package io.github.carmelolg.jcal.core;
  */
 public class CellularAutomataException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
+
     public CellularAutomataException(String message) {
         super(message);
     }

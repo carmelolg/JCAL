@@ -58,7 +58,7 @@ public class GameOfLife3DExample {
 		{3, 3, 3}, {3, 4, 3}, {4, 3, 3}, {4, 4, 3}, {3, 3, 4}, {4, 4, 4}
 	};
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 		// 7x7x7 grid; initial state is a 6-cell diagonal still life
 		List<Cell> initialState = new ArrayList<>();

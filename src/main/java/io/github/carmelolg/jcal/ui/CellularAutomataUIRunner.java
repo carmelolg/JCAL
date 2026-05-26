@@ -5,8 +5,8 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.github.carmelolg.jcal.core.AbstractCellularAutomataRule;
 import io.github.carmelolg.jcal.core.CellularAutomata;
-import io.github.carmelolg.jcal.core.CellularAutomataRule;
 
 /**
  * Fluent façade that wires together a {@link CellularAutomataDisplay}, an
@@ -43,14 +43,14 @@ public class CellularAutomataUIRunner {
     private static final Logger logger = LoggerFactory.getLogger(CellularAutomataUIRunner.class);
 
     private final CellularAutomata ca;
-    private final CellularAutomataRule rule;
+    private final AbstractCellularAutomataRule rule;
 
     private String title    = "JCAL Automata";
     private int cellSize    = 10;
     private int delayMs     = 100;
     private CellRenderer renderer;
 
-    private CellularAutomataUIRunner(CellularAutomata ca, CellularAutomataRule rule) {
+    private CellularAutomataUIRunner(CellularAutomata ca, AbstractCellularAutomataRule rule) {
         this.ca   = ca;
         this.rule = rule;
     }
@@ -59,10 +59,10 @@ public class CellularAutomataUIRunner {
      * Creates a new {@code CellularAutomataUIRunner} builder for the given automaton and rule.
      *
      * @param ca   the {@link CellularAutomata} to visualise; must not be {@code null}
-     * @param rule the {@link CellularAutomataRule} that will drive the evolution; must not be {@code null}
+     * @param rule the {@link AbstractCellularAutomataRule} that will drive the evolution; must not be {@code null}
      * @return a new {@code CellularAutomataUIRunner} builder
      */
-    public static CellularAutomataUIRunner create(CellularAutomata ca, CellularAutomataRule rule) {
+    public static CellularAutomataUIRunner create(CellularAutomata ca, AbstractCellularAutomataRule rule) {
         Objects.requireNonNull(ca,   "ca must not be null");
         Objects.requireNonNull(rule, "rule must not be null");
         return new CellularAutomataUIRunner(ca, rule);

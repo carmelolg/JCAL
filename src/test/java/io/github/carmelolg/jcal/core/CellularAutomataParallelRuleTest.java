@@ -1,4 +1,4 @@
-package io.github.carmelolg.jcal.core.parallel;
+package io.github.carmelolg.jcal.core;
 
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;

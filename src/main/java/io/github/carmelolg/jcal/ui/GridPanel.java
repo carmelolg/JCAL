@@ -38,7 +38,7 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  *
  * @author Carmelo La Gamba
  * @see CellRenderer
- * @see AutomataWindow
+ * @see CellularAutomataDisplay
  */
 public class GridPanel extends JPanel {
 

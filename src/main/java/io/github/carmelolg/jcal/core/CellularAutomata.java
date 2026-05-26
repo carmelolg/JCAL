@@ -190,11 +190,11 @@ public class CellularAutomata {
     }
 
     /**
-     * Returns the double-buffer grid.
+     * Returns the double-buffer grid (package-private: internal double-buffer implementation detail).
      *
      * @return the utils {@link CellGrid}
      */
-    public CellGrid getUtilsGrid() {
+    CellGrid getUtilsGrid() {
         return utilsGrid;
     }
 
@@ -232,11 +232,11 @@ public class CellularAutomata {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (grid.is2D()) {
-            int rows = grid.dimensions().sizes()[0];
-            int cols = grid.dimensions().sizes()[1];
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++)
-                    builder.append(grid.get(i, j).getCurrentStatus()).append(' ');
+            int cols = grid.dimensions().sizes()[0];
+            int rows = grid.dimensions().sizes()[1];
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < cols; col++)
+                    builder.append(grid.get(col, row).getCurrentStatus()).append(' ');
                 builder.append("\n");
             }
         } else {

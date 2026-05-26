@@ -62,7 +62,7 @@ public class CellularAutomataDisplay implements GridDisplay {
         generationLabel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
 
         frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(gridPanel, BorderLayout.CENTER);
         frame.add(generationLabel, BorderLayout.SOUTH);

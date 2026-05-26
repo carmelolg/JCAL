@@ -221,14 +221,15 @@ class CellularAutomataTest {
     @Test
     @DisplayName("init throws when a dimension size is <= 0")
     void checkZeroDimensionSize() {
-        CellularAutomataConfiguration cfg = new CellularAutomataConfiguration
-                .CellularAutomataConfigurationBuilder()
-                .setDimensions(0, 5)
-                .setTotalIterations(1)
-                .setDefaultStatus(DEAD)
-                .setNeighborhoodType(NeighborhoodType.MOORE)
-                .build();
-        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
+        assertThrows(IllegalArgumentException.class, () ->
+            new CellularAutomataConfiguration
+                    .CellularAutomataConfigurationBuilder()
+                    .setDimensions(0, 5)
+                    .setTotalIterations(1)
+                    .setDefaultStatus(DEAD)
+                    .setNeighborhoodType(NeighborhoodType.MOORE)
+                    .build()
+        );
     }
 
     @Test

@@ -1,13 +1,27 @@
-package io.github.carmelolg.jcal.core.parallel;
+package io.github.carmelolg.jcal.core;
 
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
+/**
+ * A {@link Callable} task that applies the refinement step to one row of the
+ * automaton grid during a parallel Complex Cellular Automata (CCA) pre-processing pass.
+ *
+ * <p>Each instance is responsible for a single row (first-dimension slice) of the
+ * {@link io.github.carmelolg.jcal.grid.CellGrid}. The refinement result for every
+ * cell in the row is written back into the main grid in-place.
+ *
+ * <p>Instances are created and submitted to a thread pool by
+ * {@link CellularAutomataParallelRule} before the transition step in each generation.
+ *
+ * @author Carmelo La Gamba
+ * @see CellularAutomataParallelRule
+ * @see CellularAutomataRunner
+ */
 public class CellularAutomataRefinementRunner implements Callable<Void> {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRefinementRunner.class);

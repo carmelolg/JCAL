@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.GridSnapshot;
@@ -13,14 +16,16 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  *
  * <p>Provides shared listener management ({@link GenerationListener}) and declares the
  * contract that both sequential ({@link CellularAutomataRule}) and parallel
- * ({@link io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelRule})
+ * ({@link CellularAutomataParallelRule})
  * implementations must fulfil.
  *
  * @author Carmelo La Gamba
  * @see CellularAutomataRule
- * @see io.github.carmelolg.jcal.core.parallel.CellularAutomataParallelRule
+ * @see CellularAutomataParallelRule
  */
 public abstract class AbstractCellularAutomataRule {
+
+	private static final Logger logger = LoggerFactory.getLogger(AbstractCellularAutomataRule.class);
 
 	private final List<GenerationListener> listeners = new ArrayList<>();
 
@@ -69,11 +74,47 @@ public abstract class AbstractCellularAutomataRule {
 	/**
 	 * Runs the automaton for the number of iterations defined in its configuration.
 	 *
+	 * <p>The loop logic (finite/infinite, generation counting, listener notification,
+	 * and progress logging) is shared by all executors. Concrete subclasses provide
+	 * only the per-generation cell processing via {@link #executeGeneration(CellularAutomata)}.
+	 *
 	 * @param ca the {@link CellularAutomata} to run
 	 * @return the updated {@link CellularAutomata}
 	 * @throws CellularAutomataException if something goes wrong during execution
 	 */
-	public abstract CellularAutomata run(CellularAutomata ca);
+	public final CellularAutomata run(CellularAutomata ca) {
+		logger.info("Starting execution with {} iterations",
+				ca.getConfig().isInfinite() ? "infinite" : ca.getConfig().getTotalIterations());
+
+		if (ca.getConfig().isInfinite()) {
+			int gen = 0;
+			while (!Thread.currentThread().isInterrupted()) {
+				executeGeneration(ca);
+				notifyListeners(++gen, ca);
+			}
+		} else {
+			int totalIterations = ca.getConfig().getTotalIterations();
+			int logStep = Math.max(1, totalIterations / 10);
+			for (int i = 0; i < totalIterations; i++) {
+				executeGeneration(ca);
+				notifyListeners(i + 1, ca);
+				if ((i + 1) % logStep == 0 || i == 0) {
+					logger.debug("Completed iteration {}/{}", i + 1, totalIterations);
+				}
+			}
+		}
+		logger.info("Execution completed");
+		return ca;
+	}
+
+	/**
+	 * Executes a single generation: applies refinements, computes transitions, and
+	 * swaps the double buffer. Called once per iteration by {@link #run(CellularAutomata)}.
+	 *
+	 * @param ca the automaton to advance by one generation
+	 * @return the updated automaton
+	 */
+	protected abstract CellularAutomata executeGeneration(CellularAutomata ca);
 
 	/**
 	 * The transition function applied to every cell each generation.

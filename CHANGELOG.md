@@ -7,7 +7,7 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [2.2.0] — 2026-05-26
 
 ### Added
 - `CellularAutomataException` — unchecked exception replacing raw `throws Exception` across core engine
@@ -16,6 +16,11 @@ Versions align with [Semantic Versioning](https://semver.org/).
 - `CellularAutomataParallelRule` — `addGenerationListener()` and `notifyListeners()` now mirror the sequential engine
 - `CellularAutomataRunner` / `CellularAutomataRefinementRunner` — eliminated O(n²) coordinate scan; replaced with `subList`-based slice indexing
 - Removed unused `offset` parameter from runner constructors
+- **`core.parallel` sub-package eliminated** — `CellularAutomataParallelRule`, `CellularAutomataRunner`,
+  and `CellularAutomataRefinementRunner` moved from `core.parallel` into `core` directly.
+  Update imports from `io.github.carmelolg.jcal.core.parallel.*` to `io.github.carmelolg.jcal.core.*`.
+- **`getUtilsGrid()` is now package-private** in `CellularAutomata` — `@Deprecated public` removed;
+  the method is an internal double-buffer detail not accessible to library users.
 
 ### Fixed
 - Removed `throws SecurityException` from `innerRun()`

@@ -1,13 +1,28 @@
-package io.github.carmelolg.jcal.core.parallel;
+package io.github.carmelolg.jcal.core;
 
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.Cell;
 
+/**
+ * A {@link Callable} task that processes one row of the automaton grid during a
+ * parallel transition step.
+ *
+ * <p>Each instance is responsible for a single row (first-dimension slice) of the
+ * {@link io.github.carmelolg.jcal.grid.CellGrid}. The transition result for every
+ * cell in the row is written into the double-buffer grid ({@code utilsGrid}) so that
+ * all cells see a consistent snapshot of the previous generation.
+ *
+ * <p>Instances are created and submitted to a thread pool by
+ * {@link CellularAutomataParallelRule} during each generation step.
+ *
+ * @author Carmelo La Gamba
+ * @see CellularAutomataParallelRule
+ * @see CellularAutomataRefinementRunner
+ */
 public class CellularAutomataRunner implements Callable<Void> {
 
 	private static final Logger logger = LoggerFactory.getLogger(CellularAutomataRunner.class);
