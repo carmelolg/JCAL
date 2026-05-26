@@ -84,13 +84,13 @@ class CellularAutomataConfigurationTest {
     }
 
     @Test
-    @DisplayName("setInitalState stores the list")
-    void setInitalState() {
+    @DisplayName("setInitialState stores the list")
+    void setInitialState() {
         List<Cell> cells = List.of(new Cell(DEAD, 0, 0));
         CellularAutomataConfiguration cfg = new CellularAutomataConfiguration
                 .CellularAutomataConfigurationBuilder()
-                .setInitalState(cells).build();
-        assertEquals(cells, cfg.getInitalState());
+                .setInitialState(cells).build();
+        assertEquals(cells, cfg.getInitialState());
     }
 
     @Test

@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,10 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
-import io.github.carmelolg.jcal.core.CellularAutomataRule;
+import io.github.carmelolg.jcal.examples.GameOfLifeExample.GameOfLifeRule;
 import io.github.carmelolg.jcal.grid.Cell;
 import io.github.carmelolg.jcal.grid.CellState;
 import io.github.carmelolg.jcal.grid.GridSnapshot;
@@ -26,8 +31,8 @@ import io.github.carmelolg.jcal.ui.CellularAutomataDisplay;
 /**
  * Advanced Game of Life example using {@link CellularAutomataDisplay} directly.
  *
- * <p>Standalone example: This class is completely independent and does not depend
- * on other examples. It defines its own {@link GameOfLifeRule}.
+ * <p>This example reuses {@link GameOfLifeRule} from {@link GameOfLifeExample} — the rule
+ * itself is defined and documented there. Focus here is entirely on the UI wiring.
  *
  * <p>This example demonstrates the <b>flexibility and customization</b> available when
  * using {@code CellularAutomataDisplay} instead of the simpler {@code CellularAutomataUIRunner}.
@@ -51,10 +56,12 @@ import io.github.carmelolg.jcal.ui.CellularAutomataDisplay;
  */
 public class GameOfLifeAdvancedUiExample {
 
+    private static final Logger logger = LoggerFactory.getLogger(GameOfLifeAdvancedUiExample.class);
+
     static final CellState DEAD  = new CellState("dead",  "0");
     static final CellState ALIVE = new CellState("alive", "1");
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // Setup automaton with glider + blinker
         List<Cell> initialState = Arrays.asList(
@@ -76,27 +83,31 @@ public class GameOfLifeAdvancedUiExample {
             .setInfinite(false)
             .setTotalIterations(200)
             .setDefaultStatus(DEAD)
-            .setInitalState(initialState)
+            .setInitialState(initialState)
             .setNeighborhoodType(NeighborhoodType.MOORE)
             .build();
 
         CellularAutomata ca = new CellularAutomata(config);
 
-        // Mutable state for play/pause and speed control
+        // --- Thread-safe mutable state for play/pause and speed control ---
+        // AtomicBoolean / AtomicInteger from java.util.concurrent.atomic guarantee
+        // visibility across the EDT and the CA runner thread without explicit locking.
         AtomicBoolean paused = new AtomicBoolean(false);
         AtomicInteger delayMs = new AtomicInteger(100);
 
-        // Create the main display
-        // Note: The renderer (lambda) is fully customizable. Try different colours:
-        //   - Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, new Color(0xFF6B00) etc.
-        // This demonstrates the flexibility of CellularAutomataDisplay vs CellularAutomataUIRunner.
+        // --- Create the main CA display ---
+        // Note: The renderer (lambda) maps a CellState to a java.awt.Color.
+        // Try different colours: Color.GREEN, Color.CYAN, new Color(0xFF6B00), etc.
+        // This is the key difference vs CellularAutomataUIRunner: full control over rendering.
         CellularAutomataDisplay display = new CellularAutomataDisplay(
-            "Game of Life — Advanced (with Controls)",
+            "Game of Life - Advanced (with Controls)",
             state -> state.equals(ALIVE) ? Color.YELLOW : Color.BLACK,
             14
         );
 
-        // Build a custom control panel
+        // --- Build a custom Swing control panel ---
+        // Shows how to wire Swing components to AtomicBoolean/AtomicInteger so the
+        // CA runner thread always reads the latest user input without blocking.
         JPanel controlPanel = new JPanel(new BorderLayout(10, 10));
         controlPanel.setBackground(new Color(240, 240, 240));
 
@@ -149,7 +160,11 @@ public class GameOfLifeAdvancedUiExample {
         display.getFrame().add(controlPanel, BorderLayout.NORTH);
         display.show();
 
-        // Create rule and listener
+        // --- Register a GenerationListener ---
+        // The listener runs on the CA runner thread (NOT the EDT).
+        // - display.update(snap) is thread-safe by design.
+        // - SwingUtilities.invokeLater() is used for any direct Swing component updates.
+        // - The pause loop keeps the runner thread alive (and thus paused) until resumed.
         GameOfLifeRule rule = new GameOfLifeRule();
 
         rule.addGenerationListener((int gen, GridSnapshot snap) -> {
@@ -184,13 +199,17 @@ public class GameOfLifeAdvancedUiExample {
                 rule.run(ca);
                 SwingUtilities.invokeLater(() -> pauseButton.setEnabled(false));
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Error in advanced UI runner", e);
             }
         }, "jcal-advanced-ui");
         thread.setDaemon(true);
         thread.start();
 
-        Thread.sleep(200L * 100 + 5_000);
+        try {
+            Thread.sleep(200L * 100 + 5_000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     /**
@@ -209,68 +228,5 @@ public class GameOfLifeAdvancedUiExample {
             }
         }
         return count;
-    }
-
-    /**
-     * Simple AtomicBoolean holder.
-     */
-    static class AtomicBoolean {
-        private boolean value;
-
-        AtomicBoolean(boolean initialValue) {
-            this.value = initialValue;
-        }
-
-        synchronized boolean get() {
-            return value;
-        }
-
-        synchronized void set(boolean newValue) {
-            this.value = newValue;
-        }
-    }
-
-    /**
-     * Simple AtomicInteger holder.
-     */
-    static class AtomicInteger {
-        private int value;
-
-        AtomicInteger(int initialValue) {
-            this.value = initialValue;
-        }
-
-        synchronized int get() {
-            return value;
-        }
-
-        synchronized void set(int newValue) {
-            this.value = newValue;
-        }
-    }
-
-    /**
-     * Conway's Game of Life rule (defined locally, standalone).
-     */
-    static class GameOfLifeRule extends CellularAutomataRule {
-
-        @Override
-        public Cell transition(Cell cell, List<Cell> neighbors) {
-            long aliveNeighborCount = neighbors.stream()
-                .filter(n -> n.getCurrentStatus().equals(ALIVE))
-                .count();
-
-            Cell next = new Cell(DEAD, cell.getCol(), cell.getRow());
-
-            boolean isCurrentlyAlive = cell.getCurrentStatus().equals(ALIVE);
-
-            if (!isCurrentlyAlive && aliveNeighborCount == 3) {
-                next.setCurrentStatus(ALIVE);
-            } else if (isCurrentlyAlive && (aliveNeighborCount == 2 || aliveNeighborCount == 3)) {
-                next.setCurrentStatus(ALIVE);
-            }
-
-            return next;
-        }
     }
 }

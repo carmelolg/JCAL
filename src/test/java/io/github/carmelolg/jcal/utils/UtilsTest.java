@@ -23,9 +23,10 @@ class UtilsTest {
     }
 
     @Test
-    @DisplayName("Utils can be instantiated (default constructor coverage)")
-    void utilsConstructor() {
-        assertNotNull(new Utils());
+    @DisplayName("Utils has private constructor (utility class pattern)")
+    void utilsConstructorIsPrivate() throws Exception {
+        var ctor = Utils.class.getDeclaredConstructor();
+        assertFalse(java.lang.reflect.Modifier.isPublic(ctor.getModifiers()));
     }
 
     // ── isInside(int[], int[]) ─────────────────────────────────────────────

@@ -15,7 +15,7 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  * <p>{@link AutomataWindow} is the standard implementation provided by JCAL.
  *
  * @author Carmelo La Gamba
- * @see AutomataWindow
+ * @see CellularAutomataDisplay
  * @see AutomataListener
  */
 @FunctionalInterface

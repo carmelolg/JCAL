@@ -28,15 +28,15 @@ package io.github.carmelolg.jcal.grid;
  */
 public class CellState {
 
-	String key;
-	Object value;
+	private final String key;
+	private final Object value;
 
 	public CellState(String name, Object value) {
 		this.key = name;
 		this.value = value;
 	}
 
-	public Object getKey() {
+	public String getKey() {
 		return key;
 	}
 
@@ -61,6 +61,21 @@ public class CellState {
 		return value.toString() + " ";
 	}
 
+	/**
+	 * Returns a shallow copy of this {@code CellState}.
+	 *
+	 * <p>The {@code key} field is a {@link String} and is therefore safe to share.
+	 * The {@code value} field is copied <em>by reference</em>: if {@code value} is a
+	 * mutable object (e.g. a {@code Map} or custom domain object), both the original
+	 * and the clone will refer to the same instance.
+	 *
+	 * <p><b>Contract:</b> for correct behaviour in a Cellular Automata, {@code value}
+	 * must be <em>effectively immutable</em> (e.g. a {@link String}, a boxed primitive,
+	 * or an unmodifiable collection).  Passing a mutable {@code value} and then
+	 * modifying it after construction leads to undefined CA behaviour.
+	 *
+	 * @return a new {@code CellState} with the same {@code key} and {@code value}
+	 */
 	@Override
 	public CellState clone() throws CloneNotSupportedException {
 		return new CellState(key, value);

@@ -107,4 +107,26 @@ class CellGridTest {
         CellGrid g = new CellGrid(dims);
         assertSame(dims, g.dimensions());
     }
+
+    @Test
+    @DisplayName("2D matrix constructor: null matrix throws IllegalArgumentException")
+    void matrixConstructorNullThrows() {
+        Cell[][] nullMatrix = null;
+        assertThrows(IllegalArgumentException.class, () -> new CellGrid(nullMatrix));
+    }
+
+    @Test
+    @DisplayName("2D matrix constructor: empty matrix throws IllegalArgumentException")
+    void matrixConstructorEmptyThrows() {
+        assertThrows(IllegalArgumentException.class, () -> new CellGrid((Cell[][]) new Cell[0][]));
+    }
+
+    @Test
+    @DisplayName("2D matrix constructor: jagged matrix throws IllegalArgumentException")
+    void matrixConstructorJaggedThrows() {
+        Cell[][] jagged = new Cell[2][];
+        jagged[0] = new Cell[]{new Cell(DEAD, 0, 0), new Cell(DEAD, 0, 1)};
+        jagged[1] = new Cell[]{new Cell(DEAD, 1, 0)};
+        assertThrows(IllegalArgumentException.class, () -> new CellGrid(jagged));
+    }
 }

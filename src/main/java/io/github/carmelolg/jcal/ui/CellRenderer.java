@@ -21,7 +21,7 @@ import io.github.carmelolg.jcal.grid.CellState;
  *
  * <p><b>Example — multi-state (heat diffusion) mapping:</b>
  * <pre>{@code
- * CellRenderer renderer = state -> switch (state.getKey().toString()) {
+ * CellRenderer renderer = state -> switch (state.getKey()) {
  *     case "hot"  -> Color.RED;
  *     case "warm" -> Color.ORANGE;
  *     default     -> Color.BLUE;
@@ -30,7 +30,7 @@ import io.github.carmelolg.jcal.grid.CellState;
  *
  * @author Carmelo La Gamba
  * @see GridPanel
- * @see AutomataWindow
+ * @see CellularAutomataDisplay
  */
 @FunctionalInterface
 public interface CellRenderer {

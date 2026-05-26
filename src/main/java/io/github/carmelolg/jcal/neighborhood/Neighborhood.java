@@ -27,12 +27,13 @@ import io.github.carmelolg.jcal.grid.Cell;
  * public class DiagonalOnlyNeighborhood extends Neighborhood {
  *     public List<Cell> getNeighbors(CellGrid grid, int[] coords) {
  *         List<Cell> result = new ArrayList<>();
- *         CellGrid matrix = grid;
+ *         int[] sizes = grid.dimensions().sizes();
  *         int i = coords[0], j = coords[1];
  *         int[][] diagonals = {{-1,-1},{-1,1},{1,-1},{1,1}};
  *         for (int[] d : diagonals) {
- *             if (Utils.isInside(matrix.asMatrix(), i+d[0], j+d[1]))
- *                 result.add(matrix.asMatrix()[i+d[0]][j+d[1]]);
+ *             int[] nc = {i + d[0], j + d[1]};
+ *             if (Utils.isInside(sizes, nc))
+ *                 result.add(grid.get(nc));
  *         }
  *         return result;
  *     }

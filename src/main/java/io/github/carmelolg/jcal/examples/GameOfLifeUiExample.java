@@ -42,7 +42,7 @@ public class GameOfLifeUiExample {
     static final CellState DEAD  = new CellState("dead",  "0");
     static final CellState ALIVE = new CellState("alive", "1");
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // --- Glider (starts at top-left, moves diagonally down-right) ---
         // Classic 5-cell glider shape:
@@ -69,20 +69,24 @@ public class GameOfLifeUiExample {
             .setInfinite(true)
             //.setTotalIterations(120)
             .setDefaultStatus(DEAD)
-            .setInitalState(initialState)
+            .setInitialState(initialState)
             .setNeighborhoodType(NeighborhoodType.MOORE)
             .build();
 
         CellularAutomata ca = new CellularAutomata(config);
 
         CellularAutomataUIRunner.create(ca, new GameOfLifeRule())
-            .title("Game of Life — JCAL")
+            .title("Game of Life - JCAL")
             .cellSize(14)
             .delay(80)
             .renderer(state -> state.equals(ALIVE) ? Color.GREEN : Color.BLACK)
             .start();
 
         // Keep the main thread alive long enough for the daemon thread to finish.
-        Thread.sleep(120 * 80 + 3_000);
+        try {
+            Thread.sleep(120 * 80 + 3_000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

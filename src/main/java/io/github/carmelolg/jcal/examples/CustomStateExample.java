@@ -51,7 +51,7 @@ public class CustomStateExample {
     static final CellState WARM = new CellState("warm", 1);
     static final CellState HOT = new CellState("hot", 2);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // --- Step 2: Define the initial hot cells ---
         // Two adjacent hot cells near the centre of the grid
@@ -67,7 +67,7 @@ public class CustomStateExample {
                 .setInfinite(false)                             // run for a fixed number of steps
                 .setTotalIterations(3)                          // 3 generations
                 .setDefaultStatus(COLD)                         // all cells start cold
-                .setInitalState(initialState)                   // place the hot cells
+                .setInitialState(initialState)                   // place the hot cells
                 .setNeighborhoodType(NeighborhoodType.VON_NEUMANN) // 4-cell orthogonal neighbourhood
                 .build();
 
@@ -77,12 +77,12 @@ public class CustomStateExample {
 
         // The listener logs the grid (0=cold, 1=warm, 2=hot) after each generation.
         rule.addGenerationListener((int gen, GridSnapshot snap) -> {
-            int rows = snap.getDimensions().getSize(0);
-            int cols = snap.getDimensions().getSize(1);
+            int cols = snap.getDimensions().getSize(0);
+            int rows = snap.getDimensions().getSize(1);
             StringBuilder sb = new StringBuilder();
-            for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < cols; c++) {
-                    sb.append(snap.getState(r, c).getValue()).append(" ");
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < cols; col++) {
+                    sb.append(snap.getState(col, row).getValue()).append(" ");
                 }
                 sb.append("\n");
             }

@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.carmelolg.jcal.core.CellularAutomata;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration;
 import io.github.carmelolg.jcal.core.CellularAutomataConfiguration.CellularAutomataConfigurationBuilder;
@@ -54,6 +57,8 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  */
 public class GameOfLife3DUiExample {
 
+    private static final Logger logger = LoggerFactory.getLogger(GameOfLife3DUiExample.class);
+
     static final CellState DEAD  = new CellState("dead",  "0");
     static final CellState ALIVE = new CellState("alive", "1");
 
@@ -68,7 +73,7 @@ public class GameOfLife3DUiExample {
         {3, 3, 3}, {3, 4, 3}, {4, 3, 3}, {4, 4, 3}, {3, 3, 4}, {4, 4, 4}
     };
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // Build initial state with still-life pattern
         List<Cell> initialState = new ArrayList<>();
@@ -81,18 +86,20 @@ public class GameOfLife3DUiExample {
             .setTotalIterations(20)
             .setDefaultStatus(DEAD)
             .setNeighborhoodType(NeighborhoodType.MOORE)
-            .setInitalState(initialState)
+            .setInitialState(initialState)
             .build();
 
         CellularAutomata ca = new CellularAutomata(config);
 
-        // --- Build the Swing window with one SlicePanel per Z value ---
+        // --- Build the Swing window ---
+        // One SlicePanel per Z value laid out horizontally.
+        // Each SlicePanel renders the X-Y plane at its fixed Z, updated every generation.
         int sizeX = 7;
         int sizeY = 7;
         int sizeZ = 7;
 
         JFrame frame = new JFrame("3D Game of Life (Carter Bays S5,6/B5) — JCAL");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel generationLabel = new JLabel("Generation: 0", SwingConstants.CENTER);
         generationLabel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
@@ -117,6 +124,10 @@ public class GameOfLife3DUiExample {
         });
 
         // --- Register a GenerationListener ---
+        // The listener runs on the CA runner thread (NOT the EDT).
+        // - SwingUtilities.invokeLater() is required for all Swing label updates.
+        // - Each SlicePanel.update() triggers a repaint on the EDT internally.
+        // - Thread.sleep() in the listener controls the animation speed.
         Carter3DLifeRule rule = new Carter3DLifeRule();
 
         rule.addGenerationListener((int gen, GridSnapshot snap) -> {
@@ -137,19 +148,32 @@ public class GameOfLife3DUiExample {
             try {
                 rule.run(ca);
             } catch (Exception e) {
-                Thread.currentThread().interrupt();
+                logger.error("Unexpected error in 3D UI runner", e);
             }
         }, "jcal-3d-ui-runner");
         thread.setDaemon(true);
         thread.start();
 
-        Thread.sleep(20L * DELAY_MS + 3_000);
+        try {
+            Thread.sleep(20L * DELAY_MS + 3_000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     /**
-     * Renders a single Z-slice of a 3D GridSnapshot as a JPanel.
+     * Renders a single Z-slice of a 3D {@link GridSnapshot} as a {@link JPanel}.
+     *
+     * <p>Each instance is fixed to one Z-value and repaints whenever
+     * {@link #update(GridSnapshot)} is called. The X-Y grid is drawn as a flat
+     * 2D bitmap: alive cells are cyan, dead cells are black.
+     *
+     * <p>This pattern (one panel per Z-slice) is a common approach for visualising
+     * 3D automata in 2D: instantiate one {@code SlicePanel} per Z-layer, add them
+     * all to a horizontal container, and call {@code update(snap)} from your
+     * {@link io.github.carmelolg.jcal.core.GenerationListener}.
      */
-    static class SlicePanel extends JPanel {
+    public static class SlicePanel extends JPanel {
 
         private static final long serialVersionUID = 1L;
 
@@ -193,10 +217,16 @@ public class GameOfLife3DUiExample {
     }
 
     /**
-     * Carter Bays' 3D Life rule (S5,6/B5).
-     * Defined locally so this example is completely standalone.
+     * Carter Bays' 3D Life rule — survival: 5 or 6 alive neighbours; birth: exactly 5.
+     *
+     * <p>Extend {@link io.github.carmelolg.jcal.core.CellularAutomataRule} and implement
+     * {@code transition(Cell, List)} to define any CA rule. For 3D grids, {@code cell}
+     * carries a 3-element {@code coordinates} array: {@code [x, y, z]}.
+     *
+     * <p>Defined as a public inner class so it can be reused or subclassed in other
+     * 3D examples without duplicating the logic.
      */
-    static class Carter3DLifeRule extends CellularAutomataRule {
+    public static class Carter3DLifeRule extends CellularAutomataRule {
 
         @Override
         public Cell transition(Cell cell, List<Cell> neighbors) {

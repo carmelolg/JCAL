@@ -87,7 +87,7 @@ Cell cell = grid.get(new int[]{x, y, z}); // 3D
 - Classes: `UpperCamelCase`.  Methods / fields: `lowerCamelCase`.
 - Test classes: `<Subject>Test` or `<Subject>SpecificationTest`.
 - Prefer explicit, descriptive names over abbreviations.
-- ⚠️ Do **not** rename `setInitalState` — intentional typo in public API.
+- ⚠️ `setInitalState` was removed in 2.2.0 — use `setInitialState` (corrected spelling).
 
 ### Javadoc
 All **public** classes and methods must have Javadoc:
@@ -102,7 +102,7 @@ All **public** classes and methods must have Javadoc:
 - Every new feature requires at least one test.
 - Specification-style tests (assert on known CA patterns) are strongly preferred.
 - Use reflection (`getDeclaredMethod` + `setAccessible(true)`) only for unreachable private branches.
-- Test suite currently has **148 tests** at **100% instruction coverage** (JaCoCo).
+- Test suite currently has **168 tests** at **100% instruction coverage** (JaCoCo).
 
 ### Commit messages
 Follow the conventional-commits convention:
@@ -122,32 +122,45 @@ io.github.carmelolg.jcal
 ├── core/
 │   ├── CellularAutomata.java                  # automaton orchestrator
 │   ├── CellularAutomataConfiguration.java     # immutable config + builder
-│   ├── CellularAutomataExecutor.java           # abstract sequential rule
-│   └── parallel/
-│       ├── CellularAutomataParallelExecutor.java
-│       ├── CellularAutomataRunner.java
-│       └── CellularAutomataRefinementRunner.java
+│   ├── AbstractCellularAutomataRule.java      # shared base: listeners + buffer swap
+│   ├── CellularAutomataRule.java              # abstract sequential rule (extend this)
+│   ├── CellularAutomataParallelRule.java      # abstract parallel rule (extend this)
+│   ├── CellularAutomataRunner.java            # internal: Callable<Void> for transition
+│   ├── CellularAutomataRefinementRunner.java  # internal: Callable<Void> for refinement
+│   └── GenerationListener.java               # @FunctionalInterface callback
 ├── grid/
 │   ├── Cell.java                              # single cell (was DefaultCell)
 │   ├── CellState.java                         # cell state (was DefaultStatus)
 │   ├── CellGrid.java                          # unified nD grid
-│   └── GridDimensions.java                    # Java 16 record, 2–4 dims
+│   ├── GridDimensions.java                    # Java 16 record, 2–4 dims
+│   └── GridSnapshot.java                      # immutable grid snapshot
 ├── neighborhood/
 │   ├── Neighborhood.java                      # abstract base (was DefaultNeighborhood)
 │   ├── NDCapable.java                         # marker for 3D+ neighbourhoods
 │   ├── NeighborhoodType.java
+│   ├── NeighborhoodFactory.java               # internal: resolves class by type+dim
 │   ├── MooreNeighborhood.java
 │   ├── VonNeumannNeighborhood.java
 │   ├── Moore3DNeighborhood.java
 │   ├── VonNeumann3DNeighborhood.java
 │   ├── Moore4DNeighborhood.java
 │   └── VonNeumann4DNeighborhood.java
+├── ui/
+│   ├── CellRenderer.java
+│   ├── GridDisplay.java
+│   ├── GridPanel.java
+│   ├── CellularAutomataDisplay.java
+│   ├── AutomataListener.java
+│   └── CellularAutomataUIRunner.java
 ├── utils/
 │   └── Utils.java                             # isInside, cloneGrid
 └── examples/
     ├── GameOfLifeExample.java
-    ├── CustomStateExample.java
-    └── GameOfLife3DExample.java
+    ├── GameOfLifeUiExample.java
+    ├── GameOfLifeAdvancedUiExample.java
+    ├── GameOfLife3DExample.java
+    ├── GameOfLife3DUiExample.java
+    └── CustomStateExample.java
 ```
 
 ---
@@ -156,7 +169,7 @@ io.github.carmelolg.jcal
 
 ### Build and test
 ```bash
-mvn test          # compile + run all JUnit 5 tests (148 tests)
+mvn test          # compile + run all JUnit 5 tests (168 tests)
 mvn package       # produce the JAR
 ```
 
