@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Implementing a Rule on JCAL Docs</title>
+    <link>https://carmelolg.github.io/JCAL/v2.2.0/basic-settings/</link>
+    <description>How to write a transition function using CellularAutomataRule.</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 26 May 2026 22:03:56 +0200</lastBuildDate>
+    <atom:link href="https://carmelolg.github.io/JCAL/v2.2.0/basic-settings/index.xml" rel="self" type="application/rss+xml"></atom:link>
+    
+    
+  </channel>
+</rss>
