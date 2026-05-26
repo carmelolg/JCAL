@@ -8,8 +8,8 @@ publishDir   = ".."
 [params]
   description    = "Official documentation for JCAL — Java Cellular Automata Library"
   author         = "carmelolg"
-  version        = "2.1.0"
-  currentVersion = "v2.1.0"
+  version        = "2.2.0"
+  currentVersion = "v2.2.0"
   tagline        = "A lightweight Java library for Cellular Automata simulations"
   licenseName    = "CC BY-NC-SA 4.0"
   license        = "https://github.com/carmelolg/JCAL/blob/master/LICENSE.md"
@@ -17,11 +17,14 @@ publishDir   = ".."
   editBaseURL    = "https://github.com/carmelolg/JCAL/edit/master/docs/src/content"
   showEditButton = false
   logoText       = "JCAL"
-  quickStartURL  = "/v2.1.0/getting-started/getting-started/"
+  quickStartURL  = "/v2.2.0/getting-started/getting-started/"
   heroTitle      = "JCAL <span>Documentation</span>"
   dateFormat     = "January 2, 2006"
 
   # Multi-version support
+  [[params.versions]]
+    label = "v2.2.0"
+    url   = "/v2.2.0/"
   [[params.versions]]
     label = "v2.1.0"
     url   = "/v2.1.0/"

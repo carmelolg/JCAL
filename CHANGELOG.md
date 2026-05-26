@@ -7,6 +7,54 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.2.0] — 2026-05-26
+
+### Added
+- `CellularAutomataException` — unchecked exception replacing raw `throws Exception` across core engine
+
+### Changed
+- `CellularAutomataParallelRule` — `addGenerationListener()` and `notifyListeners()` now mirror the sequential engine
+- `CellularAutomataRunner` / `CellularAutomataRefinementRunner` — eliminated O(n²) coordinate scan; replaced with `subList`-based slice indexing
+- Removed unused `offset` parameter from runner constructors
+- **`core.parallel` sub-package eliminated** — `CellularAutomataParallelRule`, `CellularAutomataRunner`,
+  and `CellularAutomataRefinementRunner` moved from `core.parallel` into `core` directly.
+  Update imports from `io.github.carmelolg.jcal.core.parallel.*` to `io.github.carmelolg.jcal.core.*`.
+- **`getUtilsGrid()` is now package-private** in `CellularAutomata` — `@Deprecated public` removed;
+  the method is an internal double-buffer detail not accessible to library users.
+
+### Fixed
+- Removed `throws SecurityException` from `innerRun()`
+
+### Tests
+- `CellularAutomataTest` updated: `assertThrows` now expects `CellularAutomataException`
+- Added `GenerationListener` tests in `CellularAutomataParallelRuleTest`
+
+---
+
+## [2.1.0] — 2026-05-22
+
+### Added
+- `GenerationListener` — `@FunctionalInterface` callback invoked after each generation (package `core`)
+- `GridSnapshot` — immutable grid state snapshot passed to listeners (package `grid`)
+- `CellularAutomataRule.addGenerationListener()` — register listeners on the sequential engine
+- **Swing UI layer** (package `ui`):
+  - `CellRenderer` — interface for custom cell rendering
+  - `GridPanel` — `JPanel` subclass rendering a `GridSnapshot`
+  - `GridDisplay` — `JFrame` wrapper managing the display lifecycle
+  - `CellularAutomataDisplay` — high-level facade combining grid + display
+  - `AutomataListener` — `GenerationListener` implementation bridging engine to UI
+  - `CellularAutomataUIRunner` — convenience runner wiring engine + UI together
+- UI examples: `GameOfLifeUiExample`, `GameOfLife3DUiExample`, `GameOfLifeAdvancedUiExample`
+- Documentation site updated to v2.1.0 with new pages: `generation-listener`, `ui-visualization`, `game-of-life-ui`
+
+### Changed
+- `CellularAutomataExecutor` renamed to `CellularAutomataRule`
+- `CellularAutomataParallelExecutor` renamed to `CellularAutomataParallelRule`
+- `singleRun()` renamed to `transition()` in both rule classes and all usages
+- `hugo.toml` updated: `currentVersion → v2.1.0`, v2.1.0 added to versions list
+
+---
+
 ## [2.0.0] — 2026-05-04
 
 ### Added
@@ -144,7 +192,8 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/carmelolg/JCAL/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/carmelolg/JCAL/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/carmelolg/JCAL/compare/2.0.0...v2.1.0
 [2.0.0]: https://github.com/carmelolg/JCAL/compare/2.0.0-rc2...2.0.0
 [2.0.0-rc2]: https://github.com/carmelolg/JCAL/compare/2.0.0-rc1...2.0.0-rc2
 [2.0.0-rc1]: https://github.com/carmelolg/JCAL/compare/1.0.0...2.0.0-rc1

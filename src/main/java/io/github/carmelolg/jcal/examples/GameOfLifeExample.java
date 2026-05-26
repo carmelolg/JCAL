@@ -48,7 +48,7 @@ public class GameOfLifeExample {
     static final CellState DEAD  = new CellState("dead",  "0");
     static final CellState ALIVE = new CellState("alive", "1");
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // --- Step 2: Set the initial live cells ---
         // Blinker pattern: three cells in a horizontal row at the centre of the grid.
@@ -65,7 +65,7 @@ public class GameOfLifeExample {
             .setInfinite(false)                      // run for a fixed number of steps
             .setTotalIterations(2)                   // 2 generations
             .setDefaultStatus(DEAD)                  // all cells start as dead
-            .setInitalState(initialState)            // override specific cells
+            .setInitialState(initialState)            // override specific cells
             .setNeighborhoodType(NeighborhoodType.MOORE) // 8-cell Moore neighborhood
             .build();
 
@@ -75,12 +75,12 @@ public class GameOfLifeExample {
 
         // The listener is called once per generation with an immutable GridSnapshot.
         rule.addGenerationListener((int gen, GridSnapshot snap) -> {
-            int rows = snap.getDimensions().getSize(0);
-            int cols = snap.getDimensions().getSize(1);
+            int cols = snap.getDimensions().getSize(0);
+            int rows = snap.getDimensions().getSize(1);
             StringBuilder sb = new StringBuilder();
-            for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < cols; c++) {
-                    sb.append(snap.getState(r, c).getValue()).append(" ");
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < cols; col++) {
+                    sb.append(snap.getState(col, row).getValue()).append(" ");
                 }
                 sb.append("\n");
             }

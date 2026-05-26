@@ -1,5 +1,7 @@
 package io.github.carmelolg.jcal.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +30,7 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  *   <li>{@link #getWidth()} / {@link #getHeight()} - grid dimensions (default 100x100)</li>
  *   <li>{@link #isInfinite()} / {@link #getTotalIterations()} - run mode (mutually exclusive)</li>
  *   <li>{@link #getDefaultStatus()} - initial state applied to every cell</li>
- *   <li>{@link #getInitalState()} - optional list of cells with non-default initial states</li>
+ *   <li>{@link #getInitialState()} - optional list of cells with non-default initial states</li>
  *   <li>{@link #getNeighborhoodType()} or {@link #getNeighborhood()} - neighborhood strategy
  *       (exactly one must be set)</li>
  * </ul>
@@ -39,14 +41,12 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  */
 public class CellularAutomataConfiguration {
 
-    private static final Logger logger = LoggerFactory.getLogger(CellularAutomataConfiguration.class);
-
     private int[] dimensions = {100, 100};
     private boolean isInfinite;
     private int totalIterations;
     private boolean activeCells; // Not used yet
     private CellState defaultStatus;
-    private List<Cell> initalState;
+    private List<Cell> initialState;
     private NeighborhoodType neighborhoodType;
     private Neighborhood neighborhood;
 
@@ -77,30 +77,42 @@ public class CellularAutomataConfiguration {
         return dimensions.clone();
     }
 
+    /** @return {@code true} if the automaton runs indefinitely; {@code false} if bounded by {@link #getTotalIterations()} */
     public boolean isInfinite() {
         return isInfinite;
     }
 
+    /** @return the maximum number of generations to run (relevant only when {@link #isInfinite()} is {@code false}) */
     public int getTotalIterations() {
         return totalIterations;
     }
 
-    public boolean getActiveCells() {
+    /** @return {@code true} if active-cells optimisation is enabled */
+    public boolean isActiveCells() {
         return activeCells;
     }
 
+    /** @return {@code true} if active-cells optimisation is enabled (alias for {@link #isActiveCells()}) */
+    public boolean getActiveCells() {
+        return isActiveCells();
+    }
+
+    /** @return the {@link CellState} assigned to all cells not listed in the initial state */
     public CellState getDefaultStatus() {
         return defaultStatus;
     }
 
-    public List<Cell> getInitalState() {
-        return initalState;
+    /** @return the unmodifiable list of cells that override the default state at generation 0, or {@code null} if not set */
+    public List<Cell> getInitialState() {
+        return initialState;
     }
 
+    /** @return the built-in {@link NeighborhoodType} (e.g. MOORE or VON_NEUMANN), or {@code null} if a custom neighborhood was set */
     public NeighborhoodType getNeighborhoodType() {
         return neighborhoodType;
     }
 
+    /** @return the custom {@link Neighborhood} instance, or {@code null} if a built-in type was selected */
     public Neighborhood getNeighborhood() {
         return neighborhood;
     }
@@ -109,7 +121,9 @@ public class CellularAutomataConfiguration {
         this.dimensions = builder.dimensions.clone();
         this.activeCells = builder.activeCells;
         this.defaultStatus = builder.defaultStatus;
-        this.initalState = builder.initalState;
+        this.initialState = builder.initialState != null
+                ? Collections.unmodifiableList(new ArrayList<>(builder.initialState))
+                : null;
         this.isInfinite = builder.isInfinite;
         this.totalIterations = builder.totalIterations;
         this.neighborhoodType = builder.neighborhoodType;
@@ -133,7 +147,7 @@ public class CellularAutomataConfiguration {
 
         private boolean activeCells;
         private CellState defaultStatus;
-        private List<Cell> initalState;
+        private List<Cell> initialState;
         private NeighborhoodType neighborhoodType;
         private Neighborhood neighborhood;
 
@@ -147,6 +161,7 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setWidth(int width) {
+            if (width <= 0) throw new IllegalArgumentException("width must be > 0, got: " + width);
             this.dimensions[0] = width;
             return this;
         }
@@ -158,6 +173,7 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setHeight(int height) {
+            if (height <= 0) throw new IllegalArgumentException("height must be > 0, got: " + height);
             this.dimensions[1] = height;
             return this;
         }
@@ -169,6 +185,10 @@ public class CellularAutomataConfiguration {
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setDimensions(int... dims) {
+            for (int i = 0; i < dims.length; i++) {
+                if (dims[i] <= 0)
+                    throw new IllegalArgumentException("dimension[" + i + "] must be > 0, got: " + dims[i]);
+            }
             this.dimensions = dims.clone();
             return this;
         }
@@ -195,15 +215,16 @@ public class CellularAutomataConfiguration {
         }
 
         /**
-         * <b>Function temporary suspended.</b>
+         * Enables the active-cells optimization: when {@code true}, the transition
+         * function will iterate only over cells with a non-default/non-dead state,
+         * reducing computation for sparse grids.
          *
-         * @param activeCells <b><i>true</i></b> if you want otpimize the transition
-         *                    function using on the iterations only the active cells
-         *                    (cells with status not empty/dead), <b><i>false</i></b>
-         *                    otherwise
+         * <p><b>Note:</b> this is a planned future optimization; the flag is accepted
+         * and stored but not yet honoured by the engine.</p>
+         *
+         * @param activeCells {@code true} to enable the optimization, {@code false} otherwise
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
-        @Deprecated
         public CellularAutomataConfigurationBuilder setActiveCells(boolean activeCells) {
             this.activeCells = activeCells;
             return this;
@@ -221,15 +242,14 @@ public class CellularAutomataConfiguration {
         }
 
         /**
-         * Set the inital configuration from where starting the cellular automata.
-         * Pratically, the cells that in the starting phase have different status of
-         * empty/dead.
+         * Set the initial configuration from where starting the cellular automata.
+         * Cells listed here will have a non-default status at generation 0.
          *
-         * @param initalState a {@link List} of {@link Cell}
+         * @param initialState a {@link List} of {@link Cell}
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
-        public CellularAutomataConfigurationBuilder setInitalState(List<Cell> initalState) {
-            this.initalState = initalState;
+        public CellularAutomataConfigurationBuilder setInitialState(List<Cell> initialState) {
+            this.initialState = initialState;
             return this;
         }
 
@@ -250,7 +270,9 @@ public class CellularAutomataConfiguration {
          * extend the {@link Neighborhood} class. For n-dimensional support (n &gt; 2),
          * the class should also implement {@link io.github.carmelolg.jcal.neighborhood.NDCapable}.
          *
-         * @param neighborhood
+         * @param neighborhood the custom {@link Neighborhood} implementation to use; must extend
+         *                     {@link Neighborhood} and, for grids with more than 2 dimensions,
+         *                     also implement {@link io.github.carmelolg.jcal.neighborhood.NDCapable}
          * @return the builder {@link CellularAutomataConfigurationBuilder}
          */
         public CellularAutomataConfigurationBuilder setNeighborhood(Neighborhood neighborhood) {
@@ -261,7 +283,7 @@ public class CellularAutomataConfiguration {
         /**
          * Build the configuration object
          *
-         * @return the builder {@link CellularAutomataConfigurationBuilder}
+         * @return a new immutable {@link CellularAutomataConfiguration} built from this builder's settings
          */
         public CellularAutomataConfiguration build() {
             logger.debug("Building configuration: dimensions={}, infinite={}, iterations={}, neighborhood={}",

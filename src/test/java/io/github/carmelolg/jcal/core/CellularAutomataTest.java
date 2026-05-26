@@ -5,6 +5,7 @@ import io.github.carmelolg.jcal.grid.CellGrid;
 import io.github.carmelolg.jcal.grid.CellState;
 import io.github.carmelolg.jcal.neighborhood.MooreNeighborhood;
 import io.github.carmelolg.jcal.neighborhood.Neighborhood;
+import io.github.carmelolg.jcal.neighborhood.NeighborhoodFactory;
 import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
 import io.github.carmelolg.jcal.neighborhood.NDCapable;
 import org.junit.jupiter.api.DisplayName;
@@ -66,7 +67,7 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5)
                 .setTotalIterations(1)
                 .setDefaultStatus(DEAD)
-                .setInitalState(initial)
+                .setInitialState(initial)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
         CellularAutomata ca = new CellularAutomata(cfg);
@@ -140,7 +141,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -153,7 +154,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -164,7 +165,7 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setDefaultStatus(DEAD)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -177,7 +178,7 @@ class CellularAutomataTest {
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .setNeighborhood(new MooreNeighborhood())
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -188,7 +189,7 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -201,7 +202,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -214,20 +215,21 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
     @DisplayName("init throws when a dimension size is <= 0")
     void checkZeroDimensionSize() {
-        CellularAutomataConfiguration cfg = new CellularAutomataConfiguration
-                .CellularAutomataConfigurationBuilder()
-                .setDimensions(0, 5)
-                .setTotalIterations(1)
-                .setDefaultStatus(DEAD)
-                .setNeighborhoodType(NeighborhoodType.MOORE)
-                .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(IllegalArgumentException.class, () ->
+            new CellularAutomataConfiguration
+                    .CellularAutomataConfigurationBuilder()
+                    .setDimensions(0, 5)
+                    .setTotalIterations(1)
+                    .setDefaultStatus(DEAD)
+                    .setNeighborhoodType(NeighborhoodType.MOORE)
+                    .build()
+        );
     }
 
     @Test
@@ -246,7 +248,7 @@ class CellularAutomataTest {
                 .setDefaultStatus(DEAD)
                 .setNeighborhood(nonNd)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -258,9 +260,9 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
-                .setInitalState(initial)
+                .setInitialState(initial)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
@@ -272,22 +274,16 @@ class CellularAutomataTest {
                 .setWidth(5).setHeight(5).setTotalIterations(1)
                 .setDefaultStatus(DEAD)
                 .setNeighborhoodType(NeighborhoodType.MOORE)
-                .setInitalState(initial)
+                .setInitialState(initial)
                 .build();
-        assertThrows(Exception.class, () -> new CellularAutomata(cfg));
+        assertThrows(CellularAutomataException.class, () -> new CellularAutomata(cfg));
     }
 
     @Test
-    @DisplayName("resolveNeighborhood default branch throws for unsupported dimension count")
-    void resolveNeighborhoodDefaultThrows() throws Exception {
-        CellularAutomata ca = new CellularAutomata();
-        java.lang.reflect.Method m = CellularAutomata.class
-                .getDeclaredMethod("resolveNeighborhood", NeighborhoodType.class, int.class);
-        m.setAccessible(true);
-        java.lang.reflect.InvocationTargetException ex = assertThrows(
-                java.lang.reflect.InvocationTargetException.class,
-                () -> m.invoke(ca, NeighborhoodType.MOORE, 5));
-        assertInstanceOf(IllegalArgumentException.class, ex.getCause());
+    @DisplayName("NeighborhoodFactory throws for unsupported dimension count")
+    void resolveNeighborhoodDefaultThrows() {
+        assertThrows(IllegalArgumentException.class,
+                () -> NeighborhoodFactory.create(NeighborhoodType.MOORE, 5));
     }
 
     // ── 3D / 4D neighborhood resolution ──────────────────────────────────
