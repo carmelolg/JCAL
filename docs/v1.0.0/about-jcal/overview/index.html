@@ -308,35 +308,35 @@ fluid flow, landslides, and lava flows.</p>
 <h3 id="formal-definition">Formal definition</h3>
 <p>A Cellular Automaton is formally described as the quadruple <strong><code>&lt;Z</code><span style="color: #e83e8c; font-size:87.5%;"><sup>d</sup></span><code>, S, X, σ&gt;</code></strong>:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Symbol</th>
-          <th>Meaning</th>
-          <th>In JCAL</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Z<sup>d</sup></strong></td>
-          <td>A <em>d</em>-dimensional grid of cells</td>
-          <td><code>DefaultCell[][]</code> inside <code>CellularAutomata</code></td>
-      </tr>
-      <tr>
-          <td><strong>S</strong></td>
-          <td>The finite set of possible cell states</td>
-          <td><code>DefaultStatus</code> instances</td>
-      </tr>
-      <tr>
-          <td><strong>X</strong></td>
-          <td>The neighborhood — which cells are considered &ldquo;neighbors&rdquo;</td>
-          <td><code>DefaultNeighborhood</code> subclass</td>
-      </tr>
-      <tr>
-          <td><strong>σ</strong></td>
-          <td>The transition function — one step of evolution</td>
-          <td><code>CellularAutomataExecutor</code> subclass</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Symbol</th>
+					<th>Meaning</th>
+					<th>In JCAL</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Z<sup>d</sup></strong></td>
+					<td>A <em>d</em>-dimensional grid of cells</td>
+					<td><code>DefaultCell[][]</code> inside <code>CellularAutomata</code></td>
+			</tr>
+			<tr>
+					<td><strong>S</strong></td>
+					<td>The finite set of possible cell states</td>
+					<td><code>DefaultStatus</code> instances</td>
+			</tr>
+			<tr>
+					<td><strong>X</strong></td>
+					<td>The neighborhood — which cells are considered &ldquo;neighbors&rdquo;</td>
+					<td><code>DefaultNeighborhood</code> subclass</td>
+			</tr>
+			<tr>
+					<td><strong>σ</strong></td>
+					<td>The transition function — one step of evolution</td>
+					<td><code>CellularAutomataExecutor</code> subclass</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="neighborhood-strategies">Neighborhood strategies</h3>
 <p>The two most common neighborhood shapes are:</p>

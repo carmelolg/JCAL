@@ -327,35 +327,35 @@ simulating <a href="https://mathworld.wolfram.com/CellularAutomaton.html">Cellul
 with minimal boilerplate.</p>
 <p>A Cellular Automaton is formally described as the quadruple <strong><code>&lt;Z^d, S, X, σ&gt;</code></strong>:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Symbol</th>
-          <th>Meaning</th>
-          <th>JCAL type</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Z^d</strong></td>
-          <td>d-dimensional grid of cells</td>
-          <td><code>CellGrid</code> (<code>CellGrid</code> for 2D, <code>CellGrid</code> for 3D/4D)</td>
-      </tr>
-      <tr>
-          <td><strong>S</strong></td>
-          <td>Set of possible cell states</td>
-          <td><code>CellState</code></td>
-      </tr>
-      <tr>
-          <td><strong>X</strong></td>
-          <td>Neighborhood strategy</td>
-          <td><code>Neighborhood</code> subclass</td>
-      </tr>
-      <tr>
-          <td><strong>σ</strong></td>
-          <td>Transition function</td>
-          <td><code>CellularAutomataRule</code> subclass</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Symbol</th>
+					<th>Meaning</th>
+					<th>JCAL type</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Z^d</strong></td>
+					<td>d-dimensional grid of cells</td>
+					<td><code>CellGrid</code> (<code>CellGrid</code> for 2D, <code>CellGrid</code> for 3D/4D)</td>
+			</tr>
+			<tr>
+					<td><strong>S</strong></td>
+					<td>Set of possible cell states</td>
+					<td><code>CellState</code></td>
+			</tr>
+			<tr>
+					<td><strong>X</strong></td>
+					<td>Neighborhood strategy</td>
+					<td><code>Neighborhood</code> subclass</td>
+			</tr>
+			<tr>
+					<td><strong>σ</strong></td>
+					<td>Transition function</td>
+					<td><code>CellularAutomataRule</code> subclass</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="package-structure">Package Structure</h2>
@@ -397,115 +397,115 @@ with minimal boilerplate.</p>
 </span></span></code></pre></div><hr>
 <h2 id="public-api-vs-internal">Public API vs. Internal</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Class</th>
-          <th>Status</th>
-          <th>Notes</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>CellularAutomata</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Core grid object</td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataConfiguration</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Always build via inner <code>Builder</code></td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataRule</code></td>
-          <td><strong>Extension point</strong></td>
-          <td>Subclass to define your rule</td>
-      </tr>
-      <tr>
-          <td><code>Neighborhood</code></td>
-          <td><strong>Extension point</strong></td>
-          <td>Subclass for any custom neighbourhood (2D or nD)</td>
-      </tr>
-      <tr>
-          <td><code>NDCapable</code></td>
-          <td><strong>Marker interface</strong></td>
-          <td>Implement alongside <code>Neighborhood</code> for 3D/4D custom neighbourhoods</td>
-      </tr>
-      <tr>
-          <td><code>CellGrid</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Unified n-dimensional grid class (2D–4D)</td>
-      </tr>
-      <tr>
-          <td><code>GridDimensions</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Immutable nD grid descriptor</td>
-      </tr>
-      <tr>
-          <td><code>Cell</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Returned by the grid; construct for initial state</td>
-      </tr>
-      <tr>
-          <td><code>CellState</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Create instances for each state your CA needs</td>
-      </tr>
-      <tr>
-          <td><code>NeighborhoodType</code></td>
-          <td><strong>Public API</strong></td>
-          <td>Pass to builder for built-in neighbourhoods</td>
-      </tr>
-      <tr>
-          <td><code>MooreNeighborhood</code></td>
-          <td>Public (via <code>NeighborhoodType.MOORE</code>)</td>
-          <td>2D, rarely instantiated directly</td>
-      </tr>
-      <tr>
-          <td><code>VonNeumannNeighborhood</code></td>
-          <td>Public (via <code>NeighborhoodType.VON_NEUMANN</code>)</td>
-          <td>2D, rarely instantiated directly</td>
-      </tr>
-      <tr>
-          <td><code>Moore3DNeighborhood</code></td>
-          <td>Public (auto-resolved for 3D)</td>
-          <td>Use <code>NeighborhoodType.MOORE</code></td>
-      </tr>
-      <tr>
-          <td><code>VonNeumann3DNeighborhood</code></td>
-          <td>Public (auto-resolved for 3D)</td>
-          <td>Use <code>NeighborhoodType.VON_NEUMANN</code></td>
-      </tr>
-      <tr>
-          <td><code>Moore4DNeighborhood</code></td>
-          <td>Public (auto-resolved for 4D)</td>
-          <td>Use <code>NeighborhoodType.MOORE</code></td>
-      </tr>
-      <tr>
-          <td><code>VonNeumann4DNeighborhood</code></td>
-          <td>Public (auto-resolved for 4D)</td>
-          <td>Use <code>NeighborhoodType.VON_NEUMANN</code></td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataParallelRule</code></td>
-          <td><strong>Extension point</strong></td>
-          <td>Parallel variant of executor</td>
-      </tr>
-      <tr>
-          <td><code>Runner</code></td>
-          <td><strong>Internal</strong></td>
-          <td>Do not use directly</td>
-      </tr>
-      <tr>
-          <td><code>RefinementRunner</code></td>
-          <td><strong>Internal</strong></td>
-          <td>Do not use directly</td>
-      </tr>
-      <tr>
-          <td><code>Utils</code></td>
-          <td>Internal helper</td>
-          <td>May be used by custom neighbourhoods</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Class</th>
+					<th>Status</th>
+					<th>Notes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>CellularAutomata</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Core grid object</td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataConfiguration</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Always build via inner <code>Builder</code></td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataRule</code></td>
+					<td><strong>Extension point</strong></td>
+					<td>Subclass to define your rule</td>
+			</tr>
+			<tr>
+					<td><code>Neighborhood</code></td>
+					<td><strong>Extension point</strong></td>
+					<td>Subclass for any custom neighbourhood (2D or nD)</td>
+			</tr>
+			<tr>
+					<td><code>NDCapable</code></td>
+					<td><strong>Marker interface</strong></td>
+					<td>Implement alongside <code>Neighborhood</code> for 3D/4D custom neighbourhoods</td>
+			</tr>
+			<tr>
+					<td><code>CellGrid</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Unified n-dimensional grid class (2D–4D)</td>
+			</tr>
+			<tr>
+					<td><code>GridDimensions</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Immutable nD grid descriptor</td>
+			</tr>
+			<tr>
+					<td><code>Cell</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Returned by the grid; construct for initial state</td>
+			</tr>
+			<tr>
+					<td><code>CellState</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Create instances for each state your CA needs</td>
+			</tr>
+			<tr>
+					<td><code>NeighborhoodType</code></td>
+					<td><strong>Public API</strong></td>
+					<td>Pass to builder for built-in neighbourhoods</td>
+			</tr>
+			<tr>
+					<td><code>MooreNeighborhood</code></td>
+					<td>Public (via <code>NeighborhoodType.MOORE</code>)</td>
+					<td>2D, rarely instantiated directly</td>
+			</tr>
+			<tr>
+					<td><code>VonNeumannNeighborhood</code></td>
+					<td>Public (via <code>NeighborhoodType.VON_NEUMANN</code>)</td>
+					<td>2D, rarely instantiated directly</td>
+			</tr>
+			<tr>
+					<td><code>Moore3DNeighborhood</code></td>
+					<td>Public (auto-resolved for 3D)</td>
+					<td>Use <code>NeighborhoodType.MOORE</code></td>
+			</tr>
+			<tr>
+					<td><code>VonNeumann3DNeighborhood</code></td>
+					<td>Public (auto-resolved for 3D)</td>
+					<td>Use <code>NeighborhoodType.VON_NEUMANN</code></td>
+			</tr>
+			<tr>
+					<td><code>Moore4DNeighborhood</code></td>
+					<td>Public (auto-resolved for 4D)</td>
+					<td>Use <code>NeighborhoodType.MOORE</code></td>
+			</tr>
+			<tr>
+					<td><code>VonNeumann4DNeighborhood</code></td>
+					<td>Public (auto-resolved for 4D)</td>
+					<td>Use <code>NeighborhoodType.VON_NEUMANN</code></td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataParallelRule</code></td>
+					<td><strong>Extension point</strong></td>
+					<td>Parallel variant of executor</td>
+			</tr>
+			<tr>
+					<td><code>Runner</code></td>
+					<td><strong>Internal</strong></td>
+					<td>Do not use directly</td>
+			</tr>
+			<tr>
+					<td><code>RefinementRunner</code></td>
+					<td><strong>Internal</strong></td>
+					<td>Do not use directly</td>
+			</tr>
+			<tr>
+					<td><code>Utils</code></td>
+					<td>Internal helper</td>
+					<td>May be used by custom neighbourhoods</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="data-flow-per-generation">Data Flow per Generation</h2>
@@ -581,34 +581,34 @@ O(1) flat-array indexing:</p>
 </span></span></code></pre></div><hr>
 <h2 id="constraints">Constraints</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Constraint</th>
-          <th>Detail</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Java 16</td>
-          <td>Compile target <code>--release 16</code></td>
-      </tr>
-      <tr>
-          <td>No breaking changes</td>
-          <td>Public API signatures must not change without explicit approval</td>
-      </tr>
-      <tr>
-          <td><code>setInitalState</code></td>
-          <td>Keep the intentional spelling — it is part of the public API</td>
-      </tr>
-      <tr>
-          <td>Javadoc required</td>
-          <td>Every new public class and method must have Javadoc</td>
-      </tr>
-      <tr>
-          <td>License</td>
-          <td>CC BY-NC-SA 4.0</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Constraint</th>
+					<th>Detail</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Java 16</td>
+					<td>Compile target <code>--release 16</code></td>
+			</tr>
+			<tr>
+					<td>No breaking changes</td>
+					<td>Public API signatures must not change without explicit approval</td>
+			</tr>
+			<tr>
+					<td><code>setInitalState</code></td>
+					<td>Keep the intentional spelling — it is part of the public API</td>
+			</tr>
+			<tr>
+					<td>Javadoc required</td>
+					<td>Every new public class and method must have Javadoc</td>
+			</tr>
+			<tr>
+					<td>License</td>
+					<td>CC BY-NC-SA 4.0</td>
+			</tr>
+	</tbody>
 </table>
 
   </div>

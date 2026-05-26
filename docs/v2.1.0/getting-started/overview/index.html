@@ -342,35 +342,35 @@ behavior — making them a powerful tool for modeling natural phenomena such as:
 <h3 id="formal-definition">Formal Definition</h3>
 <p>A Cellular Automaton is the quadruple <strong><code>&lt;Zᵈ, S, X, σ&gt;</code></strong>:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Symbol</th>
-          <th>Meaning</th>
-          <th>JCAL type</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Zᵈ</strong></td>
-          <td>A <em>d</em>-dimensional grid of cells</td>
-          <td><code>CellGrid</code> → <code>CellGrid</code> (2D) or <code>CellGrid</code> (3D/4D)</td>
-      </tr>
-      <tr>
-          <td><strong>S</strong></td>
-          <td>The finite set of possible cell states</td>
-          <td><code>CellState</code> instances</td>
-      </tr>
-      <tr>
-          <td><strong>X</strong></td>
-          <td>The neighborhood — which cells are &ldquo;neighbors&rdquo;</td>
-          <td><code>Neighborhood</code> subclass</td>
-      </tr>
-      <tr>
-          <td><strong>σ</strong></td>
-          <td>The transition function — one step of evolution</td>
-          <td><code>CellularAutomataRule</code> subclass</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Symbol</th>
+					<th>Meaning</th>
+					<th>JCAL type</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Zᵈ</strong></td>
+					<td>A <em>d</em>-dimensional grid of cells</td>
+					<td><code>CellGrid</code> → <code>CellGrid</code> (2D) or <code>CellGrid</code> (3D/4D)</td>
+			</tr>
+			<tr>
+					<td><strong>S</strong></td>
+					<td>The finite set of possible cell states</td>
+					<td><code>CellState</code> instances</td>
+			</tr>
+			<tr>
+					<td><strong>X</strong></td>
+					<td>The neighborhood — which cells are &ldquo;neighbors&rdquo;</td>
+					<td><code>Neighborhood</code> subclass</td>
+			</tr>
+			<tr>
+					<td><strong>σ</strong></td>
+					<td>The transition function — one step of evolution</td>
+					<td><code>CellularAutomataRule</code> subclass</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="neighborhood-strategies">Neighborhood Strategies</h3>
 <p>The two most common neighborhood shapes are:</p>
@@ -397,77 +397,77 @@ multiple departments. That library was comprehensive but complex.</p>
 <p><strong>JCAL brings the same ideas to Java in a smaller, simpler, and more accessible form.</strong></p>
 <h3 id="design-goals">Design Goals</h3>
 <table>
-  <thead>
-      <tr>
-          <th>Goal</th>
-          <th>How JCAL Achieves It</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Minimal boilerplate</strong></td>
-          <td>A working CA in a handful of Java lines</td>
-      </tr>
-      <tr>
-          <td><strong>Idiomatic Java</strong></td>
-          <td>Fluent builder API, abstract base classes, standard <code>java.util</code> collections</td>
-      </tr>
-      <tr>
-          <td><strong>Extensible</strong></td>
-          <td>Swap in custom states, neighborhood shapes, or parallel execution with minimal changes</td>
-      </tr>
-      <tr>
-          <td><strong>Complex CA support</strong></td>
-          <td>Custom state objects and a <code>refinements</code> hook enable rich, multi-value simulations</td>
-      </tr>
-      <tr>
-          <td><strong>Multi-dimensional</strong></td>
-          <td>2D, 3D, and 4D grids with matching built-in neighborhood strategies</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Goal</th>
+					<th>How JCAL Achieves It</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Minimal boilerplate</strong></td>
+					<td>A working CA in a handful of Java lines</td>
+			</tr>
+			<tr>
+					<td><strong>Idiomatic Java</strong></td>
+					<td>Fluent builder API, abstract base classes, standard <code>java.util</code> collections</td>
+			</tr>
+			<tr>
+					<td><strong>Extensible</strong></td>
+					<td>Swap in custom states, neighborhood shapes, or parallel execution with minimal changes</td>
+			</tr>
+			<tr>
+					<td><strong>Complex CA support</strong></td>
+					<td>Custom state objects and a <code>refinements</code> hook enable rich, multi-value simulations</td>
+			</tr>
+			<tr>
+					<td><strong>Multi-dimensional</strong></td>
+					<td>2D, 3D, and 4D grids with matching built-in neighborhood strategies</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="key-classes-at-a-glance">Key Classes at a Glance</h3>
 <table>
-  <thead>
-      <tr>
-          <th>Class</th>
-          <th>Role</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>CellState</code></td>
-          <td>A cell&rsquo;s state. Has a <code>key</code> (String) and a <code>value</code> (any Object).</td>
-      </tr>
-      <tr>
-          <td><code>Cell</code></td>
-          <td>One cell on the grid. Has a <code>CellState</code> and coordinate(s).</td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataConfiguration</code></td>
-          <td>Immutable configuration. Always use the inner <code>Builder</code>.</td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomata</code></td>
-          <td>The grid. Create from a configuration object.</td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataRule</code></td>
-          <td><strong>Extend this</strong> to define your transition rule (<code>transition</code>).</td>
-      </tr>
-      <tr>
-          <td><code>Neighborhood</code></td>
-          <td><strong>Extend this</strong> for a custom 2D neighborhood shape.</td>
-      </tr>
-      <tr>
-          <td><code>Neighborhood</code></td>
-          <td><strong>Extend this</strong> for a custom 3D/4D neighborhood shape.</td>
-      </tr>
-      <tr>
-          <td><code>CellularAutomataParallelRule</code></td>
-          <td>Parallel variant of <code>CellularAutomataRule</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Class</th>
+					<th>Role</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>CellState</code></td>
+					<td>A cell&rsquo;s state. Has a <code>key</code> (String) and a <code>value</code> (any Object).</td>
+			</tr>
+			<tr>
+					<td><code>Cell</code></td>
+					<td>One cell on the grid. Has a <code>CellState</code> and coordinate(s).</td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataConfiguration</code></td>
+					<td>Immutable configuration. Always use the inner <code>Builder</code>.</td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomata</code></td>
+					<td>The grid. Create from a configuration object.</td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataRule</code></td>
+					<td><strong>Extend this</strong> to define your transition rule (<code>transition</code>).</td>
+			</tr>
+			<tr>
+					<td><code>Neighborhood</code></td>
+					<td><strong>Extend this</strong> for a custom 2D neighborhood shape.</td>
+			</tr>
+			<tr>
+					<td><code>Neighborhood</code></td>
+					<td><strong>Extend this</strong> for a custom 3D/4D neighborhood shape.</td>
+			</tr>
+			<tr>
+					<td><code>CellularAutomataParallelRule</code></td>
+					<td>Parallel variant of <code>CellularAutomataRule</code>.</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="grid-coordinate-convention">Grid Coordinate Convention</h3>
 <p>In 2D: <code>map[col][row]</code> where <code>col</code> is the x-axis (left → right) and <code>row</code> is the
