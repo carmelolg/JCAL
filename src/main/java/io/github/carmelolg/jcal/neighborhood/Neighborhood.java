@@ -9,7 +9,7 @@ import io.github.carmelolg.jcal.grid.Cell;
  * Abstract base class for neighborhood strategies in all dimensions.
  *
  * <p>A neighborhood determines which cells are passed as "neighbours" to
- * {@link CellularAutomataRule#transition(io.github.carmelolg.jcal.grid.Cell, java.util.List)}
+ * {@link io.github.carmelolg.jcal.core.CellularAutomataRule#transition(io.github.carmelolg.jcal.grid.Cell, java.util.List)}
  * when evolving the automaton.
  *
  * <p>JCAL ships six built-in implementations:

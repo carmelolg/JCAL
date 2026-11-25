@@ -21,7 +21,7 @@ import io.github.carmelolg.jcal.neighborhood.NeighborhoodType;
  *
  * <p>This example demonstrates how to extend the library to 3D grids
  * using the {@code setDimensions(x, y, z)} builder method and a
- * {@link CellGrid}-backed grid.
+ * {@link io.github.carmelolg.jcal.grid.CellGrid}-backed grid.
  *
  * <p>The rules used here are <em>Carter Bays' 3D Life</em> (one common variant):
  * <ul>

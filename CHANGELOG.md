@@ -7,6 +7,18 @@ Versions align with [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.3.0] — 2026-11-25
+
+### Added
+- **`ui.GifRecorder`** — a `GenerationListener` that records the evolution of a 2D automaton
+  into an animated, looping GIF (JDK only, no new dependency, works headless).
+- **`GameOfLifeGifExample`** — records Conway's Game of Life into a GIF.
+
+### Fixed
+- The Surefire `argLine` replaced the JaCoCo agent, so no coverage report was generated.
+
+---
+
 ## [2.2.0] — 2026-05-26
 
 ### Added

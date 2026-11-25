@@ -15,12 +15,12 @@ package io.github.carmelolg.jcal.neighborhood;
  * }
  * }</pre>
  *
- * <p>This marker is used by {@link CellularAutomata} to validate that
+ * <p>This marker is used by {@link io.github.carmelolg.jcal.core.CellularAutomata} to validate that
  * n-dimensional grids are paired with neighborhoods that can handle them.
  *
  * @author Carmelo La Gamba
  * @see Neighborhood
- * @see CellularAutomata
+ * @see io.github.carmelolg.jcal.core.CellularAutomata
  */
 public interface NDCapable {
 	// Marker interface - no methods needed

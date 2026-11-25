@@ -6,13 +6,13 @@ import io.github.carmelolg.jcal.grid.GridSnapshot;
  * Abstraction for any component capable of displaying a {@link GridSnapshot}.
  *
  * <p>{@link AutomataListener} depends on this interface rather than on the concrete
- * {@link AutomataWindow}, which makes it easy to:
+ * {@link CellularAutomataDisplay}, which makes it easy to:
  * <ul>
  *   <li>swap in a custom rendering component (e.g., a JavaFX canvas wrapper)</li>
  *   <li>unit-test listeners without a real Swing window</li>
  * </ul>
  *
- * <p>{@link AutomataWindow} is the standard implementation provided by JCAL.
+ * <p>{@link CellularAutomataDisplay} is the standard implementation provided by JCAL.
  *
  * @author Carmelo La Gamba
  * @see CellularAutomataDisplay

@@ -31,10 +31,12 @@ crystal growth, and more.
 ## ✨ Features
 
 - 🗺️ **Multi-dimensional grids** — 2D, 3D, and 4D cellular automata with a single unified `CellGrid` API
-- ⚡ **Sequential & parallel execution** — choose `CellularAutomataExecutor` or `CellularAutomataParallelExecutor`
+- ⚡ **Sequential & parallel execution** — choose `CellularAutomataRule` or `CellularAutomataParallelRule`
 - 🔲 **Built-in neighbourhoods** — Moore and Von Neumann in 2D, 3D, and 4D
 - 🔌 **Fully extensible** — plug in any custom state, neighbourhood, or transition rule
-- ✅ **100% test coverage** — 148 JUnit 5 tests, JaCoCo verified
+- 👁️ **Generation listeners** — react to every step through `GenerationListener` and `GridSnapshot`
+- 🖥️ **Visualisation** — real-time Swing window and animated GIF export
+- ✅ **Tested** — JUnit 5 suite, coverage measured with JaCoCo (see the badge)
 
 ---
 
@@ -43,8 +45,9 @@ crystal growth, and more.
 ### 1. Define your states
 
 ```java
-CellState DEAD = new CellState("dead", "0");
-CellState ALIVE = new CellState("alive", "1");
+// fields of your application class
+static final CellState DEAD = new CellState("dead", "0");
+static final CellState ALIVE = new CellState("alive", "1");
 ```
 
 ### 2. Configure the grid
@@ -55,7 +58,7 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
         .setHeight(10)
         .setTotalIterations(5)
         .setDefaultStatus(DEAD)
-        .setInitalState(List.of(new Cell(ALIVE, 5, 4), new Cell(ALIVE, 5, 5), new Cell(ALIVE, 5, 6)))
+        .setInitialState(List.of(new Cell(ALIVE, 5, 4), new Cell(ALIVE, 5, 5), new Cell(ALIVE, 5, 6)))
         .setNeighborhoodType(NeighborhoodType.MOORE)
         .build();
 ```
@@ -63,9 +66,9 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
 ### 3. Implement your rule
 
 ```java
-class GameOfLifeRule extends CellularAutomataExecutor {
+class GameOfLifeRule extends CellularAutomataRule {
     @Override
-    public Cell singleRun(Cell cell, List<Cell> neighbors) {
+    public Cell transition(Cell cell, List<Cell> neighbors) {
         long alive = neighbors.stream()
                 .filter(n -> n.getCurrentStatus().equals(ALIVE)).count();
         Cell next = new Cell(DEAD, cell.getCol(), cell.getRow());
@@ -81,14 +84,8 @@ class GameOfLifeRule extends CellularAutomataExecutor {
 
 ```java
 CellularAutomata ca = new CellularAutomata(config);
-ca =new
-
-GameOfLifeRule().
-
-run(ca);
-System.out.
-
-println(ca);
+new GameOfLifeRule().run(ca);
+System.out.println(ca);
 ```
 
 ---
@@ -103,15 +100,11 @@ CellularAutomataConfiguration config = new CellularAutomataConfigurationBuilder(
         .setTotalIterations(5)
         .setDefaultStatus(DEAD)
         .setNeighborhoodType(NeighborhoodType.MOORE)   // resolves to Moore3DNeighborhood
-        .setInitalState(initialCells)
+        .setInitialState(initialCells)
         .build();
 
 CellularAutomata ca = new CellularAutomata(config);
-new
-
-Carter3DLifeRule().
-
-run(ca);
+new Carter3DLifeRule().run(ca);
 ```
 
 Access cells by coordinate array:
@@ -123,16 +116,49 @@ Cell cell = grid.get(new int[]{x, y, z});
 
 ---
 
+## 🎞️ Export to GIF
+
+Record the evolution of a 2D automaton into an animated GIF, with no extra dependency:
+
+```java
+CellRenderer renderer = state -> state.equals(ALIVE) ? Color.GREEN : Color.BLACK;
+
+GameOfLifeRule rule = new GameOfLifeRule();
+
+try (GifRecorder gif = GifRecorder.create(Path.of("life.gif"), renderer).cellSize(8).delay(100)) {
+    gif.record(GridSnapshot.of(0, ca.getGrid()));   // initial state
+    rule.addGenerationListener(gif);
+    rule.run(ca);
+}
+```
+
+Use `.every(n)` to record one generation out of *n*. Only 2D grids are supported.
+
+---
+
+## 🖥️ Live Window
+
+```java
+CellularAutomataUIRunner.create(ca, new GameOfLifeRule())
+        .cellSize(12)
+        .delay(100)
+        .renderer(state -> state.equals(ALIVE) ? Color.GREEN : Color.BLACK)
+        .start();
+```
+
+---
+
 ## 🔌 Extension Points
 
-| What to customise            | How                                                                        |
-|------------------------------|----------------------------------------------------------------------------|
-| Transition rule (sequential) | Extend `CellularAutomataExecutor`, implement `singleRun(Cell, List<Cell>)` |
-| Transition rule (parallel)   | Extend `CellularAutomataParallelExecutor` instead                          |
-| Cell state                   | Any `Object` as `value` in `CellState` (int, enum, Map, POJO…)             |
-| Neighbourhood (2D)           | Extend `Neighborhood`, implement `getNeighbors(CellGrid, int[])`           |
-| Neighbourhood (3D/4D)        | Extend `Neighborhood` **+** implement marker interface `NDCapable`         |
-| CCA pre-processing           | Override `refinements(Cell)` in your executor                              |
+| What to customise | How |
+|---|---|
+| Transition rule (sequential) | Extend `CellularAutomataRule`, implement `transition(Cell, List<Cell>)` |
+| Transition rule (parallel) | Extend `CellularAutomataParallelRule` instead |
+| Cell state | Any `Object` as `value` in `CellState` (int, enum, Map, POJO…) |
+| Neighbourhood (2D) | Extend `Neighborhood`, implement `getNeighbors(CellGrid, int[])` |
+| Neighbourhood (3D/4D) | Extend `Neighborhood` **+** implement marker interface `NDCapable` |
+| CCA pre-processing | Override `refinements(Cell)` in your rule |
+| Per-generation callback | `addGenerationListener(GenerationListener)` on any rule |
 
 ---
 
@@ -148,7 +174,6 @@ Cell cell = grid.get(new int[]{x, y, z});
 | `VonNeumann4DNeighborhood` | 4D         | 8          |
 
 ---
-
 
 ## 📖 Documentation
 

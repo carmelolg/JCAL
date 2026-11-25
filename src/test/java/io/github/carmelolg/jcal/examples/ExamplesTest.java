@@ -58,6 +58,15 @@ class ExamplesTest {
         withSuppressedOutput(() -> GameOfLife3DExample.main(new String[]{}));
     }
 
+    @Test
+    @DisplayName("GameOfLifeGifExample.main() writes an animated GIF to the given path")
+    void gameOfLifeGifExampleRuns(@org.junit.jupiter.api.io.TempDir java.nio.file.Path dir) throws Exception {
+        java.nio.file.Path output = dir.resolve("life.gif");
+        withSuppressedOutput(() -> GameOfLifeGifExample.main(new String[]{output.toString()}));
+        assertTrue(java.nio.file.Files.size(output) > 0);
+        assertNotNull(new GameOfLifeGifExample());
+    }
+
     // ── HeatDiffusionRule branch coverage ─────────────────────────────────
 
     @Test

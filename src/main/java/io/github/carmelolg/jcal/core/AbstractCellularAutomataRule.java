@@ -61,7 +61,7 @@ public abstract class AbstractCellularAutomataRule {
 
 	/**
 	 * Swaps the double-buffer grids of the automaton after a generation step.
-	 * Called by subclasses at the end of each {@code innerRun()}.
+	 * Called by subclasses at the end of each {@link #executeGeneration(CellularAutomata)}.
 	 *
 	 * @param ca the automaton whose buffers to swap
 	 */
