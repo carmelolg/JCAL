@@ -9,7 +9,7 @@ simulating [Cellular Automata](https://mathworld.wolfram.com/CellularAutomaton.h
 minimal boilerplate. Define your grid, states, neighborhood strategy, and transition rule —
 then let JCAL handle the rest.
 
-**Latest Version**: [v2.0.0]({{< ref "/v2.0.0" >}})
+**Latest Version**: [v2.3.0]({{< ref "/v2.3.0" >}})
 
 ## Documentation Versions
 
