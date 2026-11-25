@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -76,6 +75,9 @@
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/faq/</loc>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/getting-started/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/getting-started/overview/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -83,6 +85,9 @@
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/getting-started/overview/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/getting-started/overview/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/design/architecture/</loc>
@@ -93,6 +98,12 @@
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/design/architecture/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/design/architecture/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/</loc>
+    <lastmod>2026-11-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/reference/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
@@ -109,6 +120,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/getting-started/getting-started/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/getting-started/getting-started/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -121,6 +135,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/implementing-a-rule/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/implementing-a-rule/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/design/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -130,10 +147,16 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/design/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/design/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/examples/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/examples/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/examples/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/configuration/</loc>
@@ -145,10 +168,16 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/configuration/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/configuration/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/examples/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/appendix/</loc>
+    <lastmod>2026-05-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/appendix/</loc>
     <lastmod>2026-05-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/appendix/</loc>
@@ -166,6 +195,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/neighborhoods/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/neighborhoods/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/custom-state/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -173,6 +205,9 @@
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/custom-state/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/custom-state/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/complex-ca/</loc>
@@ -184,10 +219,16 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/complex-ca/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/complex-ca/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/reference/generation-listener/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/generation-listener/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/generation-listener/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/parallel-execution/</loc>
@@ -199,10 +240,16 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/parallel-execution/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/parallel-execution/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/reference/ui-visualization/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/ui-visualization/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/ui-visualization/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/reference/3d-4d-support/</loc>
@@ -214,6 +261,12 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/reference/3d-4d-support/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/3d-4d-support/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/reference/gif-export/</loc>
+    <lastmod>2026-11-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/appendix/faq/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -223,10 +276,19 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/appendix/faq/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/appendix/faq/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/</loc>
+    <lastmod>2026-11-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/</loc>
+    <lastmod>2026-11-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/appendix/changelog/</loc>
     <lastmod>2026-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://carmelolg.github.io/JCAL/</loc>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/appendix/changelog/</loc>
     <lastmod>2026-05-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/</loc>
@@ -239,6 +301,9 @@
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/examples/game-of-life-ui/</loc>
+    <lastmod>2026-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/examples/game-of-life-ui/</loc>
     <lastmod>2026-05-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.1.0/</loc>
@@ -259,6 +324,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/examples/game-of-life-2d/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/examples/game-of-life-2d/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/examples/game-of-life-3d/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -268,6 +336,9 @@
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/examples/game-of-life-3d/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/examples/game-of-life-3d/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.0.0/examples/heat-diffusion/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -275,6 +346,9 @@
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/v2.2.0/examples/heat-diffusion/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://carmelolg.github.io/JCAL/v2.3.0/examples/heat-diffusion/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://carmelolg.github.io/JCAL/tags/architecture/</loc>
